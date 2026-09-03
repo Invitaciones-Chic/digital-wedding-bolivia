@@ -7,41 +7,77 @@
     <meta name="description" content="Transformamos tu invitación de boda en una experiencia digital inolvidable. Diseños exclusivos, confirmación en tiempo real y tecnología de punta para crear el primer momento mágico de tu gran día.">
     
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="favicon%20png%20para%20web%20bodas.png">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="apple-touch-icon" href="favicon.png">
     
     <!-- Open Graph -->
     <meta property="og:title" content="Digital Wedding Bolivia | Invitaciones Digitales Premium">
     <meta property="og:description" content="Transformamos tu invitación de boda en una experiencia digital inolvidable. Diseños exclusivos, confirmación en tiempo real y tecnología de punta para crear el primer momento mágico de tu gran día.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://digitalweddingbolivia.dpdns.org/">
-    <meta property="og:image" content="https://digitalweddingbolivia.dpdns.org/open%20graph%20Digital%20Wedding%20Bolivia.png">
+    <meta property="og:image" content="https://digitalweddingbolivia.dpdns.org/og-image.jpg">
+    <meta property="og:image:secure_url" content="https://digitalweddingbolivia.dpdns.org/og-image.jpg">
+    <meta property="og:image:type" content="image/jpeg">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Digital Wedding Bolivia, invitaciones de boda digitales premium">
+    <meta property="og:locale" content="es_BO">
+    <meta property="og:site_name" content="Digital Wedding Bolivia">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Digital Wedding Bolivia | Invitaciones Digitales Premium">
+    <meta name="twitter:description" content="Diseños exclusivos, confirmación en tiempo real y todo lo que necesitas para organizar tu boda sin estrés.">
+    <meta name="twitter:image" content="https://digitalweddingbolivia.dpdns.org/og-image.jpg">
+    <meta name="twitter:image:alt" content="Digital Wedding Bolivia, invitaciones digitales premium">
+    <meta name="theme-color" content="#FAF8F4" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#1C1A16" media="(prefers-color-scheme: dark)">
+    <meta name="author" content="Digital Wedding Bolivia">
+    <link rel="canonical" href="https://digitalweddingbolivia.dpdns.org/">
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&family=Cormorant+Garamond:wght@300;400;500;600&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Jost:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
 
     <script>
+        // Marca el documento como "con JS" antes del primer paint, para que las
+        // animaciones de entrada no parpadeen y el contenido siga siendo
+        // visible si el JS nunca llega a ejecutarse.
+        document.documentElement.classList.add('js');
+
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
                         gold: {
-                            DEFAULT: '#C9A227',
-                            light: '#E8D5A3',
-                            dark: '#A68B1B',
+                            DEFAULT: '#C9A227',   // acento grafico: iconos, fondos, bordes
+                            ink: '#86690F',       // dorado legible para texto pequeno (AA sobre blanco)
+                            dark: '#A6831A',
+                            light: '#E3CE93',
+                            wash: '#FBF6E9',
                         },
                         dark: {
-                            DEFAULT: '#1A1A1A',
-                            lighter: '#2D2D2D',
+                            DEFAULT: '#1C1A16',
+                            lighter: '#33302A',
+                        },
+                        // Escala neutra CALIDA. Sustituye los grises azulados de
+                        // Tailwind, que ensuciaban el dorado al convivir con el.
+                        gray: {
+                            50:  '#FAF8F4',
+                            100: '#F2EEE6',
+                            200: '#E7E1D5',
+                            300: '#D6CEBF',
+                            400: '#A9A091',
+                            500: '#877E70',
+                            600: '#6B6358',
+                            700: '#524B42',
+                            800: '#3A342D',
+                            900: '#26221D',
                         },
                         silver: {
                             DEFAULT: '#C0C0C0',
@@ -49,9 +85,27 @@
                         }
                     },
                     fontFamily: {
-                        serif: ['Playfair Display', 'serif'],
-                        sans: ['Montserrat', 'sans-serif'],
-                        display: ['Cormorant Garamond', 'serif'],
+                        serif: ['Playfair Display', 'Georgia', 'serif'],
+                        sans: ['Jost', 'system-ui', 'sans-serif'],
+                        display: ['Cormorant Garamond', 'Georgia', 'serif'],
+                    },
+                    // Sombras tenidas con el marron calido del fondo, nunca negro puro.
+                    boxShadow: {
+                        sm:  '0 1px 2px rgba(28,26,22,.05)',
+                        DEFAULT: '0 2px 8px -2px rgba(28,26,22,.07)',
+                        md:  '0 6px 18px -8px rgba(28,26,22,.12)',
+                        lg:  '0 14px 34px -14px rgba(28,26,22,.16)',
+                        xl:  '0 24px 50px -20px rgba(28,26,22,.18)',
+                        '2xl': '0 32px 70px -28px rgba(28,26,22,.22)',
+                        gold: '0 18px 40px -18px rgba(166,131,26,.45)',
+                    },
+                    borderRadius: {
+                        xl: '0.875rem',
+                        '2xl': '1.25rem',
+                        '3xl': '1.75rem',
+                    },
+                    transitionTimingFunction: {
+                        premium: 'cubic-bezier(0.32, 0.72, 0, 1)',
                     }
                 }
             }
@@ -59,279 +113,513 @@
     </script>
 
     <style>
-        /* Custom Styles */
-        body {
-            font-family: 'Montserrat', sans-serif;
-            overflow-x: hidden;
+        /* ============================================================
+           TOKENS - toda decision de color, ritmo y motion vive aqui.
+           ============================================================ */
+        :root {
+            --ink: #1C1A16;
+            --ink-soft: #524B42;
+            --muted: #6B6358;
+            --line: #E7E1D5;
+            --line-soft: #F2EEE6;
+            --surface: #FFFFFF;
+            --surface-2: #FAF8F4;
+            --gold: #C9A227;
+            --gold-ink: #86690F;
+            --gold-dark: #A6831A;
+            --gold-light: #E3CE93;
+            --gold-wash: #FBF6E9;
+
+            --ease: cubic-bezier(0.32, 0.72, 0, 1);
+            --dur: 560ms;
+            --dur-fast: 220ms;
         }
 
-        .font-serif {
-            font-family: 'Playfair Display', serif;
-        }
-
-        .font-display {
-            font-family: 'Cormorant Garamond', serif;
-        }
-
-        /* Smooth Scroll */
         html {
             scroll-behavior: smooth;
-            scroll-padding-top: 80px; /* Offset for fixed navbar */
+            scroll-padding-top: 6rem;
+            -webkit-text-size-adjust: 100%;
         }
 
-        /* Gold Gradient Text */
+        body {
+            font-family: 'Jost', system-ui, sans-serif;
+            color: var(--ink);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* ============================================================
+           TIPOGRAFIA
+           ============================================================ */
+        .font-serif { font-family: 'Playfair Display', Georgia, serif; }
+        .font-display { font-family: 'Cormorant Garamond', Georgia, serif; }
+
+        /* Los serif de display necesitan tracking negativo y line-height corto
+           para leerse macizos en vez de sueltos. */
+        h1, h2 {
+            letter-spacing: -0.022em;
+            text-wrap: balance;
+        }
+        h3, h4 { letter-spacing: -0.012em; text-wrap: balance; }
+        p { text-wrap: pretty; }
+
+        /* Escala fluida: elimina los saltos bruscos entre breakpoints. */
+        .h-display {
+            font-size: clamp(2.5rem, 1.55rem + 4.6vw, 4.5rem);
+            line-height: 1.04;
+        }
+        .h-section {
+            font-size: clamp(1.95rem, 1.35rem + 2.4vw, 3rem);
+            line-height: 1.1;
+        }
+
+        /* Ancho comodo de lectura (~62 caracteres). */
+        .measure { max-width: 62ch; }
+
+        /* Cifras alineadas en columna: precios, stats, telefonos. */
+        .tnum { font-variant-numeric: tabular-nums; letter-spacing: -0.01em; }
+
+        /* Eyebrow con filete: microtipografia, no una linea de mayusculas suelta. */
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.7rem;
+            font-size: 0.6875rem;
+            font-weight: 500;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: var(--gold-ink);
+        }
+        .eyebrow::before {
+            content: '';
+            width: 1.75rem;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold-light), var(--gold));
+            flex: none;
+        }
+        .text-center .eyebrow::after {
+            content: '';
+            width: 1.75rem;
+            height: 1px;
+            background: linear-gradient(90deg, var(--gold), var(--gold-light), transparent);
+            flex: none;
+        }
+
+        /* Degradado dorado legible: el tono medio original caia a 1.6:1 de
+           contraste sobre blanco. Ahora oscila entre valores que si se leen. */
         .text-gold-gradient {
-            background: linear-gradient(135deg, #C9A227 0%, #E8D5A3 50%, #C9A227 100%);
+            background: linear-gradient(100deg, var(--gold-dark) 0%, var(--gold) 42%, var(--gold-dark) 100%);
             -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
             background-clip: text;
+            -webkit-text-fill-color: transparent;
+            color: transparent;
         }
 
-        /* Gold Border Gradient */
-        .border-gold-gradient {
-            border-image: linear-gradient(135deg, #C9A227, #E8D5A3, #C9A227) 1;
+        ::selection { background: var(--gold-light); color: var(--ink); }
+
+        /* ============================================================
+           SUPERFICIES Y TEXTURA
+           ============================================================ */
+        /* Grano fijo: rompe la planitud digital sin repintar durante el scroll. */
+        body::after {
+            content: '';
+            position: fixed;
+            inset: 0;
+            z-index: 60;
+            pointer-events: none;
+            opacity: .035;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)'/%3E%3C/svg%3E");
         }
 
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .animate-fade-in-up {
-            animation: fadeInUp 0.8s ease-out forwards;
-        }
-
-        @keyframes shimmer {
-            0%, 100% {
-                background-position: 0% 50%;
-            }
-            50% {
-                background-position: 100% 50%;
-            }
-        }
-
-        .animate-shimmer {
-            background-size: 200% 200%;
-            animation: shimmer 3s ease infinite;
-        }
-
-        /* Carousel Styles */
-        .carousel-container {
+        /* Velo dorado que aparece al hover: da sensacion de material
+           en lugar de rectangulo plano. */
+        .card-hover {
             position: relative;
-            overflow: hidden;
+            transition:
+                transform var(--dur) var(--ease),
+                box-shadow var(--dur) var(--ease),
+                border-color var(--dur) var(--ease);
         }
-
-        .carousel-track {
-            display: flex;
-            transition: transform 0.5s ease-in-out;
+        .card-hover::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity var(--dur) var(--ease);
+            background: linear-gradient(160deg, rgba(201,162,39,.10), transparent 42%);
         }
-
-        .carousel-slide {
-            min-width: 100%;
-            padding: 0 1rem;
-        }
-
-        @media (min-width: 768px) {
-            .carousel-slide {
-                min-width: 50%;
+        @media (hover: hover) {
+            .card-hover:hover {
+                transform: translateY(-6px);
+                box-shadow: 0 26px 52px -26px rgba(28,26,22,.28);
+                border-color: var(--gold-light);
             }
+            .card-hover:hover::after { opacity: 1; }
         }
 
-        @media (min-width: 1024px) {
-            .carousel-slide {
-                min-width: 33.333%;
-            }
-        }
-
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar {
-            width: 10px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: #f1f1f1;
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: #C9A227;
-            border-radius: 5px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: #A68B1B;
-        }
-
-        /* Button Hover Effect */
+        /* ============================================================
+           INTERACCION
+           ============================================================ */
         .btn-gold {
             position: relative;
             overflow: hidden;
-            transition: all 0.3s ease;
+            transition: transform var(--dur-fast) var(--ease),
+                        background-color var(--dur-fast) var(--ease),
+                        box-shadow var(--dur-fast) var(--ease);
         }
-
         .btn-gold::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: -100%;
+            inset: 0;
+            transform: translateX(-100%);
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,.28), transparent);
+            transition: transform 700ms var(--ease);
+        }
+        .btn-gold:hover::before { transform: translateX(100%); }
+
+        /* Respuesta tactil: todo lo pulsable cede un poco al presionarse. */
+        a, button, [role="button"] { touch-action: manipulation; }
+        .btn-gold:active, .press:active, button:active { transform: scale(.985); }
+
+        /* Foco visible para teclado: requisito de accesibilidad, no opcional. */
+        :focus-visible {
+            outline: 2px solid var(--gold-dark);
+            outline-offset: 3px;
+            border-radius: 4px;
+        }
+        :focus:not(:focus-visible) { outline: none; }
+
+        .skip-link {
+            position: absolute;
+            left: 1rem;
+            top: -100px;
+            z-index: 100;
+            background: var(--ink);
+            color: #fff;
+            padding: .75rem 1.25rem;
+            border-radius: 999px;
+            font-size: .875rem;
+            transition: top var(--dur-fast) var(--ease);
+        }
+        .skip-link:focus { top: 1rem; }
+
+        /* ============================================================
+           ENTRADA EN VIEWPORT
+           ============================================================ */
+        .js .reveal {
+            opacity: 0;
+            transform: translateY(22px);
+        }
+        .js .reveal.is-visible {
+            opacity: 1;
+            transform: none;
+            transition:
+                opacity 760ms var(--ease) var(--d, 0ms),
+                transform 760ms var(--ease) var(--d, 0ms);
+        }
+
+        /* ============================================================
+           CARRUSEL
+           ============================================================ */
+        .carousel-container { position: relative; }
+        .carousel-viewport {
+            overflow: hidden;
+            /* Deja respirar la sombra de las tarjetas al desplazarse. */
+            margin: -1rem;
+            padding: 1rem;
+        }
+        .carousel-track {
+            display: flex;
+            transition: transform var(--dur) var(--ease);
+        }
+        .carousel-slide {
+            min-width: 100%;
+            padding: 0 .625rem;
+        }
+        @media (min-width: 768px) {
+            .carousel-slide { min-width: 50%; }
+        }
+        @media (min-width: 1024px) {
+            .carousel-slide { min-width: 33.3333%; }
+        }
+
+        /* Los puntos escalan en vez de cambiar de ancho: sin recalculo de layout. */
+        .dot {
+            width: .5rem;
+            height: .5rem;
+            border-radius: 999px;
+            background: var(--line);
+            transition: transform var(--dur-fast) var(--ease),
+                        background-color var(--dur-fast) var(--ease);
+        }
+        .dot[aria-current="true"] {
+            background: var(--gold);
+            transform: scale(1.55);
+        }
+
+        /* ============================================================
+           MENU MOVIL
+           ============================================================ */
+        .mobile-panel {
+            display: grid;
+            grid-template-rows: 0fr;
+            transition: grid-template-rows var(--dur) var(--ease);
+        }
+        .mobile-panel > div { overflow: hidden; }
+        .mobile-panel[data-open="true"] { grid-template-rows: 1fr; }
+        .mobile-panel .m-link {
+            opacity: 0;
+            transform: translateY(-8px);
+            transition: opacity var(--dur) var(--ease), transform var(--dur) var(--ease);
+        }
+        .mobile-panel[data-open="true"] .m-link {
+            opacity: 1;
+            transform: none;
+            transition-delay: calc(var(--i, 0) * 45ms);
+        }
+
+        /* Hamburguesa que se transforma en X, sin intercambiar iconos. */
+        .burger-line {
+            display: block;
+            width: 20px;
+            height: 1.5px;
+            background: currentColor;
+            border-radius: 2px;
+            transition: transform var(--dur-fast) var(--ease), opacity 120ms linear;
+        }
+        .burger-line + .burger-line { margin-top: 5px; }
+        [aria-expanded="true"] .burger-line:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+        [aria-expanded="true"] .burger-line:nth-child(2) { opacity: 0; }
+        [aria-expanded="true"] .burger-line:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+        /* ============================================================
+           FORMULARIO
+           ============================================================ */
+        .field {
             width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-            transition: left 0.5s ease;
+            padding: .8125rem 1rem;
+            border-radius: .75rem;
+            border: 1px solid var(--line);
+            background: #fff;
+            color: var(--ink);
+            font: inherit;
+            transition: border-color var(--dur-fast) var(--ease),
+                        box-shadow var(--dur-fast) var(--ease);
         }
-
-        .btn-gold:hover::before {
-            left: 100%;
+        .field::placeholder { color: #A9A091; }
+        .field:hover { border-color: var(--gold-light); }
+        .field:focus {
+            outline: none;
+            border-color: var(--gold);
+            box-shadow: 0 0 0 3px rgba(201,162,39,.16);
         }
-
-        /* Card Hover Effect */
-        .card-hover {
-            transition: all 0.3s ease;
+        .field[aria-invalid="true"] {
+            border-color: #B4442E;
+            box-shadow: 0 0 0 3px rgba(180,68,46,.12);
         }
-
-        .card-hover:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(201, 162, 39, 0.2);
+        .field-error {
+            display: none;
+            margin-top: .4rem;
+            font-size: .8125rem;
+            color: #9B3A26;
         }
+        .field[aria-invalid="true"] ~ .field-error { display: block; }
 
-        /* Parallax Effect */
-        .parallax {
-            background-attachment: fixed;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
+        /* ============================================================
+           SCROLLBAR
+           ============================================================ */
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: var(--surface-2); }
+        ::-webkit-scrollbar-thumb {
+            background: var(--gold-light);
+            border-radius: 999px;
+            border: 3px solid var(--surface-2);
         }
+        ::-webkit-scrollbar-thumb:hover { background: var(--gold); }
 
-        @media (max-width: 768px) {
-            .parallax {
-                background-attachment: scroll;
+        /* ============================================================
+           PREFERENCIAS DEL USUARIO
+           ============================================================ */
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+            *, *::before, *::after {
+                animation-duration: .01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: .01ms !important;
             }
+            .js .reveal { opacity: 1; transform: none; }
+        }
+
+        /* Enlace de nav: filete dorado que crece desde el centro. */
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: .35rem;
+            height: 1px;
+            width: 0;
+            background: var(--gold);
+            transform: translateX(-50%);
+            transition: width var(--dur) var(--ease);
+        }
+        .nav-link:hover::after { width: 1.25rem; }
+        .nav-link[aria-current="page"] { color: var(--ink); font-weight: 500; }
+        .nav-link[aria-current="page"]::after { width: 1.25rem; }
+
+        @media print {
+            body::after, nav, .no-print { display: none !important; }
         }
     </style>
 </head>
-<body class="bg-white text-dark">
+<body class="bg-white text-dark antialiased">
+
+    <a href="#main" class="skip-link">Saltar al contenido</a>
+
+    <!-- Centinela para detectar el scroll sin escuchar el evento scroll -->
+    <div id="nav-sentinel" aria-hidden="true" class="absolute top-0 h-px w-px"></div>
 
     <!-- Navigation -->
-    <nav class="fixed w-full bg-white/95 backdrop-blur-sm shadow-sm z-50 transition-all duration-300" id="navbar">
+    <nav id="navbar" class="fixed inset-x-0 top-0 z-40 border-b border-transparent bg-white/70 backdrop-blur-xl transition-[background-color,border-color,box-shadow] duration-500 ease-premium">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
                 <!-- Logo -->
-                <div class="flex items-center space-x-3">
-                    <div class="w-12 h-12 flex items-center justify-center">
-                        <svg viewBox="0 0 100 100" class="w-full h-full">
-                            <circle cx="50" cy="50" r="45" fill="none" stroke="#C9A227" stroke-width="2"/>
-                            <text x="50" y="65" font-family="Playfair Display" font-size="35" font-weight="bold" fill="#C9A227" text-anchor="middle">DW</text>
+                <a href="#inicio" class="flex items-center gap-3 group" aria-label="Digital Wedding Bolivia, ir al inicio">
+                    <span class="w-11 h-11 flex items-center justify-center">
+                        <svg viewBox="0 0 100 100" class="w-full h-full transition-transform duration-700 ease-premium group-hover:rotate-[8deg]" aria-hidden="true">
+                            <circle cx="50" cy="50" r="46" fill="none" stroke="#C9A227" stroke-width="1.1" opacity=".45"/>
+                            <circle cx="50" cy="50" r="39" fill="none" stroke="#C9A227" stroke-width="1.6"/>
+                            <text x="50" y="63" font-family="Playfair Display, Georgia, serif" font-size="32" font-weight="600" fill="#A6831A" text-anchor="middle">DW</text>
                         </svg>
-                    </div>
-                    <div>
-                        <h1 class="font-serif text-xl font-bold text-dark">Digital Wedding</h1>
-                        <p class="text-xs text-gold tracking-wider">BOLIVIA</p>
-                    </div>
-                </div>
+                    </span>
+                    <span class="leading-none">
+                        <span class="block font-serif text-lg font-semibold text-dark">Digital Wedding</span>
+                        <span class="block mt-1 text-[10px] font-medium tracking-[0.32em] text-gold-ink">BOLIVIA</span>
+                    </span>
+                </a>
 
                 <!-- Desktop Menu -->
-                <div class="hidden md:flex items-center space-x-8">
-                    <a href="#inicio" class="text-dark hover:text-gold transition-colors duration-300 font-medium">Inicio</a>
-                    <a href="#servicios" class="text-dark hover:text-gold transition-colors duration-300 font-medium">Servicios</a>
-                    <a href="#portafolio" class="text-dark hover:text-gold transition-colors duration-300 font-medium">Portafolio</a>
-                    <a href="#paquetes" class="text-dark hover:text-gold transition-colors duration-300 font-medium">Paquetes</a>
-                    <a href="#proceso" class="text-dark hover:text-gold transition-colors duration-300 font-medium">Proceso</a>
-                    <a href="#contacto" class="btn-gold bg-gold text-white px-6 py-2 rounded-full font-semibold hover:bg-gold-dark transition-colors">
-                        Cotizar Ahora
+                <div class="hidden md:flex items-center gap-1">
+                    <a href="#inicio" class="nav-link relative px-4 py-2 text-[0.9375rem] text-gray-700 transition-colors duration-300 hover:text-dark">Inicio</a>
+                    <a href="#servicios" class="nav-link relative px-4 py-2 text-[0.9375rem] text-gray-700 transition-colors duration-300 hover:text-dark">Servicios</a>
+                    <a href="#portafolio" class="nav-link relative px-4 py-2 text-[0.9375rem] text-gray-700 transition-colors duration-300 hover:text-dark">Portafolio</a>
+                    <a href="#paquetes" class="nav-link relative px-4 py-2 text-[0.9375rem] text-gray-700 transition-colors duration-300 hover:text-dark">Paquetes</a>
+                    <a href="#proceso" class="nav-link relative px-4 py-2 text-[0.9375rem] text-gray-700 transition-colors duration-300 hover:text-dark">Proceso</a>
+                    <a href="#contacto" class="btn-gold group ml-3 inline-flex items-center gap-2 rounded-full bg-dark py-2 pl-5 pr-2 text-sm font-medium text-white shadow-md hover:bg-gold-dark">
+                        Cotizar ahora
+                        <span class="flex h-7 w-7 items-center justify-center rounded-full bg-white/15 transition-transform duration-500 ease-premium group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
+                            <i data-lucide="arrow-up-right" class="h-4 w-4"></i>
+                        </span>
                     </a>
                 </div>
 
                 <!-- Mobile Menu Button -->
-                <button class="md:hidden text-dark" id="mobile-menu-btn">
-                    <i data-lucide="menu" class="w-6 h-6"></i>
+                <button id="mobile-menu-btn" type="button" aria-expanded="false" aria-controls="mobile-menu"
+                        aria-label="Abrir menu de navegacion"
+                        class="md:hidden -mr-2 flex h-11 w-11 items-center justify-center rounded-full text-dark transition-colors duration-300 hover:bg-gray-100">
+                    <span class="sr-only">Menu</span>
+                    <span aria-hidden="true">
+                        <span class="burger-line"></span>
+                        <span class="burger-line"></span>
+                        <span class="burger-line"></span>
+                    </span>
                 </button>
             </div>
         </div>
 
         <!-- Mobile Menu -->
-        <div class="md:hidden hidden bg-white border-t" id="mobile-menu">
-            <div class="px-4 py-4 space-y-3">
-                <a href="#inicio" class="block text-dark hover:text-gold transition-colors">Inicio</a>
-                <a href="#servicios" class="block text-dark hover:text-gold transition-colors">Servicios</a>
-                <a href="#portafolio" class="block text-dark hover:text-gold transition-colors">Portafolio</a>
-                <a href="#paquetes" class="block text-dark hover:text-gold transition-colors">Paquetes</a>
-                <a href="#proceso" class="block text-dark hover:text-gold transition-colors">Proceso</a>
-                <a href="#contacto" class="block btn-gold bg-gold text-white px-6 py-2 rounded-full font-semibold text-center">
-                    Cotizar Ahora
-                </a>
+        <div id="mobile-menu" class="mobile-panel md:hidden border-t border-gray-200/70 bg-white/95 backdrop-blur-xl" data-open="false">
+            <div>
+                <div class="px-4 pb-5 pt-4 space-y-1">
+                    <a href="#inicio"     style="--i:0" class="m-link block rounded-xl px-4 py-3 text-gray-700 transition-colors duration-300 hover:bg-gray-50 hover:text-dark">Inicio</a>
+                    <a href="#servicios"  style="--i:1" class="m-link block rounded-xl px-4 py-3 text-gray-700 transition-colors duration-300 hover:bg-gray-50 hover:text-dark">Servicios</a>
+                    <a href="#portafolio" style="--i:2" class="m-link block rounded-xl px-4 py-3 text-gray-700 transition-colors duration-300 hover:bg-gray-50 hover:text-dark">Portafolio</a>
+                    <a href="#paquetes"   style="--i:3" class="m-link block rounded-xl px-4 py-3 text-gray-700 transition-colors duration-300 hover:bg-gray-50 hover:text-dark">Paquetes</a>
+                    <a href="#proceso"    style="--i:4" class="m-link block rounded-xl px-4 py-3 text-gray-700 transition-colors duration-300 hover:bg-gray-50 hover:text-dark">Proceso</a>
+                    <a href="#contacto"   style="--i:5" class="m-link btn-gold mt-2 block rounded-full bg-dark px-6 py-3.5 text-center font-medium text-white">Cotizar ahora</a>
+                </div>
             </div>
         </div>
     </nav>
 
+    <main id="main">
+
     <!-- Hero Section -->
-    <section id="inicio" class="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-white via-gray-50 to-gold-light/10">
-        <!-- Background Pattern -->
-        <div class="absolute inset-0 opacity-5">
-            <div class="absolute top-0 left-0 w-full h-full" style="background-image: radial-gradient(circle, #C9A227 1px, transparent 1px); background-size: 50px 50px;"></div>
+    <section id="inicio" class="relative flex min-h-[100dvh] items-center overflow-hidden bg-gradient-to-b from-gray-50 via-white to-gold-wash/60">
+        <!-- Trama de puntos + halo calido, en lugar de un fondo plano -->
+        <div class="pointer-events-none absolute inset-0" aria-hidden="true">
+            <div class="absolute inset-0 opacity-[0.16]" style="background-image: radial-gradient(#C9A227 1px, transparent 1px); background-size: 34px 34px; mask-image: radial-gradient(120% 90% at 30% 15%, #000 0%, transparent 72%); -webkit-mask-image: radial-gradient(120% 90% at 30% 15%, #000 0%, transparent 72%);"></div>
+            <div class="absolute -right-32 top-[-10%] h-[38rem] w-[38rem] rounded-full opacity-60 blur-3xl" style="background: radial-gradient(circle, rgba(227,206,147,.34) 0%, transparent 68%);"></div>
         </div>
 
-        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-            <div class="grid md:grid-cols-2 gap-12 items-center">
+        <div class="relative z-10 mx-auto w-full max-w-7xl px-4 pb-24 pt-32 sm:px-6 md:pb-28 md:pt-36 lg:px-8">
+            <div class="grid items-center gap-14 md:grid-cols-2 md:gap-12 lg:gap-20">
                 <!-- Text Content -->
-                <div class="animate-fade-in-up">
-                    <div class="inline-block mb-4">
-                        <span class="text-gold font-medium tracking-wider text-sm uppercase">Invitaciones Digitales Premium</span>
+                <div>
+                    <div class="reveal mb-6" style="--d:60ms">
+                        <span class="eyebrow">Invitaciones digitales premium</span>
                     </div>
-                    <h1 class="font-serif text-5xl md:text-6xl lg:text-7xl font-bold text-dark mb-6 leading-tight">
-                        Tu Boda Merece una <span class="text-gold-gradient">Invitación Única</span>
+                    <h1 class="reveal font-serif h-display font-semibold text-dark mb-7" style="--d:130ms">
+                        Tu boda merece una <span class="text-gold-gradient">invitación única</span>
                     </h1>
-                    <p class="text-lg text-gray-600 mb-8 leading-relaxed">
+                    <p class="reveal measure text-[1.0625rem] leading-[1.75] text-gray-600 mb-9" style="--d:200ms">
                         Creamos experiencias digitales inolvidables para tu gran día. Diseños exclusivos, confirmación en tiempo real y todo lo que necesitas para organizar tu boda sin estrés.
                     </p>
-                    <div class="flex flex-col sm:flex-row gap-4">
-                        <a href="#paquetes" class="btn-gold bg-gold text-white px-8 py-4 rounded-full font-semibold text-center hover:bg-gold-dark transition-all transform hover:scale-105 shadow-lg">
-                            Ver Paquetes
+                    <div class="reveal flex flex-col gap-3 sm:flex-row sm:items-center" style="--d:270ms">
+                        <a href="#paquetes" class="btn-gold group inline-flex items-center justify-center gap-2 rounded-full bg-gold py-4 pl-8 pr-3 font-medium text-white shadow-gold transition-colors duration-300 hover:bg-gold-dark">
+                            Ver paquetes
+                            <span class="flex h-8 w-8 items-center justify-center rounded-full bg-white/20 transition-transform duration-500 ease-premium group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
+                                <i data-lucide="arrow-up-right" class="h-4 w-4"></i>
+                            </span>
                         </a>
-                        <a href="#portafolio" class="border-2 border-gold text-gold px-8 py-4 rounded-full font-semibold text-center hover:bg-gold hover:text-white transition-all">
-                            Ver Portafolio
+                        <a href="#portafolio" class="press inline-flex items-center justify-center rounded-full border border-gray-300 bg-white/60 px-8 py-4 font-medium text-dark transition-colors duration-300 ease-premium hover:border-gold hover:bg-white hover:text-gold-ink">
+                            Ver portafolio
                         </a>
                     </div>
-                    
+
                     <!-- Stats -->
-                    <div class="grid grid-cols-3 gap-8 mt-12 pt-8 border-t border-gray-200">
+                    <dl class="reveal mt-14 grid grid-cols-3 gap-5 border-t border-gray-200 pt-8 sm:gap-8" style="--d:340ms">
                         <div>
-                            <div class="font-serif text-3xl font-bold text-gold">100+</div>
-                            <div class="text-sm text-gray-600 mt-1">Bodas Realizadas</div>
+                            <dt class="sr-only">Bodas realizadas</dt>
+                            <dd class="font-serif tnum text-[2rem] font-semibold leading-none text-gold-dark sm:text-4xl">100+</dd>
+                            <p class="mt-2 text-[0.75rem] leading-snug text-gray-500 sm:text-[0.8125rem]">Bodas realizadas</p>
                         </div>
                         <div>
-                            <div class="font-serif text-3xl font-bold text-gold">98%</div>
-                            <div class="text-sm text-gray-600 mt-1">Clientes Satisfechos</div>
+                            <dt class="sr-only">Clientes satisfechos</dt>
+                            <dd class="font-serif tnum text-[2rem] font-semibold leading-none text-gold-dark sm:text-4xl">98%</dd>
+                            <p class="mt-2 text-[0.75rem] leading-snug text-gray-500 sm:text-[0.8125rem]">Clientes satisfechos</p>
                         </div>
                         <div>
-                            <div class="font-serif text-3xl font-bold text-gold">24h</div>
-                            <div class="text-sm text-gray-600 mt-1">Soporte Premium</div>
+                            <dt class="sr-only">Soporte premium</dt>
+                            <dd class="font-serif tnum text-[2rem] font-semibold leading-none text-gold-dark sm:text-4xl">24h</dd>
+                            <p class="mt-2 text-[0.75rem] leading-snug text-gray-500 sm:text-[0.8125rem]">Soporte premium</p>
                         </div>
-                    </div>
+                    </dl>
                 </div>
 
                 <!-- Hero Image -->
-                <div class="relative animate-fade-in-up" style="animation-delay: 0.2s;">
+                <div class="reveal relative" style="--d:400ms">
                     <div class="relative">
-                        <div class="absolute inset-0 bg-gold/20 rounded-3xl transform rotate-6"></div>
-                        <img src="https://image.qwenlm.ai/public_source/c9143474-7817-4ddd-a0b4-589413161bc9/1b5cb4edc-c629-46f1-b927-d89eaf9268c0.png" 
-                             alt="Invitación Digital Premium" 
-                             class="relative rounded-3xl shadow-2xl w-full">
-                        
+                        <!-- Doble marco: la lamina se apoya sobre una bandeja, no flota suelta -->
+                        <div class="absolute -inset-3 -rotate-2 rounded-[2rem] bg-gold/10 ring-1 ring-gold/15" aria-hidden="true"></div>
+                        <div class="relative rounded-[1.75rem] bg-white/70 p-2 shadow-xl ring-1 ring-gray-200/80 backdrop-blur-sm">
+                            <img src="https://image.qwenlm.ai/public_source/c9143474-7817-4ddd-a0b4-589413161bc9/1b5cb4edc-c629-46f1-b927-d89eaf9268c0.png"
+                                 alt="Invitación de boda digital abierta en un portátil y un teléfono, con diseño dorado sobre fondo claro"
+                                 width="880" height="660" fetchpriority="high" decoding="async"
+                                 class="w-full rounded-[1.35rem]">
+                        </div>
+
                         <!-- Floating Badge -->
-                        <div class="absolute -bottom-6 -left-6 bg-white rounded-2xl shadow-xl p-4 flex items-center space-x-3">
-                            <div class="w-12 h-12 bg-gold/10 rounded-full flex items-center justify-center">
-                                <i data-lucide="heart" class="w-6 h-6 text-gold"></i>
-                            </div>
-                            <div>
-                                <div class="font-bold text-dark">Diseño Premium</div>
-                                <div class="text-sm text-gray-600">100% Personalizado</div>
-                            </div>
+                        <div class="absolute -bottom-5 left-2 flex items-center gap-3 rounded-2xl border border-gray-200/70 bg-white/90 p-3.5 pr-5 shadow-lg backdrop-blur-md sm:-left-6">
+                            <span class="flex h-11 w-11 flex-none items-center justify-center rounded-full bg-gold-wash ring-1 ring-gold/20">
+                                <i data-lucide="heart" class="h-5 w-5 text-gold-ink"></i>
+                            </span>
+                            <span class="leading-tight">
+                                <span class="block font-medium text-dark">Diseño premium</span>
+                                <span class="block text-[0.8125rem] text-gray-500">100% personalizado</span>
+                            </span>
                         </div>
                     </div>
                 </div>
@@ -339,21 +627,25 @@
         </div>
 
         <!-- Scroll Indicator -->
-        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-            <i data-lucide="chevron-down" class="w-8 h-8 text-gold"></i>
-        </div>
+        <a href="#servicios" aria-label="Ir a la siguiente sección"
+           class="group absolute bottom-7 left-1/2 z-10 hidden -translate-x-1/2 flex-col items-center gap-2 text-gold-ink sm:flex">
+            <span class="text-[10px] font-medium uppercase tracking-[0.28em]">Descubre</span>
+            <span class="flex h-9 w-9 items-center justify-center rounded-full border border-gold/30 transition-transform duration-700 ease-premium group-hover:translate-y-1">
+                <i data-lucide="chevron-down" class="h-4 w-4"></i>
+            </span>
+        </a>
     </section>
 
     <!-- Features Section -->
-    <section id="servicios" class="py-20 bg-white">
+    <section id="servicios" class="py-24 md:py-32 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <!-- Section Header -->
-            <div class="text-center mb-16">
-                <span class="text-gold font-medium tracking-wider text-sm uppercase">Por Qué Elegirnos</span>
-                <h2 class="font-serif text-4xl md:text-5xl font-bold text-dark mt-4 mb-6">
-                    La Experiencia <span class="text-gold-gradient">Digital Wedding</span>
+            <div class="text-center mb-14 md:mb-20 reveal">
+                <span class="eyebrow">Por qué elegirnos</span>
+                <h2 class="font-serif h-section font-semibold text-dark mt-6 mb-6">
+                    La experiencia <span class="text-gold-gradient">Digital Wedding</span>
                 </h2>
-                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                <p class="text-[1.0625rem] leading-[1.75] text-gray-600 max-w-xl mx-auto">
                     No solo creamos invitaciones, diseñamos experiencias completas que hacen de tu boda un evento inolvidable desde el primer momento.
                 </p>
             </div>
@@ -361,67 +653,67 @@
             <!-- Features Grid -->
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- Feature 1 -->
-                <div class="card-hover bg-white rounded-2xl p-8 border border-gray-100 shadow-sm">
-                    <div class="w-16 h-16 bg-gold/10 rounded-2xl flex items-center justify-center mb-6">
-                        <i data-lucide="smartphone" class="w-8 h-8 text-gold"></i>
+                <div class="card-hover reveal bg-white rounded-2xl p-8 sm:p-9 border border-gray-200/70">
+                    <div class="w-14 h-14 rounded-2xl bg-gold-wash ring-1 ring-gold/15 flex items-center justify-center mb-7">
+                        <i data-lucide="smartphone" class="h-[26px] w-[26px] text-gold-dark"></i>
                     </div>
-                    <h3 class="font-serif text-2xl font-bold text-dark mb-4">Diseño 100% Responsive</h3>
-                    <p class="text-gray-600 leading-relaxed">
+                    <h3 class="font-serif text-[1.4rem] font-semibold text-dark mb-3">Diseño 100% responsive</h3>
+                    <p class="text-gray-600 leading-[1.75] text-[0.9375rem]">
                         Tu invitación se ve perfecta en cualquier dispositivo: celular, tablet o computadora. Optimizada para una experiencia fluida.
                     </p>
                 </div>
 
                 <!-- Feature 2 -->
-                <div class="card-hover bg-white rounded-2xl p-8 border border-gray-100 shadow-sm">
-                    <div class="w-16 h-16 bg-gold/10 rounded-2xl flex items-center justify-center mb-6">
-                        <i data-lucide="check-circle" class="w-8 h-8 text-gold"></i>
+                <div class="card-hover reveal bg-white rounded-2xl p-8 sm:p-9 border border-gray-200/70">
+                    <div class="w-14 h-14 rounded-2xl bg-gold-wash ring-1 ring-gold/15 flex items-center justify-center mb-7">
+                        <i data-lucide="check-circle" class="h-[26px] w-[26px] text-gold-dark"></i>
                     </div>
-                    <h3 class="font-serif text-2xl font-bold text-dark mb-4">RSVP en Tiempo Real</h3>
-                    <p class="text-gray-600 leading-relaxed">
+                    <h3 class="font-serif text-[1.4rem] font-semibold text-dark mb-3">RSVP en tiempo real</h3>
+                    <p class="text-gray-600 leading-[1.75] text-[0.9375rem]">
                         Sistema de confirmación integrado con dashboard para que organices a tus invitados sin estrés. Todo en un solo lugar.
                     </p>
                 </div>
 
                 <!-- Feature 3 -->
-                <div class="card-hover bg-white rounded-2xl p-8 border border-gray-100 shadow-sm">
-                    <div class="w-16 h-16 bg-gold/10 rounded-2xl flex items-center justify-center mb-6">
-                        <i data-lucide="qr-code" class="w-8 h-8 text-gold"></i>
+                <div class="card-hover reveal bg-white rounded-2xl p-8 sm:p-9 border border-gray-200/70">
+                    <div class="w-14 h-14 rounded-2xl bg-gold-wash ring-1 ring-gold/15 flex items-center justify-center mb-7">
+                        <i data-lucide="qr-code" class="h-[26px] w-[26px] text-gold-dark"></i>
                     </div>
-                    <h3 class="font-serif text-2xl font-bold text-dark mb-4">QR Simple Integrado</h3>
-                    <p class="text-gray-600 leading-relaxed">
+                    <h3 class="font-serif text-[1.4rem] font-semibold text-dark mb-3">QR Simple integrado</h3>
+                    <p class="text-gray-600 leading-[1.75] text-[0.9375rem]">
                         Mesa de regalos con código QR Simple para que tus invitados puedan enviar su regalo con un solo escaneo.
                     </p>
                 </div>
 
                 <!-- Feature 4 -->
-                <div class="card-hover bg-white rounded-2xl p-8 border border-gray-100 shadow-sm">
-                    <div class="w-16 h-16 bg-gold/10 rounded-2xl flex items-center justify-center mb-6">
-                        <i data-lucide="map-pin" class="w-8 h-8 text-gold"></i>
+                <div class="card-hover reveal bg-white rounded-2xl p-8 sm:p-9 border border-gray-200/70">
+                    <div class="w-14 h-14 rounded-2xl bg-gold-wash ring-1 ring-gold/15 flex items-center justify-center mb-7">
+                        <i data-lucide="map-pin" class="h-[26px] w-[26px] text-gold-dark"></i>
                     </div>
-                    <h3 class="font-serif text-2xl font-bold text-dark mb-4">Mapas Interactivos</h3>
-                    <p class="text-gray-600 leading-relaxed">
+                    <h3 class="font-serif text-[1.4rem] font-semibold text-dark mb-3">Mapas interactivos</h3>
+                    <p class="text-gray-600 leading-[1.75] text-[0.9375rem]">
                         Integración con Google Maps para que tus invitados lleguen sin problemas a la ceremonia y recepción.
                     </p>
                 </div>
 
                 <!-- Feature 5 -->
-                <div class="card-hover bg-white rounded-2xl p-8 border border-gray-100 shadow-sm">
-                    <div class="w-16 h-16 bg-gold/10 rounded-2xl flex items-center justify-center mb-6">
-                        <i data-lucide="music" class="w-8 h-8 text-gold"></i>
+                <div class="card-hover reveal bg-white rounded-2xl p-8 sm:p-9 border border-gray-200/70">
+                    <div class="w-14 h-14 rounded-2xl bg-gold-wash ring-1 ring-gold/15 flex items-center justify-center mb-7">
+                        <i data-lucide="music" class="h-[26px] w-[26px] text-gold-dark"></i>
                     </div>
-                    <h3 class="font-serif text-2xl font-bold text-dark mb-4">Música y Animaciones</h3>
-                    <p class="text-gray-600 leading-relaxed">
+                    <h3 class="font-serif text-[1.4rem] font-semibold text-dark mb-3">Música y animaciones</h3>
+                    <p class="text-gray-600 leading-[1.75] text-[0.9375rem]">
                         Animación de apertura exclusiva, música de fondo y efectos visuales que sorprenden desde el primer momento.
                     </p>
                 </div>
 
                 <!-- Feature 6 -->
-                <div class="card-hover bg-white rounded-2xl p-8 border border-gray-100 shadow-sm">
-                    <div class="w-16 h-16 bg-gold/10 rounded-2xl flex items-center justify-center mb-6">
-                        <i data-lucide="headphones" class="w-8 h-8 text-gold"></i>
+                <div class="card-hover reveal bg-white rounded-2xl p-8 sm:p-9 border border-gray-200/70">
+                    <div class="w-14 h-14 rounded-2xl bg-gold-wash ring-1 ring-gold/15 flex items-center justify-center mb-7">
+                        <i data-lucide="headphones" class="h-[26px] w-[26px] text-gold-dark"></i>
                     </div>
-                    <h3 class="font-serif text-2xl font-bold text-dark mb-4">Soporte Premium</h3>
-                    <p class="text-gray-600 leading-relaxed">
+                    <h3 class="font-serif text-[1.4rem] font-semibold text-dark mb-3">Soporte premium</h3>
+                    <p class="text-gray-600 leading-[1.75] text-[0.9375rem]">
                         Atención personalizada y soporte técnico rápido. Estamos contigo antes, durante y después de tu boda.
                     </p>
                 </div>
@@ -430,111 +722,113 @@
     </section>
 
     <!-- Portfolio Carousel Section -->
-    <section id="portafolio" class="py-20 bg-gray-50">
+    <section id="portafolio" class="py-24 md:py-32 bg-gray-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <!-- Section Header -->
-            <div class="text-center mb-16">
-                <span class="text-gold font-medium tracking-wider text-sm uppercase">Nuestro Trabajo</span>
-                <h2 class="font-serif text-4xl md:text-5xl font-bold text-dark mt-4 mb-6">
-                    Portafolio de <span class="text-gold-gradient">Invitaciones</span>
+            <div class="text-center mb-14 md:mb-20 reveal">
+                <span class="eyebrow">Nuestro trabajo</span>
+                <h2 class="font-serif h-section font-semibold text-dark mt-6 mb-6">
+                    Portafolio de <span class="text-gold-gradient">invitaciones</span>
                 </h2>
-                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                <p class="text-[1.0625rem] leading-[1.75] text-gray-600 max-w-xl mx-auto">
                     Cada diseño es único y personalizado. Aquí te mostramos algunas de nuestras creaciones más recientes.
                 </p>
             </div>
 
             <!-- Carousel -->
-            <div class="carousel-container">
-                <div class="carousel-track" id="carousel-track">
+            <div class="carousel-container reveal">
+                <div class="carousel-viewport">
+                    <div class="carousel-track" id="carousel-track" role="group" aria-roledescription="carrusel" aria-label="Invitaciones destacadas">
                     <!-- Slide 1 -->
                     <div class="carousel-slide">
-                        <div class="bg-white rounded-2xl overflow-hidden shadow-lg card-hover">
+                        <div class="bg-white rounded-2xl overflow-hidden shadow-md border border-gray-200/60 card-hover h-full">
                             <img src="https://image.qwenlm.ai/public_source/c9143474-7817-4ddd-a0b4-589413161bc9/15485709b-ba91-4c47-b806-460f06d0eb0b.png" 
                                  alt="Invitación Clásica Elegante" 
-                                 class="w-full h-64 object-cover">
+                                 width="640" height="420" loading="lazy" decoding="async" class="w-full h-60 sm:h-64 object-cover">
                             <div class="p-6">
-                                <h3 class="font-serif text-xl font-bold text-dark mb-2">Clásica Elegante</h3>
-                                <p class="text-gray-600 text-sm">Diseño atemporal con detalles dorados y tipografía serif</p>
+                                <h3 class="font-serif text-xl font-semibold text-dark mb-2">Clásica elegante</h3>
+                                <p class="text-gray-600 text-sm leading-relaxed">Diseño atemporal con detalles dorados y tipografía serif</p>
                             </div>
                         </div>
                     </div>
 
                     <!-- Slide 2 -->
                     <div class="carousel-slide">
-                        <div class="bg-white rounded-2xl overflow-hidden shadow-lg card-hover">
+                        <div class="bg-white rounded-2xl overflow-hidden shadow-md border border-gray-200/60 card-hover h-full">
                             <img src="https://image.qwenlm.ai/public_source/c9143474-7817-4ddd-a0b4-589413161bc9/14c99f2e3-c94e-4639-bfeb-0d6015b17048.png" 
                                  alt="Invitación Moderna Premium" 
-                                 class="w-full h-64 object-cover">
+                                 width="640" height="420" loading="lazy" decoding="async" class="w-full h-60 sm:h-64 object-cover">
                             <div class="p-6">
-                                <h3 class="font-serif text-xl font-bold text-dark mb-2">Moderna Premium</h3>
-                                <p class="text-gray-600 text-sm">Estilo contemporáneo con fondo oscuro y acentos dorados</p>
+                                <h3 class="font-serif text-xl font-semibold text-dark mb-2">Moderna premium</h3>
+                                <p class="text-gray-600 text-sm leading-relaxed">Estilo contemporáneo con fondo oscuro y acentos dorados</p>
                             </div>
                         </div>
                     </div>
 
                     <!-- Slide 3 -->
                     <div class="carousel-slide">
-                        <div class="bg-white rounded-2xl overflow-hidden shadow-lg card-hover">
+                        <div class="bg-white rounded-2xl overflow-hidden shadow-md border border-gray-200/60 card-hover h-full">
                             <img src="https://image.qwenlm.ai/public_source/c9143474-7817-4ddd-a0b4-589413161bc9/1bd66d5d5-1a69-4047-a3b4-0ea940958b4d.png" 
                                  alt="Invitación Romántica" 
-                                 class="w-full h-64 object-cover">
+                                 width="640" height="420" loading="lazy" decoding="async" class="w-full h-60 sm:h-64 object-cover">
                             <div class="p-6">
-                                <h3 class="font-serif text-xl font-bold text-dark mb-2">Romántica</h3>
-                                <p class="text-gray-600 text-sm">Siluetas elegantes con detalles en oro y diseño minimalista</p>
+                                <h3 class="font-serif text-xl font-semibold text-dark mb-2">Romántica</h3>
+                                <p class="text-gray-600 text-sm leading-relaxed">Siluetas elegantes con detalles en oro y diseño minimalista</p>
                             </div>
                         </div>
                     </div>
 
                     <!-- Slide 4 -->
                     <div class="carousel-slide">
-                        <div class="bg-white rounded-2xl overflow-hidden shadow-lg card-hover">
+                        <div class="bg-white rounded-2xl overflow-hidden shadow-md border border-gray-200/60 card-hover h-full">
                             <img src="https://image.qwenlm.ai/public_source/c9143474-7817-4ddd-a0b4-589413161bc9/1c6bcda75-227b-4cb6-9d05-1254d1cdda72.png" 
                                  alt="Dashboard RSVP" 
-                                 class="w-full h-64 object-cover">
+                                 width="640" height="420" loading="lazy" decoding="async" class="w-full h-60 sm:h-64 object-cover">
                             <div class="p-6">
-                                <h3 class="font-serif text-xl font-bold text-dark mb-2">Dashboard RSVP</h3>
-                                <p class="text-gray-600 text-sm">Panel de control para gestionar confirmaciones en tiempo real</p>
+                                <h3 class="font-serif text-xl font-semibold text-dark mb-2">Dashboard RSVP</h3>
+                                <p class="text-gray-600 text-sm leading-relaxed">Panel de control para gestionar confirmaciones en tiempo real</p>
                             </div>
                         </div>
                     </div>
 
                     <!-- Slide 5 -->
                     <div class="carousel-slide">
-                        <div class="bg-white rounded-2xl overflow-hidden shadow-lg card-hover">
+                        <div class="bg-white rounded-2xl overflow-hidden shadow-md border border-gray-200/60 card-hover h-full">
                             <img src="https://image.qwenlm.ai/public_source/c9143474-7817-4ddd-a0b4-589413161bc9/1be0dc7c4-91a4-44c0-be8b-b72f86ea126a.png" 
                                  alt="Sobre con Sello de Cera" 
-                                 class="w-full h-64 object-cover">
+                                 width="640" height="420" loading="lazy" decoding="async" class="w-full h-60 sm:h-64 object-cover">
                             <div class="p-6">
-                                <h3 class="font-serif text-xl font-bold text-dark mb-2">Sello de Cera Digital</h3>
-                                <p class="text-gray-600 text-sm">Animación de apertura con sello personalizado</p>
+                                <h3 class="font-serif text-xl font-semibold text-dark mb-2">Sello de cera digital</h3>
+                                <p class="text-gray-600 text-sm leading-relaxed">Animación de apertura con sello personalizado</p>
                             </div>
                         </div>
                     </div>
 
                     <!-- Slide 6 -->
                     <div class="carousel-slide">
-                        <div class="bg-white rounded-2xl overflow-hidden shadow-lg card-hover">
+                        <div class="bg-white rounded-2xl overflow-hidden shadow-md border border-gray-200/60 card-hover h-full">
                             <img src="https://image.qwenlm.ai/public_source/c9143474-7817-4ddd-a0b4-589413161bc9/1b5cb4edc-c629-46f1-b927-d89eaf9268c0.png" 
                                  alt="Invitación en Laptop" 
-                                 class="w-full h-64 object-cover">
+                                 width="640" height="420" loading="lazy" decoding="async" class="w-full h-60 sm:h-64 object-cover">
                             <div class="p-6">
-                                <h3 class="font-serif text-xl font-bold text-dark mb-2">Vista Desktop</h3>
-                                <p class="text-gray-600 text-sm">Optimizada para todos los dispositivos</p>
+                                <h3 class="font-serif text-xl font-semibold text-dark mb-2">Vista desktop</h3>
+                                <p class="text-gray-600 text-sm leading-relaxed">Optimizada para todos los dispositivos</p>
                             </div>
                         </div>
+                    </div>
                     </div>
                 </div>
 
                 <!-- Carousel Controls -->
-                <div class="flex justify-center items-center mt-8 space-x-4">
-                    <button id="prev-btn" class="w-12 h-12 rounded-full bg-white shadow-lg flex items-center justify-center hover:bg-gold hover:text-white transition-all">
-                        <i data-lucide="chevron-left" class="w-6 h-6"></i>
+                <div class="mt-10 flex items-center justify-center gap-5">
+                    <button id="prev-btn" type="button" aria-label="Ver invitaciones anteriores"
+                            class="flex h-11 w-11 items-center justify-center rounded-full border border-gray-200 bg-white text-dark shadow-sm transition-[color,background-color,border-color,box-shadow] duration-300 ease-premium hover:border-gold hover:bg-gold hover:text-white hover:shadow-gold">
+                        <i data-lucide="arrow-left" class="h-4 w-4"></i>
                     </button>
-                    <div class="flex space-x-2" id="carousel-dots">
-                        <!-- Dots will be generated by JS -->
-                    </div>
-                    <button id="next-btn" class="w-12 h-12 rounded-full bg-white shadow-lg flex items-center justify-center hover:bg-gold hover:text-white transition-all">
-                        <i data-lucide="chevron-right" class="w-6 h-6"></i>
+                    <div id="carousel-dots" class="flex items-center gap-2.5" role="tablist" aria-label="Paginación del carrusel"></div>
+                    <button id="next-btn" type="button" aria-label="Ver más invitaciones"
+                            class="flex h-11 w-11 items-center justify-center rounded-full border border-gray-200 bg-white text-dark shadow-sm transition-[color,background-color,border-color,box-shadow] duration-300 ease-premium hover:border-gold hover:bg-gold hover:text-white hover:shadow-gold">
+                        <i data-lucide="arrow-right" class="h-4 w-4"></i>
                     </button>
                 </div>
             </div>
@@ -542,150 +836,151 @@
     </section>
 
     <!-- Packages Section -->
-    <section id="paquetes" class="py-20 bg-white">
+    <section id="paquetes" class="py-24 md:py-32 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <!-- Section Header -->
-            <div class="text-center mb-16">
-                <span class="text-gold font-medium tracking-wider text-sm uppercase">Nuestros Paquetes</span>
-                <h2 class="font-serif text-4xl md:text-5xl font-bold text-dark mt-4 mb-6">
-                    Elige el Plan <span class="text-gold-gradient">Perfecto</span>
+            <div class="text-center mb-14 md:mb-20 reveal">
+                <span class="eyebrow">Nuestros paquetes</span>
+                <h2 class="font-serif h-section font-semibold text-dark mt-6 mb-6">
+                    Elige el plan <span class="text-gold-gradient">perfecto</span>
                 </h2>
-                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                <p class="text-[1.0625rem] leading-[1.75] text-gray-600 max-w-xl mx-auto">
                     Tres opciones diseñadas para diferentes necesidades y presupuestos. Todos incluyen diseño personalizado y soporte premium.
                 </p>
             </div>
 
             <!-- Packages Grid -->
-            <div class="grid md:grid-cols-3 gap-8">
+            <div class="grid gap-6 md:grid-cols-3 lg:gap-8 lg:items-stretch">
                 <!-- Package 1: Esencial -->
-                <div class="card-hover bg-white rounded-2xl p-8 border-2 border-gray-100 relative">
-                    <div class="absolute top-0 right-0 bg-gray-100 text-gray-600 px-4 py-2 rounded-bl-2xl rounded-tr-2xl text-sm font-semibold">
+                <div class="card-hover reveal relative flex flex-col overflow-hidden rounded-2xl border border-gray-200 bg-white p-7 lg:p-8">
+                    <span class="absolute right-0 top-0 rounded-bl-2xl rounded-tr-2xl bg-gray-100 px-3.5 py-1.5 text-[11px] font-medium uppercase tracking-[0.14em] text-gray-500">
                         Básico
+                    </span>
+                    <div class="min-h-[5.25rem]">
+                        <h3 class="font-serif text-[1.75rem] font-semibold text-dark">Esencial</h3>
+                        <p class="mt-1.5 text-[0.9375rem] text-gray-500">Ideal para bodas íntimas</p>
                     </div>
-                    <div class="mb-6">
-                        <h3 class="font-serif text-3xl font-bold text-dark mb-2">Esencial</h3>
-                        <p class="text-gray-600">Ideal para bodas íntimas</p>
-                    </div>
-                    <div class="mb-6">
-                        <span class="font-serif text-5xl font-bold text-gold">250</span>
-                        <span class="text-gray-600 text-lg"> Bs</span>
-                    </div>
-                    <ul class="space-y-4 mb-8">
-                        <li class="flex items-start">
-                            <i data-lucide="check" class="w-5 h-5 text-gold mr-3 mt-1 flex-shrink-0"></i>
-                            <span class="text-gray-600">Diseño web de 1 página</span>
+                    <p class="mb-8 flex items-baseline gap-1.5">
+                        <span class="font-serif tnum text-[3.25rem] font-semibold leading-none text-gold-dark">250</span>
+                        <span class="text-gray-500">Bs</span>
+                    </p>
+                    <ul class="mb-9 flex-1 space-y-3.5">
+                        <li class="flex items-start gap-3">
+                            <i data-lucide="check" class="mt-[3px] h-4 w-4 flex-none text-gold-dark"></i>
+                            <span class="text-[0.9375rem] leading-relaxed text-gray-600">Diseño web de 1 página</span>
                         </li>
-                        <li class="flex items-start">
-                            <i data-lucide="check" class="w-5 h-5 text-gold mr-3 mt-1 flex-shrink-0"></i>
-                            <span class="text-gray-600">Confirmación por WhatsApp</span>
+                        <li class="flex items-start gap-3">
+                            <i data-lucide="check" class="mt-[3px] h-4 w-4 flex-none text-gold-dark"></i>
+                            <span class="text-[0.9375rem] leading-relaxed text-gray-600">Confirmación por WhatsApp</span>
                         </li>
-                        <li class="flex items-start">
-                            <i data-lucide="check" class="w-5 h-5 text-gold mr-3 mt-1 flex-shrink-0"></i>
-                            <span class="text-gray-600">Mesa de regalos básica (QR)</span>
+                        <li class="flex items-start gap-3">
+                            <i data-lucide="check" class="mt-[3px] h-4 w-4 flex-none text-gold-dark"></i>
+                            <span class="text-[0.9375rem] leading-relaxed text-gray-600">Mesa de regalos básica (QR)</span>
                         </li>
-                        <li class="flex items-start">
-                            <i data-lucide="check" class="w-5 h-5 text-gold mr-3 mt-1 flex-shrink-0"></i>
-                            <span class="text-gray-600">Hosting por 6 meses</span>
+                        <li class="flex items-start gap-3">
+                            <i data-lucide="check" class="mt-[3px] h-4 w-4 flex-none text-gold-dark"></i>
+                            <span class="text-[0.9375rem] leading-relaxed text-gray-600">Hosting por 6 meses</span>
                         </li>
-                        <li class="flex items-start">
-                            <i data-lucide="x" class="w-5 h-5 text-gray-300 mr-3 mt-1 flex-shrink-0"></i>
-                            <span class="text-gray-400">Animación de apertura</span>
+                        <li class="flex items-start gap-3">
+                            <i data-lucide="minus" class="mt-[3px] h-4 w-4 flex-none text-gray-300"></i>
+                            <span class="text-[0.9375rem] leading-relaxed text-gray-400">Animación de apertura</span>
                         </li>
-                        <li class="flex items-start">
-                            <i data-lucide="x" class="w-5 h-5 text-gray-300 mr-3 mt-1 flex-shrink-0"></i>
-                            <span class="text-gray-400">Música de fondo</span>
+                        <li class="flex items-start gap-3">
+                            <i data-lucide="minus" class="mt-[3px] h-4 w-4 flex-none text-gray-300"></i>
+                            <span class="text-[0.9375rem] leading-relaxed text-gray-400">Música de fondo</span>
                         </li>
                     </ul>
-                    <a href="#contacto" class="block w-full bg-gray-100 text-dark py-3 rounded-full font-semibold text-center hover:bg-gold hover:text-white transition-all">
-                        Elegir Plan
+                    <a href="#contacto" class="press mt-auto block w-full rounded-full border border-gray-200 bg-gray-50 py-3.5 text-center font-medium text-dark transition-colors duration-300 ease-premium hover:border-gold hover:bg-gold hover:text-white">
+                        Elegir plan
                     </a>
                 </div>
 
                 <!-- Package 2: Premium (Featured) -->
-                <div class="card-hover bg-gradient-to-br from-gold to-gold-dark rounded-2xl p-8 border-2 border-gold relative transform md:scale-105 shadow-2xl">
-                    <div class="absolute top-0 right-0 bg-white text-gold px-4 py-2 rounded-bl-2xl rounded-tr-2xl text-sm font-bold">
-                        Más Popular
+                <div class="card-hover reveal relative flex flex-col overflow-hidden rounded-2xl border border-gold-dark/40 bg-dark p-7 shadow-xl lg:scale-[1.035] lg:p-8">
+                    <div class="pointer-events-none absolute inset-0 rounded-2xl opacity-90" aria-hidden="true" style="background: radial-gradient(120% 80% at 80% 0%, rgba(201,162,39,.30) 0%, transparent 62%);"></div>
+                    <span class="absolute right-0 top-0 rounded-bl-2xl rounded-tr-2xl bg-gold px-3.5 py-1.5 text-[11px] font-semibold uppercase tracking-[0.14em] text-dark">
+                        Más popular
+                    </span>
+                    <div class="relative min-h-[5.25rem]">
+                        <h3 class="font-serif text-[1.75rem] font-semibold text-white">Premium</h3>
+                        <p class="mt-1.5 text-[0.9375rem] text-gold-light">La experiencia completa</p>
                     </div>
-                    <div class="mb-6">
-                        <h3 class="font-serif text-3xl font-bold text-white mb-2">Premium</h3>
-                        <p class="text-white/90">La experiencia completa</p>
-                    </div>
-                    <div class="mb-6">
-                        <span class="font-serif text-5xl font-bold text-white">450</span>
-                        <span class="text-white/90 text-lg"> Bs</span>
-                    </div>
-                    <ul class="space-y-4 mb-8">
-                        <li class="flex items-start">
-                            <i data-lucide="check" class="w-5 h-5 text-white mr-3 mt-1 flex-shrink-0"></i>
-                            <span class="text-white">Todo lo del plan Esencial</span>
+                    <p class="relative mb-8 flex items-baseline gap-1.5">
+                        <span class="font-serif tnum text-[3.25rem] font-semibold leading-none text-gold-light">450</span>
+                        <span class="text-white/70">Bs</span>
+                    </p>
+                    <ul class="relative mb-9 flex-1 space-y-3.5">
+                        <li class="flex items-start gap-3">
+                            <i data-lucide="check" class="mt-[3px] h-4 w-4 flex-none text-gold-light"></i>
+                            <span class="text-[0.9375rem] leading-relaxed text-white/85">Todo lo del plan Esencial</span>
                         </li>
-                        <li class="flex items-start">
-                            <i data-lucide="check" class="w-5 h-5 text-white mr-3 mt-1 flex-shrink-0"></i>
-                            <span class="text-white">Animación de apertura 3D</span>
+                        <li class="flex items-start gap-3">
+                            <i data-lucide="check" class="mt-[3px] h-4 w-4 flex-none text-gold-light"></i>
+                            <span class="text-[0.9375rem] leading-relaxed text-white/85">Animación de apertura 3D</span>
                         </li>
-                        <li class="flex items-start">
-                            <i data-lucide="check" class="w-5 h-5 text-white mr-3 mt-1 flex-shrink-0"></i>
-                            <span class="text-white">Formulario RSVP completo</span>
+                        <li class="flex items-start gap-3">
+                            <i data-lucide="check" class="mt-[3px] h-4 w-4 flex-none text-gold-light"></i>
+                            <span class="text-[0.9375rem] leading-relaxed text-white/85">Formulario RSVP completo</span>
                         </li>
-                        <li class="flex items-start">
-                            <i data-lucide="check" class="w-5 h-5 text-white mr-3 mt-1 flex-shrink-0"></i>
-                            <span class="text-white">Dashboard para novios</span>
+                        <li class="flex items-start gap-3">
+                            <i data-lucide="check" class="mt-[3px] h-4 w-4 flex-none text-gold-light"></i>
+                            <span class="text-[0.9375rem] leading-relaxed text-white/85">Dashboard para novios</span>
                         </li>
-                        <li class="flex items-start">
-                            <i data-lucide="check" class="w-5 h-5 text-white mr-3 mt-1 flex-shrink-0"></i>
-                            <span class="text-white">Música de fondo</span>
+                        <li class="flex items-start gap-3">
+                            <i data-lucide="check" class="mt-[3px] h-4 w-4 flex-none text-gold-light"></i>
+                            <span class="text-[0.9375rem] leading-relaxed text-white/85">Música de fondo</span>
                         </li>
-                        <li class="flex items-start">
-                            <i data-lucide="check" class="w-5 h-5 text-white mr-3 mt-1 flex-shrink-0"></i>
-                            <span class="text-white">Hosting por 1 año</span>
+                        <li class="flex items-start gap-3">
+                            <i data-lucide="check" class="mt-[3px] h-4 w-4 flex-none text-gold-light"></i>
+                            <span class="text-[0.9375rem] leading-relaxed text-white/85">Hosting por 1 año</span>
                         </li>
                     </ul>
-                    <a href="#contacto" class="block w-full bg-white text-gold py-3 rounded-full font-bold text-center hover:bg-gray-100 transition-all">
-                        Elegir Plan
+                    <a href="#contacto" class="btn-gold relative mt-auto block w-full rounded-full bg-gold py-3.5 text-center font-semibold text-white shadow-gold transition-colors duration-300 hover:bg-gold-dark">
+                        Elegir plan
                     </a>
                 </div>
 
                 <!-- Package 3: VIP -->
-                <div class="card-hover bg-white rounded-2xl p-8 border-2 border-gray-100 relative">
-                    <div class="absolute top-0 right-0 bg-dark text-white px-4 py-2 rounded-bl-2xl rounded-tr-2xl text-sm font-semibold">
+                <div class="card-hover reveal relative flex flex-col overflow-hidden rounded-2xl border border-gray-200 bg-white p-7 lg:p-8">
+                    <span class="absolute right-0 top-0 rounded-bl-2xl rounded-tr-2xl bg-dark px-3.5 py-1.5 text-[11px] font-medium uppercase tracking-[0.14em] text-gold-light">
                         Exclusivo
+                    </span>
+                    <div class="min-h-[5.25rem]">
+                        <h3 class="font-serif text-[1.75rem] font-semibold text-dark">VIP</h3>
+                        <p class="mt-1.5 text-[0.9375rem] text-gray-500">Experiencia total</p>
                     </div>
-                    <div class="mb-6">
-                        <h3 class="font-serif text-3xl font-bold text-dark mb-2">VIP</h3>
-                        <p class="text-gray-600">Experiencia total</p>
-                    </div>
-                    <div class="mb-6">
-                        <span class="font-serif text-5xl font-bold text-gold">800</span>
-                        <span class="text-gray-600 text-lg"> Bs</span>
-                    </div>
-                    <ul class="space-y-4 mb-8">
-                        <li class="flex items-start">
-                            <i data-lucide="check" class="w-5 h-5 text-gold mr-3 mt-1 flex-shrink-0"></i>
-                            <span class="text-gray-600">Todo lo del plan Premium</span>
+                    <p class="mb-8 flex items-baseline gap-1.5">
+                        <span class="font-serif tnum text-[3.25rem] font-semibold leading-none text-gold-dark">800</span>
+                        <span class="text-gray-500">Bs</span>
+                    </p>
+                    <ul class="mb-9 flex-1 space-y-3.5">
+                        <li class="flex items-start gap-3">
+                            <i data-lucide="check" class="mt-[3px] h-4 w-4 flex-none text-gold-dark"></i>
+                            <span class="text-[0.9375rem] leading-relaxed text-gray-600">Todo lo del plan Premium</span>
                         </li>
-                        <li class="flex items-start">
-                            <i data-lucide="check" class="w-5 h-5 text-gold mr-3 mt-1 flex-shrink-0"></i>
-                            <span class="text-gray-600">Dominio personalizado .bo</span>
+                        <li class="flex items-start gap-3">
+                            <i data-lucide="check" class="mt-[3px] h-4 w-4 flex-none text-gold-dark"></i>
+                            <span class="text-[0.9375rem] leading-relaxed text-gray-600">Dominio personalizado .bo</span>
                         </li>
-                        <li class="flex items-start">
-                            <i data-lucide="check" class="w-5 h-5 text-gold mr-3 mt-1 flex-shrink-0"></i>
-                            <span class="text-gray-600">Video "Save the Date"</span>
+                        <li class="flex items-start gap-3">
+                            <i data-lucide="check" class="mt-[3px] h-4 w-4 flex-none text-gold-dark"></i>
+                            <span class="text-[0.9375rem] leading-relaxed text-gray-600">Video "Save the Date"</span>
                         </li>
-                        <li class="flex items-start">
-                            <i data-lucide="check" class="w-5 h-5 text-gold mr-3 mt-1 flex-shrink-0"></i>
-                            <span class="text-gray-600">Álbum colaborativo</span>
+                        <li class="flex items-start gap-3">
+                            <i data-lucide="check" class="mt-[3px] h-4 w-4 flex-none text-gold-dark"></i>
+                            <span class="text-[0.9375rem] leading-relaxed text-gray-600">Álbum colaborativo</span>
                         </li>
-                        <li class="flex items-start">
-                            <i data-lucide="check" class="w-5 h-5 text-gold mr-3 mt-1 flex-shrink-0"></i>
-                            <span class="text-gray-600">50 tarjetas físicas con QR</span>
+                        <li class="flex items-start gap-3">
+                            <i data-lucide="check" class="mt-[3px] h-4 w-4 flex-none text-gold-dark"></i>
+                            <span class="text-[0.9375rem] leading-relaxed text-gray-600">50 tarjetas físicas con QR</span>
                         </li>
-                        <li class="flex items-start">
-                            <i data-lucide="check" class="w-5 h-5 text-gold mr-3 mt-1 flex-shrink-0"></i>
-                            <span class="text-gray-600">Soporte prioritario 24/7</span>
+                        <li class="flex items-start gap-3">
+                            <i data-lucide="check" class="mt-[3px] h-4 w-4 flex-none text-gold-dark"></i>
+                            <span class="text-[0.9375rem] leading-relaxed text-gray-600">Soporte prioritario 24/7</span>
                         </li>
                     </ul>
-                    <a href="#contacto" class="block w-full bg-dark text-white py-3 rounded-full font-semibold text-center hover:bg-gold transition-all">
-                        Elegir Plan
+                    <a href="#contacto" class="press mt-auto block w-full rounded-full bg-dark py-3.5 text-center font-medium text-white transition-colors duration-300 ease-premium hover:bg-gold-dark">
+                        Elegir plan
                     </a>
                 </div>
             </div>
@@ -693,77 +988,77 @@
     </section>
 
     <!-- Process Section -->
-    <section id="proceso" class="py-20 bg-gray-50">
+    <section id="proceso" class="py-24 md:py-32 bg-gray-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <!-- Section Header -->
-            <div class="text-center mb-16">
-                <span class="text-gold font-medium tracking-wider text-sm uppercase">Cómo Trabajamos</span>
-                <h2 class="font-serif text-4xl md:text-5xl font-bold text-dark mt-4 mb-6">
-                    Nuestro <span class="text-gold-gradient">Proceso</span>
+            <div class="text-center mb-14 md:mb-20 reveal">
+                <span class="eyebrow">Cómo trabajamos</span>
+                <h2 class="font-serif h-section font-semibold text-dark mt-6 mb-6">
+                    Nuestro <span class="text-gold-gradient">proceso</span>
                 </h2>
-                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                <p class="text-[1.0625rem] leading-[1.75] text-gray-600 max-w-xl mx-auto">
                     Un flujo de trabajo simple y eficiente para que tu invitación esté lista en tiempo récord.
                 </p>
             </div>
 
             <!-- Process Steps -->
-            <div class="grid md:grid-cols-4 gap-8">
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
                 <!-- Step 1 -->
                 <div class="relative">
-                    <div class="bg-white rounded-2xl p-8 shadow-sm card-hover">
-                        <div class="w-16 h-16 bg-gold rounded-full flex items-center justify-center text-white font-bold text-2xl mb-6 mx-auto">
+                    <div class="h-full bg-white rounded-2xl p-8 border border-gray-200/70 card-hover reveal">
+                        <div class="w-14 h-14 mx-auto mb-6 rounded-full bg-gold-wash ring-1 ring-gold/25 flex items-center justify-center font-serif text-2xl font-semibold text-gold-ink tnum">
                             1
                         </div>
-                        <h3 class="font-serif text-xl font-bold text-dark mb-3 text-center">Contacto</h3>
-                        <p class="text-gray-600 text-center text-sm">
+                        <h3 class="font-serif text-xl font-semibold text-dark mb-3 text-center">Contacto</h3>
+                        <p class="text-gray-600 text-center text-sm leading-relaxed">
                             Nos escribes por WhatsApp o formulario. Te enviamos los paquetes y demos.
                         </p>
                     </div>
-                    <div class="hidden md:block absolute top-1/2 -right-4 transform -translate-y-1/2 z-10">
-                        <i data-lucide="chevron-right" class="w-8 h-8 text-gold"></i>
+                    <div class="hidden lg:block absolute top-1/2 -right-3 -translate-y-1/2 z-10" aria-hidden="true">
+                        <i data-lucide="chevron-right" class="w-6 h-6 text-gold-light"></i>
                     </div>
                 </div>
 
                 <!-- Step 2 -->
                 <div class="relative">
-                    <div class="bg-white rounded-2xl p-8 shadow-sm card-hover">
-                        <div class="w-16 h-16 bg-gold rounded-full flex items-center justify-center text-white font-bold text-2xl mb-6 mx-auto">
+                    <div class="h-full bg-white rounded-2xl p-8 border border-gray-200/70 card-hover reveal">
+                        <div class="w-14 h-14 mx-auto mb-6 rounded-full bg-gold-wash ring-1 ring-gold/25 flex items-center justify-center font-serif text-2xl font-semibold text-gold-ink tnum">
                             2
                         </div>
-                        <h3 class="font-serif text-xl font-bold text-dark mb-3 text-center">Pago</h3>
-                        <p class="text-gray-600 text-center text-sm">
+                        <h3 class="font-serif text-xl font-semibold text-dark mb-3 text-center">Pago</h3>
+                        <p class="text-gray-600 text-center text-sm leading-relaxed">
                             Realizas el pago por QR Simple o transferencia. Confirmamos en minutos.
                         </p>
                     </div>
-                    <div class="hidden md:block absolute top-1/2 -right-4 transform -translate-y-1/2 z-10">
-                        <i data-lucide="chevron-right" class="w-8 h-8 text-gold"></i>
+                    <div class="hidden lg:block absolute top-1/2 -right-3 -translate-y-1/2 z-10" aria-hidden="true">
+                        <i data-lucide="chevron-right" class="w-6 h-6 text-gold-light"></i>
                     </div>
                 </div>
 
                 <!-- Step 3 -->
                 <div class="relative">
-                    <div class="bg-white rounded-2xl p-8 shadow-sm card-hover">
-                        <div class="w-16 h-16 bg-gold rounded-full flex items-center justify-center text-white font-bold text-2xl mb-6 mx-auto">
+                    <div class="h-full bg-white rounded-2xl p-8 border border-gray-200/70 card-hover reveal">
+                        <div class="w-14 h-14 mx-auto mb-6 rounded-full bg-gold-wash ring-1 ring-gold/25 flex items-center justify-center font-serif text-2xl font-semibold text-gold-ink tnum">
                             3
                         </div>
-                        <h3 class="font-serif text-xl font-bold text-dark mb-3 text-center">Creación</h3>
-                        <p class="text-gray-600 text-center text-sm">
+                        <h3 class="font-serif text-xl font-semibold text-dark mb-3 text-center">Creación</h3>
+                        <p class="text-gray-600 text-center text-sm leading-relaxed">
                             Diseñamos tu invitación en 7-10 días hábiles. Te enviamos preview para aprobación.
                         </p>
                     </div>
-                    <div class="hidden md:block absolute top-1/2 -right-4 transform -translate-y-1/2 z-10">
-                        <i data-lucide="chevron-right" class="w-8 h-8 text-gold"></i>
+                    <div class="hidden lg:block absolute top-1/2 -right-3 -translate-y-1/2 z-10" aria-hidden="true">
+                        <i data-lucide="chevron-right" class="w-6 h-6 text-gold-light"></i>
                     </div>
                 </div>
 
                 <!-- Step 4 -->
                 <div class="relative">
-                    <div class="bg-white rounded-2xl p-8 shadow-sm card-hover">
-                        <div class="w-16 h-16 bg-gold rounded-full flex items-center justify-center text-white font-bold text-2xl mb-6 mx-auto">
+                    <div class="h-full bg-white rounded-2xl p-8 border border-gray-200/70 card-hover reveal">
+                        <div class="w-14 h-14 mx-auto mb-6 rounded-full bg-gold-wash ring-1 ring-gold/25 flex items-center justify-center font-serif text-2xl font-semibold text-gold-ink tnum">
                             4
                         </div>
-                        <h3 class="font-serif text-xl font-bold text-dark mb-3 text-center">Entrega</h3>
-                        <p class="text-gray-600 text-center text-sm">
+                        <h3 class="font-serif text-xl font-semibold text-dark mb-3 text-center">Entrega</h3>
+                        <p class="text-gray-600 text-center text-sm leading-relaxed">
                             Te entregamos el link final y el dashboard. ¡Listo para compartir!
                         </p>
                     </div>
@@ -773,89 +1068,89 @@
     </section>
 
     <!-- Testimonials Section -->
-    <section class="py-20 bg-white">
+    <section class="py-24 md:py-32 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <!-- Section Header -->
-            <div class="text-center mb-16">
-                <span class="text-gold font-medium tracking-wider text-sm uppercase">Testimonios</span>
-                <h2 class="font-serif text-4xl md:text-5xl font-bold text-dark mt-4 mb-6">
-                    Lo Que Dicen <span class="text-gold-gradient">Nuestros Clientes</span>
+            <div class="text-center mb-14 md:mb-20 reveal">
+                <span class="eyebrow">Testimonios</span>
+                <h2 class="font-serif h-section font-semibold text-dark mt-6 mb-6">
+                    Lo que dicen <span class="text-gold-gradient">nuestros clientes</span>
                 </h2>
             </div>
 
             <!-- Testimonials Grid -->
-            <div class="grid md:grid-cols-3 gap-8">
+            <div class="grid gap-6 md:grid-cols-3 lg:gap-8 lg:items-stretch">
                 <!-- Testimonial 1 -->
-                <div class="bg-gray-50 rounded-2xl p-8 card-hover">
-                    <div class="flex items-center mb-4">
-                        <div class="flex text-gold">
-                            <i data-lucide="star" class="w-5 h-5 fill-current"></i>
-                            <i data-lucide="star" class="w-5 h-5 fill-current"></i>
-                            <i data-lucide="star" class="w-5 h-5 fill-current"></i>
-                            <i data-lucide="star" class="w-5 h-5 fill-current"></i>
-                            <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                <div class="h-full flex flex-col bg-gray-50 rounded-2xl p-8 sm:p-9 border border-gray-200/60 card-hover reveal">
+                    <div class="mb-5 flex items-center" aria-label="Calificación: 5 de 5 estrellas" role="img">
+                        <div class="flex gap-0.5 text-gold-dark" aria-hidden="true">
+                            <i data-lucide="star" class="h-4 w-4 fill-current"></i>
+                            <i data-lucide="star" class="h-4 w-4 fill-current"></i>
+                            <i data-lucide="star" class="h-4 w-4 fill-current"></i>
+                            <i data-lucide="star" class="h-4 w-4 fill-current"></i>
+                            <i data-lucide="star" class="h-4 w-4 fill-current"></i>
                         </div>
                     </div>
-                    <p class="text-gray-600 mb-6 italic">
+                    <p class="font-display text-[1.3rem] leading-[1.6] text-gray-700 mb-7 flex-1">
                         "La invitación superó todas nuestras expectativas. Nuestros invitados quedaron encantados con la animación de apertura y el sistema de confirmación fue súper fácil de usar."
                     </p>
                     <div class="flex items-center">
-                        <div class="w-12 h-12 bg-gold/20 rounded-full flex items-center justify-center mr-4">
-                            <span class="font-serif text-gold font-bold">AM</span>
+                        <div class="w-11 h-11 rounded-full bg-gold-wash ring-1 ring-gold/20 flex items-center justify-center mr-4 flex-none">
+                            <span class="font-serif text-gold-ink text-sm font-semibold tracking-wide">AM</span>
                         </div>
                         <div>
-                            <div class="font-bold text-dark">Ana & Mateo</div>
-                            <div class="text-sm text-gray-600">Boda en La Paz, 2025</div>
+                            <div class="font-medium text-dark">Ana & Mateo</div>
+                            <div class="text-[0.8125rem] text-gray-500">Boda en La Paz, 2025</div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Testimonial 2 -->
-                <div class="bg-gray-50 rounded-2xl p-8 card-hover">
-                    <div class="flex items-center mb-4">
-                        <div class="flex text-gold">
-                            <i data-lucide="star" class="w-5 h-5 fill-current"></i>
-                            <i data-lucide="star" class="w-5 h-5 fill-current"></i>
-                            <i data-lucide="star" class="w-5 h-5 fill-current"></i>
-                            <i data-lucide="star" class="w-5 h-5 fill-current"></i>
-                            <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                <div class="h-full flex flex-col bg-gray-50 rounded-2xl p-8 sm:p-9 border border-gray-200/60 card-hover reveal">
+                    <div class="mb-5 flex items-center" aria-label="Calificación: 5 de 5 estrellas" role="img">
+                        <div class="flex gap-0.5 text-gold-dark" aria-hidden="true">
+                            <i data-lucide="star" class="h-4 w-4 fill-current"></i>
+                            <i data-lucide="star" class="h-4 w-4 fill-current"></i>
+                            <i data-lucide="star" class="h-4 w-4 fill-current"></i>
+                            <i data-lucide="star" class="h-4 w-4 fill-current"></i>
+                            <i data-lucide="star" class="h-4 w-4 fill-current"></i>
                         </div>
                     </div>
-                    <p class="text-gray-600 mb-6 italic">
+                    <p class="font-display text-[1.3rem] leading-[1.6] text-gray-700 mb-7 flex-1">
                         "El dashboard de confirmaciones nos salvó la vida. Pudimos organizar todo sin estrés y saber exactamente cuántas personas vendrían. ¡100% recomendado!"
                     </p>
                     <div class="flex items-center">
-                        <div class="w-12 h-12 bg-gold/20 rounded-full flex items-center justify-center mr-4">
-                            <span class="font-serif text-gold font-bold">CS</span>
+                        <div class="w-11 h-11 rounded-full bg-gold-wash ring-1 ring-gold/20 flex items-center justify-center mr-4 flex-none">
+                            <span class="font-serif text-gold-ink text-sm font-semibold tracking-wide">CS</span>
                         </div>
                         <div>
-                            <div class="font-bold text-dark">Carla & Sebastián</div>
-                            <div class="text-sm text-gray-600">Boda en Santa Cruz, 2025</div>
+                            <div class="font-medium text-dark">Carla & Sebastián</div>
+                            <div class="text-[0.8125rem] text-gray-500">Boda en Santa Cruz, 2025</div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Testimonial 3 -->
-                <div class="bg-gray-50 rounded-2xl p-8 card-hover">
-                    <div class="flex items-center mb-4">
-                        <div class="flex text-gold">
-                            <i data-lucide="star" class="w-5 h-5 fill-current"></i>
-                            <i data-lucide="star" class="w-5 h-5 fill-current"></i>
-                            <i data-lucide="star" class="w-5 h-5 fill-current"></i>
-                            <i data-lucide="star" class="w-5 h-5 fill-current"></i>
-                            <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                <div class="h-full flex flex-col bg-gray-50 rounded-2xl p-8 sm:p-9 border border-gray-200/60 card-hover reveal">
+                    <div class="mb-5 flex items-center" aria-label="Calificación: 5 de 5 estrellas" role="img">
+                        <div class="flex gap-0.5 text-gold-dark" aria-hidden="true">
+                            <i data-lucide="star" class="h-4 w-4 fill-current"></i>
+                            <i data-lucide="star" class="h-4 w-4 fill-current"></i>
+                            <i data-lucide="star" class="h-4 w-4 fill-current"></i>
+                            <i data-lucide="star" class="h-4 w-4 fill-current"></i>
+                            <i data-lucide="star" class="h-4 w-4 fill-current"></i>
                         </div>
                     </div>
-                    <p class="text-gray-600 mb-6 italic">
+                    <p class="font-display text-[1.3rem] leading-[1.6] text-gray-700 mb-7 flex-1">
                         "Invertimos en el paquete VIP y valió cada centavo. El dominio personalizado, el video y las tarjetas físicas hicieron que todo se viera ultra profesional."
                     </p>
                     <div class="flex items-center">
-                        <div class="w-12 h-12 bg-gold/20 rounded-full flex items-center justify-center mr-4">
-                            <span class="font-serif text-gold font-bold">VR</span>
+                        <div class="w-11 h-11 rounded-full bg-gold-wash ring-1 ring-gold/20 flex items-center justify-center mr-4 flex-none">
+                            <span class="font-serif text-gold-ink text-sm font-semibold tracking-wide">VR</span>
                         </div>
                         <div>
-                            <div class="font-bold text-dark">Valentina & Rodrigo</div>
-                            <div class="text-sm text-gray-600">Boda en Cochabamba, 2025</div>
+                            <div class="font-medium text-dark">Valentina & Rodrigo</div>
+                            <div class="text-[0.8125rem] text-gray-500">Boda en Cochabamba, 2025</div>
                         </div>
                     </div>
                 </div>
@@ -864,12 +1159,12 @@
     </section>
 
     <!-- FAQ Section -->
-    <section class="py-20 bg-gray-50">
+    <section class="py-24 md:py-32 bg-gray-50">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <!-- Section Header -->
-            <div class="text-center mb-16">
-                <span class="text-gold font-medium tracking-wider text-sm uppercase">Preguntas Frecuentes</span>
-                <h2 class="font-serif text-4xl md:text-5xl font-bold text-dark mt-4 mb-6">
+            <div class="text-center mb-14 md:mb-20 reveal">
+                <span class="eyebrow">Preguntas frecuentes</span>
+                <h2 class="font-serif h-section font-semibold text-dark mt-6 mb-6">
                     ¿Tienes <span class="text-gold-gradient">Dudas?</span>
                 </h2>
             </div>
@@ -877,65 +1172,65 @@
             <!-- FAQ Items -->
             <div class="space-y-4">
                 <!-- FAQ 1 -->
-                <div class="bg-white rounded-xl shadow-sm overflow-hidden">
-                    <button class="w-full px-6 py-4 text-left flex justify-between items-center focus:outline-none faq-btn">
-                        <span class="font-semibold text-dark">¿Cuánto tiempo toma crear la invitación?</span>
-                        <i data-lucide="chevron-down" class="w-5 h-5 text-gold transform transition-transform faq-icon"></i>
+                <div class="bg-white rounded-xl border border-gray-200/70 overflow-hidden transition-colors duration-300 hover:border-gold-light">
+                    <button type="button" aria-expanded="false" class="faq-btn w-full px-6 py-5 text-left flex justify-between items-center gap-4">
+                        <span class="font-medium text-dark">¿Cuánto tiempo toma crear la invitación?</span>
+                        <i data-lucide="chevron-down" class="faq-icon w-5 h-5 flex-none text-gold-ink transition-transform duration-500 ease-premium"></i>
                     </button>
-                    <div class="px-6 pb-4 hidden faq-content">
-                        <p class="text-gray-600">
+                    <div class="px-6 pb-5 hidden faq-content">
+                        <p class="text-gray-600 leading-[1.75] text-[0.9375rem]">
                             El tiempo de entrega es de 7-10 días hábiles para el paquete Premium y 10-15 días para el VIP. El paquete Esencial se entrega en 3-5 días hábiles.
                         </p>
                     </div>
                 </div>
 
                 <!-- FAQ 2 -->
-                <div class="bg-white rounded-xl shadow-sm overflow-hidden">
-                    <button class="w-full px-6 py-4 text-left flex justify-between items-center focus:outline-none faq-btn">
-                        <span class="font-semibold text-dark">¿Puedo hacer cambios después de la entrega?</span>
-                        <i data-lucide="chevron-down" class="w-5 h-5 text-gold transform transition-transform faq-icon"></i>
+                <div class="bg-white rounded-xl border border-gray-200/70 overflow-hidden transition-colors duration-300 hover:border-gold-light">
+                    <button type="button" aria-expanded="false" class="faq-btn w-full px-6 py-5 text-left flex justify-between items-center gap-4">
+                        <span class="font-medium text-dark">¿Puedo hacer cambios después de la entrega?</span>
+                        <i data-lucide="chevron-down" class="faq-icon w-5 h-5 flex-none text-gold-ink transition-transform duration-500 ease-premium"></i>
                     </button>
-                    <div class="px-6 pb-4 hidden faq-content">
-                        <p class="text-gray-600">
+                    <div class="px-6 pb-5 hidden faq-content">
+                        <p class="text-gray-600 leading-[1.75] text-[0.9375rem]">
                             Sí, cada paquete incluye rondas de cambios: 1 para Esencial, 2 para Premium e ilimitadas (hasta 15 días antes) para VIP. Cambios adicionales tienen costo.
                         </p>
                     </div>
                 </div>
 
                 <!-- FAQ 3 -->
-                <div class="bg-white rounded-xl shadow-sm overflow-hidden">
-                    <button class="w-full px-6 py-4 text-left flex justify-between items-center focus:outline-none faq-btn">
-                        <span class="font-semibold text-dark">¿Cómo funciona el sistema de confirmación (RSVP)?</span>
-                        <i data-lucide="chevron-down" class="w-5 h-5 text-gold transform transition-transform faq-icon"></i>
+                <div class="bg-white rounded-xl border border-gray-200/70 overflow-hidden transition-colors duration-300 hover:border-gold-light">
+                    <button type="button" aria-expanded="false" class="faq-btn w-full px-6 py-5 text-left flex justify-between items-center gap-4">
+                        <span class="font-medium text-dark">¿Cómo funciona el sistema de confirmación (RSVP)?</span>
+                        <i data-lucide="chevron-down" class="faq-icon w-5 h-5 flex-none text-gold-ink transition-transform duration-500 ease-premium"></i>
                     </button>
-                    <div class="px-6 pb-4 hidden faq-content">
-                        <p class="text-gray-600">
+                    <div class="px-6 pb-5 hidden faq-content">
+                        <p class="text-gray-600 leading-[1.75] text-[0.9375rem]">
                             Los invitados llenan un formulario en la invitación y los datos llegan automáticamente a un Google Sheet que compartimos contigo. Puedes ver confirmaciones en tiempo real.
                         </p>
                     </div>
                 </div>
 
                 <!-- FAQ 4 -->
-                <div class="bg-white rounded-xl shadow-sm overflow-hidden">
-                    <button class="w-full px-6 py-4 text-left flex justify-between items-center focus:outline-none faq-btn">
-                        <span class="font-semibold text-dark">¿Qué métodos de pago aceptan?</span>
-                        <i data-lucide="chevron-down" class="w-5 h-5 text-gold transform transition-transform faq-icon"></i>
+                <div class="bg-white rounded-xl border border-gray-200/70 overflow-hidden transition-colors duration-300 hover:border-gold-light">
+                    <button type="button" aria-expanded="false" class="faq-btn w-full px-6 py-5 text-left flex justify-between items-center gap-4">
+                        <span class="font-medium text-dark">¿Qué métodos de pago aceptan?</span>
+                        <i data-lucide="chevron-down" class="faq-icon w-5 h-5 flex-none text-gold-ink transition-transform duration-500 ease-premium"></i>
                     </button>
-                    <div class="px-6 pb-4 hidden faq-content">
-                        <p class="text-gray-600">
+                    <div class="px-6 pb-5 hidden faq-content">
+                        <p class="text-gray-600 leading-[1.75] text-[0.9375rem]">
                             Aceptamos QR Simple, transferencia bancaria y depósito. El pago se realiza 50% al iniciar y 50% al entregar la invitación final.
                         </p>
                     </div>
                 </div>
 
                 <!-- FAQ 5 -->
-                <div class="bg-white rounded-xl shadow-sm overflow-hidden">
-                    <button class="w-full px-6 py-4 text-left flex justify-between items-center focus:outline-none faq-btn">
-                        <span class="font-semibold text-dark">¿La invitación funciona en celulares?</span>
-                        <i data-lucide="chevron-down" class="w-5 h-5 text-gold transform transition-transform faq-icon"></i>
+                <div class="bg-white rounded-xl border border-gray-200/70 overflow-hidden transition-colors duration-300 hover:border-gold-light">
+                    <button type="button" aria-expanded="false" class="faq-btn w-full px-6 py-5 text-left flex justify-between items-center gap-4">
+                        <span class="font-medium text-dark">¿La invitación funciona en celulares?</span>
+                        <i data-lucide="chevron-down" class="faq-icon w-5 h-5 flex-none text-gold-ink transition-transform duration-500 ease-premium"></i>
                     </button>
-                    <div class="px-6 pb-4 hidden faq-content">
-                        <p class="text-gray-600">
+                    <div class="px-6 pb-5 hidden faq-content">
+                        <p class="text-gray-600 leading-[1.75] text-[0.9375rem]">
                             ¡Absolutamente! Todas nuestras invitaciones son 100% responsive y están optimizadas para móviles. Más del 90% de tus invitados la verán desde su celular.
                         </p>
                     </div>
@@ -945,182 +1240,204 @@
     </section>
 
     <!-- Contact Section -->
-    <section id="contacto" class="py-20 bg-white">
+    <section id="contacto" class="py-24 md:py-32 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid md:grid-cols-2 gap-12">
+            <div class="grid items-start gap-14 md:grid-cols-2 md:gap-12 lg:gap-16">
                 <!-- Contact Info -->
                 <div>
-                    <span class="text-gold font-medium tracking-wider text-sm uppercase">Contáctanos</span>
-                    <h2 class="font-serif text-4xl md:text-5xl font-bold text-dark mt-4 mb-6">
-                        Hagamos Tu Boda <span class="text-gold-gradient">Inolvidable</span>
+                    <span class="eyebrow">Contáctanos</span>
+                    <h2 class="font-serif h-section font-semibold text-dark mt-6 mb-6">
+                        Hagamos tu boda <span class="text-gold-gradient">inolvidable</span>
                     </h2>
-                    <p class="text-lg text-gray-600 mb-8">
+                    <p class="measure text-[1.0625rem] leading-[1.75] text-gray-600 mb-10">
                         ¿Listo para crear la invitación perfecta? Escríbenos y te responderemos en menos de 24 horas.
                     </p>
 
-                    <div class="space-y-6">
+                    <div class="space-y-7 reveal">
                         <div class="flex items-start">
-                            <div class="w-12 h-12 bg-gold/10 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
-                                <svg class="w-6 h-6 text-gold" fill="currentColor" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M11.42 9.49c-.19-.09-1.1-.54-1.27-.61s-.29-.09-.42.1-.48.6-.59.73-.21.14-.4 0a5.13 5.13 0 0 1-1.49-.92 5.25 5.25 0 0 1-1-1.29c-.11-.18 0-.28.08-.38s.18-.21.28-.32a1.39 1.39 0 0 0 .18-.31.38.38 0 0 0 0-.33c0-.09-.42-1-.58-1.37s-.3-.32-.41-.32h-.4a.72.72 0 0 0-.5.23 2.1 2.1 0 0 0-.65 1.55A3.59 3.59 0 0 0 5 8.2 8.32 8.32 0 0 0 8.19 11c.44.19.78.3 1.05.39a2.53 2.53 0 0 0 1.17.07 1.93 1.93 0 0 0 1.26-.88 1.67 1.67 0 0 0 .11-.88c-.05-.07-.17-.12-.36-.21z"/><path d="M13.29 2.68A7.36 7.36 0 0 0 8 .5a7.44 7.44 0 0 0-6.41 11.15l-1 3.85 3.94-1a7.4 7.4 0 0 0 3.55.9H8a7.44 7.44 0 0 0 5.29-12.72zM8 14.12a6.12 6.12 0 0 1-3.15-.87l-.22-.13-2.34.61.62-2.28-.14-.23a6.18 6.18 0 0 1 9.6-7.65 6.12 6.12 0 0 1 1.81 4.37A6.19 6.19 0 0 1 8 14.12z"/></svg>
+                            <div class="w-12 h-12 rounded-full bg-gold-wash ring-1 ring-gold/15 flex items-center justify-center mr-4 flex-none">
+                                <svg class="h-5 w-5 text-gold-dark" fill="currentColor" aria-hidden="true" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M11.42 9.49c-.19-.09-1.1-.54-1.27-.61s-.29-.09-.42.1-.48.6-.59.73-.21.14-.4 0a5.13 5.13 0 0 1-1.49-.92 5.25 5.25 0 0 1-1-1.29c-.11-.18 0-.28.08-.38s.18-.21.28-.32a1.39 1.39 0 0 0 .18-.31.38.38 0 0 0 0-.33c0-.09-.42-1-.58-1.37s-.3-.32-.41-.32h-.4a.72.72 0 0 0-.5.23 2.1 2.1 0 0 0-.65 1.55A3.59 3.59 0 0 0 5 8.2 8.32 8.32 0 0 0 8.19 11c.44.19.78.3 1.05.39a2.53 2.53 0 0 0 1.17.07 1.93 1.93 0 0 0 1.26-.88 1.67 1.67 0 0 0 .11-.88c-.05-.07-.17-.12-.36-.21z"/><path d="M13.29 2.68A7.36 7.36 0 0 0 8 .5a7.44 7.44 0 0 0-6.41 11.15l-1 3.85 3.94-1a7.4 7.4 0 0 0 3.55.9H8a7.44 7.44 0 0 0 5.29-12.72zM8 14.12a6.12 6.12 0 0 1-3.15-.87l-.22-.13-2.34.61.62-2.28-.14-.23a6.18 6.18 0 0 1 9.6-7.65 6.12 6.12 0 0 1 1.81 4.37A6.19 6.19 0 0 1 8 14.12z"/></svg>
                             </div>
                             <div>
-                                <h3 class="font-bold text-dark mb-1">WhatsApp</h3>
-                                <p class="text-gray-600">+591 78216419</p>
-                                <p class="text-sm text-gray-500">Respuesta en menos de 2 horas</p>
+                                <h3 class="font-medium text-dark mb-1">WhatsApp</h3>
+                                <p><a href="https://wa.me/59178216419" target="_blank" rel="noopener" class="tnum text-gray-600 transition-colors hover:text-gold-ink">+591 78216419</a></p>
+                                <p class="mt-0.5 text-[0.8125rem] text-gray-400">Respuesta en menos de 2 horas</p>
                             </div>
                         </div>
 
                         <div class="flex items-start">
-                            <div class="w-12 h-12 bg-gold/10 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
-                                <i data-lucide="mail" class="w-6 h-6 text-gold"></i>
+                            <div class="w-12 h-12 rounded-full bg-gold-wash ring-1 ring-gold/15 flex items-center justify-center mr-4 flex-none">
+                                <i data-lucide="mail" class="h-5 w-5 text-gold-dark"></i>
                             </div>
                             <div>
-                                <h3 class="font-bold text-dark mb-1">Email</h3>
-                                <p class="text-gray-600">hola@digitalweddingbolivia.com</p>
-                                <p class="text-sm text-gray-500">Respuesta en 24 horas</p>
+                                <h3 class="font-medium text-dark mb-1">Email</h3>
+                                <p><a href="mailto:hola@digitalweddingbolivia.com" class="break-all text-gray-600 transition-colors hover:text-gold-ink">hola@digitalweddingbolivia.com</a></p>
+                                <p class="mt-0.5 text-[0.8125rem] text-gray-400">Respuesta en 24 horas</p>
                             </div>
                         </div>
 
                         <div class="flex items-start">
-                            <div class="w-12 h-12 bg-gold/10 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
-                                <i data-lucide="map-pin" class="w-6 h-6 text-gold"></i>
+                            <div class="w-12 h-12 rounded-full bg-gold-wash ring-1 ring-gold/15 flex items-center justify-center mr-4 flex-none">
+                                <i data-lucide="map-pin" class="h-5 w-5 text-gold-dark"></i>
                             </div>
                             <div>
-                                <h3 class="font-bold text-dark mb-1">Ubicación</h3>
+                                <h3 class="font-medium text-dark mb-1">Ubicación</h3>
                                 <p class="text-gray-600">La Paz, Bolivia</p>
-                                <p class="text-sm text-gray-500">Atención a todo el país</p>
+                                <p class="mt-0.5 text-[0.8125rem] text-gray-400">Atención a todo el país</p>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Contact Form -->
-                <div class="bg-gray-50 rounded-2xl p-8">
-                    <form id="contact-form" class="space-y-6">
-                        <div>
-                            <label for="nombre" class="block text-sm font-semibold text-dark mb-2">Nombre Completo *</label>
-                            <input type="text" id="nombre" name="nombre" required
-                                   class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-gold focus:ring-2 focus:ring-gold/20 outline-none transition-all">
-                        </div>
+                <div class="reveal rounded-3xl bg-gray-50 p-2 ring-1 ring-gray-200/70">
+                    <div class="rounded-[1.4rem] bg-white p-6 shadow-sm sm:p-8">
+                        <form id="contact-form" class="space-y-5" novalidate>
+                            <div>
+                                <label for="nombre" class="mb-2 block text-sm font-medium text-dark">Nombre completo <span class="text-gold-ink">*</span></label>
+                                <input type="text" id="nombre" name="nombre" required autocomplete="name" class="field">
+                                <p class="field-error" id="err-nombre">Escribe tu nombre para poder responderte.</p>
+                            </div>
 
-                        <div>
-                            <label for="email" class="block text-sm font-semibold text-dark mb-2">Email *</label>
-                            <input type="email" id="email" name="email" required
-                                   class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-gold focus:ring-2 focus:ring-gold/20 outline-none transition-all">
-                        </div>
+                            <div>
+                                <label for="email" class="mb-2 block text-sm font-medium text-dark">Email <span class="text-gold-ink">*</span></label>
+                                <input type="email" id="email" name="email" required autocomplete="email" placeholder="tunombre@correo.com" class="field">
+                                <p class="field-error" id="err-email">Revisa el correo, parece incompleto.</p>
+                            </div>
 
-                        <div>
-                            <label for="whatsapp" class="block text-sm font-semibold text-dark mb-2">WhatsApp *</label>
-                            <input type="tel" id="whatsapp" name="whatsapp" required placeholder="+591 78216419"
-                                   class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-gold focus:ring-2 focus:ring-gold/20 outline-none transition-all">
-                        </div>
+                            <div>
+                                <label for="whatsapp" class="mb-2 block text-sm font-medium text-dark">WhatsApp <span class="text-gold-ink">*</span></label>
+                                <input type="tel" id="whatsapp" name="whatsapp" required autocomplete="tel" inputmode="tel" placeholder="+591 78216419" class="field tnum">
+                                <p class="field-error" id="err-whatsapp">Necesitamos un número de al menos 7 dígitos.</p>
+                            </div>
 
-                        <div>
-                            <label for="fecha" class="block text-sm font-semibold text-dark mb-2">Fecha de Boda</label>
-                            <input type="date" id="fecha" name="fecha"
-                                   class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-gold focus:ring-2 focus:ring-gold/20 outline-none transition-all">
-                        </div>
+                            <div class="grid gap-5 sm:grid-cols-2">
+                                <div>
+                                    <label for="fecha" class="mb-2 block text-sm font-medium text-dark">Fecha de boda</label>
+                                    <input type="date" id="fecha" name="fecha" class="field tnum">
+                                </div>
+                                <div>
+                                    <label for="paquete" class="mb-2 block text-sm font-medium text-dark">Paquete de interés</label>
+                                    <select id="paquete" name="paquete" class="field">
+                                        <option value="">Selecciona un paquete</option>
+                                        <option value="esencial">Esencial · 250 Bs</option>
+                                        <option value="premium">Premium · 450 Bs</option>
+                                        <option value="vip">VIP · 800 Bs</option>
+                                        <option value="no-se">Todavía no lo sé</option>
+                                    </select>
+                                </div>
+                            </div>
 
-                        <div>
-                            <label for="paquete" class="block text-sm font-semibold text-dark mb-2">Paquete de Interés</label>
-                            <select id="paquete" name="paquete"
-                                    class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-gold focus:ring-2 focus:ring-gold/20 outline-none transition-all bg-white">
-                                <option value="">Selecciona un paquete</option>
-                                <option value="esencial">Esencial - 250 Bs</option>
-                                <option value="premium">Premium - 450 Bs</option>
-                                <option value="vip">VIP - 800 Bs</option>
-                                <option value="no-se">No estoy seguro/a</option>
-                            </select>
-                        </div>
+                            <div>
+                                <label for="mensaje" class="mb-2 block text-sm font-medium text-dark">Mensaje</label>
+                                <textarea id="mensaje" name="mensaje" rows="4" placeholder="Cuéntanos cómo imaginas tu invitación." class="field resize-none"></textarea>
+                            </div>
 
-                        <div>
-                            <label for="mensaje" class="block text-sm font-semibold text-dark mb-2">Mensaje</label>
-                            <textarea id="mensaje" name="mensaje" rows="4"
-                                      class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-gold focus:ring-2 focus:ring-gold/20 outline-none transition-all resize-none"></textarea>
-                        </div>
+                            <button type="submit" class="btn-gold group inline-flex w-full items-center justify-center gap-2.5 rounded-full bg-gold py-4 font-semibold text-white shadow-gold transition-colors duration-300 hover:bg-gold-dark disabled:cursor-not-allowed disabled:opacity-60">
+                                <span data-btn-label>Enviar mensaje</span>
+                                <span class="flex h-7 w-7 items-center justify-center rounded-full bg-white/20 transition-transform duration-500 ease-premium group-hover:translate-x-0.5">
+                                    <i data-lucide="arrow-right" class="h-4 w-4"></i>
+                                </span>
+                            </button>
 
-                        <button type="submit" class="w-full btn-gold bg-gold text-white py-4 rounded-full font-bold text-lg hover:bg-gold-dark transition-all transform hover:scale-105 shadow-lg">
-                            Enviar Mensaje
-                        </button>
-                    </form>
+                            <!-- Confirmacion en linea: sustituye al alert() del navegador -->
+                            <p id="form-status" role="status" aria-live="polite"
+                               class="hidden items-start gap-2.5 rounded-xl bg-gold-wash px-4 py-3.5 text-[0.9375rem] text-gold-ink ring-1 ring-gold/20">
+                                <i data-lucide="check-circle-2" class="mt-px h-4 w-4 flex-none"></i>
+                                <span>Recibimos tu mensaje. Te escribimos por WhatsApp dentro de las próximas 24 horas.</span>
+                            </p>
+
+                            <p class="text-center text-[0.8125rem] leading-relaxed text-gray-500">
+                                ¿Prefieres escribirnos directo?
+                                <a href="https://wa.me/59178216419" target="_blank" rel="noopener" class="font-medium text-gold-ink underline decoration-gold-light underline-offset-4 transition-colors hover:text-gold-dark">Abrir WhatsApp</a>
+                            </p>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
+    </main>
+
     <!-- Footer -->
-    <footer class="bg-dark text-white py-12">
+    <footer class="bg-dark text-white pt-16 pb-28 md:pt-20 md:pb-24">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid md:grid-cols-4 gap-8 mb-8">
                 <!-- Logo & Description -->
                 <div class="md:col-span-2">
-                    <div class="flex items-center space-x-3 mb-4">
+                    <div class="flex items-center gap-3 mb-5">
                         <div class="w-12 h-12 flex items-center justify-center">
                             <svg viewBox="0 0 100 100" class="w-full h-full">
-                                <circle cx="50" cy="50" r="45" fill="none" stroke="#C9A227" stroke-width="2"/>
-                                <text x="50" y="65" font-family="Playfair Display" font-size="35" font-weight="bold" fill="#C9A227" text-anchor="middle">DW</text>
+                                <circle cx="50" cy="50" r="46" fill="none" stroke="#E3CE93" stroke-width="1.1" opacity=".5"/>
+                                <circle cx="50" cy="50" r="39" fill="none" stroke="#C9A227" stroke-width="1.6"/>
+                                <text x="50" y="63" font-family="Playfair Display, Georgia, serif" font-size="32" font-weight="600" fill="#E3CE93" text-anchor="middle">DW</text>
                             </svg>
                         </div>
                         <div>
-                            <h3 class="font-serif text-xl font-bold">Digital Wedding</h3>
-                            <p class="text-xs text-gold tracking-wider">BOLIVIA</p>
+                            <h3 class="font-serif text-xl font-semibold">Digital Wedding</h3>
+                            <p class="mt-1 text-[10px] font-medium tracking-[0.32em] text-gold-light">BOLIVIA</p>
                         </div>
                     </div>
-                    <p class="text-gray-400 mb-4 max-w-md">
+                    <p class="mb-6 max-w-md text-[0.9375rem] leading-[1.75] text-gray-400">
                         Creamos invitaciones digitales premium para bodas en Bolivia. Diseños exclusivos, tecnología de punta y servicio personalizado.
                     </p>
                     <div class="flex space-x-4">
-                        <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-gold transition-all">
-                            <img src="https://img.icons8.com/?size=100&id=obeYRZIzsF25&format=png&color=FFFFFF" alt="Facebook" class="w-5 h-5">
+                        <a href="#" aria-label="Digital Wedding Bolivia en Facebook" class="flex h-10 w-10 items-center justify-center rounded-full bg-white/[0.07] ring-1 ring-white/10 transition-colors duration-300 ease-premium hover:bg-gold hover:ring-gold/40">
+                            <img src="https://img.icons8.com/?size=100&id=obeYRZIzsF25&format=png&color=FFFFFF" alt="" width="20" height="20" loading="lazy" class="h-[18px] w-[18px]">
                         </a>
-                        <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-gold transition-all">
-                            <img src="https://img.icons8.com/?size=100&id=lTkH3THtr7SL&format=png&color=FFFFFF" alt="TikTok" class="w-5 h-5">
+                        <a href="#" aria-label="Digital Wedding Bolivia en TikTok" class="flex h-10 w-10 items-center justify-center rounded-full bg-white/[0.07] ring-1 ring-white/10 transition-colors duration-300 ease-premium hover:bg-gold hover:ring-gold/40">
+                            <img src="https://img.icons8.com/?size=100&id=lTkH3THtr7SL&format=png&color=FFFFFF" alt="" width="20" height="20" loading="lazy" class="h-[18px] w-[18px]">
                         </a>
-                        <a href="https://wa.me/59178216419" target="_blank" aria-label="WhatsApp" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-gold transition-all">
-                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M11.42 9.49c-.19-.09-1.1-.54-1.27-.61s-.29-.09-.42.1-.48.6-.59.73-.21.14-.4 0a5.13 5.13 0 0 1-1.49-.92 5.25 5.25 0 0 1-1-1.29c-.11-.18 0-.28.08-.38s.18-.21.28-.32a1.39 1.39 0 0 0 .18-.31.38.38 0 0 0 0-.33c0-.09-.42-1-.58-1.37s-.3-.32-.41-.32h-.4a.72.72 0 0 0-.5.23 2.1 2.1 0 0 0-.65 1.55A3.59 3.59 0 0 0 5 8.2 8.32 8.32 0 0 0 8.19 11c.44.19.78.3 1.05.39a2.53 2.53 0 0 0 1.17.07 1.93 1.93 0 0 0 1.26-.88 1.67 1.67 0 0 0 .11-.88c-.05-.07-.17-.12-.36-.21z"/><path d="M13.29 2.68A7.36 7.36 0 0 0 8 .5a7.44 7.44 0 0 0-6.41 11.15l-1 3.85 3.94-1a7.4 7.4 0 0 0 3.55.9H8a7.44 7.44 0 0 0 5.29-12.72zM8 14.12a6.12 6.12 0 0 1-3.15-.87l-.22-.13-2.34.61.62-2.28-.14-.23a6.18 6.18 0 0 1 9.6-7.65 6.12 6.12 0 0 1 1.81 4.37A6.19 6.19 0 0 1 8 14.12z"/></svg>
+                        <a href="https://wa.me/59178216419" target="_blank" aria-label="Escríbenos por WhatsApp" class="flex h-10 w-10 items-center justify-center rounded-full bg-white/[0.07] ring-1 ring-white/10 transition-colors duration-300 ease-premium hover:bg-gold hover:ring-gold/40">
+                            <svg class="h-[18px] w-[18px]" fill="currentColor" aria-hidden="true" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M11.42 9.49c-.19-.09-1.1-.54-1.27-.61s-.29-.09-.42.1-.48.6-.59.73-.21.14-.4 0a5.13 5.13 0 0 1-1.49-.92 5.25 5.25 0 0 1-1-1.29c-.11-.18 0-.28.08-.38s.18-.21.28-.32a1.39 1.39 0 0 0 .18-.31.38.38 0 0 0 0-.33c0-.09-.42-1-.58-1.37s-.3-.32-.41-.32h-.4a.72.72 0 0 0-.5.23 2.1 2.1 0 0 0-.65 1.55A3.59 3.59 0 0 0 5 8.2 8.32 8.32 0 0 0 8.19 11c.44.19.78.3 1.05.39a2.53 2.53 0 0 0 1.17.07 1.93 1.93 0 0 0 1.26-.88 1.67 1.67 0 0 0 .11-.88c-.05-.07-.17-.12-.36-.21z"/><path d="M13.29 2.68A7.36 7.36 0 0 0 8 .5a7.44 7.44 0 0 0-6.41 11.15l-1 3.85 3.94-1a7.4 7.4 0 0 0 3.55.9H8a7.44 7.44 0 0 0 5.29-12.72zM8 14.12a6.12 6.12 0 0 1-3.15-.87l-.22-.13-2.34.61.62-2.28-.14-.23a6.18 6.18 0 0 1 9.6-7.65 6.12 6.12 0 0 1 1.81 4.37A6.19 6.19 0 0 1 8 14.12z"/></svg>
                         </a>
                     </div>
                 </div>
 
                 <!-- Quick Links -->
                 <div>
-                    <h4 class="font-serif text-lg font-bold mb-4">Enlaces Rápidos</h4>
-                    <ul class="space-y-2">
-                        <li><a href="#inicio" class="text-gray-400 hover:text-gold transition-colors">Inicio</a></li>
-                        <li><a href="#servicios" class="text-gray-400 hover:text-gold transition-colors">Servicios</a></li>
-                        <li><a href="#portafolio" class="text-gray-400 hover:text-gold transition-colors">Portafolio</a></li>
-                        <li><a href="#paquetes" class="text-gray-400 hover:text-gold transition-colors">Paquetes</a></li>
-                        <li><a href="#contacto" class="text-gray-400 hover:text-gold transition-colors">Contacto</a></li>
+                    <h4 class="mb-5 text-[11px] font-medium uppercase tracking-[0.22em] text-gold-light">Enlaces rápidos</h4>
+                    <ul class="space-y-2.5 text-[0.9375rem]">
+                        <li><a href="#inicio" class="text-gray-400 transition-colors duration-300 hover:text-gold-light">Inicio</a></li>
+                        <li><a href="#servicios" class="text-gray-400 transition-colors duration-300 hover:text-gold-light">Servicios</a></li>
+                        <li><a href="#portafolio" class="text-gray-400 transition-colors duration-300 hover:text-gold-light">Portafolio</a></li>
+                        <li><a href="#paquetes" class="text-gray-400 transition-colors duration-300 hover:text-gold-light">Paquetes</a></li>
+                        <li><a href="#contacto" class="text-gray-400 transition-colors duration-300 hover:text-gold-light">Contacto</a></li>
                     </ul>
                 </div>
 
                 <!-- Contact Info -->
                 <div>
-                    <h4 class="font-serif text-lg font-bold mb-4">Contacto</h4>
-                    <ul class="space-y-2 text-gray-400">
-                        <li class="flex items-center">
-                            <i data-lucide="phone" class="w-4 h-4 mr-2 text-gold"></i>
-                            +591 78216419
+                    <h4 class="mb-5 text-[11px] font-medium uppercase tracking-[0.22em] text-gold-light">Contacto</h4>
+                    <ul class="space-y-2.5 text-[0.9375rem] text-gray-400">
+                        <li>
+                            <a href="tel:+59178216419" class="flex items-center gap-2.5 transition-colors duration-300 hover:text-gold-light">
+                                <i data-lucide="phone" class="h-4 w-4 flex-none text-gold"></i>
+                                <span class="tnum">+591 78216419</span>
+                            </a>
                         </li>
-                        <li class="flex items-center">
-                            <i data-lucide="mail" class="w-4 h-4 mr-2 text-gold"></i>
-                            hola@digitalweddingbo.com
+                        <li>
+                            <a href="mailto:hola@digitalweddingbolivia.com" class="flex items-center gap-2.5 transition-colors duration-300 hover:text-gold-light">
+                                <i data-lucide="mail" class="h-4 w-4 flex-none text-gold"></i>
+                                <span class="break-all">hola@digitalweddingbolivia.com</span>
+                            </a>
                         </li>
-                        <li class="flex items-center">
-                            <i data-lucide="map-pin" class="w-4 h-4 mr-2 text-gold"></i>
+                        <li class="flex items-center gap-2.5">
+                            <i data-lucide="map-pin" class="h-4 w-4 flex-none text-gold"></i>
                             La Paz, Bolivia
                         </li>
                     </ul>
                 </div>
             </div>
 
-            <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center">
-                <p class="text-gray-400 text-sm mb-4 md:mb-0">
+            <div class="flex flex-col items-center justify-between gap-5 border-t border-white/10 pt-8 md:flex-row">
+                <p class="text-[0.8125rem] text-gray-400">
                     © 2025 Digital Wedding Bolivia. Todos los derechos reservados.
                 </p>
-                <div class="flex space-x-6 text-sm text-gray-400">
-                    <a href="#" class="hover:text-gold transition-colors">Términos y Condiciones</a>
-                    <a href="#" class="hover:text-gold transition-colors">Política de Privacidad</a>
+                <div class="flex gap-6 text-[0.8125rem] text-gray-400">
+                    <a href="#" class="transition-colors duration-300 hover:text-gold-light">Términos y condiciones</a>
+                    <a href="#" class="transition-colors duration-300 hover:text-gold-light">Política de privacidad</a>
                 </div>
             </div>
         </div>
@@ -1128,200 +1445,341 @@
 
     <!-- WhatsApp Float Button -->
     <a href="https://wa.me/59178216419" target="_blank" aria-label="Contactar por WhatsApp"
-       class="fixed bottom-6 right-6 w-14 h-14 rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-all z-50">
+       class="fixed right-5 z-[45] flex h-14 w-14 items-center justify-center rounded-full shadow-xl ring-1 ring-black/5 transition-transform duration-500 ease-premium hover:scale-105 active:scale-95"
+       style="bottom: calc(1.25rem + env(safe-area-inset-bottom));">
         <svg class="w-full h-full" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 48 48">
             <path fill="#fff" d="M4.868,43.303l2.694-9.835C5.9,30.59,5.026,27.324,5.027,23.979C5.032,13.514,13.548,5,24.014,5c5.079,0.002,9.845,1.979,13.43,5.566c3.584,3.588,5.558,8.356,5.556,13.428c-0.004,10.465-8.522,18.98-18.986,18.98c-0.001,0,0,0,0,0h-0.008c-3.177-0.001-6.3-0.798-9.073-2.311L4.868,43.303z"></path><path fill="#fff" d="M4.868,43.803c-0.132,0-0.26-0.052-0.355-0.148c-0.125-0.127-0.174-0.312-0.127-0.483l2.639-9.636c-1.636-2.906-2.499-6.206-2.497-9.556C4.532,13.238,13.273,4.5,24.014,4.5c5.21,0.002,10.105,2.031,13.784,5.713c3.679,3.683,5.704,8.577,5.702,13.781c-0.004,10.741-8.746,19.48-19.486,19.48c-3.189-0.001-6.344-0.788-9.144-2.277l-9.875,2.589C4.953,43.798,4.911,43.803,4.868,43.803z"></path><path fill="#cfd8dc" d="M24.014,5c5.079,0.002,9.845,1.979,13.43,5.566c3.584,3.588,5.558,8.356,5.556,13.428c-0.004,10.465-8.522,18.98-18.986,18.98h-0.008c-3.177-0.001-6.3-0.798-9.073-2.311L4.868,43.303l2.694-9.835C5.9,30.59,5.026,27.324,5.027,23.979C5.032,13.514,13.548,5,24.014,5 M24.014,42.974C24.014,42.974,24.014,42.974,24.014,42.974C24.014,42.974,24.014,42.974,24.014,42.974 M24.014,42.974C24.014,42.974,24.014,42.974,24.014,42.974C24.014,42.974,24.014,42.974,24.014,42.974 M24.014,4C24.014,4,24.014,4,24.014,4C12.998,4,4.032,12.962,4.027,23.979c-0.001,3.367,0.849,6.685,2.461,9.622l-2.585,9.439c-0.094,0.345,0.002,0.713,0.254,0.967c0.19,0.192,0.447,0.297,0.711,0.297c0.085,0,0.17-0.011,0.254-0.033l9.687-2.54c2.828,1.468,5.998,2.243,9.197,2.244c11.024,0,19.99-8.963,19.995-19.98c0.002-5.339-2.075-10.359-5.848-14.135C34.378,6.083,29.357,4.002,24.014,4L24.014,4z"></path><path fill="#40c351" d="M35.176,12.832c-2.98-2.982-6.941-4.625-11.157-4.626c-8.704,0-15.783,7.076-15.787,15.774c-0.001,2.981,0.833,5.883,2.413,8.396l0.376,0.597l-1.595,5.821l5.973-1.566l0.577,0.342c2.422,1.438,5.2,2.198,8.032,2.199h0.006c8.698,0,15.777-7.077,15.78-15.776C39.795,19.778,38.156,15.814,35.176,12.832z"></path><path fill="#fff" fill-rule="evenodd" d="M19.268,16.045c-0.355-0.79-0.729-0.806-1.068-0.82c-0.277-0.012-0.593-0.011-0.909-0.011c-0.316,0-0.83,0.119-1.265,0.594c-0.435,0.475-1.661,1.622-1.661,3.956c0,2.334,1.7,4.59,1.937,4.906c0.237,0.316,3.282,5.259,8.104,7.161c4.007,1.58,4.823,1.266,5.693,1.187c0.87-0.079,2.807-1.147,3.202-2.255c0.395-1.108,0.395-2.057,0.277-2.255c-0.119-0.198-0.435-0.316-0.909-0.554s-2.807-1.385-3.242-1.543c-0.435-0.158-0.751-0.237-1.068,0.238c-0.316,0.474-1.225,1.543-1.502,1.859c-0.277,0.317-0.554,0.357-1.028,0.119c-0.474-0.238-2.002-0.738-3.815-2.354c-1.41-1.257-2.362-2.81-2.639-3.285c-0.277-0.474-0.03-0.731,0.208-0.968c0.213-0.213,0.474-0.554,0.712-0.831c0.237-0.277,0.316-0.475,0.474-0.791c0.158-0.317,0.079-0.594-0.04-0.831C20.612,19.329,19.69,16.983,19.268,16.045z" clip-rule="evenodd"></path>
         </svg>
     </a>
 
     <script>
-        // Initialize Lucide Icons
-        lucide.createIcons();
+    (function () {
+        'use strict';
 
-        // Mobile Menu Toggle
-        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
+        var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
-        mobileMenuBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
+        /* -----------------------------------------------------------
+           Iconos: un unico grosor de trazo fino en todo el sitio.
+           ----------------------------------------------------------- */
+        if (window.lucide) {
+            lucide.createIcons({ attrs: { 'stroke-width': 1.5 } });
+        }
 
-        // Close mobile menu when clicking a link
-        mobileMenu.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.add('hidden');
+        /* -----------------------------------------------------------
+           Navbar: se apoya en un centinela, no en el evento scroll.
+           ----------------------------------------------------------- */
+        var navbar = document.getElementById('navbar');
+        var sentinel = document.getElementById('nav-sentinel');
+
+        if (navbar && sentinel && 'IntersectionObserver' in window) {
+            new IntersectionObserver(function (entries) {
+                var atTop = entries[0].isIntersecting;
+                navbar.classList.toggle('bg-white/85', !atTop);
+                navbar.classList.toggle('border-gray-200/70', !atTop);
+                navbar.classList.toggle('shadow-sm', !atTop);
+                navbar.classList.toggle('border-transparent', atTop);
+            }, { threshold: 0 }).observe(sentinel);
+        }
+
+        /* -----------------------------------------------------------
+           Menu movil
+           ----------------------------------------------------------- */
+        var menuBtn = document.getElementById('mobile-menu-btn');
+        var menu = document.getElementById('mobile-menu');
+
+        function setMenu(open) {
+            menu.dataset.open = open ? 'true' : 'false';
+            menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+            menuBtn.setAttribute('aria-label', open ? 'Cerrar menu de navegacion' : 'Abrir menu de navegacion');
+        }
+
+        if (menuBtn && menu) {
+            menuBtn.addEventListener('click', function () {
+                setMenu(menu.dataset.open !== 'true');
             });
-        });
 
-        // Navbar Scroll Effect
-        const navbar = document.getElementById('navbar');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                navbar.classList.add('shadow-md');
-            } else {
-                navbar.classList.remove('shadow-md');
-            }
-        });
+            menu.querySelectorAll('a').forEach(function (link) {
+                link.addEventListener('click', function () { setMenu(false); });
+            });
 
-        // Carousel Functionality
-        const track = document.getElementById('carousel-track');
-        const slides = track.querySelectorAll('.carousel-slide');
-        const prevBtn = document.getElementById('prev-btn');
-        const nextBtn = document.getElementById('next-btn');
-        const dotsContainer = document.getElementById('carousel-dots');
-        
-        let currentIndex = 0;
-        let slidesPerView = 1;
-
-        function updateSlidesPerView() {
-            if (window.innerWidth >= 1024) {
-                slidesPerView = 3;
-            } else if (window.innerWidth >= 768) {
-                slidesPerView = 2;
-            } else {
-                slidesPerView = 1;
-            }
-            
-            const maxIndex = Math.max(0, slides.length - slidesPerView);
-            if (currentIndex > maxIndex) {
-                currentIndex = maxIndex;
-            }
-            
-            updateCarousel();
-            createDots();
-        }
-
-        function createDots() {
-            dotsContainer.innerHTML = '';
-            const totalDots = slides.length - slidesPerView + 1;
-            for (let i = 0; i < totalDots; i++) {
-                const dot = document.createElement('button');
-                dot.className = `w-3 h-3 rounded-full transition-all ${i === currentIndex ? 'bg-gold w-8' : 'bg-gray-300'}`;
-                dot.addEventListener('click', () => {
-                    currentIndex = i;
-                    updateCarousel();
-                });
-                dotsContainer.appendChild(dot);
-            }
-        }
-
-        function updateCarousel() {
-            const slideWidth = 100 / slidesPerView;
-            track.style.transform = `translateX(-${currentIndex * slideWidth}%)`;
-            
-            // Update dots
-            const dots = dotsContainer.querySelectorAll('button');
-            dots.forEach((dot, index) => {
-                dot.className = `w-3 h-3 rounded-full transition-all ${index === currentIndex ? 'bg-gold w-8' : 'bg-gray-300'}`;
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'Escape' && menu.dataset.open === 'true') {
+                    setMenu(false);
+                    menuBtn.focus();
+                }
             });
         }
 
-        prevBtn.addEventListener('click', () => {
-            currentIndex = (currentIndex > 0) ? currentIndex - 1 : slides.length - slidesPerView;
-            updateCarousel();
-        });
+        /* -----------------------------------------------------------
+           Seccion activa en la navegacion
+           ----------------------------------------------------------- */
+        var navLinks = Array.prototype.slice.call(document.querySelectorAll('.nav-link'));
 
-        nextBtn.addEventListener('click', () => {
-            currentIndex = (currentIndex < slides.length - slidesPerView) ? currentIndex + 1 : 0;
-            updateCarousel();
-        });
-
-        // Auto-play carousel
-        let autoPlayInterval = setInterval(() => {
-            currentIndex = (currentIndex < slides.length - slidesPerView) ? currentIndex + 1 : 0;
-            updateCarousel();
-        }, 5000);
-
-        // Pause auto-play on hover or touch
-        track.addEventListener('mouseenter', () => clearInterval(autoPlayInterval));
-        track.addEventListener('mouseleave', () => {
-            autoPlayInterval = setInterval(() => {
-                currentIndex = (currentIndex < slides.length - slidesPerView) ? currentIndex + 1 : 0;
-                updateCarousel();
-            }, 5000);
-        });
-
-        // Touch support for mobile swipe
-        let startX;
-        track.addEventListener('touchstart', e => {
-            startX = e.touches[0].clientX;
-            clearInterval(autoPlayInterval);
-        }, { passive: true });
-        
-        track.addEventListener('touchend', e => {
-            const endX = e.changedTouches[0].clientX;
-            if (startX - endX > 50) {
-                nextBtn.click(); // Swipe left
-            } else if (endX - startX > 50) {
-                prevBtn.click(); // Swipe right
-            }
-            
-            // Resume autoplay
-            autoPlayInterval = setInterval(() => {
-                currentIndex = (currentIndex < slides.length - slidesPerView) ? currentIndex + 1 : 0;
-                updateCarousel();
-            }, 5000);
-        }, { passive: true });
-
-        window.addEventListener('resize', updateSlidesPerView);
-        updateSlidesPerView();
-
-        // FAQ Accordion
-        const faqBtns = document.querySelectorAll('.faq-btn');
-        faqBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                const content = btn.nextElementSibling;
-                const icon = btn.querySelector('.faq-icon');
-                
-                content.classList.toggle('hidden');
-                icon.style.transform = content.classList.contains('hidden') ? 'rotate(0deg)' : 'rotate(180deg)';
-            });
-        });
-
-        // Contact Form
-        const contactForm = document.getElementById('contact-form');
-        contactForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            
-            // Aquí puedes integrar con tu backend (Google Sheets, email service, etc.)
-            alert('¡Gracias por tu mensaje! Te contactaremos pronto.');
-            contactForm.reset();
-        });
-
-        // Smooth Scroll for Anchor Links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
+        if (navLinks.length && 'IntersectionObserver' in window) {
+            var spy = new IntersectionObserver(function (entries) {
+                entries.forEach(function (entry) {
+                    if (!entry.isIntersecting) return;
+                    navLinks.forEach(function (link) {
+                        var match = link.getAttribute('href') === '#' + entry.target.id;
+                        if (match) {
+                            link.setAttribute('aria-current', 'page');
+                        } else {
+                            link.removeAttribute('aria-current');
+                        }
                     });
+                });
+            }, { rootMargin: '-45% 0px -50% 0px' });
+
+            navLinks.forEach(function (link) {
+                var section = document.querySelector(link.getAttribute('href'));
+                if (section) spy.observe(section);
+            });
+        }
+
+        /* -----------------------------------------------------------
+           Entrada en viewport, escalonada
+           ----------------------------------------------------------- */
+        var revealables = document.querySelectorAll('.reveal');
+
+        if ('IntersectionObserver' in window && !reduceMotion.matches) {
+            var revealObserver = new IntersectionObserver(function (entries) {
+                entries.forEach(function (entry, i) {
+                    if (!entry.isIntersecting) return;
+                    // Escalona solo los elementos que entran juntos, para que
+                    // una tarjeta rezagada no espere de mas.
+                    if (!entry.target.style.getPropertyValue('--d')) {
+                        entry.target.style.setProperty('--d', (i * 70) + 'ms');
+                    }
+                    entry.target.classList.add('is-visible');
+                    revealObserver.unobserve(entry.target);
+                });
+            }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+
+            revealables.forEach(function (el) { revealObserver.observe(el); });
+
+            // Red de seguridad: si el observer no llegara a disparar, nada
+            // puede quedarse invisible. Una animacion perdida es aceptable;
+            // una seccion en blanco, no.
+            setTimeout(function () {
+                revealables.forEach(function (el) {
+                    var r = el.getBoundingClientRect();
+                    if (r.top < window.innerHeight && r.bottom > 0) {
+                        el.classList.add('is-visible');
+                    }
+                });
+            }, 1600);
+        } else {
+            revealables.forEach(function (el) { el.classList.add('is-visible'); });
+        }
+
+        /* -----------------------------------------------------------
+           Carrusel de portafolio
+           ----------------------------------------------------------- */
+        var track = document.getElementById('carousel-track');
+
+        if (track) {
+            var slides = track.querySelectorAll('.carousel-slide');
+            var prevBtn = document.getElementById('prev-btn');
+            var nextBtn = document.getElementById('next-btn');
+            var dotsBox = document.getElementById('carousel-dots');
+
+            var index = 0;
+            var perView = 1;
+            var timer = null;
+            var DELAY = 5500;
+
+            function maxIndex() {
+                return Math.max(0, slides.length - perView);
+            }
+
+            function render() {
+                track.style.transform = 'translateX(-' + (index * (100 / perView)) + '%)';
+
+                // Lo que queda fuera de vista no debe ser alcanzable con Tab.
+                slides.forEach(function (slide, i) {
+                    var visible = i >= index && i < index + perView;
+                    slide.setAttribute('aria-hidden', visible ? 'false' : 'true');
+                    slide.querySelectorAll('a, button').forEach(function (el) {
+                        el.tabIndex = visible ? 0 : -1;
+                    });
+                });
+
+                dotsBox.querySelectorAll('.dot').forEach(function (dot, i) {
+                    dot.setAttribute('aria-current', i === index ? 'true' : 'false');
+                });
+            }
+
+            function buildDots() {
+                dotsBox.innerHTML = '';
+                for (var i = 0; i <= maxIndex(); i++) {
+                    var dot = document.createElement('button');
+                    dot.type = 'button';
+                    dot.className = 'dot';
+                    dot.setAttribute('aria-label', 'Ir al grupo ' + (i + 1));
+                    dot.dataset.index = i;
+                    dot.addEventListener('click', function (e) {
+                        index = Number(e.currentTarget.dataset.index);
+                        render();
+                        restart();
+                    });
+                    dotsBox.appendChild(dot);
                 }
+            }
+
+            function go(step) {
+                var last = maxIndex();
+                index = index + step;
+                if (index > last) index = 0;
+                if (index < 0) index = last;
+                render();
+            }
+
+            function stop() {
+                if (timer) { clearInterval(timer); timer = null; }
+            }
+
+            function start() {
+                // Sin reproduccion automatica si el usuario pidio menos movimiento.
+                if (reduceMotion.matches || document.hidden) return;
+                stop();
+                timer = setInterval(function () { go(1); }, DELAY);
+            }
+
+            function restart() { stop(); start(); }
+
+            function layout() {
+                var w = window.innerWidth;
+                perView = w >= 1024 ? 3 : (w >= 768 ? 2 : 1);
+                if (index > maxIndex()) index = maxIndex();
+                buildDots();
+                render();
+            }
+
+            prevBtn.addEventListener('click', function () { go(-1); restart(); });
+            nextBtn.addEventListener('click', function () { go(1); restart(); });
+
+            track.addEventListener('mouseenter', stop);
+            track.addEventListener('mouseleave', start);
+            track.addEventListener('focusin', stop);
+            track.addEventListener('focusout', start);
+
+            // No consumir bateria mientras la pestana esta en segundo plano.
+            document.addEventListener('visibilitychange', function () {
+                if (document.hidden) { stop(); } else { start(); }
+            });
+
+            // Deslizar en tactil, ignorando gestos verticales.
+            var x0 = null, y0 = null;
+            track.addEventListener('touchstart', function (e) {
+                x0 = e.touches[0].clientX;
+                y0 = e.touches[0].clientY;
+                stop();
+            }, { passive: true });
+
+            track.addEventListener('touchend', function (e) {
+                if (x0 === null) return;
+                var dx = e.changedTouches[0].clientX - x0;
+                var dy = e.changedTouches[0].clientY - y0;
+                if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy)) {
+                    go(dx < 0 ? 1 : -1);
+                }
+                x0 = y0 = null;
+                start();
+            }, { passive: true });
+
+            // Reajusta al cambiar de tamano, agrupando el trabajo en un rAF.
+            var pending = false;
+            window.addEventListener('resize', function () {
+                if (pending) return;
+                pending = true;
+                requestAnimationFrame(function () { pending = false; layout(); });
+            });
+
+            layout();
+            start();
+        }
+
+        /* -----------------------------------------------------------
+           Acordeon de preguntas frecuentes
+           ----------------------------------------------------------- */
+        document.querySelectorAll('.faq-btn').forEach(function (btn, i) {
+            var panel = btn.nextElementSibling;
+            var icon = btn.querySelector('.faq-icon');
+            var id = 'faq-panel-' + i;
+
+            panel.id = id;
+            btn.setAttribute('aria-controls', id);
+
+            btn.addEventListener('click', function () {
+                var open = panel.classList.toggle('hidden') === false;
+                btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+                if (icon) icon.style.transform = open ? 'rotate(180deg)' : 'rotate(0deg)';
             });
         });
 
-        // Intersection Observer for Animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
+        /* -----------------------------------------------------------
+           Formulario: validacion en linea, sin alert() del navegador
+           ----------------------------------------------------------- */
+        var form = document.getElementById('contact-form');
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.classList.add('animate-fade-in-up');
-                    observer.unobserve(entry.target);
-                }
+        if (form) {
+            var status = document.getElementById('form-status');
+            var submit = form.querySelector('button[type="submit"]');
+            var label = form.querySelector('[data-btn-label]');
+
+            var rules = {
+                nombre: function (v) { return v.trim().length >= 2; },
+                email: function (v) { return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim()); },
+                whatsapp: function (v) { return v.replace(/\D/g, '').length >= 7; }
+            };
+
+            function check(field) {
+                var ok = rules[field.name](field.value);
+                field.setAttribute('aria-invalid', ok ? 'false' : 'true');
+                field.setAttribute('aria-describedby', 'err-' + field.name);
+                return ok;
+            }
+
+            Object.keys(rules).forEach(function (name) {
+                var field = form.elements[name];
+                // Solo se valida al salir del campo: corregir mientras se
+                // escribe es hostil, avisar tarde tambien.
+                field.addEventListener('blur', function () { check(field); });
+                field.addEventListener('input', function () {
+                    if (field.getAttribute('aria-invalid') === 'true') check(field);
+                });
             });
-        }, observerOptions);
 
-        document.querySelectorAll('.card-hover').forEach(el => {
-            el.style.opacity = '0'; // Hide initially so it doesn't flicker before animating
-            observer.observe(el);
-        });
+            form.addEventListener('submit', function (e) {
+                e.preventDefault();
+
+                var firstBad = null;
+                Object.keys(rules).forEach(function (name) {
+                    var field = form.elements[name];
+                    if (!check(field) && !firstBad) firstBad = field;
+                });
+
+                if (firstBad) {
+                    firstBad.focus();
+                    return;
+                }
+
+                submit.disabled = true;
+                label.textContent = 'Enviando...';
+
+                // Punto de integracion: aqui va el envio real
+                // (Google Sheets, Formspree, tu backend, etc.).
+                setTimeout(function () {
+                    form.reset();
+                    submit.disabled = false;
+                    label.textContent = 'Enviar mensaje';
+                    status.classList.remove('hidden');
+                    status.classList.add('flex');
+                    if (window.lucide) lucide.createIcons({ attrs: { 'stroke-width': 1.5 } });
+                }, 700);
+            });
+        }
+    })();
     </script>
 </body>
 </html>

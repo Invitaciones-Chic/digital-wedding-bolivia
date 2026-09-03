@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Jost:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1200px; height:630px; overflow:hidden; }
+
+  .card {
+    position:relative;
+    width:1200px; height:630px;
+    background:
+      radial-gradient(120% 100% at 50% 0%, #FFFDF8 0%, #FAF8F4 45%, #F4EEE0 100%);
+    display:flex; flex-direction:column;
+    align-items:center; justify-content:center;
+    padding-bottom:78px;
+    font-family:'Jost', system-ui, sans-serif;
+  }
+
+  /* Trama de puntos, la misma del hero, atenuada hacia los bordes */
+  .dots {
+    position:absolute; inset:0;
+    background-image: radial-gradient(#C9A227 1.6px, transparent 1.6px);
+    background-size: 40px 40px;
+    opacity:.14;
+    -webkit-mask-image: radial-gradient(75% 65% at 50% 45%, #000 0%, transparent 78%);
+            mask-image: radial-gradient(75% 65% at 50% 45%, #000 0%, transparent 78%);
+  }
+
+  /* Halo calido detras del logo */
+  .halo {
+    position:absolute; left:50%; top:38%;
+    width:900px; height:640px; transform:translate(-50%,-50%);
+    background: radial-gradient(circle, rgba(227,206,147,.42) 0%, rgba(227,206,147,0) 66%);
+  }
+
+  /* Filete de encuadre, evita que la tarjeta se funda con el fondo del chat */
+  .frame {
+    position:absolute; inset:22px;
+    border:1px solid rgba(201,162,39,.28);
+    border-radius:10px;
+  }
+  .frame::after {
+    content:''; position:absolute; inset:7px;
+    border:1px solid rgba(201,162,39,.14);
+    border-radius:5px;
+  }
+
+  .inner { position:relative; text-align:center; padding-top:8px; }
+
+  .logo { width:466px; height:auto; display:block; margin:0 auto 22px; }
+
+  .brand {
+    font-family:'Playfair Display', Georgia, serif;
+    font-weight:600; font-size:62px; line-height:1;
+    color:#1C1A16; letter-spacing:-.015em;
+  }
+  .brand em { font-style:normal; color:#A6831A; }
+
+  .rule {
+    display:flex; align-items:center; justify-content:center;
+    gap:18px; margin:24px 0 20px;
+  }
+  .rule span { display:block; width:96px; height:1px;
+    background:linear-gradient(90deg, transparent, #C9A227); }
+  .rule span:last-child { background:linear-gradient(90deg, #C9A227, transparent); }
+  .rule b { width:7px; height:7px; border-radius:50%; background:#C9A227; }
+
+  .tagline {
+    font-size:31px; font-weight:500;
+    letter-spacing:.2em; text-transform:uppercase;
+    color:#86690F;
+  }
+
+  .domain {
+    position:absolute; left:0; right:0; bottom:46px;
+    font-size:23px; font-weight:400; letter-spacing:.16em;
+    text-transform:uppercase; color:#A9A091; text-align:center;
+  }
+</style>
+</head>
+<body>
+  <div class="card">
+    <div class="dots"></div>
+    <div class="halo"></div>
+    <div class="frame"></div>
+
+    <div class="inner">
+      <img class="logo" src="logo-dw.png" alt="">
+      <div class="brand">Digital Wedding <em>Bolivia</em></div>
+      <div class="rule"><span></span><b></b><span></span></div>
+      <div class="tagline">Invitaciones digitales premium</div>
+    </div>
+
+    <div class="domain">digitalweddingbolivia.dpdns.org</div>
+  </div>
+</body>
+</html>
