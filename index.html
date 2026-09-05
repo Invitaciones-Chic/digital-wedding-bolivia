@@ -842,6 +842,23 @@
             border-color: #B4442E;
             box-shadow: 0 0 0 3px rgba(180,68,46,.12);
         }
+
+        /* El widget de Turnstile exige 300px de ancho minimo. Dentro de
+           la tarjeta del formulario quedan menos en moviles estrechos,
+           asi que se le deja ocupar el ancho completo y, por debajo de
+           340px de pantalla, se reduce con escala en vez de desbordar. */
+        .turnstile-holder {
+            display: flex;
+            justify-content: center;
+            max-width: 100%;
+        }
+        .turnstile-holder .cf-turnstile { max-width: 100%; }
+        @media (max-width: 340px) {
+            .turnstile-holder {
+                transform: scale(.85);
+                transform-origin: center;
+            }
+        }
         .field-error {
             display: none;
             margin-top: .4rem;
@@ -1989,11 +2006,13 @@
                                  SUSTITUIR data-sitekey por la clave del sitio real:
                                  Cloudflare > Turnstile > Add widget. La de abajo es
                                  la clave de prueba publica: siempre pasa y NO protege. -->
-                            <div class="cf-turnstile flex justify-center"
-                                 data-sitekey="1x00000000000000000000AA"
-                                 data-theme="light"
-                                 data-language="es"
-                                 data-size="flexible"></div>
+                            <div class="turnstile-holder -mx-6 sm:mx-0">
+                                <div class="cf-turnstile"
+                                     data-sitekey="1x00000000000000000000AA"
+                                     data-theme="light"
+                                     data-language="es"
+                                     data-size="flexible"></div>
+                            </div>
 
                             <button type="submit" class="btn-gold group inline-flex w-full items-center justify-center gap-2.5 rounded-full bg-gold py-4 font-semibold text-white shadow-gold transition-colors duration-300 hover:bg-gold-dark disabled:cursor-not-allowed disabled:opacity-60">
                                 <span data-btn-label>Enviar mensaje</span>
