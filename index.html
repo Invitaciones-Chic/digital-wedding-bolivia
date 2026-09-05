@@ -32,6 +32,11 @@
     <meta name="theme-color" content="#1C1A16" media="(prefers-color-scheme: dark)">
     <meta name="author" content="Digital Wedding Bolivia">
     <link rel="canonical" href="https://digitalweddingbolivia.dpdns.org/">
+
+    <!-- Ancla las rutas relativas a la raiz: la barra de direcciones
+         cambia a /servicios y sin esto las imagenes cargadas por JS
+         se buscarian en /servicios/ -->
+    <base href="/">
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -925,7 +930,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
                 <!-- Logo -->
-                <a href="#inicio" class="flex items-center gap-3 group" aria-label="Digital Wedding Bolivia, ir al inicio">
+                <a href="/" data-seccion="inicio" class="flex items-center gap-3 group" aria-label="Digital Wedding Bolivia, ir al inicio">
                     <span class="w-11 h-11 flex items-center justify-center">
                         <svg viewBox="0 0 100 100" class="w-full h-full transition-transform duration-700 ease-premium group-hover:rotate-[8deg]" aria-hidden="true">
                             <circle cx="50" cy="50" r="46" fill="none" stroke="#C9A227" stroke-width="1.1" opacity=".45"/>
@@ -941,12 +946,12 @@
 
                 <!-- Desktop Menu -->
                 <div class="hidden md:flex items-center gap-1">
-                    <a href="#inicio" class="nav-link relative px-4 py-2 text-[0.9375rem] text-gray-700 transition-colors duration-300 hover:text-dark">Inicio</a>
-                    <a href="#servicios" class="nav-link relative px-4 py-2 text-[0.9375rem] text-gray-700 transition-colors duration-300 hover:text-dark">Servicios</a>
-                    <a href="#portafolio" class="nav-link relative px-4 py-2 text-[0.9375rem] text-gray-700 transition-colors duration-300 hover:text-dark">Portafolio</a>
-                    <a href="#paquetes" class="nav-link relative px-4 py-2 text-[0.9375rem] text-gray-700 transition-colors duration-300 hover:text-dark">Paquetes</a>
-                    <a href="#proceso" class="nav-link relative px-4 py-2 text-[0.9375rem] text-gray-700 transition-colors duration-300 hover:text-dark">Proceso</a>
-                    <a href="#contacto" class="btn-gold group ml-3 inline-flex items-center gap-2 rounded-full bg-dark py-2 pl-5 pr-2 text-sm font-medium text-white shadow-md hover:bg-gold-dark">
+                    <a href="/" data-seccion="inicio" class="nav-link relative px-4 py-2 text-[0.9375rem] text-gray-700 transition-colors duration-300 hover:text-dark">Inicio</a>
+                    <a href="/servicios" data-seccion="servicios" class="nav-link relative px-4 py-2 text-[0.9375rem] text-gray-700 transition-colors duration-300 hover:text-dark">Servicios</a>
+                    <a href="/portafolio" data-seccion="portafolio" class="nav-link relative px-4 py-2 text-[0.9375rem] text-gray-700 transition-colors duration-300 hover:text-dark">Portafolio</a>
+                    <a href="/paquetes" data-seccion="paquetes" class="nav-link relative px-4 py-2 text-[0.9375rem] text-gray-700 transition-colors duration-300 hover:text-dark">Paquetes</a>
+                    <a href="/proceso" data-seccion="proceso" class="nav-link relative px-4 py-2 text-[0.9375rem] text-gray-700 transition-colors duration-300 hover:text-dark">Proceso</a>
+                    <a href="/contacto" data-seccion="contacto" class="btn-gold group ml-3 inline-flex items-center gap-2 rounded-full bg-dark py-2 pl-5 pr-2 text-sm font-medium text-white shadow-md hover:bg-gold-dark">
                         Cotizar ahora
                         <span class="flex h-7 w-7 items-center justify-center rounded-full bg-white/15 transition-transform duration-500 ease-premium group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
                             <i data-lucide="arrow-up-right" class="h-4 w-4"></i>
@@ -972,12 +977,12 @@
         <div id="mobile-menu" class="mobile-panel md:hidden border-t border-gray-200/70 bg-white/95 backdrop-blur-xl" data-open="false">
             <div>
                 <div class="px-4 pb-5 pt-4 space-y-1">
-                    <a href="#inicio"     style="--i:0" class="m-link block rounded-xl px-4 py-3 text-gray-700 transition-colors duration-300 hover:bg-gray-50 hover:text-dark">Inicio</a>
-                    <a href="#servicios"  style="--i:1" class="m-link block rounded-xl px-4 py-3 text-gray-700 transition-colors duration-300 hover:bg-gray-50 hover:text-dark">Servicios</a>
-                    <a href="#portafolio" style="--i:2" class="m-link block rounded-xl px-4 py-3 text-gray-700 transition-colors duration-300 hover:bg-gray-50 hover:text-dark">Portafolio</a>
-                    <a href="#paquetes"   style="--i:3" class="m-link block rounded-xl px-4 py-3 text-gray-700 transition-colors duration-300 hover:bg-gray-50 hover:text-dark">Paquetes</a>
-                    <a href="#proceso"    style="--i:4" class="m-link block rounded-xl px-4 py-3 text-gray-700 transition-colors duration-300 hover:bg-gray-50 hover:text-dark">Proceso</a>
-                    <a href="#contacto"   style="--i:5" class="m-link btn-gold mt-2 block rounded-full bg-dark px-6 py-3.5 text-center font-medium text-white">Cotizar ahora</a>
+                    <a href="/" data-seccion="inicio"     style="--i:0" class="m-link block rounded-xl px-4 py-3 text-gray-700 transition-colors duration-300 hover:bg-gray-50 hover:text-dark">Inicio</a>
+                    <a href="/servicios" data-seccion="servicios"  style="--i:1" class="m-link block rounded-xl px-4 py-3 text-gray-700 transition-colors duration-300 hover:bg-gray-50 hover:text-dark">Servicios</a>
+                    <a href="/portafolio" data-seccion="portafolio" style="--i:2" class="m-link block rounded-xl px-4 py-3 text-gray-700 transition-colors duration-300 hover:bg-gray-50 hover:text-dark">Portafolio</a>
+                    <a href="/paquetes" data-seccion="paquetes"   style="--i:3" class="m-link block rounded-xl px-4 py-3 text-gray-700 transition-colors duration-300 hover:bg-gray-50 hover:text-dark">Paquetes</a>
+                    <a href="/proceso" data-seccion="proceso"    style="--i:4" class="m-link block rounded-xl px-4 py-3 text-gray-700 transition-colors duration-300 hover:bg-gray-50 hover:text-dark">Proceso</a>
+                    <a href="/contacto" data-seccion="contacto"   style="--i:5" class="m-link btn-gold mt-2 block rounded-full bg-dark px-6 py-3.5 text-center font-medium text-white">Cotizar ahora</a>
                 </div>
             </div>
         </div>
@@ -1007,13 +1012,13 @@
                         Creamos experiencias digitales inolvidables para tu gran día. Diseños exclusivos, confirmación en tiempo real y todo lo que necesitas para organizar tu boda sin estrés.
                     </p>
                     <div class="reveal flex flex-col gap-3 sm:flex-row sm:items-center" style="--d:270ms">
-                        <a href="#paquetes" class="btn-gold group inline-flex items-center justify-center gap-2 rounded-full bg-gold py-4 pl-8 pr-3 font-medium text-white shadow-gold transition-colors duration-300 hover:bg-gold-dark">
+                        <a href="/paquetes" data-seccion="paquetes" class="btn-gold group inline-flex items-center justify-center gap-2 rounded-full bg-gold py-4 pl-8 pr-3 font-medium text-white shadow-gold transition-colors duration-300 hover:bg-gold-dark">
                             Ver paquetes
                             <span class="flex h-8 w-8 items-center justify-center rounded-full bg-white/20 transition-transform duration-500 ease-premium group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
                                 <i data-lucide="arrow-up-right" class="h-4 w-4"></i>
                             </span>
                         </a>
-                        <a href="#portafolio" class="press inline-flex items-center justify-center rounded-full border border-gray-300 bg-white/60 px-8 py-4 font-medium text-dark transition-colors duration-300 ease-premium hover:border-gold hover:bg-white hover:text-gold-ink">
+                        <a href="/portafolio" data-seccion="portafolio" class="press inline-flex items-center justify-center rounded-full border border-gray-300 bg-white/60 px-8 py-4 font-medium text-dark transition-colors duration-300 ease-premium hover:border-gold hover:bg-white hover:text-gold-ink">
                             Ver portafolio
                         </a>
                     </div>
@@ -1067,7 +1072,7 @@
         </div>
 
         <!-- Scroll Indicator -->
-        <a href="#servicios" aria-label="Ir a la siguiente sección"
+        <a href="/servicios" data-seccion="servicios" aria-label="Ir a la siguiente sección"
            class="group absolute bottom-7 left-1/2 z-10 hidden -translate-x-1/2 flex-col items-center gap-2 text-gold-ink sm:flex">
             <span class="text-[10px] font-medium uppercase tracking-[0.28em]">Descubre</span>
             <span class="flex h-9 w-9 items-center justify-center rounded-full border border-gold/30 transition-transform duration-700 ease-premium group-hover:translate-y-1">
@@ -1505,7 +1510,7 @@
                     <p class="mb-6 rounded-xl bg-gray-50 px-4 py-3 text-[0.8125rem] leading-relaxed text-gray-500">
                         <span class="font-medium text-gray-700">Ideal para</span> bodas íntimas, ceremonias civiles o parejas que buscan algo práctico y funcional.
                     </p>
-                    <a href="#contacto" class="press mt-auto block w-full rounded-full border border-gray-200 bg-gray-50 py-3.5 text-center font-medium text-dark transition-colors duration-300 ease-premium hover:border-gold hover:bg-gold hover:text-white">
+                    <a href="/contacto" data-seccion="contacto" class="press mt-auto block w-full rounded-full border border-gray-200 bg-gray-50 py-3.5 text-center font-medium text-dark transition-colors duration-300 ease-premium hover:border-gold hover:bg-gold hover:text-white">
                         Elegir plan
                     </a>
                 </div>
@@ -1571,7 +1576,7 @@
                     <p class="relative mb-6 rounded-xl bg-white/[0.06] px-4 py-3 text-[0.8125rem] leading-relaxed text-white/65 ring-1 ring-white/10">
                         <span class="font-medium text-gold-light">Ideal para</span> parejas que quieren organizar a sus invitados sin estrés y tener control total de las confirmaciones.
                     </p>
-                    <a href="#contacto" class="btn-gold relative mt-auto block w-full rounded-full bg-gold py-3.5 text-center font-semibold text-white shadow-gold transition-colors duration-300 hover:bg-gold-dark">
+                    <a href="/contacto" data-seccion="contacto" class="btn-gold relative mt-auto block w-full rounded-full bg-gold py-3.5 text-center font-semibold text-white shadow-gold transition-colors duration-300 hover:bg-gold-dark">
                         Elegir plan
                     </a>
                 </div>
@@ -1643,7 +1648,7 @@
                     <p class="mb-6 rounded-xl bg-gray-50 px-4 py-3 text-[0.8125rem] leading-relaxed text-gray-500">
                         <span class="font-medium text-gray-700">Ideal para</span> parejas que buscan una experiencia premium, bodas grandes o clientes que valoran cada detalle.
                     </p>
-                    <a href="#contacto" class="press mt-auto block w-full rounded-full bg-dark py-3.5 text-center font-medium text-white transition-colors duration-300 ease-premium hover:bg-gold-dark">
+                    <a href="/contacto" data-seccion="contacto" class="press mt-auto block w-full rounded-full bg-dark py-3.5 text-center font-medium text-white transition-colors duration-300 ease-premium hover:bg-gold-dark">
                         Elegir plan
                     </a>
                 </div>
@@ -2084,11 +2089,11 @@
                 <div>
                     <h4 class="mb-5 text-[11px] font-medium uppercase tracking-[0.22em] text-gold-light">Enlaces rápidos</h4>
                     <ul class="space-y-2.5 text-[0.9375rem]">
-                        <li><a href="#inicio" class="text-gray-400 transition-colors duration-300 hover:text-gold-light">Inicio</a></li>
-                        <li><a href="#servicios" class="text-gray-400 transition-colors duration-300 hover:text-gold-light">Servicios</a></li>
-                        <li><a href="#portafolio" class="text-gray-400 transition-colors duration-300 hover:text-gold-light">Portafolio</a></li>
-                        <li><a href="#paquetes" class="text-gray-400 transition-colors duration-300 hover:text-gold-light">Paquetes</a></li>
-                        <li><a href="#contacto" class="text-gray-400 transition-colors duration-300 hover:text-gold-light">Contacto</a></li>
+                        <li><a href="/" data-seccion="inicio" class="text-gray-400 transition-colors duration-300 hover:text-gold-light">Inicio</a></li>
+                        <li><a href="/servicios" data-seccion="servicios" class="text-gray-400 transition-colors duration-300 hover:text-gold-light">Servicios</a></li>
+                        <li><a href="/portafolio" data-seccion="portafolio" class="text-gray-400 transition-colors duration-300 hover:text-gold-light">Portafolio</a></li>
+                        <li><a href="/paquetes" data-seccion="paquetes" class="text-gray-400 transition-colors duration-300 hover:text-gold-light">Paquetes</a></li>
+                        <li><a href="/contacto" data-seccion="contacto" class="text-gray-400 transition-colors duration-300 hover:text-gold-light">Contacto</a></li>
                     </ul>
                 </div>
 
@@ -2209,6 +2214,85 @@
         }
 
         /* -----------------------------------------------------------
+           URLs limpias: /servicios en vez de /#servicios
+
+           La pagina sigue siendo una sola. Los enlaces apuntan a rutas
+           reales, el JS hace el scroll sin recargar y reescribe la barra
+           de direcciones con replaceState (no pushState: asi el boton
+           Atras del navegador sigue saliendo del sitio y no recorre las
+           secciones una por una).
+
+           Sin JS los enlaces siguen funcionando: cada ruta existe como
+           carpeta con un index.html que redirige a su ancla.
+           ----------------------------------------------------------- */
+        var SECCIONES = ['inicio', 'servicios', 'portafolio', 'paquetes', 'proceso', 'contacto'];
+        var soportaHistoria = !!(window.history && window.history.replaceState);
+
+        function pintarRuta(id) {
+            if (!soportaHistoria) return;
+            var ruta = id === 'inicio' ? '/' : '/' + id;
+            if (window.location.pathname !== ruta) {
+                window.history.replaceState(null, '', ruta + window.location.search);
+            }
+        }
+
+        function irASeccion(id, animado) {
+            var destino = document.getElementById(id);
+            if (!destino) return false;
+            destino.scrollIntoView({
+                behavior: animado && !reduceMotion.matches ? 'smooth' : 'auto',
+                block: 'start'
+            });
+            pintarRuta(id);
+            return true;
+        }
+
+        document.addEventListener('click', function (e) {
+            if (e.defaultPrevented || e.button !== 0) return;
+            if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+            if (!e.target || !e.target.closest) return;
+
+            var enlace = e.target.closest('a[data-seccion]');
+            if (enlace) {
+                if (irASeccion(enlace.getAttribute('data-seccion'), true)) e.preventDefault();
+                return;
+            }
+
+            // Anclas sueltas (#main, y los marcadores "#" del pie). Con <base>
+            // el navegador las resolveria contra "/" y recargaria la pagina
+            // cuando la ruta mostrada sea otra; aqui se quedan en el sitio.
+            var ancla = e.target.closest('a[href^="#"]');
+            if (!ancla) return;
+            e.preventDefault();
+            var id = ancla.getAttribute('href').slice(1);
+            var destino = id ? document.getElementById(id) : null;
+            if (destino) {
+                destino.scrollIntoView({
+                    behavior: reduceMotion.matches ? 'auto' : 'smooth',
+                    block: 'start'
+                });
+                if (destino.hasAttribute('tabindex') || /^(a|button|input|main)$/i.test(destino.tagName)) {
+                    destino.focus({ preventScroll: true });
+                }
+            }
+        });
+
+        // Al abrir /servicios (o /#servicios desde la redireccion), colocarse
+        // en la seccion y dejar la URL limpia.
+        (function () {
+            var hash = window.location.hash.slice(1);
+            var ruta = window.location.pathname.replace(/^\/+|\/+$/g, '');
+            var inicial = SECCIONES.indexOf(hash) !== -1 ? hash
+                        : SECCIONES.indexOf(ruta) !== -1 ? ruta
+                        : '';
+            if (!inicial) return;
+            // Dos frames de margen para que el layout ya este asentado
+            window.requestAnimationFrame(function () {
+                window.requestAnimationFrame(function () { irASeccion(inicial, false); });
+            });
+        })();
+
+        /* -----------------------------------------------------------
            Seccion activa en la navegacion
            ----------------------------------------------------------- */
         var navLinks = Array.prototype.slice.call(document.querySelectorAll('.nav-link'));
@@ -2217,8 +2301,10 @@
             var spy = new IntersectionObserver(function (entries) {
                 entries.forEach(function (entry) {
                     if (!entry.isIntersecting) return;
+                    // La barra de direcciones acompana al scroll
+                    pintarRuta(entry.target.id);
                     navLinks.forEach(function (link) {
-                        var match = link.getAttribute('href') === '#' + entry.target.id;
+                        var match = link.getAttribute('data-seccion') === entry.target.id;
                         if (match) {
                             link.setAttribute('aria-current', 'page');
                         } else {
@@ -2229,9 +2315,14 @@
             }, { rootMargin: '-45% 0px -50% 0px' });
 
             navLinks.forEach(function (link) {
-                var section = document.querySelector(link.getAttribute('href'));
+                var section = document.getElementById(link.getAttribute('data-seccion'));
                 if (section) spy.observe(section);
             });
+
+            // Contacto no esta en el menu, pero tiene ruta propia y debe
+            // reflejarse en la barra de direcciones al llegar abajo.
+            var seccionContacto = document.getElementById('contacto');
+            if (seccionContacto) spy.observe(seccionContacto);
         }
 
         /* -----------------------------------------------------------
