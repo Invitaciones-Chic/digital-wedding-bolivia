@@ -44,6 +44,9 @@
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
 
+    <!-- Cloudflare Turnstile: verificacion anti-bot del formulario -->
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+
 
     <script>
         // Marca el documento como "con JS" antes del primer paint, para que las
@@ -1982,6 +1985,16 @@
                                 <input type="text" name="website" tabindex="-1" autocomplete="off">
                             </div>
 
+                            <!-- Verificacion anti-bot (Cloudflare Turnstile).
+                                 SUSTITUIR data-sitekey por la clave del sitio real:
+                                 Cloudflare > Turnstile > Add widget. La de abajo es
+                                 la clave de prueba publica: siempre pasa y NO protege. -->
+                            <div class="cf-turnstile flex justify-center"
+                                 data-sitekey="1x00000000000000000000AA"
+                                 data-theme="light"
+                                 data-language="es"
+                                 data-size="flexible"></div>
+
                             <button type="submit" class="btn-gold group inline-flex w-full items-center justify-center gap-2.5 rounded-full bg-gold py-4 font-semibold text-white shadow-gold transition-colors duration-300 hover:bg-gold-dark disabled:cursor-not-allowed disabled:opacity-60">
                                 <span data-btn-label>Enviar mensaje</span>
                                 <span class="flex h-7 w-7 items-center justify-center rounded-full bg-white/20 transition-transform duration-500 ease-premium group-hover:translate-x-0.5">
@@ -2537,6 +2550,20 @@
                 status.innerHTML = '<i data-lucide="check-circle-2" class="mt-px h-4 w-4 flex-none"></i><span>Recibimos tu mensaje. Te escribimos por WhatsApp dentro de las próximas 24 horas.</span>';
             }
 
+            // Mensaje de error en el mismo bloque de estado
+            function showError(mensaje) {
+                status.innerHTML = '<i data-lucide="alert-circle" class="mt-px h-4 w-4 flex-none"></i><span>' + mensaje + '</span>';
+                status.classList.remove('hidden', 'bg-gold-wash', 'text-gold-ink', 'ring-gold/20');
+                status.classList.add('flex', 'bg-red-50', 'text-red-700', 'ring-red-200');
+                if (window.lucide) lucide.createIcons({ attrs: { 'stroke-width': 1.5 } });
+            }
+
+            // Cada token de Turnstile sirve una sola vez: hay que pedir
+            // uno nuevo despues de cada intento, salga bien o mal.
+            function resetTurnstile() {
+                if (window.turnstile) window.turnstile.reset();
+            }
+
             form.addEventListener('submit', function (e) {
                 e.preventDefault();
                 resetStatus();
@@ -2552,6 +2579,15 @@
                     return;
                 }
 
+                // Turnstile inyecta solo un input oculto cf-turnstile-response
+                var campoTurnstile = form.elements['cf-turnstile-response'];
+                var tokenTurnstile = campoTurnstile ? campoTurnstile.value : '';
+
+                if (window.turnstile && !tokenTurnstile) {
+                    showError('La verificación anti-robots todavía no terminó. Espera un momento e inténtalo de nuevo.');
+                    return;
+                }
+
                 submit.disabled = true;
                 label.textContent = 'Enviando...';
 
@@ -2562,7 +2598,8 @@
                     fecha:    form.elements.fecha.value || '',
                     paquete:  form.elements.paquete.value || '',
                     mensaje:  form.elements.mensaje.value.trim() || '',
-                    website:  form.elements.website ? form.elements.website.value : ''
+                    website:  form.elements.website ? form.elements.website.value : '',
+                    turnstile: tokenTurnstile
                 };
 
                 fetch(WORKER_URL, {
@@ -2574,26 +2611,23 @@
                 .then(function (data) {
                     submit.disabled = false;
                     label.textContent = 'Enviar mensaje';
+                    resetTurnstile();
 
                     if (data.ok) {
                         form.reset();
                         status.classList.remove('hidden');
                         status.classList.add('flex');
+                        if (window.lucide) lucide.createIcons({ attrs: { 'stroke-width': 1.5 } });
                     } else {
-                        status.innerHTML = '<i data-lucide="alert-circle" class="mt-px h-4 w-4 flex-none"></i><span>' + (data.mensaje || 'Error al enviar.') + '</span>';
-                        status.classList.remove('hidden', 'bg-gold-wash', 'text-gold-ink', 'ring-gold/20');
-                        status.classList.add('flex', 'bg-red-50', 'text-red-700', 'ring-red-200');
+                        showError(data.mensaje || 'Error al enviar.');
                     }
-                    if (window.lucide) lucide.createIcons({ attrs: { 'stroke-width': 1.5 } });
                 })
                 .catch(function (err) {
                     console.error('Error de red:', err);
                     submit.disabled = false;
                     label.textContent = 'Enviar mensaje';
-                    status.innerHTML = '<i data-lucide="alert-circle" class="mt-px h-4 w-4 flex-none"></i><span>Error de conexión. Intenta de nuevo o escríbenos por WhatsApp.</span>';
-                    status.classList.remove('hidden', 'bg-gold-wash', 'text-gold-ink', 'ring-gold/20');
-                    status.classList.add('flex', 'bg-red-50', 'text-red-700', 'ring-red-200');
-                    if (window.lucide) lucide.createIcons({ attrs: { 'stroke-width': 1.5 } });
+                    resetTurnstile();
+                    showError('Error de conexión. Intenta de nuevo o escríbenos por WhatsApp.');
                 });
             });
         }
