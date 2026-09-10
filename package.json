@@ -1,0 +1,14 @@
+{
+  "name": "digital-wedding-bolivia",
+  "version": "1.0.0",
+  "description": "Landing de invitaciones digitales de boda",
+  "scripts": {
+    "build:css": "tailwindcss -i src/input.css -o assets/tailwind.css --minify",
+    "watch:css": "tailwindcss -i src/input.css -o assets/tailwind.css --watch"
+  },
+  "type": "commonjs",
+  "devDependencies": {
+    "tailwindcss": "^3.4.19"
+  },
+  "private": true
+}

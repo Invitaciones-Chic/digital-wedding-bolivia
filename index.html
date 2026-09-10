@@ -39,7 +39,7 @@
     <base href="/">
     
     <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/assets/tailwind.css">
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -50,7 +50,10 @@
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
 
     <!-- Cloudflare Turnstile: verificacion anti-bot del formulario -->
-    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+    <!-- onerror distingue "todavia esta cargando" de "no va a cargar nunca"
+         (bloqueador o red caida), para que el formulario diga cual de las dos. -->
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer
+            onerror="window.turnstileNoCargo = true;"></script>
 
 
     <script>
@@ -59,66 +62,6 @@
         // visible si el JS nunca llega a ejecutarse.
         document.documentElement.classList.add('js');
 
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        gold: {
-                            DEFAULT: '#C9A227',   // acento grafico: iconos, fondos, bordes
-                            ink: '#86690F',       // dorado legible para texto pequeno (AA sobre blanco)
-                            dark: '#A6831A',
-                            light: '#E3CE93',
-                            wash: '#FBF6E9',
-                        },
-                        dark: {
-                            DEFAULT: '#1C1A16',
-                            lighter: '#33302A',
-                        },
-                        // Escala neutra CALIDA. Sustituye los grises azulados de
-                        // Tailwind, que ensuciaban el dorado al convivir con el.
-                        gray: {
-                            50:  '#FAF8F4',
-                            100: '#F2EEE6',
-                            200: '#E7E1D5',
-                            300: '#D6CEBF',
-                            400: '#A9A091',
-                            500: '#877E70',
-                            600: '#6B6358',
-                            700: '#524B42',
-                            800: '#3A342D',
-                            900: '#26221D',
-                        },
-                        silver: {
-                            DEFAULT: '#C0C0C0',
-                            light: '#E0E0E0',
-                        }
-                    },
-                    fontFamily: {
-                        serif: ['Playfair Display', 'Georgia', 'serif'],
-                        sans: ['Jost', 'system-ui', 'sans-serif'],
-                        display: ['Cormorant Garamond', 'Georgia', 'serif'],
-                    },
-                    // Sombras tenidas con el marron calido del fondo, nunca negro puro.
-                    boxShadow: {
-                        sm:  '0 1px 2px rgba(28,26,22,.05)',
-                        DEFAULT: '0 2px 8px -2px rgba(28,26,22,.07)',
-                        md:  '0 6px 18px -8px rgba(28,26,22,.12)',
-                        lg:  '0 14px 34px -14px rgba(28,26,22,.16)',
-                        xl:  '0 24px 50px -20px rgba(28,26,22,.18)',
-                        '2xl': '0 32px 70px -28px rgba(28,26,22,.22)',
-                        gold: '0 18px 40px -18px rgba(166,131,26,.45)',
-                    },
-                    borderRadius: {
-                        xl: '0.875rem',
-                        '2xl': '1.25rem',
-                        '3xl': '1.75rem',
-                    },
-                    transitionTimingFunction: {
-                        premium: 'cubic-bezier(0.32, 0.72, 0, 1)',
-                    }
-                }
-            }
-        }
     </script>
 
     <style>
@@ -850,20 +793,29 @@
 
         /* El widget de Turnstile exige 300px de ancho minimo. Dentro de
            la tarjeta del formulario quedan menos en moviles estrechos,
-           asi que se le deja ocupar el ancho completo y, por debajo de
-           340px de pantalla, se reduce con escala en vez de desbordar. */
+           por eso el -mx-6 del markup le devuelve los 24px de padding
+           de cada lado. Sin max-width aqui: recortaba el ancho al del
+           contenedor y, con el margen izquierdo negativo aun aplicado,
+           dejaba el widget descentrado 24px hacia la izquierda.
+
+           Por debajo de 340px ni con eso alcanza, asi que se reduce con
+           zoom y no con transform: transform habria convertido al holder
+           en bloque contenedor de los position:fixed que Turnstile usa
+           para el reto interactivo (dejandolo recortado), y ademas no
+           libera espacio real en el layout, que es justo lo que falta. */
         .turnstile-holder {
             display: flex;
             justify-content: center;
-            max-width: 100%;
         }
         .turnstile-holder .cf-turnstile { max-width: 100%; }
         @media (max-width: 340px) {
-            .turnstile-holder {
-                transform: scale(.85);
-                transform-origin: center;
-            }
+            .turnstile-holder { zoom: .85; }
         }
+
+        /* Foco programatico al saltar de seccion: enfocable, pero sin el
+           anillo que el navegador dibujaria alrededor de media pantalla. */
+        section[tabindex="-1"]:focus,
+        main[tabindex="-1"]:focus { outline: none; }
         .field-error {
             display: none;
             margin-top: .4rem;
@@ -926,7 +878,7 @@
     <div id="nav-sentinel" aria-hidden="true" class="absolute top-0 h-px w-px"></div>
 
     <!-- Navigation -->
-    <nav id="navbar" class="fixed inset-x-0 top-0 z-40 border-b border-transparent bg-white/70 backdrop-blur-xl transition-[background-color,border-color,box-shadow] duration-500 ease-premium">
+    <nav id="navbar" class="fixed inset-x-0 top-0 z-40 border-b border-transparent bg-white/70 backdrop-blur-xl transition-surface duration-500 ease-premium">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
                 <!-- Logo -->
@@ -1267,12 +1219,12 @@
                 <!-- Carousel Controls -->
                 <div class="mt-10 flex items-center justify-center gap-5">
                     <button id="prev-btn" type="button" aria-label="Ver invitaciones anteriores"
-                            class="flex h-11 w-11 items-center justify-center rounded-full border border-gray-200 bg-white text-dark shadow-sm transition-[color,background-color,border-color,box-shadow] duration-300 ease-premium hover:border-gold hover:bg-gold hover:text-white hover:shadow-gold">
+                            class="flex h-11 w-11 items-center justify-center rounded-full border border-gray-200 bg-white text-dark shadow-sm transition-control duration-300 ease-premium hover:border-gold hover:bg-gold hover:text-white hover:shadow-gold">
                         <i data-lucide="arrow-left" class="h-4 w-4"></i>
                     </button>
                     <div id="carousel-dots" class="flex items-center gap-2.5" role="tablist" aria-label="Paginación del carrusel"></div>
                     <button id="next-btn" type="button" aria-label="Ver más invitaciones"
-                            class="flex h-11 w-11 items-center justify-center rounded-full border border-gray-200 bg-white text-dark shadow-sm transition-[color,background-color,border-color,box-shadow] duration-300 ease-premium hover:border-gold hover:bg-gold hover:text-white hover:shadow-gold">
+                            class="flex h-11 w-11 items-center justify-center rounded-full border border-gray-200 bg-white text-dark shadow-sm transition-control duration-300 ease-premium hover:border-gold hover:bg-gold hover:text-white hover:shadow-gold">
                         <i data-lucide="arrow-right" class="h-4 w-4"></i>
                     </button>
                 </div>
@@ -2236,6 +2188,15 @@
             }
         }
 
+        /* Tras un scroll programatico el foco se queda en el enlace pulsado:
+           con teclado, el Tab siguiente sigue recorriendo el navbar en vez de
+           la seccion recien abierta. tabindex="-1" la vuelve enfocable por
+           script (nunca por Tab) y devuelve el recorrido a su sitio. */
+        function enfocarDestino(destino) {
+            if (!destino.hasAttribute('tabindex')) destino.setAttribute('tabindex', '-1');
+            destino.focus({ preventScroll: true });
+        }
+
         function irASeccion(id, animado) {
             var destino = document.getElementById(id);
             if (!destino) return false;
@@ -2243,6 +2204,7 @@
                 behavior: animado && !reduceMotion.matches ? 'smooth' : 'auto',
                 block: 'start'
             });
+            enfocarDestino(destino);
             pintarRuta(id);
             return true;
         }
@@ -2271,9 +2233,7 @@
                     behavior: reduceMotion.matches ? 'auto' : 'smooth',
                     block: 'start'
                 });
-                if (destino.hasAttribute('tabindex') || /^(a|button|input|main)$/i.test(destino.tagName)) {
-                    destino.focus({ preventScroll: true });
-                }
+                enfocarDestino(destino);
             }
         });
 
@@ -2630,6 +2590,9 @@
             var status = document.getElementById('form-status');
             var submit = form.querySelector('button[type="submit"]');
             var label = form.querySelector('[data-btn-label]');
+            // El widget esta en el markup, asi que su presencia indica que el
+            // envio exige token; window.turnstile solo dice si api.js llego.
+            var widgetTurnstile = form.querySelector('.cf-turnstile[data-sitekey]');
 
             var rules = {
                 nombre: function (v) { return v.trim().length >= 2; },
@@ -2660,9 +2623,13 @@
                 status.innerHTML = '<i data-lucide="check-circle-2" class="mt-px h-4 w-4 flex-none"></i><span>Recibimos tu mensaje. Te escribimos por WhatsApp dentro de las próximas 24 horas.</span>';
             }
 
-            // Mensaje de error en el mismo bloque de estado
+            // Mensaje de error en el mismo bloque de estado.
+            // El texto entra por textContent y no concatenado al innerHTML:
+            // hoy el Worker solo devuelve mensajes fijos, pero en cuanto uno
+            // repita algo que escribio el visitante seria un XSS reflejado.
             function showError(mensaje) {
-                status.innerHTML = '<i data-lucide="alert-circle" class="mt-px h-4 w-4 flex-none"></i><span>' + mensaje + '</span>';
+                status.innerHTML = '<i data-lucide="alert-circle" class="mt-px h-4 w-4 flex-none"></i><span></span>';
+                status.querySelector('span').textContent = mensaje;
                 status.classList.remove('hidden', 'bg-gold-wash', 'text-gold-ink', 'ring-gold/20');
                 status.classList.add('flex', 'bg-red-50', 'text-red-700', 'ring-red-200');
                 if (window.lucide) lucide.createIcons({ attrs: { 'stroke-width': 1.5 } });
@@ -2693,8 +2660,22 @@
                 var campoTurnstile = form.elements['cf-turnstile-response'];
                 var tokenTurnstile = campoTurnstile ? campoTurnstile.value : '';
 
-                if (window.turnstile && !tokenTurnstile) {
-                    showError('La verificación anti-robots todavía no terminó. Espera un momento e inténtalo de nuevo.');
+                // La condicion se ancla al widget del DOM, no a window.turnstile:
+                // si un bloqueador o la red impiden cargar api.js el objeto nunca
+                // existe, el envio sale con token vacio y el Worker responde 403
+                // "recarga la pagina" — que no arregla nada. Mejor decirlo aqui y
+                // ofrecer la salida por WhatsApp.
+                if (widgetTurnstile && !tokenTurnstile) {
+                    // Tres situaciones distintas, tres salidas distintas: no
+                    // sirve mandar a desactivar un bloqueador a quien solo
+                    // tiene la red lenta (y perderia lo que ya escribio).
+                    showError(
+                        window.turnstile
+                            ? 'La verificación anti-robots todavía no terminó. Espera un momento e inténtalo de nuevo.'
+                        : window.turnstileNoCargo
+                            ? 'No pudimos cargar la verificación anti-robots. Suele ser un bloqueador de anuncios: desactívalo y recarga, o escríbenos por WhatsApp al +591 78216419.'
+                            : 'La verificación anti-robots aún se está cargando. Espera unos segundos y vuelve a intentarlo.'
+                    );
                     return;
                 }
 

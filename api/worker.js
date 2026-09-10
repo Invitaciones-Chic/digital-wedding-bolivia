@@ -105,6 +105,13 @@ export default {
       return responder(400, 'Datos inválidos.', corsHeaders);
     }
 
+    // request.json() acepta cualquier JSON válido: "null", un número o
+    // una lista pasan el parseo pero revientan al leer propiedades.
+    // Sin esta guarda, un body "null" da un 1101 sin cabeceras CORS.
+    if (data === null || typeof data !== 'object' || Array.isArray(data)) {
+      return responder(400, 'Datos inválidos.', corsHeaders);
+    }
+
     // ── Honeypot: campo oculto que los bots rellenan ─────
     if (data.website) {
       // Respuesta falsa al bot — cree que tuvo éxito
@@ -143,20 +150,29 @@ export default {
         return responder(403, 'Falta la verificación anti-robots. Recarga la página e inténtalo de nuevo.', corsHeaders);
       }
 
-      const verificacion = await fetch(TURNSTILE_VERIFY, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          secret: env.TURNSTILE_SECRET,
-          response: token,
-          remoteip: request.headers.get('CF-Connecting-IP') || undefined
-        })
-      });
+      // El fetch va dentro de try/catch: si siteverify no responde, un
+      // error de red sube sin capturar y el visitante recibe la página
+      // 1101 de Cloudflare, sin cabeceras CORS y sin mensaje útil.
+      let resultado;
+      try {
+        const verificacion = await fetch(TURNSTILE_VERIFY, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            secret: env.TURNSTILE_SECRET,
+            response: token,
+            remoteip: request.headers.get('CF-Connecting-IP') || undefined
+          })
+        });
 
-      const resultado = await verificacion.json().catch(() => ({ success: false }));
+        resultado = await verificacion.json();
+      } catch (err) {
+        console.error('Turnstile inalcanzable:', err);
+        return responder(503, 'No pudimos completar la verificación anti-robots. Inténtalo en un momento o escríbenos por WhatsApp.', corsHeaders);
+      }
 
-      if (!resultado.success) {
-        console.warn('Turnstile rechazado:', resultado['error-codes']);
+      if (!resultado || !resultado.success) {
+        console.warn('Turnstile rechazado:', resultado && resultado['error-codes']);
         return responder(403, 'No pudimos verificar que seas una persona. Recarga la página o escríbenos por WhatsApp.', corsHeaders);
       }
     } else {
@@ -167,19 +183,26 @@ export default {
 
     // ── Rate limit (usando KV si está disponible) ────────
     // Si configuraste un KV namespace llamado "RATE" en el Worker:
+    // Si el KV falla se deja pasar el envío (fail-open) en vez de tumbar
+    // el handler: el rate limit es la capa secundaria, Turnstile ya filtró
+    // antes, y perder un mensaje real cuesta más que aceptar uno de sobra.
     if (env.RATE) {
-      const ip = request.headers.get('CF-Connecting-IP') || 'unknown';
-      const clave = `rate:${ip}`;
-      const registro = await env.RATE.get(clave, { type: 'json' });
+      try {
+        const ip = request.headers.get('CF-Connecting-IP') || 'unknown';
+        const clave = `rate:${ip}`;
+        const registro = await env.RATE.get(clave, { type: 'json' });
 
-      if (registro && registro.count >= RATE_LIMIT_MAX) {
-        return responder(429, 'Demasiados envíos. Intenta más tarde o escríbenos por WhatsApp.', corsHeaders);
+        if (registro && registro.count >= RATE_LIMIT_MAX) {
+          return responder(429, 'Demasiados envíos. Intenta más tarde o escríbenos por WhatsApp.', corsHeaders);
+        }
+
+        const nuevoConteo = registro ? registro.count + 1 : 1;
+        await env.RATE.put(clave, JSON.stringify({ count: nuevoConteo }), {
+          expirationTtl: RATE_LIMIT_WINDOW
+        });
+      } catch (err) {
+        console.error('Rate limit (KV) no disponible:', err);
       }
-
-      const nuevoConteo = registro ? registro.count + 1 : 1;
-      await env.RATE.put(clave, JSON.stringify({ count: nuevoConteo }), {
-        expirationTtl: RATE_LIMIT_WINDOW
-      });
     }
 
     const waLink = `https://wa.me/${whatsapp.replace(/\D/g, '')}`;
@@ -270,21 +293,30 @@ export default {
     // ── Enviar vía Resend API ────────────────────────────
     // Nombres de campo según la referencia REST de Resend:
     // reply_to en snake_case (replyTo es la forma del SDK de Node).
-    const resendRes = await fetch('https://api.resend.com/emails', {
-      method: 'POST',
-      headers: {
-        'Authorization': `Bearer ${env.RESEND_API_KEY}`,
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        from: env.MAIL_FROM || REMITENTE_POR_DEFECTO,
-        to: [env.MAIL_TO || DESTINATARIO_POR_DEFECTO],
-        reply_to: [email],
-        subject: `💍 Nuevo contacto — ${nombre}`,
-        html: htmlEmail,
-        text: textoEmail
-      })
-    });
+    // Igual que en siteverify: sin try/catch, una caída de red al llamar
+    // a Resend deja el handler sin respuesta y el navegador ve un error
+    // de CORS en lugar del mensaje que sí sabemos dar.
+    let resendRes;
+    try {
+      resendRes = await fetch('https://api.resend.com/emails', {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${env.RESEND_API_KEY}`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          from: env.MAIL_FROM || REMITENTE_POR_DEFECTO,
+          to: [env.MAIL_TO || DESTINATARIO_POR_DEFECTO],
+          reply_to: [email],
+          subject: `💍 Nuevo contacto — ${nombre}`,
+          html: htmlEmail,
+          text: textoEmail
+        })
+      });
+    } catch (err) {
+      console.error('Resend inalcanzable:', err);
+      return responder(502, 'No pudimos enviar el correo. Intenta por WhatsApp.', corsHeaders);
+    }
 
     if (resendRes.ok) {
       return responder(200, '¡Gracias! Tu mensaje fue enviado. Te escribimos pronto.', corsHeaders);
@@ -292,7 +324,7 @@ export default {
 
     // El detalle queda en los logs del Worker (wrangler tail o el
     // dashboard); al visitante solo se le da una salida alternativa.
-    const errorData = await resendRes.text();
+    const errorData = await resendRes.text().catch(() => '(sin cuerpo)');
     console.error('Resend error:', resendRes.status, errorData);
     return responder(500, 'No pudimos enviar el correo. Intenta por WhatsApp.', corsHeaders);
   }
