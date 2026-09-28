@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Digital Wedding Bolivia | Invitaciones Digitales Premium</title>
-    <meta name="description" content="Transformamos tu invitación de boda en una experiencia digital inolvidable. Diseños exclusivos, confirmación en tiempo real y tecnología de punta para crear el primer momento mágico de tu gran día.">
+    <title>Digital Wedding Bolivia | Invitaciones digitales para eventos</title>
+    <meta name="description" content="Invitaciones digitales modernas, elegantes e interactivas para bodas, cumpleaños, XV años, bautizos, graduaciones, eventos corporativos y ocasiones especiales. La Paz, Bolivia · Atención a todo el país.">
     
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="favicon.png">
     <link rel="apple-touch-icon" href="favicon.png">
     
     <!-- Open Graph -->
-    <meta property="og:title" content="Digital Wedding Bolivia | Invitaciones Digitales Premium">
-    <meta property="og:description" content="Transformamos tu invitación de boda en una experiencia digital inolvidable. Diseños exclusivos, confirmación en tiempo real y tecnología de punta para crear el primer momento mágico de tu gran día.">
+    <meta property="og:title" content="Digital Wedding Bolivia | Invitaciones digitales para eventos">
+    <meta property="og:description" content="Invitaciones digitales modernas, elegantes e interactivas para bodas, cumpleaños, XV años, bautizos, graduaciones, eventos corporativos y ocasiones especiales.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://digitalweddingbolivia.dpdns.org/">
     <meta property="og:image" content="https://digitalweddingbolivia.dpdns.org/og-image.jpg">
@@ -20,14 +20,14 @@
     <meta property="og:image:type" content="image/jpeg">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="Digital Wedding Bolivia, invitaciones de boda digitales premium">
+    <meta property="og:image:alt" content="Digital Wedding Bolivia, invitaciones digitales para eventos">
     <meta property="og:locale" content="es_BO">
     <meta property="og:site_name" content="Digital Wedding Bolivia">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Digital Wedding Bolivia | Invitaciones Digitales Premium">
-    <meta name="twitter:description" content="Diseños exclusivos, confirmación en tiempo real y todo lo que necesitas para organizar tu boda sin estrés.">
+    <meta name="twitter:title" content="Digital Wedding Bolivia | Invitaciones digitales para eventos">
+    <meta name="twitter:description" content="Diseño personalizado, confirmación de asistencia y una invitación fácil de compartir por WhatsApp, redes sociales o código QR.">
     <meta name="twitter:image" content="https://digitalweddingbolivia.dpdns.org/og-image.jpg">
-    <meta name="twitter:image:alt" content="Digital Wedding Bolivia, invitaciones digitales premium">
+    <meta name="twitter:image:alt" content="Digital Wedding Bolivia, invitaciones digitales para eventos">
     <meta name="theme-color" content="#FAF8F4" media="(prefers-color-scheme: light)">
     <meta name="theme-color" content="#1C1A16" media="(prefers-color-scheme: dark)">
     <meta name="author" content="Digital Wedding Bolivia">
@@ -126,6 +126,11 @@
             font-size: clamp(1.95rem, 1.35rem + 2.4vw, 3rem);
             line-height: 1.1;
         }
+        /* Titular largo del hero: la escala display lo partiria en 6 lineas. */
+        .h-display-long {
+            font-size: clamp(2.25rem, 1.5rem + 3.1vw, 3.6rem);
+            line-height: 1.08;
+        }
 
         /* Entradilla centrada: 'balance' reparte las lineas a lo ancho parejo
            en vez de dejar una ultima linea corta y descolgada. */
@@ -169,6 +174,12 @@
             height: 1px;
             background: linear-gradient(90deg, var(--gold), var(--gold-light), transparent);
             flex: none;
+        }
+        /* Sobre fondo oscuro los dorados profundos pierden contraste:
+           se sube el tono hacia gold-light. */
+        .on-dark .eyebrow { color: var(--gold-light); }
+        .on-dark .text-gold-gradient {
+            background-image: linear-gradient(100deg, var(--gold-light) 0%, var(--gold) 50%, var(--gold-light) 100%);
         }
 
         /* Degradado dorado legible: el tono medio original caia a 1.6:1 de
@@ -900,9 +911,9 @@
                 <div class="hidden md:flex items-center gap-1">
                     <a href="/" data-seccion="inicio" class="nav-link relative px-4 py-2 text-[0.9375rem] text-gray-700 transition-colors duration-300 hover:text-dark">Inicio</a>
                     <a href="/servicios" data-seccion="servicios" class="nav-link relative px-4 py-2 text-[0.9375rem] text-gray-700 transition-colors duration-300 hover:text-dark">Servicios</a>
-                    <a href="/portafolio" data-seccion="portafolio" class="nav-link relative px-4 py-2 text-[0.9375rem] text-gray-700 transition-colors duration-300 hover:text-dark">Portafolio</a>
+                    <a href="/eventos" data-seccion="eventos" class="nav-link relative px-4 py-2 text-[0.9375rem] text-gray-700 transition-colors duration-300 hover:text-dark">Eventos</a>
+                    <a href="/disenos" data-seccion="disenos" class="nav-link relative px-4 py-2 text-[0.9375rem] text-gray-700 transition-colors duration-300 hover:text-dark">Diseños</a>
                     <a href="/paquetes" data-seccion="paquetes" class="nav-link relative px-4 py-2 text-[0.9375rem] text-gray-700 transition-colors duration-300 hover:text-dark">Paquetes</a>
-                    <a href="/proceso" data-seccion="proceso" class="nav-link relative px-4 py-2 text-[0.9375rem] text-gray-700 transition-colors duration-300 hover:text-dark">Proceso</a>
                     <a href="/contacto" data-seccion="contacto" class="btn-gold group ml-3 inline-flex items-center gap-2 rounded-full bg-dark py-2 pl-5 pr-2 text-sm font-medium text-white shadow-md hover:bg-gold-dark">
                         Cotizar ahora
                         <span class="flex h-7 w-7 items-center justify-center rounded-full bg-white/15 transition-transform duration-500 ease-premium group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
@@ -931,9 +942,9 @@
                 <div class="px-4 pb-5 pt-4 space-y-1">
                     <a href="/" data-seccion="inicio"     style="--i:0" class="m-link block rounded-xl px-4 py-3 text-gray-700 transition-colors duration-300 hover:bg-gray-50 hover:text-dark">Inicio</a>
                     <a href="/servicios" data-seccion="servicios"  style="--i:1" class="m-link block rounded-xl px-4 py-3 text-gray-700 transition-colors duration-300 hover:bg-gray-50 hover:text-dark">Servicios</a>
-                    <a href="/portafolio" data-seccion="portafolio" style="--i:2" class="m-link block rounded-xl px-4 py-3 text-gray-700 transition-colors duration-300 hover:bg-gray-50 hover:text-dark">Portafolio</a>
-                    <a href="/paquetes" data-seccion="paquetes"   style="--i:3" class="m-link block rounded-xl px-4 py-3 text-gray-700 transition-colors duration-300 hover:bg-gray-50 hover:text-dark">Paquetes</a>
-                    <a href="/proceso" data-seccion="proceso"    style="--i:4" class="m-link block rounded-xl px-4 py-3 text-gray-700 transition-colors duration-300 hover:bg-gray-50 hover:text-dark">Proceso</a>
+                    <a href="/eventos" data-seccion="eventos"    style="--i:2" class="m-link block rounded-xl px-4 py-3 text-gray-700 transition-colors duration-300 hover:bg-gray-50 hover:text-dark">Eventos</a>
+                    <a href="/disenos" data-seccion="disenos"    style="--i:3" class="m-link block rounded-xl px-4 py-3 text-gray-700 transition-colors duration-300 hover:bg-gray-50 hover:text-dark">Diseños</a>
+                    <a href="/paquetes" data-seccion="paquetes"   style="--i:4" class="m-link block rounded-xl px-4 py-3 text-gray-700 transition-colors duration-300 hover:bg-gray-50 hover:text-dark">Paquetes</a>
                     <a href="/contacto" data-seccion="contacto"   style="--i:5" class="m-link btn-gold mt-2 block rounded-full bg-dark px-6 py-3.5 text-center font-medium text-white">Cotizar ahora</a>
                 </div>
             </div>
@@ -955,14 +966,19 @@
                 <!-- Text Content -->
                 <div>
                     <div class="reveal mb-6" style="--d:60ms">
-                        <span class="eyebrow">Invitaciones digitales premium</span>
+                        <span class="eyebrow">Invitaciones digitales para eventos</span>
                     </div>
-                    <h1 class="reveal font-serif h-display font-semibold text-dark mb-7" style="--d:130ms">
-                        Tu boda merece una <span class="text-gold-gradient">invitación única</span>
+                    <h1 class="reveal font-serif h-display-long font-semibold text-dark mb-7" style="--d:130ms">
+                        Invitaciones digitales para momentos que merecen <span class="text-gold-gradient">ser recordados</span>
                     </h1>
-                    <p class="reveal measure text-[1.0625rem] leading-[1.75] text-gray-600 mb-9" style="--d:200ms">
-                        Creamos experiencias digitales inolvidables para tu gran día. Diseños exclusivos, confirmación en tiempo real y todo lo que necesitas para organizar tu boda sin estrés.
-                    </p>
+                    <div class="reveal measure mb-9 space-y-4 text-[1.0625rem] leading-[1.75] text-gray-600" style="--d:200ms">
+                        <p>
+                            Creamos invitaciones digitales modernas, elegantes e interactivas para bodas, cumpleaños, XV años, bautizos, graduaciones, aniversarios, eventos corporativos, celebraciones familiares y ocasiones especiales.
+                        </p>
+                        <p>
+                            Una experiencia diseñada para informar, emocionar y facilitar la organización de tus invitados desde cualquier dispositivo.
+                        </p>
+                    </div>
                     <div class="reveal flex flex-col gap-3 sm:flex-row sm:items-center" style="--d:270ms">
                         <a href="/paquetes" data-seccion="paquetes" class="btn-gold group inline-flex items-center justify-center gap-2 rounded-full bg-gold py-4 pl-8 pr-3 font-medium text-white shadow-gold transition-colors duration-300 hover:bg-gold-dark">
                             Ver paquetes
@@ -970,29 +986,30 @@
                                 <i data-lucide="arrow-up-right" class="h-4 w-4"></i>
                             </span>
                         </a>
-                        <a href="/portafolio" data-seccion="portafolio" class="press inline-flex items-center justify-center rounded-full border border-gray-300 bg-white/60 px-8 py-4 font-medium text-dark transition-colors duration-300 ease-premium hover:border-gold hover:bg-white hover:text-gold-ink">
-                            Ver portafolio
+                        <a href="/disenos" data-seccion="disenos" class="press inline-flex items-center justify-center rounded-full border border-gray-300 bg-white/60 px-8 py-4 font-medium text-dark transition-colors duration-300 ease-premium hover:border-gold hover:bg-white hover:text-gold-ink">
+                            Explorar diseños
                         </a>
                     </div>
 
-                    <!-- Stats -->
-                    <dl class="reveal mt-14 grid grid-cols-3 gap-5 border-t border-gray-200 pt-8 sm:gap-8" style="--d:340ms">
-                        <div>
-                            <dt class="sr-only">Bodas realizadas</dt>
-                            <dd class="font-serif tnum text-[2rem] font-semibold leading-none text-gold-dark sm:text-4xl">100+</dd>
-                            <p class="mt-2 text-[0.75rem] leading-snug text-gray-500 sm:text-[0.8125rem]">Bodas realizadas</p>
-                        </div>
-                        <div>
-                            <dt class="sr-only">Clientes satisfechos</dt>
-                            <dd class="font-serif tnum text-[2rem] font-semibold leading-none text-gold-dark sm:text-4xl">98%</dd>
-                            <p class="mt-2 text-[0.75rem] leading-snug text-gray-500 sm:text-[0.8125rem]">Clientes satisfechos</p>
-                        </div>
-                        <div>
-                            <dt class="sr-only">Soporte premium</dt>
-                            <dd class="font-serif tnum text-[2rem] font-semibold leading-none text-gold-dark sm:text-4xl">24h</dd>
-                            <p class="mt-2 text-[0.75rem] leading-snug text-gray-500 sm:text-[0.8125rem]">Soporte premium</p>
-                        </div>
-                    </dl>
+                    <!-- Pilares del servicio -->
+                    <ul class="reveal mt-14 grid grid-cols-3 gap-5 border-t border-gray-200 pt-8 sm:gap-8" style="--d:340ms">
+                        <li>
+                            <i data-lucide="pen-tool" class="h-5 w-5 text-gold-dark"></i>
+                            <p class="mt-3 text-[0.8125rem] font-medium leading-snug text-dark sm:text-[0.9375rem]">Diseño personalizado</p>
+                        </li>
+                        <li>
+                            <i data-lucide="sparkles" class="h-5 w-5 text-gold-dark"></i>
+                            <p class="mt-3 text-[0.8125rem] font-medium leading-snug text-dark sm:text-[0.9375rem]">Experiencia interactiva</p>
+                        </li>
+                        <li>
+                            <i data-lucide="share-2" class="h-5 w-5 text-gold-dark"></i>
+                            <p class="mt-3 text-[0.8125rem] font-medium leading-snug text-dark sm:text-[0.9375rem]">Fácil de compartir</p>
+                        </li>
+                    </ul>
+                    <p class="reveal mt-7 flex items-center gap-2 text-[0.8125rem] text-gray-500" style="--d:400ms">
+                        <i data-lucide="map-pin" class="h-4 w-4 flex-none text-gold-dark"></i>
+                        La Paz, Bolivia · Atención a todo el país
+                    </p>
                 </div>
 
                 <!-- Hero Image -->
@@ -1014,8 +1031,8 @@
                                 <i data-lucide="heart" class="h-5 w-5 text-gold-ink"></i>
                             </span>
                             <span class="leading-tight">
-                                <span class="block font-medium text-dark">Diseño premium</span>
-                                <span class="block text-[0.8125rem] text-gray-500">100% personalizado</span>
+                                <span class="block font-medium text-dark">Diseño personalizado</span>
+                                <span class="block text-[0.8125rem] text-gray-500">Para cada tipo de evento</span>
                             </span>
                         </div>
                     </div>
@@ -1033,102 +1050,203 @@
         </a>
     </section>
 
-    <!-- Features Section -->
+    <!-- Servicios: la experiencia digital -->
     <section id="servicios" class="py-16 md:py-20 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <!-- Section Header -->
             <div class="text-center mb-14 md:mb-20 reveal">
-                <span class="eyebrow">Por qué elegirnos</span>
+                <span class="eyebrow">La experiencia digital</span>
                 <h2 class="font-serif h-section font-semibold text-dark mt-6 mb-6">
-                    La experiencia <span class="text-gold-gradient">Digital Wedding</span>
+                    Mucho más que una <span class="text-gold-gradient">invitación</span>
                 </h2>
-                <p class="lead-center text-[1.0625rem] leading-[1.75] text-gray-600 max-w-xl mx-auto">
-                    No solo creamos invitaciones, diseñamos experiencias completas que hacen de tu boda un evento inolvidable desde el primer momento.
+                <p class="lead-center text-[1.0625rem] leading-[1.75] text-gray-600 max-w-2xl mx-auto">
+                    Transformamos la información de tu evento en una experiencia digital personalizada, accesible desde un enlace y lista para compartir por WhatsApp, redes sociales o código QR.
                 </p>
             </div>
 
             <!-- Features Grid -->
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Feature 1 -->
-                <div class="card-hover reveal bg-white rounded-2xl p-8 sm:p-9 border border-gray-200/70">
-                    <div class="w-14 h-14 rounded-2xl bg-gold-wash ring-1 ring-gold/15 flex items-center justify-center mb-7">
-                        <i data-lucide="smartphone" class="h-[26px] w-[26px] text-gold-dark"></i>
+            <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+                <div class="card-hover reveal bg-white rounded-2xl p-7 border border-gray-200/70">
+                    <div class="w-12 h-12 rounded-2xl bg-gold-wash ring-1 ring-gold/15 flex items-center justify-center mb-6">
+                        <i data-lucide="smartphone" class="h-[22px] w-[22px] text-gold-dark"></i>
                     </div>
-                    <h3 class="font-serif text-[1.4rem] font-semibold text-dark mb-3">Diseño 100% responsive</h3>
-                    <p class="text-gray-600 leading-[1.75] text-[0.9375rem]">
-                        Tu invitación se ve perfecta en cualquier dispositivo: celular, tablet o computadora. Optimizada para una experiencia fluida.
+                    <h3 class="font-serif text-[1.25rem] font-semibold text-dark mb-2.5">Diseño responsive</h3>
+                    <p class="text-gray-600 leading-[1.7] text-[0.9375rem]">
+                        Tu invitación se adapta a celulares, tablets y computadoras.
                     </p>
                 </div>
 
-                <!-- Feature 2 -->
-                <div class="card-hover reveal bg-white rounded-2xl p-8 sm:p-9 border border-gray-200/70">
-                    <div class="w-14 h-14 rounded-2xl bg-gold-wash ring-1 ring-gold/15 flex items-center justify-center mb-7">
-                        <i data-lucide="check-circle" class="h-[26px] w-[26px] text-gold-dark"></i>
+                <div class="card-hover reveal bg-white rounded-2xl p-7 border border-gray-200/70">
+                    <div class="w-12 h-12 rounded-2xl bg-gold-wash ring-1 ring-gold/15 flex items-center justify-center mb-6">
+                        <i data-lucide="check-circle" class="h-[22px] w-[22px] text-gold-dark"></i>
                     </div>
-                    <h3 class="font-serif text-[1.4rem] font-semibold text-dark mb-3">RSVP en tiempo real</h3>
-                    <p class="text-gray-600 leading-[1.75] text-[0.9375rem]">
-                        Sistema de confirmación integrado con dashboard para que organices a tus invitados sin estrés. Todo en un solo lugar.
+                    <h3 class="font-serif text-[1.25rem] font-semibold text-dark mb-2.5">Confirmación de asistencia</h3>
+                    <p class="text-gray-600 leading-[1.7] text-[0.9375rem]">
+                        Recibe y organiza las respuestas de tus invitados.
                     </p>
                 </div>
 
-                <!-- Feature 3 -->
-                <div class="card-hover reveal bg-white rounded-2xl p-8 sm:p-9 border border-gray-200/70">
-                    <div class="w-14 h-14 rounded-2xl bg-gold-wash ring-1 ring-gold/15 flex items-center justify-center mb-7">
-                        <i data-lucide="qr-code" class="h-[26px] w-[26px] text-gold-dark"></i>
+                <div class="card-hover reveal bg-white rounded-2xl p-7 border border-gray-200/70">
+                    <div class="w-12 h-12 rounded-2xl bg-gold-wash ring-1 ring-gold/15 flex items-center justify-center mb-6">
+                        <i data-lucide="map-pin" class="h-[22px] w-[22px] text-gold-dark"></i>
                     </div>
-                    <h3 class="font-serif text-[1.4rem] font-semibold text-dark mb-3">QR Simple integrado</h3>
-                    <p class="text-gray-600 leading-[1.75] text-[0.9375rem]">
-                        Mesa de regalos con código QR Simple para que tus invitados puedan enviar su regalo con un solo escaneo.
+                    <h3 class="font-serif text-[1.25rem] font-semibold text-dark mb-2.5">Google Maps</h3>
+                    <p class="text-gray-600 leading-[1.7] text-[0.9375rem]">
+                        Facilita la ubicación y el acceso al lugar del evento.
                     </p>
                 </div>
 
-                <!-- Feature 4 -->
-                <div class="card-hover reveal bg-white rounded-2xl p-8 sm:p-9 border border-gray-200/70">
-                    <div class="w-14 h-14 rounded-2xl bg-gold-wash ring-1 ring-gold/15 flex items-center justify-center mb-7">
-                        <i data-lucide="map-pin" class="h-[26px] w-[26px] text-gold-dark"></i>
+                <div class="card-hover reveal bg-white rounded-2xl p-7 border border-gray-200/70">
+                    <div class="w-12 h-12 rounded-2xl bg-gold-wash ring-1 ring-gold/15 flex items-center justify-center mb-6">
+                        <i data-lucide="images" class="h-[22px] w-[22px] text-gold-dark"></i>
                     </div>
-                    <h3 class="font-serif text-[1.4rem] font-semibold text-dark mb-3">Mapas interactivos</h3>
-                    <p class="text-gray-600 leading-[1.75] text-[0.9375rem]">
-                        Integración con Google Maps para que tus invitados lleguen sin problemas a la ceremonia y recepción.
+                    <h3 class="font-serif text-[1.25rem] font-semibold text-dark mb-2.5">Galerías y fotografías</h3>
+                    <p class="text-gray-600 leading-[1.7] text-[0.9375rem]">
+                        Comparte recuerdos, momentos especiales o información visual.
                     </p>
                 </div>
 
-                <!-- Feature 5 -->
-                <div class="card-hover reveal bg-white rounded-2xl p-8 sm:p-9 border border-gray-200/70">
-                    <div class="w-14 h-14 rounded-2xl bg-gold-wash ring-1 ring-gold/15 flex items-center justify-center mb-7">
-                        <i data-lucide="music" class="h-[26px] w-[26px] text-gold-dark"></i>
+                <div class="card-hover reveal bg-white rounded-2xl p-7 border border-gray-200/70">
+                    <div class="w-12 h-12 rounded-2xl bg-gold-wash ring-1 ring-gold/15 flex items-center justify-center mb-6">
+                        <i data-lucide="music" class="h-[22px] w-[22px] text-gold-dark"></i>
                     </div>
-                    <h3 class="font-serif text-[1.4rem] font-semibold text-dark mb-3">Música y animaciones</h3>
-                    <p class="text-gray-600 leading-[1.75] text-[0.9375rem]">
-                        Animación de apertura exclusiva, música de fondo y efectos visuales que sorprenden desde el primer momento.
+                    <h3 class="font-serif text-[1.25rem] font-semibold text-dark mb-2.5">Música, video y animaciones</h3>
+                    <p class="text-gray-600 leading-[1.7] text-[0.9375rem]">
+                        Añade movimiento y personalidad a tu invitación.
                     </p>
                 </div>
 
-                <!-- Feature 6 -->
-                <div class="card-hover reveal bg-white rounded-2xl p-8 sm:p-9 border border-gray-200/70">
-                    <div class="w-14 h-14 rounded-2xl bg-gold-wash ring-1 ring-gold/15 flex items-center justify-center mb-7">
-                        <i data-lucide="headphones" class="h-[26px] w-[26px] text-gold-dark"></i>
+                <div class="card-hover reveal bg-white rounded-2xl p-7 border border-gray-200/70">
+                    <div class="w-12 h-12 rounded-2xl bg-gold-wash ring-1 ring-gold/15 flex items-center justify-center mb-6">
+                        <i data-lucide="hourglass" class="h-[22px] w-[22px] text-gold-dark"></i>
                     </div>
-                    <h3 class="font-serif text-[1.4rem] font-semibold text-dark mb-3">Soporte premium</h3>
-                    <p class="text-gray-600 leading-[1.75] text-[0.9375rem]">
-                        Atención personalizada y soporte técnico rápido. Estamos contigo antes, durante y después de tu boda.
+                    <h3 class="font-serif text-[1.25rem] font-semibold text-dark mb-2.5">Cuenta regresiva</h3>
+                    <p class="text-gray-600 leading-[1.7] text-[0.9375rem]">
+                        Mantén la expectativa hasta el día de la celebración.
+                    </p>
+                </div>
+
+                <div class="card-hover reveal bg-white rounded-2xl p-7 border border-gray-200/70">
+                    <div class="w-12 h-12 rounded-2xl bg-gold-wash ring-1 ring-gold/15 flex items-center justify-center mb-6">
+                        <i data-lucide="qr-code" class="h-[22px] w-[22px] text-gold-dark"></i>
+                    </div>
+                    <h3 class="font-serif text-[1.25rem] font-semibold text-dark mb-2.5">Código QR</h3>
+                    <p class="text-gray-600 leading-[1.7] text-[0.9375rem]">
+                        Comparte fácilmente tu invitación física o digital.
+                    </p>
+                </div>
+
+                <div class="card-hover reveal bg-white rounded-2xl p-7 border border-gray-200/70">
+                    <div class="w-12 h-12 rounded-2xl bg-gold-wash ring-1 ring-gold/15 flex items-center justify-center mb-6">
+                        <i data-lucide="layout-list" class="h-[22px] w-[22px] text-gold-dark"></i>
+                    </div>
+                    <h3 class="font-serif text-[1.25rem] font-semibold text-dark mb-2.5">Información centralizada</h3>
+                    <p class="text-gray-600 leading-[1.7] text-[0.9375rem]">
+                        Fecha, hora, ubicación, recomendaciones y detalles importantes en un solo lugar.
                     </p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Portfolio Carousel Section -->
-    <section id="guia-diseno" class="pt-16 md:pt-20 pb-10 md:pb-12 bg-gray-50">
+    <!-- Tipos de eventos -->
+    <section id="eventos" class="py-16 md:py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-14 md:mb-20 reveal">
+                <span class="eyebrow">Una invitación para cada ocasión</span>
+                <h2 class="font-serif h-section font-semibold text-dark mt-6 mb-6">
+                    Diseñamos invitaciones para <span class="text-gold-gradient">todo tipo de eventos</span>
+                </h2>
+                <p class="lead-center text-[1.0625rem] leading-[1.75] text-gray-600 max-w-2xl mx-auto">
+                    Cada celebración tiene su propia historia, estilo y público. Adaptamos el diseño y las funcionalidades según la ocasión.
+                </p>
+            </div>
+
+            <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+                <div class="card-hover reveal flex flex-col bg-white rounded-2xl p-7 border border-gray-200/70">
+                    <i data-lucide="heart" class="h-6 w-6 text-gold-dark mb-5"></i>
+                    <h3 class="font-serif text-[1.25rem] font-semibold text-dark mb-2.5">Eventos de pareja</h3>
+                    <p class="text-gray-600 leading-[1.7] text-[0.9375rem]">
+                        Pedidas de mano, despedidas, bodas, aniversarios, renovación de votos y celebraciones pre o post-boda.
+                    </p>
+                </div>
+
+                <div class="card-hover reveal flex flex-col bg-white rounded-2xl p-7 border border-gray-200/70">
+                    <i data-lucide="cake" class="h-6 w-6 text-gold-dark mb-5"></i>
+                    <h3 class="font-serif text-[1.25rem] font-semibold text-dark mb-2.5">Cumpleaños y celebraciones</h3>
+                    <p class="text-gray-600 leading-[1.7] text-[0.9375rem]">
+                        Cumpleaños infantiles, XV años, 18 años, cumpleaños de adultos, fiestas de mascotas, baby showers y revelaciones de género.
+                    </p>
+                </div>
+
+                <div class="card-hover reveal flex flex-col bg-white rounded-2xl p-7 border border-gray-200/70">
+                    <i data-lucide="church" class="h-6 w-6 text-gold-dark mb-5"></i>
+                    <h3 class="font-serif text-[1.25rem] font-semibold text-dark mb-2.5">Eventos religiosos</h3>
+                    <p class="text-gray-600 leading-[1.7] text-[0.9375rem]">
+                        Bautizos, primeras comuniones, confirmaciones, celebraciones familiares y eventos patronales.
+                    </p>
+                </div>
+
+                <div class="card-hover reveal flex flex-col bg-white rounded-2xl p-7 border border-gray-200/70">
+                    <i data-lucide="graduation-cap" class="h-6 w-6 text-gold-dark mb-5"></i>
+                    <h3 class="font-serif text-[1.25rem] font-semibold text-dark mb-2.5">Graduaciones y académicos</h3>
+                    <p class="text-gray-600 leading-[1.7] text-[0.9375rem]">
+                        Promociones, graduaciones escolares, universitarias, titulaciones y celebraciones académicas.
+                    </p>
+                </div>
+
+                <div class="card-hover reveal flex flex-col bg-white rounded-2xl p-7 border border-gray-200/70">
+                    <i data-lucide="house" class="h-6 w-6 text-gold-dark mb-5"></i>
+                    <h3 class="font-serif text-[1.25rem] font-semibold text-dark mb-2.5">Familia y hogar</h3>
+                    <p class="text-gray-600 leading-[1.7] text-[0.9375rem]">
+                        Estrenos de casa, bienvenidas, despedidas, reuniones familiares y celebraciones especiales.
+                    </p>
+                </div>
+
+                <div class="card-hover reveal flex flex-col bg-white rounded-2xl p-7 border border-gray-200/70">
+                    <i data-lucide="briefcase" class="h-6 w-6 text-gold-dark mb-5"></i>
+                    <h3 class="font-serif text-[1.25rem] font-semibold text-dark mb-2.5">Eventos corporativos</h3>
+                    <p class="text-gray-600 leading-[1.7] text-[0.9375rem]">
+                        Inauguraciones, lanzamientos, activaciones, cenas empresariales, confraternidades y eventos de integración.
+                    </p>
+                </div>
+
+                <div class="card-hover reveal flex flex-col bg-white rounded-2xl p-7 border border-gray-200/70">
+                    <i data-lucide="palette" class="h-6 w-6 text-gold-dark mb-5"></i>
+                    <h3 class="font-serif text-[1.25rem] font-semibold text-dark mb-2.5">Cultura, arte y entretenimiento</h3>
+                    <p class="text-gray-600 leading-[1.7] text-[0.9375rem]">
+                        Fiestas temáticas, after parties, exposiciones, estrenos, celebraciones culturales y encuentros sociales.
+                    </p>
+                </div>
+
+                <!-- Cierre de la grilla: invita a pedir una propuesta a medida -->
+                <a href="/contacto" data-seccion="contacto" class="card-hover reveal group relative flex flex-col overflow-hidden rounded-2xl bg-dark p-7 text-white">
+                    <div class="pointer-events-none absolute inset-0" aria-hidden="true" style="background: radial-gradient(120% 80% at 80% 0%, rgba(201,162,39,.28) 0%, transparent 62%);"></div>
+                    <i data-lucide="sparkles" class="relative h-6 w-6 text-gold-light mb-5"></i>
+                    <h3 class="relative font-serif text-[1.25rem] font-semibold mb-2.5">¿Tienes otro tipo de evento?</h3>
+                    <p class="relative text-white/70 leading-[1.7] text-[0.9375rem] mb-6">
+                        Creamos una propuesta personalizada para tu celebración.
+                    </p>
+                    <span class="relative mt-auto inline-flex items-center gap-2 text-[0.9375rem] font-medium text-gold-light">
+                        Solicitar propuesta
+                        <i data-lucide="arrow-up-right" class="h-4 w-4 transition-transform duration-500 ease-premium group-hover:translate-x-0.5 group-hover:-translate-y-0.5"></i>
+                    </span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Diseños: nuestro trabajo -->
+    <section id="disenos" class="pt-16 md:pt-20 pb-10 md:pb-12 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <!-- Section Header -->
             <div class="text-center mb-14 md:mb-20 reveal">
                 <span class="eyebrow">Nuestro trabajo</span>
                 <h2 class="font-serif h-section font-semibold text-dark mt-6 mb-6">
-                    Guía del <span class="text-gold-gradient">Diseño</span>
+                    Diseños pensados para la <span class="text-gold-gradient">personalidad de tu evento</span>
                 </h2>
-                <p class="lead-center text-[1.0625rem] leading-[1.75] text-gray-600 max-w-xl mx-auto">
-                    Cada diseño es único y personalizado. Aquí te mostramos algunas de nuestras creaciones más recientes.
+                <p class="lead-center text-[1.0625rem] leading-[1.75] text-gray-600 max-w-2xl mx-auto">
+                    No todos los eventos necesitan el mismo estilo. Trabajamos diferentes líneas visuales para crear una experiencia coherente con tu celebración.
                 </p>
             </div>
 
@@ -1143,8 +1261,8 @@
                                  alt="Invitación clásica elegante impresa en papel con detalles dorados" 
                                  width="1024" height="1024" loading="lazy" decoding="async" class="w-full h-60 sm:h-64 object-cover">
                             <div class="p-6">
-                                <h3 class="font-serif text-xl font-semibold text-dark mb-2">Clásica elegante</h3>
-                                <p class="text-gray-600 text-sm leading-relaxed">Diseño atemporal con detalles dorados y tipografía serif</p>
+                                <h3 class="font-serif text-xl font-semibold text-dark mb-2">Clásico elegante</h3>
+                                <p class="text-gray-600 text-sm leading-relaxed">Composiciones sofisticadas, tipografías refinadas y detalles cuidadosamente seleccionados.</p>
                             </div>
                         </div>
                     </div>
@@ -1156,8 +1274,8 @@
                                  alt="Invitación moderna premium en un teléfono, fondo oscuro y filetes dorados" 
                                  width="1024" height="1024" loading="lazy" decoding="async" class="w-full h-60 sm:h-64 object-cover">
                             <div class="p-6">
-                                <h3 class="font-serif text-xl font-semibold text-dark mb-2">Moderna premium</h3>
-                                <p class="text-gray-600 text-sm leading-relaxed">Estilo contemporáneo con fondo oscuro y acentos dorados</p>
+                                <h3 class="font-serif text-xl font-semibold text-dark mb-2">Moderno premium</h3>
+                                <p class="text-gray-600 text-sm leading-relaxed">Diseño contemporáneo, limpio y visualmente impactante.</p>
                             </div>
                         </div>
                     </div>
@@ -1169,8 +1287,8 @@
                                  alt="Siluetas de los novios tomados de la mano con dos anillos dorados" 
                                  width="1024" height="1024" loading="lazy" decoding="async" class="w-full h-60 sm:h-64 object-cover">
                             <div class="p-6">
-                                <h3 class="font-serif text-xl font-semibold text-dark mb-2">Romántica</h3>
-                                <p class="text-gray-600 text-sm leading-relaxed">Siluetas elegantes con detalles en oro y diseño minimalista</p>
+                                <h3 class="font-serif text-xl font-semibold text-dark mb-2">Romántico</h3>
+                                <p class="text-gray-600 text-sm leading-relaxed">Colores suaves, composiciones delicadas y detalles pensados para momentos especiales.</p>
                             </div>
                         </div>
                     </div>
@@ -1182,8 +1300,8 @@
                                  alt="Panel de confirmaciones con la lista de invitados y la tasa de asistencia" 
                                  width="1024" height="1024" loading="lazy" decoding="async" class="w-full h-60 sm:h-64 object-cover object-top">
                             <div class="p-6">
-                                <h3 class="font-serif text-xl font-semibold text-dark mb-2">Dashboard RSVP</h3>
-                                <p class="text-gray-600 text-sm leading-relaxed">Panel de control para gestionar confirmaciones en tiempo real</p>
+                                <h3 class="font-serif text-xl font-semibold text-dark mb-2">Panel de invitados</h3>
+                                <p class="text-gray-600 text-sm leading-relaxed">Confirmaciones RSVP organizadas en un solo lugar.</p>
                             </div>
                         </div>
                     </div>
@@ -1195,8 +1313,8 @@
                                  alt="Sobre blanco cerrado con un sello de cera dorado con las iniciales DW" 
                                  width="1024" height="1024" loading="lazy" decoding="async" class="w-full h-60 sm:h-64 object-cover">
                             <div class="p-6">
-                                <h3 class="font-serif text-xl font-semibold text-dark mb-2">Sello de cera digital</h3>
-                                <p class="text-gray-600 text-sm leading-relaxed">Animación de apertura con sello personalizado</p>
+                                <h3 class="font-serif text-xl font-semibold text-dark mb-2">Experiencia interactiva</h3>
+                                <p class="text-gray-600 text-sm leading-relaxed">Apertura animada con sello de cera digital, música y elementos dinámicos.</p>
                             </div>
                         </div>
                     </div>
@@ -1208,8 +1326,8 @@
                                  alt="Itinerario del gran día con horarios, iconos y foto de los novios" 
                                  width="1024" height="1024" loading="lazy" decoding="async" class="w-full h-60 sm:h-64 object-cover object-top">
                             <div class="p-6">
-                                <h3 class="font-serif text-xl font-semibold text-dark mb-2">Vista desktop</h3>
-                                <p class="text-gray-600 text-sm leading-relaxed">Optimizada para todos los dispositivos</p>
+                                <h3 class="font-serif text-xl font-semibold text-dark mb-2">En cualquier pantalla</h3>
+                                <p class="text-gray-600 text-sm leading-relaxed">Cada diseño se adapta a celulares, tablets y computadoras.</p>
                             </div>
                         </div>
                     </div>
@@ -1229,20 +1347,76 @@
                     </button>
                 </div>
             </div>
+
+            <!-- Lineas visuales: indice editorial, dos columnas desde tablet -->
+            <div class="reveal mx-auto mt-16 max-w-5xl md:mt-20">
+                <h3 class="mb-8 text-center text-[11px] font-medium uppercase tracking-[0.22em] text-gold-ink">Nuestras líneas visuales</h3>
+                <ol class="grid gap-x-12 md:grid-cols-2">
+                    <li class="flex gap-5 border-t border-gray-200 py-5">
+                        <span class="font-serif tnum text-sm font-semibold text-gold-dark pt-1">01</span>
+                        <div>
+                            <h4 class="font-serif text-lg font-semibold text-dark">Clásico elegante</h4>
+                            <p class="mt-1 text-[0.9375rem] leading-relaxed text-gray-600">Composiciones sofisticadas, tipografías refinadas y detalles cuidadosamente seleccionados.</p>
+                        </div>
+                    </li>
+                    <li class="flex gap-5 border-t border-gray-200 py-5">
+                        <span class="font-serif tnum text-sm font-semibold text-gold-dark pt-1">02</span>
+                        <div>
+                            <h4 class="font-serif text-lg font-semibold text-dark">Moderno premium</h4>
+                            <p class="mt-1 text-[0.9375rem] leading-relaxed text-gray-600">Diseño contemporáneo, limpio y visualmente impactante.</p>
+                        </div>
+                    </li>
+                    <li class="flex gap-5 border-t border-gray-200 py-5">
+                        <span class="font-serif tnum text-sm font-semibold text-gold-dark pt-1">03</span>
+                        <div>
+                            <h4 class="font-serif text-lg font-semibold text-dark">Romántico</h4>
+                            <p class="mt-1 text-[0.9375rem] leading-relaxed text-gray-600">Colores suaves, composiciones delicadas y detalles pensados para momentos especiales.</p>
+                        </div>
+                    </li>
+                    <li class="flex gap-5 border-t border-gray-200 py-5">
+                        <span class="font-serif tnum text-sm font-semibold text-gold-dark pt-1">04</span>
+                        <div>
+                            <h4 class="font-serif text-lg font-semibold text-dark">Minimalista</h4>
+                            <p class="mt-1 text-[0.9375rem] leading-relaxed text-gray-600">Elegancia, claridad y equilibrio con una estética limpia.</p>
+                        </div>
+                    </li>
+                    <li class="flex gap-5 border-t border-gray-200 py-5">
+                        <span class="font-serif tnum text-sm font-semibold text-gold-dark pt-1">05</span>
+                        <div>
+                            <h4 class="font-serif text-lg font-semibold text-dark">Editorial</h4>
+                            <p class="mt-1 text-[0.9375rem] leading-relaxed text-gray-600">Una propuesta inspirada en revistas, fotografía y diseño de alta gama.</p>
+                        </div>
+                    </li>
+                    <li class="flex gap-5 border-t border-gray-200 py-5">
+                        <span class="font-serif tnum text-sm font-semibold text-gold-dark pt-1">06</span>
+                        <div>
+                            <h4 class="font-serif text-lg font-semibold text-dark">Temático y personalizado</h4>
+                            <p class="mt-1 text-[0.9375rem] leading-relaxed text-gray-600">Colores, ilustraciones, fotografías y elementos visuales adaptados completamente al evento.</p>
+                        </div>
+                    </li>
+                    <li class="flex gap-5 border-t border-gray-200 py-5">
+                        <span class="font-serif tnum text-sm font-semibold text-gold-dark pt-1">07</span>
+                        <div>
+                            <h4 class="font-serif text-lg font-semibold text-dark">Experiencia interactiva</h4>
+                            <p class="mt-1 text-[0.9375rem] leading-relaxed text-gray-600">Animaciones, música, video, galerías y elementos dinámicos para una invitación diferente.</p>
+                        </div>
+                    </li>
+                </ol>
+            </div>
         </div>
     </section>
 
     <!-- Portfolio Section - carrusel CSS puro (funciona sin JS) -->
-    <section id="portafolio" class="pt-8 md:pt-10 pb-16 md:pb-20 bg-gradient-to-b from-gray-50 to-white">
+    <section id="portafolio" class="pt-8 md:pt-10 pb-16 md:pb-20 bg-white">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <!-- Section Header -->
             <div class="text-center mb-9 md:mb-12 reveal">
                 <span class="eyebrow">Casos reales</span>
                 <h2 class="font-serif h-section font-semibold text-dark mt-6 mb-6">
-                    Portafolio de <span class="text-gold-gradient">invitaciones</span>
+                    Invitaciones que ya <span class="text-gold-gradient">compartimos</span>
                 </h2>
                 <p class="lead-center text-[1.0625rem] leading-[1.75] text-gray-600 max-w-xl mx-auto">
-                    Invitaciones que ya viajaron a cientos de invitados. Elige una miniatura para verla completa.
+                    Algunos de nuestros diseños publicados. Elige una miniatura para verla completa.
                 </p>
             </div>
 
@@ -1399,18 +1573,17 @@
     </section>
 
     <!-- Packages Section -->
-    <section id="paquetes" class="py-16 md:py-20 bg-white">
+    <section id="paquetes" class="py-16 md:py-20 bg-gray-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <!-- Section Header -->
             <div class="text-center mb-14 md:mb-20 reveal">
-                <span class="eyebrow">Nuestros paquetes</span>
+                <span class="eyebrow">Elige tu experiencia</span>
                 <h2 class="font-serif h-section font-semibold text-dark mt-6 mb-6">
-                    Elige el plan <span class="text-gold-gradient">perfecto</span>
+                    Una opción para <span class="text-gold-gradient">cada tipo de evento</span>
                 </h2>
-                <p class="lead-center text-[1.125rem] leading-[1.7] text-gray-600 max-w-2xl mx-auto sm:text-[1.1875rem]">
-                    Tres opciones diseñadas para diferentes necesidades y presupuestos.
-                    <strong class="lead-mark">Cada diseño incluye personalización total, soporte premium y un sistema de confirmaciones en tiempo real conectado a Google Sheets</strong>,
-                    para que organices a tus invitados sin estrés.
+                <p class="lead-center text-[1.0625rem] leading-[1.75] text-gray-600 max-w-2xl mx-auto">
+                    Creamos nuestros paquetes pensando en diferentes niveles de personalización y complejidad.
+                    <strong class="lead-mark">Todos parten de una invitación diseñada específicamente para tu celebración.</strong>
                 </p>
             </div>
 
@@ -1423,47 +1596,28 @@
                     </span>
                     <div class="min-h-[5.5rem] pr-20">
                         <h3 class="font-serif text-[1.75rem] font-semibold text-dark">Esencial</h3>
-                        <p class="mt-1.5 text-[0.9375rem] leading-snug text-gray-500">Tu invitación digital, simple y elegante</p>
+                        <p class="mt-1.5 text-[0.9375rem] font-medium leading-snug text-gray-700">La opción práctica y elegante.</p>
                     </div>
-                    <p class="mb-8 flex items-baseline gap-1.5">
-                        <span class="font-serif tnum text-[3.25rem] font-semibold leading-none text-gold-dark">250</span>
+                    <p class="mb-5 flex items-baseline gap-1.5">
+                        <span class="font-serif tnum text-[3.25rem] font-semibold leading-none text-gold-dark">350</span>
                         <span class="text-gray-500">Bs</span>
                     </p>
-                    <ul class="mb-7 flex-1 space-y-3.5">
-                        <li class="flex items-start gap-3">
-                            <i data-lucide="check" class="mt-[3px] h-4 w-4 flex-none text-gold-dark"></i>
-                            <span class="text-[0.9375rem] leading-relaxed text-gray-600">Diseño web de 1 página
-                                <span class="mt-0.5 block text-[0.8125rem] leading-snug text-gray-400">Adaptada a móvil, tablet y escritorio</span>
-                            </span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <i data-lucide="check" class="mt-[3px] h-4 w-4 flex-none text-gold-dark"></i>
-                            <span class="text-[0.9375rem] leading-relaxed text-gray-600">Nombres, fecha y lugar del evento</span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <i data-lucide="check" class="mt-[3px] h-4 w-4 flex-none text-gold-dark"></i>
-                            <span class="text-[0.9375rem] leading-relaxed text-gray-600">Botón de confirmación por WhatsApp</span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <i data-lucide="check" class="mt-[3px] h-4 w-4 flex-none text-gold-dark"></i>
-                            <span class="text-[0.9375rem] leading-relaxed text-gray-600">Mesa de regalos con código QR</span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <i data-lucide="check" class="mt-[3px] h-4 w-4 flex-none text-gold-dark"></i>
-                            <span class="text-[0.9375rem] leading-relaxed text-gray-600">Hosting incluido por 2 meses</span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <i data-lucide="check" class="mt-[3px] h-4 w-4 flex-none text-gold-dark"></i>
-                            <span class="text-[0.9375rem] leading-relaxed text-gray-600">Nombre de dominio incluido
-                                <span class="mt-0.5 block text-[0.8125rem] leading-snug text-gray-400">Ej: mi-boda-jorge-y-maria</span>
-                            </span>
-                        </li>
-                    </ul>
-                    <p class="mb-6 rounded-xl bg-gray-50 px-4 py-3 text-[0.8125rem] leading-relaxed text-gray-500">
-                        <span class="font-medium text-gray-700">Ideal para</span> bodas íntimas, ceremonias civiles o parejas que buscan algo práctico y funcional.
+                    <p class="mb-7 text-[0.9375rem] leading-relaxed text-gray-500">
+                        Ideal para quienes buscan una invitación digital personalizada, clara y fácil de compartir.
                     </p>
-                    <a href="/contacto" data-seccion="contacto" class="press mt-auto block w-full rounded-full border border-gray-200 bg-gray-50 py-3.5 text-center font-medium text-dark transition-colors duration-300 ease-premium hover:border-gold hover:bg-gold hover:text-white">
-                        Elegir plan
+                    <ul class="mb-8 flex-1 space-y-3 border-t border-gray-200 pt-6">
+                        <li class="flex items-start gap-3"><i data-lucide="check" class="mt-[3px] h-4 w-4 flex-none text-gold-dark"></i><span class="text-[0.9375rem] leading-relaxed text-gray-600">Diseño personalizado</span></li>
+                        <li class="flex items-start gap-3"><i data-lucide="check" class="mt-[3px] h-4 w-4 flex-none text-gold-dark"></i><span class="text-[0.9375rem] leading-relaxed text-gray-600">Una página digital</span></li>
+                        <li class="flex items-start gap-3"><i data-lucide="check" class="mt-[3px] h-4 w-4 flex-none text-gold-dark"></i><span class="text-[0.9375rem] leading-relaxed text-gray-600">Información completa del evento</span></li>
+                        <li class="flex items-start gap-3"><i data-lucide="check" class="mt-[3px] h-4 w-4 flex-none text-gold-dark"></i><span class="text-[0.9375rem] leading-relaxed text-gray-600">Adaptación para celulares</span></li>
+                        <li class="flex items-start gap-3"><i data-lucide="check" class="mt-[3px] h-4 w-4 flex-none text-gold-dark"></i><span class="text-[0.9375rem] leading-relaxed text-gray-600">Confirmación por WhatsApp</span></li>
+                        <li class="flex items-start gap-3"><i data-lucide="check" class="mt-[3px] h-4 w-4 flex-none text-gold-dark"></i><span class="text-[0.9375rem] leading-relaxed text-gray-600">Google Maps</span></li>
+                        <li class="flex items-start gap-3"><i data-lucide="check" class="mt-[3px] h-4 w-4 flex-none text-gold-dark"></i><span class="text-[0.9375rem] leading-relaxed text-gray-600">Código QR</span></li>
+                        <li class="flex items-start gap-3"><i data-lucide="check" class="mt-[3px] h-4 w-4 flex-none text-gold-dark"></i><span class="text-[0.9375rem] leading-relaxed text-gray-600">Hosting por 2 meses</span></li>
+                        <li class="flex items-start gap-3"><i data-lucide="check" class="mt-[3px] h-4 w-4 flex-none text-gold-dark"></i><span class="text-[0.9375rem] leading-relaxed text-gray-600">Enlace personalizado</span></li>
+                    </ul>
+                    <a href="/contacto" data-seccion="contacto" data-paquete="esencial" class="press mt-auto block w-full rounded-full border border-gray-200 bg-gray-50 py-3.5 text-center font-medium text-dark transition-colors duration-300 ease-premium hover:border-gold hover:bg-gold hover:text-white">
+                        Elegir Esencial
                     </a>
                 </div>
 
@@ -1475,61 +1629,29 @@
                     </span>
                     <div class="relative min-h-[5.5rem] pr-24">
                         <h3 class="font-serif text-[1.75rem] font-semibold text-white">Premium</h3>
-                        <p class="mt-1.5 text-[0.9375rem] leading-snug text-gold-light">La experiencia completa para tu boda</p>
+                        <p class="mt-1.5 text-[0.9375rem] font-medium leading-snug text-gold-light">Una experiencia más completa e interactiva.</p>
                     </div>
-                    <p class="relative mb-8 flex items-baseline gap-1.5">
-                        <span class="font-serif tnum text-[3.25rem] font-semibold leading-none text-gold-light">450</span>
+                    <p class="relative mb-5 flex items-baseline gap-1.5">
+                        <span class="font-serif tnum text-[3.25rem] font-semibold leading-none text-gold-light">520</span>
                         <span class="text-white/70">Bs</span>
                     </p>
-                    <ul class="relative mb-7 flex-1 space-y-3.5">
-                        <li class="flex items-start gap-3">
-                            <i data-lucide="check" class="mt-[3px] h-4 w-4 flex-none text-gold-light"></i>
-                            <span class="text-[0.9375rem] leading-relaxed font-medium text-white">Todo lo del plan Esencial, más:</span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <i data-lucide="check" class="mt-[3px] h-4 w-4 flex-none text-gold-light"></i>
-                            <span class="text-[0.9375rem] leading-relaxed text-white/85">Google Maps integrado
-                                <span class="mt-0.5 block text-[0.8125rem] leading-snug text-white/50">Ceremonia y recepción</span>
-                            </span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <i data-lucide="check" class="mt-[3px] h-4 w-4 flex-none text-gold-light"></i>
-                            <span class="text-[0.9375rem] leading-relaxed text-white/85">Formulario RSVP conectado a Google Sheets
-                                <span class="mt-0.5 block text-[0.8125rem] leading-snug text-white/50">Confirmaciones en tiempo real sobre tu lista de invitados</span>
-                            </span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <i data-lucide="check" class="mt-[3px] h-4 w-4 flex-none text-gold-light"></i>
-                            <span class="text-[0.9375rem] leading-relaxed text-white/85">Dashboard para novios
-                                <span class="mt-0.5 block text-[0.8125rem] leading-snug text-white/50">Quién confirmó, acompañantes, alergias…</span>
-                            </span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <i data-lucide="check" class="mt-[3px] h-4 w-4 flex-none text-gold-light"></i>
-                            <span class="text-[0.9375rem] leading-relaxed text-white/85">Cuenta regresiva animada</span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <i data-lucide="check" class="mt-[3px] h-4 w-4 flex-none text-gold-light"></i>
-                            <span class="text-[0.9375rem] leading-relaxed text-white/85">Galería de fotos
-                                <span class="mt-0.5 block text-[0.8125rem] leading-snug text-white/50">Hasta 5 imágenes</span>
-                            </span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <i data-lucide="check" class="mt-[3px] h-4 w-4 flex-none text-gold-light"></i>
-                            <span class="text-[0.9375rem] leading-relaxed text-white/85">Hosting incluido por 4 meses</span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <i data-lucide="check" class="mt-[3px] h-4 w-4 flex-none text-gold-light"></i>
-                            <span class="text-[0.9375rem] leading-relaxed text-white/85">Dominio personalizado
-                                <span class="mt-0.5 block text-[0.8125rem] leading-snug text-white/50">Ej: mi-boda-jorge-y-maria</span>
-                            </span>
-                        </li>
-                    </ul>
-                    <p class="relative mb-6 rounded-xl bg-white/[0.06] px-4 py-3 text-[0.8125rem] leading-relaxed text-white/65 ring-1 ring-white/10">
-                        <span class="font-medium text-gold-light">Ideal para</span> parejas que quieren organizar a sus invitados sin estrés y tener control total de las confirmaciones.
+                    <p class="relative mb-7 text-[0.9375rem] leading-relaxed text-white/65">
+                        Pensada para eventos que necesitan mayor organización y más recursos digitales.
                     </p>
-                    <a href="/contacto" data-seccion="contacto" class="btn-gold relative mt-auto block w-full rounded-full bg-gold py-3.5 text-center font-semibold text-white shadow-gold transition-colors duration-300 hover:bg-gold-dark">
-                        Elegir plan
+                    <ul class="relative mb-8 flex-1 space-y-3 border-t border-white/10 pt-6">
+                        <li class="flex items-start gap-3"><i data-lucide="check" class="mt-[3px] h-4 w-4 flex-none text-gold-light"></i><span class="text-[0.9375rem] leading-relaxed font-medium text-white">Todo lo del plan Esencial</span></li>
+                        <li class="flex items-start gap-3"><i data-lucide="check" class="mt-[3px] h-4 w-4 flex-none text-gold-light"></i><span class="text-[0.9375rem] leading-relaxed text-white/85">RSVP para confirmaciones</span></li>
+                        <li class="flex items-start gap-3"><i data-lucide="check" class="mt-[3px] h-4 w-4 flex-none text-gold-light"></i><span class="text-[0.9375rem] leading-relaxed text-white/85">Registro conectado a Google Sheets</span></li>
+                        <li class="flex items-start gap-3"><i data-lucide="check" class="mt-[3px] h-4 w-4 flex-none text-gold-light"></i><span class="text-[0.9375rem] leading-relaxed text-white/85">Panel de invitados</span></li>
+                        <li class="flex items-start gap-3"><i data-lucide="check" class="mt-[3px] h-4 w-4 flex-none text-gold-light"></i><span class="text-[0.9375rem] leading-relaxed text-white/85">Cuenta regresiva</span></li>
+                        <li class="flex items-start gap-3"><i data-lucide="check" class="mt-[3px] h-4 w-4 flex-none text-gold-light"></i><span class="text-[0.9375rem] leading-relaxed text-white/85">Galería de hasta 10 fotografías</span></li>
+                        <li class="flex items-start gap-3"><i data-lucide="check" class="mt-[3px] h-4 w-4 flex-none text-gold-light"></i><span class="text-[0.9375rem] leading-relaxed text-white/85">Música</span></li>
+                        <li class="flex items-start gap-3"><i data-lucide="check" class="mt-[3px] h-4 w-4 flex-none text-gold-light"></i><span class="text-[0.9375rem] leading-relaxed text-white/85">Animaciones</span></li>
+                        <li class="flex items-start gap-3"><i data-lucide="check" class="mt-[3px] h-4 w-4 flex-none text-gold-light"></i><span class="text-[0.9375rem] leading-relaxed text-white/85">Hosting por 4 meses</span></li>
+                        <li class="flex items-start gap-3"><i data-lucide="check" class="mt-[3px] h-4 w-4 flex-none text-gold-light"></i><span class="text-[0.9375rem] leading-relaxed text-white/85">Dominio personalizado</span></li>
+                    </ul>
+                    <a href="/contacto" data-seccion="contacto" data-paquete="premium" class="btn-gold relative mt-auto block w-full rounded-full bg-gold py-3.5 text-center font-semibold text-white shadow-gold transition-colors duration-300 hover:bg-gold-dark">
+                        Elegir Premium
                     </a>
                 </div>
 
@@ -1541,67 +1663,30 @@
                     </span>
                     <div class="min-h-[5.5rem] pr-28">
                         <h3 class="font-serif text-[1.75rem] font-semibold text-dark">VIP</h3>
-                        <p class="mt-1.5 text-[0.9375rem] leading-snug text-gray-500">Todo lo que tu boda merece y más</p>
+                        <p class="mt-1.5 text-[0.9375rem] font-medium leading-snug text-gray-700">Una experiencia digital de alto impacto.</p>
                     </div>
-                    <p class="mb-8 flex items-baseline gap-1.5">
+                    <p class="mb-5 flex items-baseline gap-1.5">
                         <span class="font-serif tnum text-[3.25rem] font-semibold leading-none text-gold-dark">800</span>
                         <span class="text-gray-500">Bs</span>
                     </p>
-                    <ul class="mb-7 flex-1 space-y-3.5">
-                        <li class="flex items-start gap-3">
-                            <i data-lucide="check" class="mt-[3px] h-4 w-4 flex-none text-gold-dark"></i>
-                            <span class="text-[0.9375rem] leading-relaxed font-medium text-dark">Todo lo del plan Premium, más:</span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <i data-lucide="check" class="mt-[3px] h-4 w-4 flex-none text-gold-dark"></i>
-                            <span class="text-[0.9375rem] leading-relaxed text-gray-600">Animación de apertura 3D
-                                <span class="mt-0.5 block text-[0.8125rem] leading-snug text-gray-400">Sobre con sello de cera digital</span>
-                            </span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <i data-lucide="check" class="mt-[3px] h-4 w-4 flex-none text-gold-dark"></i>
-                            <span class="text-[0.9375rem] leading-relaxed text-gray-600">Música de fondo
-                                <span class="mt-0.5 block text-[0.8125rem] leading-snug text-gray-400">Con control de reproducción</span>
-                            </span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <i data-lucide="check" class="mt-[3px] h-4 w-4 flex-none text-gold-dark"></i>
-                            <span class="text-[0.9375rem] leading-relaxed text-gray-600">Video “Save the Date” personalizado
-                                <span class="mt-0.5 block text-[0.8125rem] leading-snug text-gray-400">15 segundos</span>
-                            </span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <i data-lucide="check" class="mt-[3px] h-4 w-4 flex-none text-gold-dark"></i>
-                            <span class="text-[0.9375rem] leading-relaxed text-gray-600">Dominio personalizado
-                                <span class="mt-0.5 block text-[0.8125rem] leading-snug text-gray-400">Ej: anaycarlos.xyz</span>
-                            </span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <i data-lucide="check" class="mt-[3px] h-4 w-4 flex-none text-gold-dark"></i>
-                            <span class="text-[0.9375rem] leading-relaxed text-gray-600">Lista de invitados en tiempo real
-                                <span class="mt-0.5 block text-[0.8125rem] leading-snug text-gray-400">Directa al correo de los novios, de los organizadores o de ambos</span>
-                            </span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <i data-lucide="check" class="mt-[3px] h-4 w-4 flex-none text-gold-dark"></i>
-                            <span class="text-[0.9375rem] leading-relaxed text-gray-600">Hasta 5 fotos de los novios en la página</span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <i data-lucide="check" class="mt-[3px] h-4 w-4 flex-none text-gold-dark"></i>
-                            <span class="text-[0.9375rem] leading-relaxed text-gray-600">Soporte prioritario 24/7</span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <i data-lucide="check" class="mt-[3px] h-4 w-4 flex-none text-gold-dark"></i>
-                            <span class="text-[0.9375rem] leading-relaxed text-gray-600">Cambios ilimitados
-                                <span class="mt-0.5 block text-[0.8125rem] leading-snug text-gray-400">Hasta 15 días antes del evento</span>
-                            </span>
-                        </li>
-                    </ul>
-                    <p class="mb-6 rounded-xl bg-gray-50 px-4 py-3 text-[0.8125rem] leading-relaxed text-gray-500">
-                        <span class="font-medium text-gray-700">Ideal para</span> parejas que buscan una experiencia premium, bodas grandes o clientes que valoran cada detalle.
+                    <p class="mb-7 text-[0.9375rem] leading-relaxed text-gray-500">
+                        Para celebraciones que buscan una presentación más elaborada y personalizada.
                     </p>
-                    <a href="/contacto" data-seccion="contacto" class="press mt-auto block w-full rounded-full bg-dark py-3.5 text-center font-medium text-white transition-colors duration-300 ease-premium hover:bg-gold-dark">
-                        Elegir plan
+                    <ul class="mb-8 flex-1 space-y-3 border-t border-gray-200 pt-6">
+                        <li class="flex items-start gap-3"><i data-lucide="check" class="mt-[3px] h-4 w-4 flex-none text-gold-dark"></i><span class="text-[0.9375rem] leading-relaxed font-medium text-dark">Todo lo del plan Premium</span></li>
+                        <li class="flex items-start gap-3"><i data-lucide="check" class="mt-[3px] h-4 w-4 flex-none text-gold-dark"></i><span class="text-[0.9375rem] leading-relaxed text-gray-600">Apertura animada personalizada</span></li>
+                        <li class="flex items-start gap-3"><i data-lucide="check" class="mt-[3px] h-4 w-4 flex-none text-gold-dark"></i><span class="text-[0.9375rem] leading-relaxed text-gray-600">Experiencia 3D o efectos especiales</span></li>
+                        <li class="flex items-start gap-3"><i data-lucide="check" class="mt-[3px] h-4 w-4 flex-none text-gold-dark"></i><span class="text-[0.9375rem] leading-relaxed text-gray-600">Sello de cera digital o elemento temático</span></li>
+                        <li class="flex items-start gap-3"><i data-lucide="check" class="mt-[3px] h-4 w-4 flex-none text-gold-dark"></i><span class="text-[0.9375rem] leading-relaxed text-gray-600">Video Save the Date</span></li>
+                        <li class="flex items-start gap-3"><i data-lucide="check" class="mt-[3px] h-4 w-4 flex-none text-gold-dark"></i><span class="text-[0.9375rem] leading-relaxed text-gray-600">Galería ampliada</span></li>
+                        <li class="flex items-start gap-3"><i data-lucide="check" class="mt-[3px] h-4 w-4 flex-none text-gold-dark"></i><span class="text-[0.9375rem] leading-relaxed text-gray-600">Personalización avanzada</span></li>
+                        <li class="flex items-start gap-3"><i data-lucide="check" class="mt-[3px] h-4 w-4 flex-none text-gold-dark"></i><span class="text-[0.9375rem] leading-relaxed text-gray-600">Gestión de invitados</span></li>
+                        <li class="flex items-start gap-3"><i data-lucide="check" class="mt-[3px] h-4 w-4 flex-none text-gold-dark"></i><span class="text-[0.9375rem] leading-relaxed text-gray-600">Dominio personalizado</span></li>
+                        <li class="flex items-start gap-3"><i data-lucide="check" class="mt-[3px] h-4 w-4 flex-none text-gold-dark"></i><span class="text-[0.9375rem] leading-relaxed text-gray-600">Soporte prioritario</span></li>
+                        <li class="flex items-start gap-3"><i data-lucide="check" class="mt-[3px] h-4 w-4 flex-none text-gold-dark"></i><span class="text-[0.9375rem] leading-relaxed text-gray-600">Ajustes adicionales durante el desarrollo</span></li>
+                    </ul>
+                    <a href="/contacto" data-seccion="contacto" data-paquete="vip" class="press mt-auto block w-full rounded-full bg-dark py-3.5 text-center font-medium text-white transition-colors duration-300 ease-premium hover:bg-gold-dark">
+                        Elegir VIP
                     </a>
                 </div>
             </div>
@@ -1609,242 +1694,172 @@
     </section>
 
     <!-- Process Section -->
-    <section id="proceso" class="py-16 md:py-20 bg-gray-50">
+    <section id="proceso" class="py-16 md:py-20 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <!-- Section Header -->
             <div class="text-center mb-14 md:mb-20 reveal">
-                <span class="eyebrow">Cómo trabajamos</span>
+                <span class="eyebrow">Cómo funciona</span>
                 <h2 class="font-serif h-section font-semibold text-dark mt-6 mb-6">
-                    Nuestro <span class="text-gold-gradient">proceso</span>
+                    De tu idea a una invitación <span class="text-gold-gradient">lista para compartir</span>
                 </h2>
                 <p class="lead-center text-[1.0625rem] leading-[1.75] text-gray-600 max-w-xl mx-auto">
-                    Un flujo de trabajo simple y eficiente para que tu invitación esté lista en tiempo récord.
+                    Nos encargamos del diseño y desarrollo para que tú puedas concentrarte en preparar tu evento.
                 </p>
             </div>
 
-            <!-- Process Steps -->
-            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
-                <!-- Step 1 -->
-                <div class="relative">
-                    <div class="h-full bg-white rounded-2xl p-8 border border-gray-200/70 card-hover reveal">
-                        <div class="w-14 h-14 mx-auto mb-6 rounded-full bg-gold-wash ring-1 ring-gold/25 flex items-center justify-center font-serif text-2xl font-semibold text-gold-ink tnum">
-                            1
-                        </div>
-                        <h3 class="font-serif text-xl font-semibold text-dark mb-3 text-center">Contacto</h3>
-                        <p class="text-gray-600 text-center text-sm leading-relaxed">
-                            Nos escribes por WhatsApp o formulario. Te enviamos los paquetes y demos.
-                        </p>
-                    </div>
-                    <div class="hidden lg:block absolute top-1/2 -right-3 -translate-y-1/2 z-10" aria-hidden="true">
-                        <i data-lucide="chevron-right" class="w-6 h-6 text-gold-light"></i>
-                    </div>
-                </div>
-
-                <!-- Step 2 -->
-                <div class="relative">
-                    <div class="h-full bg-white rounded-2xl p-8 border border-gray-200/70 card-hover reveal">
-                        <div class="w-14 h-14 mx-auto mb-6 rounded-full bg-gold-wash ring-1 ring-gold/25 flex items-center justify-center font-serif text-2xl font-semibold text-gold-ink tnum">
-                            2
-                        </div>
-                        <h3 class="font-serif text-xl font-semibold text-dark mb-3 text-center">Pago</h3>
-                        <p class="text-gray-600 text-center text-sm leading-relaxed">
-                            Realizas el pago por QR Simple o transferencia. Confirmamos en minutos.
-                        </p>
-                    </div>
-                    <div class="hidden lg:block absolute top-1/2 -right-3 -translate-y-1/2 z-10" aria-hidden="true">
-                        <i data-lucide="chevron-right" class="w-6 h-6 text-gold-light"></i>
-                    </div>
-                </div>
-
-                <!-- Step 3 -->
-                <div class="relative">
-                    <div class="h-full bg-white rounded-2xl p-8 border border-gray-200/70 card-hover reveal">
-                        <div class="w-14 h-14 mx-auto mb-6 rounded-full bg-gold-wash ring-1 ring-gold/25 flex items-center justify-center font-serif text-2xl font-semibold text-gold-ink tnum">
-                            3
-                        </div>
-                        <h3 class="font-serif text-xl font-semibold text-dark mb-3 text-center">Creación</h3>
-                        <p class="text-gray-600 text-center text-sm leading-relaxed">
-                            Diseñamos tu invitación en 7-10 días hábiles. Te enviamos preview para aprobación.
-                        </p>
-                    </div>
-                    <div class="hidden lg:block absolute top-1/2 -right-3 -translate-y-1/2 z-10" aria-hidden="true">
-                        <i data-lucide="chevron-right" class="w-6 h-6 text-gold-light"></i>
-                    </div>
-                </div>
-
-                <!-- Step 4 -->
-                <div class="relative">
-                    <div class="h-full bg-white rounded-2xl p-8 border border-gray-200/70 card-hover reveal">
-                        <div class="w-14 h-14 mx-auto mb-6 rounded-full bg-gold-wash ring-1 ring-gold/25 flex items-center justify-center font-serif text-2xl font-semibold text-gold-ink tnum">
-                            4
-                        </div>
-                        <h3 class="font-serif text-xl font-semibold text-dark mb-3 text-center">Entrega</h3>
-                        <p class="text-gray-600 text-center text-sm leading-relaxed">
-                            Te entregamos el link final y el dashboard. ¡Listo para compartir!
-                        </p>
-                    </div>
-                </div>
-            </div>
+            <!-- Process Steps: 2 columnas en tablet, 3 en escritorio -->
+            <ol class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-8">
+                <li class="h-full bg-white rounded-2xl p-8 border border-gray-200/70 card-hover reveal">
+                    <span class="mb-5 block font-serif tnum text-[2.25rem] font-semibold leading-none text-gold-dark">01</span>
+                    <h3 class="font-serif text-xl font-semibold text-dark mb-2.5">Cuéntanos</h3>
+                    <p class="text-gray-600 text-[0.9375rem] leading-relaxed">
+                        Indícanos qué evento estás organizando, la fecha y el estilo que buscas.
+                    </p>
+                </li>
+                <li class="h-full bg-white rounded-2xl p-8 border border-gray-200/70 card-hover reveal">
+                    <span class="mb-5 block font-serif tnum text-[2.25rem] font-semibold leading-none text-gold-dark">02</span>
+                    <h3 class="font-serif text-xl font-semibold text-dark mb-2.5">Elige</h3>
+                    <p class="text-gray-600 text-[0.9375rem] leading-relaxed">
+                        Revisamos las opciones disponibles y seleccionas el paquete adecuado.
+                    </p>
+                </li>
+                <li class="h-full bg-white rounded-2xl p-8 border border-gray-200/70 card-hover reveal">
+                    <span class="mb-5 block font-serif tnum text-[2.25rem] font-semibold leading-none text-gold-dark">03</span>
+                    <h3 class="font-serif text-xl font-semibold text-dark mb-2.5">Diseñamos</h3>
+                    <p class="text-gray-600 text-[0.9375rem] leading-relaxed">
+                        Creamos la estructura visual y digital de tu invitación.
+                    </p>
+                </li>
+                <li class="h-full bg-white rounded-2xl p-8 border border-gray-200/70 card-hover reveal">
+                    <span class="mb-5 block font-serif tnum text-[2.25rem] font-semibold leading-none text-gold-dark">04</span>
+                    <h3 class="font-serif text-xl font-semibold text-dark mb-2.5">Revisas</h3>
+                    <p class="text-gray-600 text-[0.9375rem] leading-relaxed">
+                        Recibes una vista previa para revisar la información y los detalles.
+                    </p>
+                </li>
+                <li class="h-full bg-white rounded-2xl p-8 border border-gray-200/70 card-hover reveal">
+                    <span class="mb-5 block font-serif tnum text-[2.25rem] font-semibold leading-none text-gold-dark">05</span>
+                    <h3 class="font-serif text-xl font-semibold text-dark mb-2.5">Publicamos</h3>
+                    <p class="text-gray-600 text-[0.9375rem] leading-relaxed">
+                        Realizamos los ajustes finales y entregamos tu enlace listo para compartir.
+                    </p>
+                </li>
+                <li class="h-full bg-white rounded-2xl p-8 border border-gray-200/70 card-hover reveal">
+                    <span class="mb-5 block font-serif tnum text-[2.25rem] font-semibold leading-none text-gold-dark">06</span>
+                    <h3 class="font-serif text-xl font-semibold text-dark mb-2.5">Comparte</h3>
+                    <p class="text-gray-600 text-[0.9375rem] leading-relaxed">
+                        Envía tu invitación por WhatsApp, redes sociales, correo o código QR.
+                    </p>
+                </li>
+            </ol>
         </div>
     </section>
 
-    <!-- Testimonials Section -->
-    <section class="py-16 md:py-20 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <!-- Section Header -->
-            <div class="text-center mb-14 md:mb-20 reveal">
-                <span class="eyebrow">Testimonios</span>
-                <h2 class="font-serif h-section font-semibold text-dark mt-6 mb-6">
-                    Lo que dicen <span class="text-gold-gradient">nuestros clientes</span>
-                </h2>
-            </div>
-
-            <!-- Testimonials Grid -->
-            <div class="grid gap-6 md:grid-cols-3 lg:gap-8 lg:items-stretch">
-                <!-- Testimonial 1 -->
-                <div class="h-full flex flex-col bg-gray-50 rounded-2xl p-8 sm:p-9 border border-gray-200/60 card-hover reveal">
-                    <div class="mb-5 flex items-center" aria-label="Calificación: 5 de 5 estrellas" role="img">
-                        <div class="flex gap-0.5 text-gold-dark" aria-hidden="true">
-                            <i data-lucide="star" class="h-4 w-4 fill-current"></i>
-                            <i data-lucide="star" class="h-4 w-4 fill-current"></i>
-                            <i data-lucide="star" class="h-4 w-4 fill-current"></i>
-                            <i data-lucide="star" class="h-4 w-4 fill-current"></i>
-                            <i data-lucide="star" class="h-4 w-4 fill-current"></i>
-                        </div>
-                    </div>
-                    <p class="font-display text-[1.3rem] leading-[1.6] text-gray-700 mb-7 flex-1">
-                        "La invitación superó todas nuestras expectativas. Nuestros invitados quedaron encantados con la animación de apertura y el sistema de confirmación fue súper fácil de usar."
+    <!-- Funcionalidades: banda oscura para diferenciarla de Servicios -->
+    <section id="funcionalidades" class="on-dark relative overflow-hidden py-16 md:py-20 bg-dark text-white">
+        <div class="pointer-events-none absolute inset-0" aria-hidden="true" style="background: radial-gradient(90% 70% at 15% 0%, rgba(201,162,39,.18) 0%, transparent 60%);"></div>
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid gap-12 lg:grid-cols-3 lg:gap-16">
+                <div class="reveal">
+                    <span class="eyebrow">Todo en un solo lugar</span>
+                    <h2 class="font-serif h-section font-semibold mt-6 mb-6">
+                        Tu evento, organizado desde <span class="text-gold-gradient">una sola invitación</span>
+                    </h2>
+                    <p class="text-[1.0625rem] leading-[1.75] text-white/70">
+                        Una invitación digital puede hacer mucho más que mostrar una fecha. Podemos integrar herramientas para que tus invitados encuentren toda la información que necesitan.
                     </p>
-                    <div class="flex items-center">
-                        <div class="w-11 h-11 rounded-full bg-gold-wash ring-1 ring-gold/20 flex items-center justify-center mr-4 flex-none">
-                            <span class="font-serif text-gold-ink text-sm font-semibold tracking-wide">AM</span>
-                        </div>
-                        <div>
-                            <div class="font-medium text-dark">Ana & Mateo</div>
-                            <div class="text-[0.8125rem] text-gray-500">Boda en La Paz, 2025</div>
-                        </div>
-                    </div>
                 </div>
 
-                <!-- Testimonial 2 -->
-                <div class="h-full flex flex-col bg-gray-50 rounded-2xl p-8 sm:p-9 border border-gray-200/60 card-hover reveal">
-                    <div class="mb-5 flex items-center" aria-label="Calificación: 5 de 5 estrellas" role="img">
-                        <div class="flex gap-0.5 text-gold-dark" aria-hidden="true">
-                            <i data-lucide="star" class="h-4 w-4 fill-current"></i>
-                            <i data-lucide="star" class="h-4 w-4 fill-current"></i>
-                            <i data-lucide="star" class="h-4 w-4 fill-current"></i>
-                            <i data-lucide="star" class="h-4 w-4 fill-current"></i>
-                            <i data-lucide="star" class="h-4 w-4 fill-current"></i>
-                        </div>
-                    </div>
-                    <p class="font-display text-[1.3rem] leading-[1.6] text-gray-700 mb-7 flex-1">
-                        "El dashboard de confirmaciones nos salvó la vida. Pudimos organizar todo sin estrés y saber exactamente cuántas personas vendrían. ¡100% recomendado!"
-                    </p>
-                    <div class="flex items-center">
-                        <div class="w-11 h-11 rounded-full bg-gold-wash ring-1 ring-gold/20 flex items-center justify-center mr-4 flex-none">
-                            <span class="font-serif text-gold-ink text-sm font-semibold tracking-wide">CS</span>
-                        </div>
+                <ul class="grid gap-x-10 sm:grid-cols-2 lg:col-span-2">
+                    <li class="reveal flex gap-4 border-t border-white/10 py-5">
+                        <i data-lucide="calendar-days" class="mt-0.5 h-5 w-5 flex-none text-gold-light"></i>
                         <div>
-                            <div class="font-medium text-dark">Carla & Sebastián</div>
-                            <div class="text-[0.8125rem] text-gray-500">Boda en Santa Cruz, 2025</div>
+                            <h3 class="font-medium text-white">Información del evento</h3>
+                            <p class="mt-1 text-[0.9375rem] leading-relaxed text-white/60">Fecha, hora, lugar, recomendaciones y detalles importantes.</p>
                         </div>
-                    </div>
-                </div>
-
-                <!-- Testimonial 3 -->
-                <div class="h-full flex flex-col bg-gray-50 rounded-2xl p-8 sm:p-9 border border-gray-200/60 card-hover reveal">
-                    <div class="mb-5 flex items-center" aria-label="Calificación: 5 de 5 estrellas" role="img">
-                        <div class="flex gap-0.5 text-gold-dark" aria-hidden="true">
-                            <i data-lucide="star" class="h-4 w-4 fill-current"></i>
-                            <i data-lucide="star" class="h-4 w-4 fill-current"></i>
-                            <i data-lucide="star" class="h-4 w-4 fill-current"></i>
-                            <i data-lucide="star" class="h-4 w-4 fill-current"></i>
-                            <i data-lucide="star" class="h-4 w-4 fill-current"></i>
-                        </div>
-                    </div>
-                    <p class="font-display text-[1.3rem] leading-[1.6] text-gray-700 mb-7 flex-1">
-                        "Invertimos en el paquete VIP y valió cada centavo. El dominio personalizado, el video y las tarjetas físicas hicieron que todo se viera ultra profesional."
-                    </p>
-                    <div class="flex items-center">
-                        <div class="w-11 h-11 rounded-full bg-gold-wash ring-1 ring-gold/20 flex items-center justify-center mr-4 flex-none">
-                            <span class="font-serif text-gold-ink text-sm font-semibold tracking-wide">VR</span>
-                        </div>
+                    </li>
+                    <li class="reveal flex gap-4 border-t border-white/10 py-5">
+                        <i data-lucide="check-circle" class="mt-0.5 h-5 w-5 flex-none text-gold-light"></i>
                         <div>
-                            <div class="font-medium text-dark">Valentina & Rodrigo</div>
-                            <div class="text-[0.8125rem] text-gray-500">Boda en Cochabamba, 2025</div>
+                            <h3 class="font-medium text-white">Confirmaciones RSVP</h3>
+                            <p class="mt-1 text-[0.9375rem] leading-relaxed text-white/60">Recibe las respuestas y organiza la información de tus invitados.</p>
                         </div>
-                    </div>
-                </div>
+                    </li>
+                    <li class="reveal flex gap-4 border-t border-white/10 py-5">
+                        <i data-lucide="map-pin" class="mt-0.5 h-5 w-5 flex-none text-gold-light"></i>
+                        <div>
+                            <h3 class="font-medium text-white">Ubicación</h3>
+                            <p class="mt-1 text-[0.9375rem] leading-relaxed text-white/60">Integra Google Maps para facilitar la llegada.</p>
+                        </div>
+                    </li>
+                    <li class="reveal flex gap-4 border-t border-white/10 py-5">
+                        <i data-lucide="images" class="mt-0.5 h-5 w-5 flex-none text-gold-light"></i>
+                        <div>
+                            <h3 class="font-medium text-white">Galería</h3>
+                            <p class="mt-1 text-[0.9375rem] leading-relaxed text-white/60">Muestra fotografías, recuerdos o contenido relacionado con el evento.</p>
+                        </div>
+                    </li>
+                    <li class="reveal flex gap-4 border-t border-white/10 py-5">
+                        <i data-lucide="music" class="mt-0.5 h-5 w-5 flex-none text-gold-light"></i>
+                        <div>
+                            <h3 class="font-medium text-white">Música y video</h3>
+                            <p class="mt-1 text-[0.9375rem] leading-relaxed text-white/60">Agrega una banda sonora, presentación o video especial.</p>
+                        </div>
+                    </li>
+                    <li class="reveal flex gap-4 border-t border-white/10 py-5">
+                        <i data-lucide="hourglass" class="mt-0.5 h-5 w-5 flex-none text-gold-light"></i>
+                        <div>
+                            <h3 class="font-medium text-white">Cuenta regresiva</h3>
+                            <p class="mt-1 text-[0.9375rem] leading-relaxed text-white/60">Muestra cuánto falta para el gran día.</p>
+                        </div>
+                    </li>
+                    <li class="reveal flex gap-4 border-t border-white/10 py-5">
+                        <i data-lucide="qr-code" class="mt-0.5 h-5 w-5 flex-none text-gold-light"></i>
+                        <div>
+                            <h3 class="font-medium text-white">Código QR</h3>
+                            <p class="mt-1 text-[0.9375rem] leading-relaxed text-white/60">Ideal para tarjetas físicas, souvenirs, afiches o material promocional.</p>
+                        </div>
+                    </li>
+                    <li class="reveal flex gap-4 border-t border-white/10 py-5">
+                        <i data-lucide="share-2" class="mt-0.5 h-5 w-5 flex-none text-gold-light"></i>
+                        <div>
+                            <h3 class="font-medium text-white">Compartir fácilmente</h3>
+                            <p class="mt-1 text-[0.9375rem] leading-relaxed text-white/60">Un enlace que puede enviarse directamente desde WhatsApp, redes sociales o cualquier plataforma.</p>
+                        </div>
+                    </li>
+                </ul>
             </div>
         </div>
     </section>
 
     <!-- FAQ Section -->
-    <section class="py-16 md:py-20 bg-gray-50">
+    <section id="preguntas" class="py-16 md:py-20 bg-gray-50">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <!-- Section Header -->
-            <div class="text-center mb-14 md:mb-20 reveal">
+            <div class="text-center mb-14 md:mb-16 reveal">
                 <span class="eyebrow">Preguntas frecuentes</span>
                 <h2 class="font-serif h-section font-semibold text-dark mt-6 mb-6">
-                    ¿Tienes <span class="text-gold-gradient">Dudas?</span>
+                    ¿Tienes <span class="text-gold-gradient">dudas?</span>
                 </h2>
+                <p class="lead-center text-[1.0625rem] leading-[1.75] text-gray-600 max-w-xl mx-auto">
+                    Encuentra aquí las respuestas.
+                </p>
             </div>
 
             <!-- FAQ Items -->
             <div class="space-y-4">
-                <!-- FAQ 1 -->
                 <div class="bg-white rounded-xl border border-gray-200/70 overflow-hidden transition-colors duration-300 hover:border-gold-light">
                     <button type="button" aria-expanded="false" class="faq-btn w-full px-6 py-5 text-left flex justify-between items-center gap-4">
-                        <span class="font-medium text-dark">¿Cuánto tiempo toma crear la invitación?</span>
+                        <span class="font-medium text-dark">¿Qué tipo de eventos realizan?</span>
                         <i data-lucide="chevron-down" class="faq-icon w-5 h-5 flex-none text-gold-ink transition-transform duration-500 ease-premium"></i>
                     </button>
                     <div class="px-6 pb-5 hidden faq-content">
                         <p class="text-gray-600 leading-[1.75] text-[0.9375rem]">
-                            El tiempo de entrega es de 7-10 días hábiles para el paquete Premium y 10-15 días para el VIP. El paquete Esencial se entrega en 3-5 días hábiles.
+                            Creamos invitaciones digitales para bodas, cumpleaños, XV años, bautizos, graduaciones, aniversarios, eventos corporativos, celebraciones familiares, culturales y otros eventos personalizados.
                         </p>
                     </div>
                 </div>
 
-                <!-- FAQ 2 -->
-                <div class="bg-white rounded-xl border border-gray-200/70 overflow-hidden transition-colors duration-300 hover:border-gold-light">
-                    <button type="button" aria-expanded="false" class="faq-btn w-full px-6 py-5 text-left flex justify-between items-center gap-4">
-                        <span class="font-medium text-dark">¿Puedo hacer cambios después de la entrega?</span>
-                        <i data-lucide="chevron-down" class="faq-icon w-5 h-5 flex-none text-gold-ink transition-transform duration-500 ease-premium"></i>
-                    </button>
-                    <div class="px-6 pb-5 hidden faq-content">
-                        <p class="text-gray-600 leading-[1.75] text-[0.9375rem]">
-                            Sí, cada paquete incluye rondas de cambios: 1 para Esencial, 2 para Premium e ilimitadas (hasta 15 días antes) para VIP. Cambios adicionales tienen costo.
-                        </p>
-                    </div>
-                </div>
-
-                <!-- FAQ 3 -->
-                <div class="bg-white rounded-xl border border-gray-200/70 overflow-hidden transition-colors duration-300 hover:border-gold-light">
-                    <button type="button" aria-expanded="false" class="faq-btn w-full px-6 py-5 text-left flex justify-between items-center gap-4">
-                        <span class="font-medium text-dark">¿Cómo funciona el sistema de confirmación (RSVP)?</span>
-                        <i data-lucide="chevron-down" class="faq-icon w-5 h-5 flex-none text-gold-ink transition-transform duration-500 ease-premium"></i>
-                    </button>
-                    <div class="px-6 pb-5 hidden faq-content">
-                        <p class="text-gray-600 leading-[1.75] text-[0.9375rem]">
-                            Los invitados llenan un formulario en la invitación y los datos llegan automáticamente a un Google Sheet que compartimos contigo. Puedes ver confirmaciones en tiempo real.
-                        </p>
-                    </div>
-                </div>
-
-                <!-- FAQ 4 -->
-                <div class="bg-white rounded-xl border border-gray-200/70 overflow-hidden transition-colors duration-300 hover:border-gold-light">
-                    <button type="button" aria-expanded="false" class="faq-btn w-full px-6 py-5 text-left flex justify-between items-center gap-4">
-                        <span class="font-medium text-dark">¿Qué métodos de pago aceptan?</span>
-                        <i data-lucide="chevron-down" class="faq-icon w-5 h-5 flex-none text-gold-ink transition-transform duration-500 ease-premium"></i>
-                    </button>
-                    <div class="px-6 pb-5 hidden faq-content">
-                        <p class="text-gray-600 leading-[1.75] text-[0.9375rem]">
-                            Aceptamos QR Simple, transferencia bancaria y depósito. El pago se realiza 50% al iniciar y 50% al entregar la invitación final.
-                        </p>
-                    </div>
-                </div>
-
-                <!-- FAQ 5 -->
                 <div class="bg-white rounded-xl border border-gray-200/70 overflow-hidden transition-colors duration-300 hover:border-gold-light">
                     <button type="button" aria-expanded="false" class="faq-btn w-full px-6 py-5 text-left flex justify-between items-center gap-4">
                         <span class="font-medium text-dark">¿La invitación funciona en celulares?</span>
@@ -1852,7 +1867,91 @@
                     </button>
                     <div class="px-6 pb-5 hidden faq-content">
                         <p class="text-gray-600 leading-[1.75] text-[0.9375rem]">
-                            ¡Absolutamente! Todas nuestras invitaciones son 100% responsive y están optimizadas para móviles. Más del 90% de tus invitados la verán desde su celular.
+                            Sí. Diseñamos las invitaciones para adaptarse a celulares, tablets y computadoras.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl border border-gray-200/70 overflow-hidden transition-colors duration-300 hover:border-gold-light">
+                    <button type="button" aria-expanded="false" class="faq-btn w-full px-6 py-5 text-left flex justify-between items-center gap-4">
+                        <span class="font-medium text-dark">¿Puedo compartirla por WhatsApp?</span>
+                        <i data-lucide="chevron-down" class="faq-icon w-5 h-5 flex-none text-gold-ink transition-transform duration-500 ease-premium"></i>
+                    </button>
+                    <div class="px-6 pb-5 hidden faq-content">
+                        <p class="text-gray-600 leading-[1.75] text-[0.9375rem]">
+                            Sí. Recibes un enlace que puedes compartir fácilmente por WhatsApp, redes sociales, correo o código QR.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl border border-gray-200/70 overflow-hidden transition-colors duration-300 hover:border-gold-light">
+                    <button type="button" aria-expanded="false" class="faq-btn w-full px-6 py-5 text-left flex justify-between items-center gap-4">
+                        <span class="font-medium text-dark">¿Puedo confirmar la asistencia de mis invitados?</span>
+                        <i data-lucide="chevron-down" class="faq-icon w-5 h-5 flex-none text-gold-ink transition-transform duration-500 ease-premium"></i>
+                    </button>
+                    <div class="px-6 pb-5 hidden faq-content">
+                        <p class="text-gray-600 leading-[1.75] text-[0.9375rem]">
+                            Sí. Dependiendo del paquete, podemos integrar confirmaciones por WhatsApp o un sistema RSVP conectado a Google Sheets.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl border border-gray-200/70 overflow-hidden transition-colors duration-300 hover:border-gold-light">
+                    <button type="button" aria-expanded="false" class="faq-btn w-full px-6 py-5 text-left flex justify-between items-center gap-4">
+                        <span class="font-medium text-dark">¿Puedo personalizar el diseño?</span>
+                        <i data-lucide="chevron-down" class="faq-icon w-5 h-5 flex-none text-gold-ink transition-transform duration-500 ease-premium"></i>
+                    </button>
+                    <div class="px-6 pb-5 hidden faq-content">
+                        <p class="text-gray-600 leading-[1.75] text-[0.9375rem]">
+                            Sí. Adaptamos colores, fotografías, textos, tipografías y elementos visuales según el concepto de tu evento.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl border border-gray-200/70 overflow-hidden transition-colors duration-300 hover:border-gold-light">
+                    <button type="button" aria-expanded="false" class="faq-btn w-full px-6 py-5 text-left flex justify-between items-center gap-4">
+                        <span class="font-medium text-dark">¿Cuánto tiempo demora?</span>
+                        <i data-lucide="chevron-down" class="faq-icon w-5 h-5 flex-none text-gold-ink transition-transform duration-500 ease-premium"></i>
+                    </button>
+                    <div class="px-6 pb-5 hidden faq-content">
+                        <p class="text-gray-600 leading-[1.75] text-[0.9375rem]">
+                            El tiempo depende del paquete, cantidad de contenido y complejidad del diseño. Definimos el plazo antes de comenzar el proyecto.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl border border-gray-200/70 overflow-hidden transition-colors duration-300 hover:border-gold-light">
+                    <button type="button" aria-expanded="false" class="faq-btn w-full px-6 py-5 text-left flex justify-between items-center gap-4">
+                        <span class="font-medium text-dark">¿Puedo solicitar cambios?</span>
+                        <i data-lucide="chevron-down" class="faq-icon w-5 h-5 flex-none text-gold-ink transition-transform duration-500 ease-premium"></i>
+                    </button>
+                    <div class="px-6 pb-5 hidden faq-content">
+                        <p class="text-gray-600 leading-[1.75] text-[0.9375rem]">
+                            Sí. Las condiciones de revisión y ajustes dependen del paquete contratado.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl border border-gray-200/70 overflow-hidden transition-colors duration-300 hover:border-gold-light">
+                    <button type="button" aria-expanded="false" class="faq-btn w-full px-6 py-5 text-left flex justify-between items-center gap-4">
+                        <span class="font-medium text-dark">¿Atienden solamente en La Paz?</span>
+                        <i data-lucide="chevron-down" class="faq-icon w-5 h-5 flex-none text-gold-ink transition-transform duration-500 ease-premium"></i>
+                    </button>
+                    <div class="px-6 pb-5 hidden faq-content">
+                        <p class="text-gray-600 leading-[1.75] text-[0.9375rem]">
+                            No. Trabajamos de forma digital y podemos crear invitaciones para clientes de cualquier ciudad de Bolivia.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl border border-gray-200/70 overflow-hidden transition-colors duration-300 hover:border-gold-light">
+                    <button type="button" aria-expanded="false" class="faq-btn w-full px-6 py-5 text-left flex justify-between items-center gap-4">
+                        <span class="font-medium text-dark">¿Qué formas de pago aceptan?</span>
+                        <i data-lucide="chevron-down" class="faq-icon w-5 h-5 flex-none text-gold-ink transition-transform duration-500 ease-premium"></i>
+                    </button>
+                    <div class="px-6 pb-5 hidden faq-content">
+                        <p class="text-gray-600 leading-[1.75] text-[0.9375rem]">
+                            Puedes consultar las opciones de pago disponibles al momento de solicitar tu cotización.
                         </p>
                     </div>
                 </div>
@@ -1866,14 +1965,18 @@
             <div class="grid items-start gap-14 md:grid-cols-2 md:gap-12 lg:gap-16">
                 <!-- Contact Info -->
                 <div>
-                    <span class="eyebrow">Contáctanos</span>
+                    <span class="eyebrow">Crea tu invitación</span>
                     <h2 class="font-serif h-section font-semibold text-dark mt-6 mb-6">
-                        Hagamos tu boda <span class="text-gold-gradient">inolvidable</span>
+                        Tu evento comienza desde <span class="text-gold-gradient">la invitación</span>
                     </h2>
-                    <p class="measure text-[1.0625rem] leading-[1.75] text-gray-600 mb-10">
-                        ¿Listo para crear la invitación perfecta? Escríbenos y te responderemos en menos de 24 horas.
+                    <p class="measure text-[1.0625rem] leading-[1.75] text-gray-600 mb-6">
+                        Cuéntanos qué estás celebrando y diseñemos juntos una invitación digital que represente tu evento.
+                    </p>
+                    <p class="measure mb-10 text-[0.875rem] leading-relaxed text-gold-ink">
+                        Bodas · Cumpleaños · XV años · Bautizos · Graduaciones · Aniversarios · Eventos corporativos · Celebraciones familiares · Eventos culturales y más
                     </p>
 
+                    <p class="mb-6 text-[11px] font-medium uppercase tracking-[0.22em] text-gray-500">También puedes escribirnos directamente</p>
                     <div class="space-y-7 reveal">
                         <div class="flex items-start">
                             <div class="w-12 h-12 rounded-full bg-gold-wash ring-1 ring-gold/15 flex items-center justify-center mr-4 flex-none">
@@ -1882,7 +1985,6 @@
                             <div>
                                 <h3 class="font-medium text-dark mb-1">WhatsApp</h3>
                                 <p><a href="https://wa.me/59178216419" target="_blank" rel="noopener" class="tnum text-gray-600 transition-colors hover:text-gold-ink">+591 78216419</a></p>
-                                <p class="mt-0.5 text-[0.8125rem] text-gray-400">Respuesta en menos de 2 horas</p>
                             </div>
                         </div>
 
@@ -1891,9 +1993,8 @@
                                 <i data-lucide="mail" class="h-5 w-5 text-gold-dark"></i>
                             </div>
                             <div>
-                                <h3 class="font-medium text-dark mb-1">Email</h3>
+                                <h3 class="font-medium text-dark mb-1">Correo</h3>
                                 <p><a href="mailto:diegogonzales@publicist.com" class="break-all text-gray-600 transition-colors hover:text-gold-ink">diegogonzales@publicist.com</a></p>
-                                <p class="mt-0.5 text-[0.8125rem] text-gray-400">Respuesta en 24 horas</p>
                             </div>
                         </div>
 
@@ -1913,45 +2014,65 @@
                 <!-- Contact Form -->
                 <div class="reveal rounded-3xl bg-gray-50 p-2 ring-1 ring-gray-200/70">
                     <div class="rounded-[1.4rem] bg-white p-6 shadow-sm sm:p-8">
+                        <h3 class="font-serif text-2xl font-semibold text-dark">Solicita información</h3>
+                        <p class="mt-2 mb-7 text-[0.9375rem] leading-relaxed text-gray-600">
+                            Déjanos los datos de tu evento y te contactaremos para conocer lo que necesitas y recomendarte la opción adecuada.
+                        </p>
                         <form id="contact-form" class="space-y-5" novalidate>
                             <div>
-                                <label for="nombre" class="mb-2 block text-sm font-medium text-dark">Nombre completo <span class="text-gold-ink">*</span></label>
+                                <label for="nombre" class="mb-2 block text-sm font-medium text-dark">Nombre <span class="text-gold-ink">*</span></label>
                                 <input type="text" id="nombre" name="nombre" required autocomplete="name" class="field">
                                 <p class="field-error" id="err-nombre">Escribe tu nombre para poder responderte.</p>
                             </div>
 
-                            <div>
-                                <label for="email" class="mb-2 block text-sm font-medium text-dark">Email <span class="text-gold-ink">*</span></label>
-                                <input type="email" id="email" name="email" required autocomplete="email" placeholder="tunombre@correo.com" class="field">
-                                <p class="field-error" id="err-email">Revisa el correo, parece incompleto.</p>
-                            </div>
-
-                            <div>
-                                <label for="whatsapp" class="mb-2 block text-sm font-medium text-dark">WhatsApp <span class="text-gold-ink">*</span></label>
-                                <input type="tel" id="whatsapp" name="whatsapp" required autocomplete="tel" inputmode="tel" placeholder="+591 78216419" class="field tnum">
-                                <p class="field-error" id="err-whatsapp">Necesitamos un número de al menos 7 dígitos.</p>
+                            <div class="grid gap-5 sm:grid-cols-2">
+                                <div>
+                                    <label for="email" class="mb-2 block text-sm font-medium text-dark">Correo electrónico <span class="text-gold-ink">*</span></label>
+                                    <input type="email" id="email" name="email" required autocomplete="email" placeholder="tunombre@correo.com" class="field">
+                                    <p class="field-error" id="err-email">Revisa el correo, parece incompleto.</p>
+                                </div>
+                                <div>
+                                    <label for="whatsapp" class="mb-2 block text-sm font-medium text-dark">WhatsApp <span class="text-gold-ink">*</span></label>
+                                    <input type="tel" id="whatsapp" name="whatsapp" required autocomplete="tel" inputmode="tel" placeholder="+591 78216419" class="field tnum">
+                                    <p class="field-error" id="err-whatsapp">Necesitamos un número de al menos 7 dígitos.</p>
+                                </div>
                             </div>
 
                             <div class="grid gap-5 sm:grid-cols-2">
                                 <div>
-                                    <label for="fecha" class="mb-2 block text-sm font-medium text-dark">Fecha de boda</label>
-                                    <input type="date" id="fecha" name="fecha" class="field tnum">
+                                    <label for="tipo" class="mb-2 block text-sm font-medium text-dark">Tipo de evento</label>
+                                    <select id="tipo" name="tipo" class="field">
+                                        <option value="">Selecciona el tipo</option>
+                                        <option value="Boda o evento de pareja">Boda o evento de pareja</option>
+                                        <option value="Cumpleaños o XV años">Cumpleaños o XV años</option>
+                                        <option value="Evento religioso">Evento religioso</option>
+                                        <option value="Graduación o académico">Graduación o académico</option>
+                                        <option value="Familia y hogar">Familia y hogar</option>
+                                        <option value="Evento corporativo">Evento corporativo</option>
+                                        <option value="Cultura, arte o entretenimiento">Cultura, arte o entretenimiento</option>
+                                        <option value="Otro">Otro</option>
+                                    </select>
                                 </div>
                                 <div>
-                                    <label for="paquete" class="mb-2 block text-sm font-medium text-dark">Paquete de interés</label>
-                                    <select id="paquete" name="paquete" class="field">
-                                        <option value="">Selecciona un paquete</option>
-                                        <option value="esencial">Esencial · 250 Bs</option>
-                                        <option value="premium">Premium · 450 Bs</option>
-                                        <option value="vip">VIP · 800 Bs</option>
-                                        <option value="no-se">Todavía no lo sé</option>
-                                    </select>
+                                    <label for="fecha" class="mb-2 block text-sm font-medium text-dark">Fecha del evento</label>
+                                    <input type="date" id="fecha" name="fecha" class="field tnum">
                                 </div>
                             </div>
 
                             <div>
-                                <label for="mensaje" class="mb-2 block text-sm font-medium text-dark">Mensaje</label>
-                                <textarea id="mensaje" name="mensaje" rows="4" placeholder="Cuéntanos cómo imaginas tu invitación." class="field resize-none"></textarea>
+                                <label for="paquete" class="mb-2 block text-sm font-medium text-dark">Paquete de interés</label>
+                                <select id="paquete" name="paquete" class="field">
+                                    <option value="">Selecciona un paquete</option>
+                                    <option value="esencial">Esencial · 350 Bs</option>
+                                    <option value="premium">Premium · 520 Bs</option>
+                                    <option value="vip">VIP · 800 Bs</option>
+                                    <option value="no-se">Todavía no lo sé</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label for="mensaje" class="mb-2 block text-sm font-medium text-dark">Cuéntanos sobre tu evento</label>
+                                <textarea id="mensaje" name="mensaje" rows="4" placeholder="Qué celebras, cuántos invitados esperas y el estilo que imaginas." class="field resize-none"></textarea>
                             </div>
 
                             <!-- Honeypot anti-spam: oculto para humanos, los bots lo rellenan -->
@@ -1972,7 +2093,7 @@
                             </div>
 
                             <button type="submit" class="btn-gold group inline-flex w-full items-center justify-center gap-2.5 rounded-full bg-gold py-4 font-semibold text-white shadow-gold transition-colors duration-300 hover:bg-gold-dark disabled:cursor-not-allowed disabled:opacity-60">
-                                <span data-btn-label>Enviar mensaje</span>
+                                <span data-btn-label>Solicitar información</span>
                                 <span class="flex h-7 w-7 items-center justify-center rounded-full bg-white/20 transition-transform duration-500 ease-premium group-hover:translate-x-0.5">
                                     <i data-lucide="arrow-right" class="h-4 w-4"></i>
                                 </span>
@@ -1982,7 +2103,7 @@
                             <p id="form-status" role="status" aria-live="polite"
                                class="hidden items-start gap-2.5 rounded-xl bg-gold-wash px-4 py-3.5 text-[0.9375rem] text-gold-ink ring-1 ring-gold/20">
                                 <i data-lucide="check-circle-2" class="mt-px h-4 w-4 flex-none"></i>
-                                <span>Recibimos tu mensaje. Te escribimos por WhatsApp dentro de las próximas 24 horas.</span>
+                                <span>Recibimos tu solicitud. Te escribimos por WhatsApp para conocer los detalles de tu evento.</span>
                             </p>
 
                             <p class="text-center text-[0.8125rem] leading-relaxed text-gray-500">
@@ -2001,9 +2122,9 @@
     <!-- Footer -->
     <footer class="bg-dark text-white pt-16 pb-28 md:pt-20 md:pb-24">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid md:grid-cols-4 gap-8 mb-8">
+            <div class="grid gap-10 sm:grid-cols-2 lg:grid-cols-12 lg:gap-8 mb-12">
                 <!-- Logo & Description -->
-                <div class="md:col-span-2">
+                <div class="sm:col-span-2 lg:col-span-5">
                     <div class="flex items-center gap-3 mb-5">
                         <div class="w-12 h-12 flex items-center justify-center">
                             <svg viewBox="0 0 100 100" class="w-full h-full">
@@ -2017,9 +2138,13 @@
                             <p class="mt-1 text-[10px] font-medium tracking-[0.32em] text-gold-light">BOLIVIA</p>
                         </div>
                     </div>
-                    <p class="mb-6 max-w-md text-[0.9375rem] leading-[1.75] text-gray-400">
-                        Creamos invitaciones digitales premium para bodas en Bolivia. Diseños exclusivos, tecnología de punta y servicio personalizado.
+                    <p class="mb-3 max-w-md text-[0.9375rem] leading-[1.75] text-gray-400">
+                        Invitaciones digitales personalizadas para bodas, celebraciones, eventos familiares, corporativos, culturales y ocasiones especiales.
                     </p>
+                    <p class="mb-7 max-w-md text-[0.9375rem] leading-[1.75] text-gray-400">
+                        Diseñamos experiencias digitales modernas, interactivas y fáciles de compartir desde cualquier dispositivo.
+                    </p>
+                    <h4 class="mb-4 text-[11px] font-medium uppercase tracking-[0.22em] text-gold-light">Síguenos</h4>
                     <!-- Marcas solidas en linea: mismo trazo, mismo peso optico
                          y sin depender de un servicio externo de iconos. -->
                     <div class="flex space-x-4">
@@ -2027,30 +2152,47 @@
                            aria-label="Digital Wedding Bolivia en Facebook" class="flex h-10 w-10 items-center justify-center rounded-full bg-white/[0.07] ring-1 ring-white/10 transition-colors duration-300 ease-premium hover:bg-gold hover:ring-gold/40">
                             <svg class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><path d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 0 1 1.141.195v3.325a8.623 8.623 0 0 0-.653-.036 26.805 26.805 0 0 0-.733-.009c-.707 0-1.259.096-1.675.309a1.686 1.686 0 0 0-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647Z"/></svg>
                         </a>
+                        <!-- TODO: enlazar la cuenta real de Instagram -->
+                        <a href="#" aria-label="Digital Wedding Bolivia en Instagram" class="flex h-10 w-10 items-center justify-center rounded-full bg-white/[0.07] ring-1 ring-white/10 transition-colors duration-300 ease-premium hover:bg-gold hover:ring-gold/40">
+                            <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><rect x="2.5" y="2.5" width="19" height="19" rx="5.5"/><circle cx="12" cy="12" r="4.25"/><circle cx="17.6" cy="6.4" r="1" fill="currentColor" stroke="none"/></svg>
+                        </a>
+                        <!-- TODO: enlazar la cuenta real de TikTok -->
                         <a href="#" aria-label="Digital Wedding Bolivia en TikTok" class="flex h-10 w-10 items-center justify-center rounded-full bg-white/[0.07] ring-1 ring-white/10 transition-colors duration-300 ease-premium hover:bg-gold hover:ring-gold/40">
                             <svg class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
-                        </a>
-                        <a href="https://wa.me/59178216419" target="_blank" rel="noopener"
-                           aria-label="Escríbenos por WhatsApp" class="flex h-10 w-10 items-center justify-center rounded-full bg-white/[0.07] ring-1 ring-white/10 transition-colors duration-300 ease-premium hover:bg-gold hover:ring-gold/40">
-                            <svg class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
                         </a>
                     </div>
                 </div>
 
-                <!-- Quick Links -->
-                <div>
-                    <h4 class="mb-5 text-[11px] font-medium uppercase tracking-[0.22em] text-gold-light">Enlaces rápidos</h4>
+                <!-- Navegacion -->
+                <div class="lg:col-span-2">
+                    <h4 class="mb-5 text-[11px] font-medium uppercase tracking-[0.22em] text-gold-light">Navegación</h4>
                     <ul class="space-y-2.5 text-[0.9375rem]">
                         <li><a href="/" data-seccion="inicio" class="text-gray-400 transition-colors duration-300 hover:text-gold-light">Inicio</a></li>
                         <li><a href="/servicios" data-seccion="servicios" class="text-gray-400 transition-colors duration-300 hover:text-gold-light">Servicios</a></li>
-                        <li><a href="/portafolio" data-seccion="portafolio" class="text-gray-400 transition-colors duration-300 hover:text-gold-light">Portafolio</a></li>
+                        <li><a href="/eventos" data-seccion="eventos" class="text-gray-400 transition-colors duration-300 hover:text-gold-light">Eventos</a></li>
+                        <li><a href="/disenos" data-seccion="disenos" class="text-gray-400 transition-colors duration-300 hover:text-gold-light">Diseños</a></li>
                         <li><a href="/paquetes" data-seccion="paquetes" class="text-gray-400 transition-colors duration-300 hover:text-gold-light">Paquetes</a></li>
                         <li><a href="/contacto" data-seccion="contacto" class="text-gray-400 transition-colors duration-300 hover:text-gold-light">Contacto</a></li>
                     </ul>
                 </div>
 
+                <!-- Tipos de eventos -->
+                <div class="lg:col-span-2">
+                    <h4 class="mb-5 text-[11px] font-medium uppercase tracking-[0.22em] text-gold-light">Tipos de eventos</h4>
+                    <ul class="space-y-2.5 text-[0.9375rem] text-gray-400">
+                        <li>Bodas</li>
+                        <li>Cumpleaños</li>
+                        <li>XV años</li>
+                        <li>Bautizos</li>
+                        <li>Graduaciones</li>
+                        <li>Aniversarios</li>
+                        <li>Corporativos</li>
+                        <li>Eventos especiales</li>
+                    </ul>
+                </div>
+
                 <!-- Contact Info -->
-                <div>
+                <div class="sm:col-span-2 lg:col-span-3">
                     <h4 class="mb-5 text-[11px] font-medium uppercase tracking-[0.22em] text-gold-light">Contacto</h4>
                     <ul class="space-y-2.5 text-[0.9375rem] text-gray-400">
                         <li>
@@ -2075,7 +2217,7 @@
 
             <div class="flex flex-col items-center justify-between gap-5 border-t border-white/10 pt-8 md:flex-row">
                 <p class="text-[0.8125rem] text-gray-400">
-                    © 2025 Digital Wedding Bolivia. Todos los derechos reservados.
+                    © 2026 Digital Wedding Bolivia. Todos los derechos reservados.
                 </p>
                 <div class="flex gap-6 text-[0.8125rem] text-gray-400">
                     <a href="#" class="transition-colors duration-300 hover:text-gold-light">Términos y condiciones</a>
@@ -2177,7 +2319,9 @@
            Sin JS los enlaces siguen funcionando: cada ruta existe como
            carpeta con un index.html que redirige a su ancla.
            ----------------------------------------------------------- */
-        var SECCIONES = ['inicio', 'servicios', 'portafolio', 'paquetes', 'proceso', 'contacto'];
+        // portafolio y proceso ya no estan en el menu, pero sus rutas siguen
+        // vivas para no romper enlaces compartidos antes.
+        var SECCIONES = ['inicio', 'servicios', 'eventos', 'disenos', 'portafolio', 'paquetes', 'proceso', 'contacto'];
         var soportaHistoria = !!(window.history && window.history.replaceState);
 
         function pintarRuta(id) {
@@ -2620,7 +2764,7 @@
                 status.classList.add('hidden');
                 status.classList.remove('flex', 'bg-red-50', 'text-red-700', 'ring-red-200');
                 status.classList.add('bg-gold-wash', 'text-gold-ink');
-                status.innerHTML = '<i data-lucide="check-circle-2" class="mt-px h-4 w-4 flex-none"></i><span>Recibimos tu mensaje. Te escribimos por WhatsApp dentro de las próximas 24 horas.</span>';
+                status.innerHTML = '<i data-lucide="check-circle-2" class="mt-px h-4 w-4 flex-none"></i><span>Recibimos tu solicitud. Te escribimos por WhatsApp para conocer los detalles de tu evento.</span>';
             }
 
             // Mensaje de error en el mismo bloque de estado.
@@ -2640,6 +2784,14 @@
             function resetTurnstile() {
                 if (window.turnstile) window.turnstile.reset();
             }
+
+            // "Elegir Premium" y compania dejan el paquete ya marcado en el
+            // formulario: el visitante no tiene que repetir lo que eligio.
+            document.querySelectorAll('a[data-paquete]').forEach(function (btn) {
+                btn.addEventListener('click', function () {
+                    form.elements.paquete.value = btn.getAttribute('data-paquete');
+                });
+            });
 
             form.addEventListener('submit', function (e) {
                 e.preventDefault();
@@ -2686,6 +2838,7 @@
                     nombre:   form.elements.nombre.value.trim(),
                     email:    form.elements.email.value.trim(),
                     whatsapp: form.elements.whatsapp.value.trim(),
+                    tipo:     form.elements.tipo.value || '',
                     fecha:    form.elements.fecha.value || '',
                     paquete:  form.elements.paquete.value || '',
                     mensaje:  form.elements.mensaje.value.trim() || '',
@@ -2701,7 +2854,7 @@
                 .then(function (res) { return res.json(); })
                 .then(function (data) {
                     submit.disabled = false;
-                    label.textContent = 'Enviar mensaje';
+                    label.textContent = 'Solicitar información';
                     resetTurnstile();
 
                     if (data.ok) {
@@ -2716,7 +2869,7 @@
                 .catch(function (err) {
                     console.error('Error de red:', err);
                     submit.disabled = false;
-                    label.textContent = 'Enviar mensaje';
+                    label.textContent = 'Solicitar información';
                     resetTurnstile();
                     showError('Error de conexión. Intenta de nuevo o escríbenos por WhatsApp.');
                 });

@@ -68,7 +68,7 @@ const RATE_LIMIT_WINDOW = 3600;  // por hora (en segundos)
 // ── Largo máximo por campo (corta payloads abusivos) ───────
 const LARGO_MAXIMO = {
   nombre: 120, email: 160, whatsapp: 40,
-  fecha: 40, paquete: 80, mensaje: 3000
+  tipo: 80, fecha: 40, paquete: 80, mensaje: 3000
 };
 
 export default {
@@ -125,6 +125,7 @@ export default {
     const nombre   = normalizar(data.nombre,   LARGO_MAXIMO.nombre);
     const email    = normalizar(data.email,    LARGO_MAXIMO.email);
     const whatsapp = normalizar(data.whatsapp, LARGO_MAXIMO.whatsapp);
+    const tipo     = normalizar(data.tipo,     LARGO_MAXIMO.tipo)    || 'No especificado';
     const fecha    = normalizar(data.fecha,    LARGO_MAXIMO.fecha)   || 'No especificada';
     const paquete  = normalizar(data.paquete,  LARGO_MAXIMO.paquete) || 'No seleccionado';
     const mensaje  = normalizar(data.mensaje,  LARGO_MAXIMO.mensaje, true) || 'Sin mensaje adicional';
@@ -217,7 +218,8 @@ export default {
       `Nombre:         ${nombre}`,
       `Email:          ${email}`,
       `WhatsApp:       ${whatsapp}`,
-      `Fecha de boda:  ${fecha}`,
+      `Tipo de evento: ${tipo}`,
+      `Fecha evento:   ${fecha}`,
       `Paquete:        ${paquete}`,
       '',
       'Mensaje:',
@@ -255,7 +257,8 @@ export default {
         ${campo('Nombre', escapar(nombre))}
         ${campo('Email', `<a href="mailto:${escapar(email)}" style="color:#A6831A;text-decoration:none;">${escapar(email)}</a>`)}
         ${campo('WhatsApp', `<a href="${waLink}" style="color:#A6831A;text-decoration:none;">${escapar(whatsapp)}</a>`)}
-        ${campo('Fecha de boda', escapar(fecha))}
+        ${campo('Tipo de evento', escapar(tipo))}
+        ${campo('Fecha del evento', escapar(fecha))}
         ${campo('Paquete', escapar(paquete))}
         <tr>
           <td style="padding:14px 0 4px;">
@@ -308,7 +311,7 @@ export default {
           from: env.MAIL_FROM || REMITENTE_POR_DEFECTO,
           to: [env.MAIL_TO || DESTINATARIO_POR_DEFECTO],
           reply_to: [email],
-          subject: `💍 Nuevo contacto — ${nombre}`,
+          subject: `✉️ Nueva solicitud — ${nombre} · ${tipo}`,
           html: htmlEmail,
           text: textoEmail
         })
