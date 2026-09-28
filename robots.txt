@@ -1,0 +1,15 @@
+# Digital Wedding Bolivia
+#
+# Acceso abierto a buscadores y a rastreadores de IA (GPTBot, ClaudeBot,
+# PerplexityBot, Google-Extended, etc.): que lean el sitio es lo que permite
+# aparecer en respuestas de ChatGPT, Claude, Perplexity y AI Overviews.
+# Un grupo propio por bot haria que ignoren las reglas de "*", asi que
+# todos comparten este.
+
+User-agent: *
+Allow: /
+# Codigo fuente del worker y herramienta interna para generar la og-image
+Disallow: /api/
+Disallow: /og-card.html
+
+Sitemap: https://digitalweddingbolivia.dpdns.org/sitemap.xml

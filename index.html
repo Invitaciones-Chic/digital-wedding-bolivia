@@ -33,6 +33,114 @@
     <meta name="author" content="Digital Wedding Bolivia">
     <link rel="canonical" href="https://digitalweddingbolivia.dpdns.org/">
 
+    <!-- Datos estructurados (schema.org). Todo lo que dice aqui tiene que
+         coincidir con lo visible en la pagina: precios de #paquetes y textos
+         de #preguntas. Si cambias uno, cambia el otro. -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "ProfessionalService",
+          "@id": "https://digitalweddingbolivia.dpdns.org/#negocio",
+          "name": "Digital Wedding Bolivia",
+          "description": "Invitaciones digitales personalizadas para bodas, cumpleaños, XV años, bautizos, graduaciones, aniversarios, eventos corporativos y otras celebraciones. Diseño a medida, confirmación de asistencia y una invitación fácil de compartir por WhatsApp, redes sociales o código QR.",
+          "url": "https://digitalweddingbolivia.dpdns.org/",
+          "logo": "https://digitalweddingbolivia.dpdns.org/logo-dw.png",
+          "image": "https://digitalweddingbolivia.dpdns.org/og-image.jpg",
+          "telephone": "+59178216419",
+          "email": "diegogonzales@publicist.com",
+          "priceRange": "Bs 350 - Bs 800",
+          "currenciesAccepted": "BOB",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "La Paz",
+            "addressRegion": "La Paz",
+            "addressCountry": "BO"
+          },
+          "areaServed": { "@type": "Country", "name": "Bolivia" },
+          "knowsLanguage": "es",
+          "sameAs": ["https://www.facebook.com/DigitalWeddingBolivia"],
+          "contactPoint": {
+            "@type": "ContactPoint",
+            "contactType": "customer service",
+            "telephone": "+59178216419",
+            "email": "diegogonzales@publicist.com",
+            "areaServed": "BO",
+            "availableLanguage": "es"
+          },
+          "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "Paquetes de invitaciones digitales",
+            "itemListElement": [
+              {
+                "@type": "Offer",
+                "name": "Esencial",
+                "description": "Diseño personalizado de una página, información completa del evento, adaptación para celulares, confirmación por WhatsApp, Google Maps, código QR, enlace personalizado y hosting por 2 meses.",
+                "price": "350",
+                "priceCurrency": "BOB",
+                "url": "https://digitalweddingbolivia.dpdns.org/#paquetes",
+                "itemOffered": { "@type": "Service", "name": "Invitación digital Esencial", "serviceType": "Invitación digital" }
+              },
+              {
+                "@type": "Offer",
+                "name": "Premium",
+                "description": "Todo lo del plan Esencial, RSVP para confirmaciones conectado a Google Sheets, panel de invitados, cuenta regresiva, galería de hasta 10 fotografías, música, animaciones, dominio personalizado y hosting por 4 meses.",
+                "price": "520",
+                "priceCurrency": "BOB",
+                "url": "https://digitalweddingbolivia.dpdns.org/#paquetes",
+                "itemOffered": { "@type": "Service", "name": "Invitación digital Premium", "serviceType": "Invitación digital" }
+              },
+              {
+                "@type": "Offer",
+                "name": "VIP",
+                "description": "Todo lo del plan Premium, apertura animada personalizada, experiencia 3D o efectos especiales, sello de cera digital, video Save the Date, galería ampliada, gestión de invitados y soporte prioritario.",
+                "price": "800",
+                "priceCurrency": "BOB",
+                "url": "https://digitalweddingbolivia.dpdns.org/#paquetes",
+                "itemOffered": { "@type": "Service", "name": "Invitación digital VIP", "serviceType": "Invitación digital" }
+              }
+            ]
+          }
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://digitalweddingbolivia.dpdns.org/#sitio",
+          "url": "https://digitalweddingbolivia.dpdns.org/",
+          "name": "Digital Wedding Bolivia",
+          "inLanguage": "es-BO",
+          "publisher": { "@id": "https://digitalweddingbolivia.dpdns.org/#negocio" }
+        },
+        {
+          "@type": "WebPage",
+          "@id": "https://digitalweddingbolivia.dpdns.org/#pagina",
+          "url": "https://digitalweddingbolivia.dpdns.org/",
+          "name": "Digital Wedding Bolivia | Invitaciones digitales para eventos",
+          "inLanguage": "es-BO",
+          "isPartOf": { "@id": "https://digitalweddingbolivia.dpdns.org/#sitio" },
+          "about": { "@id": "https://digitalweddingbolivia.dpdns.org/#negocio" },
+          "primaryImageOfPage": "https://digitalweddingbolivia.dpdns.org/og-image.jpg"
+        },
+        {
+          "@type": "FAQPage",
+          "@id": "https://digitalweddingbolivia.dpdns.org/#preguntas",
+          "isPartOf": { "@id": "https://digitalweddingbolivia.dpdns.org/#pagina" },
+          "mainEntity": [
+            { "@type": "Question", "name": "¿Qué tipo de eventos realizan?", "acceptedAnswer": { "@type": "Answer", "text": "Creamos invitaciones digitales para bodas, cumpleaños, XV años, bautizos, graduaciones, aniversarios, eventos corporativos, celebraciones familiares, culturales y otros eventos personalizados." } },
+            { "@type": "Question", "name": "¿La invitación funciona en celulares?", "acceptedAnswer": { "@type": "Answer", "text": "Sí. Diseñamos las invitaciones para adaptarse a celulares, tablets y computadoras." } },
+            { "@type": "Question", "name": "¿Puedo compartirla por WhatsApp?", "acceptedAnswer": { "@type": "Answer", "text": "Sí. Recibes un enlace que puedes compartir fácilmente por WhatsApp, redes sociales, correo o código QR." } },
+            { "@type": "Question", "name": "¿Puedo confirmar la asistencia de mis invitados?", "acceptedAnswer": { "@type": "Answer", "text": "Sí. Dependiendo del paquete, podemos integrar confirmaciones por WhatsApp o un sistema RSVP conectado a Google Sheets." } },
+            { "@type": "Question", "name": "¿Puedo personalizar el diseño?", "acceptedAnswer": { "@type": "Answer", "text": "Sí. Adaptamos colores, fotografías, textos, tipografías y elementos visuales según el concepto de tu evento." } },
+            { "@type": "Question", "name": "¿Cuánto tiempo demora?", "acceptedAnswer": { "@type": "Answer", "text": "El tiempo depende del paquete, cantidad de contenido y complejidad del diseño. Definimos el plazo antes de comenzar el proyecto." } },
+            { "@type": "Question", "name": "¿Puedo solicitar cambios?", "acceptedAnswer": { "@type": "Answer", "text": "Sí. Las condiciones de revisión y ajustes dependen del paquete contratado." } },
+            { "@type": "Question", "name": "¿Atienden solamente en La Paz?", "acceptedAnswer": { "@type": "Answer", "text": "No. Trabajamos de forma digital y podemos crear invitaciones para clientes de cualquier ciudad de Bolivia." } },
+            { "@type": "Question", "name": "¿Qué formas de pago aceptan?", "acceptedAnswer": { "@type": "Answer", "text": "Puedes consultar las opciones de pago disponibles al momento de solicitar tu cotización." } }
+          ]
+        }
+      ]
+    }
+    </script>
+
     <!-- Ancla las rutas relativas a la raiz: la barra de direcciones
          cambia a /servicios y sin esto las imagenes cargadas por JS
          se buscarian en /servicios/ -->

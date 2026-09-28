@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Solo la portada: /servicios, /paquetes, etc. son redirecciones a anclas
+     de esta misma pagina y llevan noindex, no deben listarse aqui. -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <url>
+    <loc>https://digitalweddingbolivia.dpdns.org/</loc>
+    <lastmod>2026-09-27</lastmod>
+    <image:image>
+      <image:loc>https://digitalweddingbolivia.dpdns.org/og-image.jpg</image:loc>
+    </image:image>
+  </url>
+</urlset>

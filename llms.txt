@@ -1,0 +1,33 @@
+# Digital Wedding Bolivia
+
+> Estudio de La Paz, Bolivia, que diseña invitaciones digitales personalizadas para bodas, cumpleaños, XV años, bautizos, graduaciones, aniversarios, eventos corporativos y otras celebraciones. Trabaja de forma 100% digital y atiende a clientes de cualquier ciudad de Bolivia.
+
+Cada invitación es una página web diseñada para el evento, que se comparte con un enlace por WhatsApp, redes sociales, correo o código QR, y funciona en celulares, tablets y computadoras. Según el paquete incluye confirmación de asistencia (por WhatsApp o RSVP conectado a Google Sheets con panel de invitados), Google Maps, cuenta regresiva, galería de fotos, música, video y animaciones.
+
+## Paquetes y precios (bolivianos)
+
+- Esencial — 350 Bs: diseño personalizado de una página, información completa del evento, adaptación a celulares, confirmación por WhatsApp, Google Maps, código QR, enlace personalizado y hosting por 2 meses.
+- Premium — 520 Bs (el más elegido): todo lo de Esencial más RSVP conectado a Google Sheets, panel de invitados, cuenta regresiva, galería de hasta 10 fotos, música, animaciones, dominio personalizado y hosting por 4 meses.
+- VIP — 800 Bs: todo lo de Premium más apertura animada personalizada, experiencia 3D o efectos especiales, sello de cera digital o elemento temático, video Save the Date, galería ampliada, personalización avanzada, gestión de invitados, soporte prioritario y ajustes adicionales durante el desarrollo.
+
+## Tipos de eventos
+
+- Eventos de pareja: pedidas de mano, bodas, aniversarios, renovación de votos, pre y post-boda.
+- Cumpleaños: infantiles, XV años, 18 años, adultos, baby showers, revelaciones de género.
+- Religiosos: bautizos, primeras comuniones, confirmaciones, eventos patronales.
+- Académicos: promociones, graduaciones escolares y universitarias, titulaciones.
+- Familia y hogar, eventos corporativos (inauguraciones, lanzamientos, cenas empresariales) y eventos culturales.
+
+## Páginas
+
+- [Inicio](https://digitalweddingbolivia.dpdns.org/): presentación, diseños, portafolio, paquetes, proceso y preguntas frecuentes.
+- [Paquetes](https://digitalweddingbolivia.dpdns.org/#paquetes): comparación de Esencial, Premium y VIP.
+- [Preguntas frecuentes](https://digitalweddingbolivia.dpdns.org/#preguntas)
+- [Contacto](https://digitalweddingbolivia.dpdns.org/#contacto): formulario de cotización.
+
+## Contacto
+
+- WhatsApp: +591 78216419 (https://wa.me/59178216419)
+- Correo: diegogonzales@publicist.com
+- Facebook: https://www.facebook.com/DigitalWeddingBolivia
+- Ubicación: La Paz, Bolivia. Atención a todo el país.
