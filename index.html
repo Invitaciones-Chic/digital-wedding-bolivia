@@ -201,6 +201,11 @@
             --dur: 560ms;
             --dur-carousel: 700ms;
             --dur-fast: 220ms;
+
+            /* Margen lateral compartido por el menu y el hero en desktop: crece
+               con la pantalla para que el texto no quede flotando en el centro
+               con una franja vacia a la izquierda. */
+            --hero-gutter: clamp(2.5rem, 5vw, 7.5rem);
         }
 
         html {
@@ -242,6 +247,11 @@
             line-height: 1.1;
         }
         /* Titular largo del hero: la escala display lo partiria en 6 lineas. */
+        /* Titular del hero: en pantallas anchas sube hasta llenar su columna. */
+        .h-hero {
+            font-size: clamp(2.25rem, 0.9rem + 3.4vw, 4.75rem);
+            line-height: 1.04;
+        }
         .h-display-long {
             font-size: clamp(2.25rem, 1.5rem + 3.1vw, 3.6rem);
             line-height: 1.08;
@@ -1078,7 +1088,7 @@
 
     <!-- Navigation -->
     <nav id="navbar" class="fixed inset-x-0 top-0 z-40 border-b border-transparent bg-white/70 backdrop-blur-xl transition-surface duration-500 ease-premium">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="mx-auto px-4 sm:px-6 lg:px-[var(--hero-gutter)]">
             <div class="flex justify-between items-center h-20">
                 <!-- Logo -->
                 <a href="/" data-seccion="inicio" class="flex items-center gap-3 group" aria-label="Digital Wedding Bolivia, ir al inicio">
@@ -1157,17 +1167,17 @@
             <div class="hero-veil pointer-events-none absolute inset-0" aria-hidden="true"></div>
         </div>
 
-        <div class="relative z-10 w-full px-4 sm:px-6 lg:grid lg:flex-1 lg:grid-cols-[minmax(0,36rem)_1fr_11.5rem] lg:gap-8 lg:pb-10 lg:pl-[max(2.5rem,calc((100vw-90rem)/2+2rem))] lg:pr-4 lg:pt-28">
+        <div class="relative z-10 w-full px-4 sm:px-6 lg:grid lg:flex-1 lg:grid-cols-[minmax(0,44rem)_1fr_11.5rem] lg:gap-8 lg:pb-10 lg:pl-[var(--hero-gutter)] lg:pr-4 lg:pt-28">
             <!-- Text Content -->
             <div class="-mt-6 lg:mt-0 lg:self-center">
                 <div class="reveal mb-5" style="--d:60ms">
                     <span class="eyebrow">Invitaciones digitales para</span>
                 </div>
                 <h1 class="reveal font-serif font-semibold text-dark mb-6" style="--d:130ms">
-                    <span class="block h-display-long">Cada celebración tiene una historia.</span>
-                    <span class="mt-2 block text-[clamp(1.5rem,1.1rem+1.6vw,2.4rem)] font-medium leading-tight">Tu invitación es <span class="text-gold-gradient">el comienzo.</span></span>
+                    <span class="block h-hero">Cada celebración tiene una historia.</span>
+                    <span class="mt-3 block text-[clamp(1.5rem,0.85rem+1.9vw,2.9rem)] font-medium leading-tight">Tu invitación es <span class="text-gold-gradient">el comienzo.</span></span>
                 </h1>
-                <p class="reveal measure mb-9 text-[1.0625rem] leading-[1.75] text-gray-600" style="--d:200ms">
+                <p class="reveal measure mb-9 text-[1.0625rem] leading-[1.75] text-gray-600 lg:max-w-[34rem]" style="--d:200ms">
                     Diseños personalizados, modernos e interactivos para bodas, cumpleaños, XV años, bautizos, graduaciones, eventos corporativos y más. Sorprende a tus invitados y comparte tu evento de una manera única.
                 </p>
                 <div class="reveal flex flex-col gap-3 sm:flex-row sm:items-center" style="--d:270ms">
@@ -1274,7 +1284,7 @@
         </div>
 
         <!-- Franja de beneficios -->
-        <div class="relative z-10 mx-auto w-full max-w-7xl px-4 pb-14 pt-10 sm:px-6 lg:px-8 lg:pb-8 lg:pt-0">
+        <div class="relative z-10 w-full px-4 pb-14 pt-10 sm:px-6 lg:pb-8 lg:px-[var(--hero-gutter)] lg:pt-0">
             <ul class="reveal grid grid-cols-1 gap-6 rounded-[1.5rem] bg-white/95 p-6 shadow-xl ring-1 ring-gray-200/70 sm:grid-cols-2 lg:grid-cols-4 lg:gap-0 lg:divide-x lg:divide-gray-200 lg:p-7" style="--d:460ms">
                 <li class="flex items-center gap-4 lg:px-6">
                     <span class="flex h-14 w-14 flex-none items-center justify-center rounded-full bg-gold-wash"><i data-lucide="palette" class="h-6 w-6 text-gold-dark"></i></span>
