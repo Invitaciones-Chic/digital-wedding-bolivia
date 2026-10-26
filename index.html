@@ -47,9 +47,12 @@
           "description": "Invitaciones digitales personalizadas para bodas, cumpleaños, XV años, bautizos, graduaciones, aniversarios, eventos corporativos y otras celebraciones. Diseño a medida, confirmación de asistencia y una invitación fácil de compartir por WhatsApp, redes sociales o código QR.",
           "url": "https://digitalweddingbolivia.dpdns.org/",
           "logo": "https://digitalweddingbolivia.dpdns.org/logo-dw.png",
-          "image": "https://digitalweddingbolivia.dpdns.org/og-image.jpg",
+          "image": [
+            "https://digitalweddingbolivia.dpdns.org/og-image.jpg",
+            "https://digitalweddingbolivia.dpdns.org/hero-invitacion-1672.webp"
+          ],
           "telephone": "+59178216419",
-          "email": "diegogonzales@publicist.com",
+          "email": "digitalweddingbolivia@gmail.com",
           "priceRange": "Bs 350 - Bs 800",
           "currenciesAccepted": "BOB",
           "address": {
@@ -65,7 +68,7 @@
             "@type": "ContactPoint",
             "contactType": "customer service",
             "telephone": "+59178216419",
-            "email": "diegogonzales@publicist.com",
+            "email": "digitalweddingbolivia@gmail.com",
             "areaServed": "BO",
             "availableLanguage": "es"
           },
@@ -147,6 +150,10 @@
     <base href="/">
     
     <!-- Tailwind CSS -->
+    <!-- Foto del hero (LCP): se pide junto con el CSS, no al descubrir el <img>. -->
+    <link rel="preload" as="image" type="image/avif" fetchpriority="high"
+          imagesrcset="hero-invitacion-960.avif 960w, hero-invitacion-1672.avif 1672w" imagesizes="100vw">
+
     <link rel="stylesheet" href="/assets/tailwind.css">
 
     <!-- Google Fonts -->
@@ -824,29 +831,98 @@
         }
 
         /* ============================================================
-           LAMINA DEL HERO
+           HERO: FOTO A SANGRE + CARRIL DE EVENTOS
            ============================================================ */
-        /* Profundidad por capas, no una sombra unica: un contacto corto que
-           apoya el marco, una media que le da volumen y una larga y calida
-           que lo separa del fondo. Es lo que lee como relieve real. */
-        .hero-frame {
-            box-shadow:
-                0 1px 2px rgba(28, 26, 22, .07),
-                0 6px 14px -8px rgba(28, 26, 22, .12),
-                0 26px 44px -22px rgba(28, 26, 22, .22),
-                0 56px 88px -48px rgba(166, 131, 26, .42);
+        /* Tono crema sacado del borde de la foto: rellena lo que la foto no
+           cubre (el corrimiento en desktop) sin que se note la costura. */
+        .hero { background: #F5EDE1; }
+
+        /* En movil la foto es una banda arriba; en desktop ocupa todo el
+           fondo, alineada a su borde derecho: cuando la pantalla es mas
+           angosta que la foto, el recorte se come el lado izquierdo (detras
+           del texto) y el telefono queda junto al carril, no debajo. */
+        .hero-photo { display: block; width: 100%; aspect-ratio: 16 / 10; object-fit: cover; object-position: 66% 50%; }
+        @media (min-width: 1024px) {
+            .hero-photo { position: absolute; inset: 0; height: 100%; aspect-ratio: auto; object-position: 100% 30%; }
         }
-        /* Filete de negro puro al 10%: define el canto de la captura contra el
-           marco blanco. Un gris tenido recogeria el color del fondo y se veria
-           como suciedad en el borde. */
-        .hero-shot {
-            display: block;
-            outline: 1px solid rgba(0, 0, 0, .1);
-            outline-offset: -1px;
-            /* La captura llega lavada sobre el fondo claro: un punto de
-               contraste y saturacion le devuelve el negro y el oro reales
-               sin alterar ningun color del diseno. */
-            filter: saturate(1.07) contrast(1.06);
+
+        /* Velo: movil funde la banda con el crema de abajo; desktop abre una
+           zona clara a la izquierda para el texto y oscurece apenas el pie,
+           donde se apoya la franja de beneficios. */
+        .hero-veil { background: linear-gradient(180deg, transparent 55%, #F5EDE1 100%); }
+        @media (min-width: 1024px) {
+            .hero-veil {
+                background:
+                    linear-gradient(90deg, #F5EDE1 0%, rgba(245, 237, 225, .94) 26%, rgba(245, 237, 225, .6) 38%, rgba(245, 237, 225, 0) 54%),
+                    linear-gradient(0deg, rgba(245, 237, 225, .7) 0%, rgba(245, 237, 225, 0) 22%);
+            }
+        }
+
+        /* Carril de eventos. Movil/tablet: fila horizontal con scroll-snap.
+           Desktop: columna con desplazamiento continuo hacia arriba. Solo se
+           anima transform, que corre en el compositor sin tocar el layout. */
+        .ev-track {
+            display: flex;
+            gap: .75rem;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scroll-padding-inline: 1rem;
+            scrollbar-width: none;
+            padding-bottom: .25rem;
+        }
+        .ev-track::-webkit-scrollbar { display: none; }
+        .ev-card { flex: 0 0 11.5rem; scroll-snap-align: start; }
+        .ev-clone { display: none; }
+
+        @media (min-width: 1024px) {
+            /* Sin backdrop-filter a proposito: un blur detras de contenido en
+               movimiento se recalcula en cada cuadro. Un tinte plano basta. */
+            .ev-rail {
+                height: 100%;
+                overflow: hidden;
+                -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 7%, #000 93%, transparent 100%);
+                mask-image: linear-gradient(180deg, transparent 0, #000 7%, #000 93%, transparent 100%);
+            }
+            .ev-track {
+                flex-direction: column;
+                overflow: visible;
+                padding: 0;
+                animation: ev-rise 38s linear infinite;
+            }
+            .ev-card { flex: none; }
+            .ev-clone { display: block; }
+            .ev-rail:hover .ev-track,
+            .ev-rail:focus-within .ev-track,
+            .ev-rail.is-paused .ev-track { animation-play-state: paused; }
+        }
+        /* La lista va duplicada: subir media pista (mas medio gap) deja la
+           copia exactamente donde empezo el original, y el bucle no salta. */
+        @keyframes ev-rise { to { transform: translateY(calc(-50% - .375rem)); } }
+
+        .ev-media {
+            position: relative;
+            aspect-ratio: 16 / 10.5;
+            overflow: hidden;
+            border-radius: 1rem;
+            background: var(--ph, linear-gradient(140deg, #8C6D3F, #2E261D));
+        }
+        .ev-media > img,
+        .ev-media > video {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 900ms var(--ease);
+        }
+        .ev-card:hover .ev-media > img,
+        .ev-card:hover .ev-media > video { transform: scale(1.05); }
+        /* Degradado de lectura: el rotulo blanco se lee sobre cualquier foto. */
+        .ev-media::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(20, 16, 10, 0) 40%, rgba(20, 16, 10, .62) 100%);
         }
 
         /* ============================================================
@@ -966,6 +1042,10 @@
                 transition-duration: .01ms !important;
             }
             .js .reveal { opacity: 1; transform: none; }
+            /* Carril quieto y desplazable a mano, sin las copias del bucle. */
+            .ev-track { animation: none !important; }
+            .ev-clone { display: none !important; }
+            @media (min-width: 1024px) { .ev-rail { overflow-y: auto; } }
         }
 
         /* Enlace de nav: filete dorado que crece desde el centro. */
@@ -1062,100 +1142,158 @@
     <main id="main">
 
     <!-- Hero Section -->
-    <section id="inicio" class="relative flex min-h-[100dvh] items-center overflow-hidden bg-gradient-to-b from-gray-50 via-white to-gold-wash/60">
-        <!-- Trama de puntos + halo calido, en lugar de un fondo plano -->
-        <div class="pointer-events-none absolute inset-0" aria-hidden="true">
-            <div class="absolute inset-0 opacity-[0.16]" style="background-image: radial-gradient(#C9A227 1px, transparent 1px); background-size: 34px 34px; mask-image: radial-gradient(120% 90% at 30% 15%, #000 0%, transparent 72%); -webkit-mask-image: radial-gradient(120% 90% at 30% 15%, #000 0%, transparent 72%);"></div>
-            <div class="absolute -right-32 top-[-10%] h-[38rem] w-[38rem] rounded-full opacity-60 blur-3xl" style="background: radial-gradient(circle, rgba(227,206,147,.34) 0%, transparent 68%);"></div>
+    <section id="inicio" class="hero relative overflow-hidden lg:flex lg:min-h-[100dvh] lg:flex-col">
+        <!-- Foto principal: es el LCP, por eso va sin animacion de entrada,
+             precargada en el head y con fetchpriority alto. -->
+        <div class="relative pt-20 lg:absolute lg:inset-0 lg:pt-0">
+            <picture>
+                <source type="image/avif" srcset="hero-invitacion-960.avif 960w, hero-invitacion-1672.avif 1672w" sizes="100vw">
+                <source type="image/webp" srcset="hero-invitacion-960.webp 960w, hero-invitacion-1672.webp 1672w" sizes="100vw">
+                <img src="hero-invitacion-1672.webp"
+                     alt="Sobre de invitación con sello de cera dorado junto a un teléfono que muestra la invitación digital de boda de María y Juan"
+                     width="1672" height="941" fetchpriority="high" decoding="async"
+                     class="hero-photo">
+            </picture>
+            <div class="hero-veil pointer-events-none absolute inset-0" aria-hidden="true"></div>
         </div>
 
-        <div class="relative z-10 mx-auto w-full max-w-7xl px-4 pb-24 pt-32 sm:px-6 md:pb-28 md:pt-36 lg:px-8">
-            <div class="grid items-center gap-14 md:grid-cols-2 md:gap-12 lg:gap-20">
-                <!-- Text Content -->
-                <div>
-                    <div class="reveal mb-6" style="--d:60ms">
-                        <span class="eyebrow">Invitaciones digitales para eventos</span>
-                    </div>
-                    <h1 class="reveal font-serif h-display-long font-semibold text-dark mb-7" style="--d:130ms">
-                        Invitaciones digitales para momentos que merecen <span class="text-gold-gradient">ser recordados</span>
-                    </h1>
-                    <div class="reveal measure mb-9 space-y-4 text-[1.0625rem] leading-[1.75] text-gray-600" style="--d:200ms">
-                        <p>
-                            Creamos invitaciones digitales modernas, elegantes e interactivas para bodas, cumpleaños, XV años, bautizos, graduaciones, aniversarios, eventos corporativos, celebraciones familiares y ocasiones especiales.
-                        </p>
-                        <p>
-                            Una experiencia diseñada para informar, emocionar y facilitar la organización de tus invitados desde cualquier dispositivo.
-                        </p>
-                    </div>
-                    <div class="reveal flex flex-col gap-3 sm:flex-row sm:items-center" style="--d:270ms">
-                        <a href="/paquetes" data-seccion="paquetes" class="btn-gold group inline-flex items-center justify-center gap-2 rounded-full bg-gold py-4 pl-8 pr-3 font-medium text-white shadow-gold transition-colors duration-300 hover:bg-gold-dark">
-                            Ver paquetes
-                            <span class="flex h-8 w-8 items-center justify-center rounded-full bg-white/20 transition-transform duration-500 ease-premium group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
-                                <i data-lucide="arrow-up-right" class="h-4 w-4"></i>
-                            </span>
-                        </a>
-                        <a href="/disenos" data-seccion="disenos" class="press inline-flex items-center justify-center rounded-full border border-gray-300 bg-white/60 px-8 py-4 font-medium text-dark transition-colors duration-300 ease-premium hover:border-gold hover:bg-white hover:text-gold-ink">
-                            Explorar diseños
-                        </a>
-                    </div>
+        <div class="relative z-10 w-full px-4 sm:px-6 lg:grid lg:flex-1 lg:grid-cols-[minmax(0,36rem)_1fr_11.5rem] lg:gap-8 lg:pb-10 lg:pl-[max(2.5rem,calc((100vw-90rem)/2+2rem))] lg:pr-4 lg:pt-28">
+            <!-- Text Content -->
+            <div class="-mt-6 lg:mt-0 lg:self-center">
+                <div class="reveal mb-5" style="--d:60ms">
+                    <span class="eyebrow">Invitaciones digitales para</span>
+                </div>
+                <h1 class="reveal font-serif font-semibold text-dark mb-6" style="--d:130ms">
+                    <span class="block h-display-long">Cada celebración tiene una historia.</span>
+                    <span class="mt-2 block text-[clamp(1.5rem,1.1rem+1.6vw,2.4rem)] font-medium leading-tight">Tu invitación es <span class="text-gold-gradient">el comienzo.</span></span>
+                </h1>
+                <p class="reveal measure mb-9 text-[1.0625rem] leading-[1.75] text-gray-600" style="--d:200ms">
+                    Diseños personalizados, modernos e interactivos para bodas, cumpleaños, XV años, bautizos, graduaciones, eventos corporativos y más. Sorprende a tus invitados y comparte tu evento de una manera única.
+                </p>
+                <div class="reveal flex flex-col gap-3 sm:flex-row sm:items-center" style="--d:270ms">
+                    <a href="/disenos" data-seccion="disenos" class="btn-gold group inline-flex items-center justify-center gap-2 rounded-full bg-gold py-4 pl-8 pr-3 font-medium text-white shadow-gold transition-colors duration-300 hover:bg-gold-dark">
+                        Explorar diseños
+                        <span class="flex h-8 w-8 items-center justify-center rounded-full bg-white/20 transition-transform duration-500 ease-premium group-hover:translate-x-0.5">
+                            <i data-lucide="arrow-right" class="h-4 w-4"></i>
+                        </span>
+                    </a>
+                    <a href="/proceso" data-seccion="proceso" class="press group inline-flex items-center justify-center gap-3 rounded-full border border-gold/60 bg-white/60 py-4 pl-4 pr-8 font-medium text-dark transition-colors duration-300 ease-premium hover:border-gold hover:bg-white hover:text-gold-ink">
+                        <span class="flex h-8 w-8 items-center justify-center rounded-full ring-1 ring-dark/70 transition-colors duration-300 group-hover:ring-gold">
+                            <i data-lucide="play" class="h-3.5 w-3.5 translate-x-px"></i>
+                        </span>
+                        Ver cómo funciona
+                    </a>
+                </div>
+                <p class="reveal mt-7 flex items-center gap-2 text-[0.8125rem] text-gray-500" style="--d:340ms">
+                    <i data-lucide="map-pin" class="h-4 w-4 flex-none text-gold-dark"></i>
+                    La Paz, Bolivia · Atención a todo el país
+                </p>
+            </div>
 
-                    <!-- Pilares del servicio -->
-                    <ul class="reveal mt-14 grid grid-cols-3 gap-5 border-t border-gray-200 pt-8 sm:gap-8" style="--d:340ms">
-                        <li>
-                            <i data-lucide="pen-tool" class="h-5 w-5 text-gold-dark"></i>
-                            <p class="mt-3 text-[0.8125rem] font-medium leading-snug text-dark sm:text-[0.9375rem]">Diseño personalizado</p>
+            <!-- Columna central vacia: deja ver el sobre y el telefono de la foto -->
+            <div class="hidden lg:block" aria-hidden="true"></div>
+
+            <!-- Carril de eventos. Para usar foto o video en una tarjeta,
+                 reemplaza el <i> de .ev-media por:
+                   <img src="evento-bodas.avif" alt="" width="368" height="242" loading="lazy" decoding="async">
+                 o
+                   <video src="evento-bodas.mp4" poster="evento-bodas.avif" muted loop playsinline preload="none" data-ev-video></video>
+                 Los videos solo se reproducen mientras el carril esta en pantalla. -->
+            <nav class="reveal relative mt-12 lg:mt-0" style="--d:400ms" aria-label="Tipos de eventos">
+                <div class="ev-rail lg:absolute lg:inset-0 lg:rounded-[1.25rem] lg:bg-white/30 lg:p-2 lg:ring-1 lg:ring-white/50" id="ev-rail">
+                    <ul class="ev-track -mx-4 px-4 sm:-mx-6 sm:px-6 lg:mx-0" id="ev-track">
+                        <li class="ev-card">
+                            <a href="/eventos" data-seccion="eventos" class="group block rounded-2xl bg-white p-1.5 shadow-md ring-1 ring-black/5">
+                                <span class="ev-media block" style="--ph:linear-gradient(140deg,#B48A4E,#3B2C1E)">
+                                    <i data-lucide="heart" class="absolute right-3 top-3 h-7 w-7 text-white/35"></i>
+                                    <span class="absolute inset-x-3 bottom-2.5 z-10 flex items-center justify-between gap-2 text-white">
+                                        <span class="text-[0.9375rem] font-medium leading-tight">Bodas</span>
+                                        <span class="flex h-7 w-7 flex-none items-center justify-center rounded-full bg-white text-dark transition-transform duration-500 ease-premium group-hover:translate-x-0.5"><i data-lucide="chevron-right" class="h-4 w-4"></i></span>
+                                    </span>
+                                </span>
+                            </a>
                         </li>
-                        <li>
-                            <i data-lucide="sparkles" class="h-5 w-5 text-gold-dark"></i>
-                            <p class="mt-3 text-[0.8125rem] font-medium leading-snug text-dark sm:text-[0.9375rem]">Experiencia interactiva</p>
+                        <li class="ev-card">
+                            <a href="/eventos" data-seccion="eventos" class="group block rounded-2xl bg-white p-1.5 shadow-md ring-1 ring-black/5">
+                                <span class="ev-media block" style="--ph:linear-gradient(140deg,#C98E8E,#4A2A2E)">
+                                    <i data-lucide="crown" class="absolute right-3 top-3 h-7 w-7 text-white/35"></i>
+                                    <span class="absolute inset-x-3 bottom-2.5 z-10 flex items-center justify-between gap-2 text-white">
+                                        <span class="text-[0.9375rem] font-medium leading-tight">XV años</span>
+                                        <span class="flex h-7 w-7 flex-none items-center justify-center rounded-full bg-white text-dark transition-transform duration-500 ease-premium group-hover:translate-x-0.5"><i data-lucide="chevron-right" class="h-4 w-4"></i></span>
+                                    </span>
+                                </span>
+                            </a>
                         </li>
-                        <li>
-                            <i data-lucide="share-2" class="h-5 w-5 text-gold-dark"></i>
-                            <p class="mt-3 text-[0.8125rem] font-medium leading-snug text-dark sm:text-[0.9375rem]">Fácil de compartir</p>
+                        <li class="ev-card">
+                            <a href="/eventos" data-seccion="eventos" class="group block rounded-2xl bg-white p-1.5 shadow-md ring-1 ring-black/5">
+                                <span class="ev-media block" style="--ph:linear-gradient(140deg,#D2A86E,#5A3A22)">
+                                    <i data-lucide="cake" class="absolute right-3 top-3 h-7 w-7 text-white/35"></i>
+                                    <span class="absolute inset-x-3 bottom-2.5 z-10 flex items-center justify-between gap-2 text-white">
+                                        <span class="text-[0.9375rem] font-medium leading-tight">Cumpleaños</span>
+                                        <span class="flex h-7 w-7 flex-none items-center justify-center rounded-full bg-white text-dark transition-transform duration-500 ease-premium group-hover:translate-x-0.5"><i data-lucide="chevron-right" class="h-4 w-4"></i></span>
+                                    </span>
+                                </span>
+                            </a>
+                        </li>
+                        <li class="ev-card">
+                            <a href="/eventos" data-seccion="eventos" class="group block rounded-2xl bg-white p-1.5 shadow-md ring-1 ring-black/5">
+                                <span class="ev-media block" style="--ph:linear-gradient(140deg,#A9A48C,#33352A)">
+                                    <i data-lucide="church" class="absolute right-3 top-3 h-7 w-7 text-white/35"></i>
+                                    <span class="absolute inset-x-3 bottom-2.5 z-10 flex items-center justify-between gap-2 text-white">
+                                        <span class="text-[0.9375rem] font-medium leading-tight">Bautizos</span>
+                                        <span class="flex h-7 w-7 flex-none items-center justify-center rounded-full bg-white text-dark transition-transform duration-500 ease-premium group-hover:translate-x-0.5"><i data-lucide="chevron-right" class="h-4 w-4"></i></span>
+                                    </span>
+                                </span>
+                            </a>
+                        </li>
+                        <li class="ev-card">
+                            <a href="/eventos" data-seccion="eventos" class="group block rounded-2xl bg-white p-1.5 shadow-md ring-1 ring-black/5">
+                                <span class="ev-media block" style="--ph:linear-gradient(140deg,#8E7A5C,#211C16)">
+                                    <i data-lucide="graduation-cap" class="absolute right-3 top-3 h-7 w-7 text-white/35"></i>
+                                    <span class="absolute inset-x-3 bottom-2.5 z-10 flex items-center justify-between gap-2 text-white">
+                                        <span class="text-[0.9375rem] font-medium leading-tight">Graduaciones</span>
+                                        <span class="flex h-7 w-7 flex-none items-center justify-center rounded-full bg-white text-dark transition-transform duration-500 ease-premium group-hover:translate-x-0.5"><i data-lucide="chevron-right" class="h-4 w-4"></i></span>
+                                    </span>
+                                </span>
+                            </a>
+                        </li>
+                        <li class="ev-card">
+                            <a href="/eventos" data-seccion="eventos" class="group block rounded-2xl bg-white p-1.5 shadow-md ring-1 ring-black/5">
+                                <span class="ev-media block" style="--ph:linear-gradient(140deg,#7C8291,#1F2229)">
+                                    <i data-lucide="briefcase" class="absolute right-3 top-3 h-7 w-7 text-white/35"></i>
+                                    <span class="absolute inset-x-3 bottom-2.5 z-10 flex items-center justify-between gap-2 text-white">
+                                        <span class="text-[0.9375rem] font-medium leading-tight">Eventos corporativos</span>
+                                        <span class="flex h-7 w-7 flex-none items-center justify-center rounded-full bg-white text-dark transition-transform duration-500 ease-premium group-hover:translate-x-0.5"><i data-lucide="chevron-right" class="h-4 w-4"></i></span>
+                                    </span>
+                                </span>
+                            </a>
                         </li>
                     </ul>
-                    <p class="reveal mt-7 flex items-center gap-2 text-[0.8125rem] text-gray-500" style="--d:400ms">
-                        <i data-lucide="map-pin" class="h-4 w-4 flex-none text-gold-dark"></i>
-                        La Paz, Bolivia · Atención a todo el país
-                    </p>
                 </div>
-
-                <!-- Hero Image -->
-                <div class="reveal relative" style="--d:400ms">
-                    <div class="relative mx-auto w-full max-w-[28rem] lg:max-w-[32rem]">
-                        <!-- Tres planos: bandeja dorada girada, marco blanco y lamina.
-                             Cada uno con su propio radio, concentrico hacia dentro. -->
-                        <div class="absolute -inset-3 -rotate-2 rounded-[2rem] bg-gold/10 ring-1 ring-gold/15" aria-hidden="true"></div>
-                        <div class="hero-frame relative rounded-[1.75rem] bg-white/80 p-2 ring-1 ring-gray-200/80 backdrop-blur-sm">
-                            <img src="header%20Boda%20%20imagen.avif"
-                                 alt="Invitación de boda digital abierta en un portátil, con el formulario de confirmación en dorado sobre fondo oscuro"
-                                 width="1254" height="1254" fetchpriority="high" decoding="async"
-                                 class="hero-shot w-full rounded-[1.25rem]">
-                        </div>
-
-                        <!-- Floating Badge -->
-                        <div class="absolute -bottom-5 left-2 flex items-center gap-3 rounded-2xl border border-gray-200/70 bg-white/90 p-3.5 pr-5 shadow-lg backdrop-blur-md sm:-left-6">
-                            <span class="flex h-11 w-11 flex-none items-center justify-center rounded-full bg-gold-wash ring-1 ring-gold/20">
-                                <i data-lucide="heart" class="h-5 w-5 text-gold-ink"></i>
-                            </span>
-                            <span class="leading-tight">
-                                <span class="block font-medium text-dark">Diseño personalizado</span>
-                                <span class="block text-[0.8125rem] text-gray-500">Para cada tipo de evento</span>
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            </nav>
         </div>
 
-        <!-- Scroll Indicator -->
-        <a href="/servicios" data-seccion="servicios" aria-label="Ir a la siguiente sección"
-           class="group absolute bottom-7 left-1/2 z-10 hidden -translate-x-1/2 flex-col items-center gap-2 text-gold-ink sm:flex">
-            <span class="text-[10px] font-medium uppercase tracking-[0.28em]">Descubre</span>
-            <span class="flex h-9 w-9 items-center justify-center rounded-full border border-gold/30 transition-transform duration-700 ease-premium group-hover:translate-y-1">
-                <i data-lucide="chevron-down" class="h-4 w-4"></i>
-            </span>
-        </a>
+        <!-- Franja de beneficios -->
+        <div class="relative z-10 mx-auto w-full max-w-7xl px-4 pb-14 pt-10 sm:px-6 lg:px-8 lg:pb-8 lg:pt-0">
+            <ul class="reveal grid grid-cols-1 gap-6 rounded-[1.5rem] bg-white/95 p-6 shadow-xl ring-1 ring-gray-200/70 sm:grid-cols-2 lg:grid-cols-4 lg:gap-0 lg:divide-x lg:divide-gray-200 lg:p-7" style="--d:460ms">
+                <li class="flex items-center gap-4 lg:px-6">
+                    <span class="flex h-14 w-14 flex-none items-center justify-center rounded-full bg-gold-wash"><i data-lucide="palette" class="h-6 w-6 text-gold-dark"></i></span>
+                    <span class="leading-snug"><span class="block font-medium text-dark">Diseño personalizado</span><span class="block text-[0.875rem] text-gray-500">A tu estilo y temática</span></span>
+                </li>
+                <li class="flex items-center gap-4 lg:px-6">
+                    <span class="flex h-14 w-14 flex-none items-center justify-center rounded-full bg-gold-wash"><i data-lucide="smartphone" class="h-6 w-6 text-gold-dark"></i></span>
+                    <span class="leading-snug"><span class="block font-medium text-dark">Fácil de compartir</span><span class="block text-[0.875rem] text-gray-500">Por WhatsApp, redes sociales o código QR</span></span>
+                </li>
+                <li class="flex items-center gap-4 lg:px-6">
+                    <span class="flex h-14 w-14 flex-none items-center justify-center rounded-full bg-gold-wash"><i data-lucide="users" class="h-6 w-6 text-gold-dark"></i></span>
+                    <span class="leading-snug"><span class="block font-medium text-dark">Confirmación de asistencia</span><span class="block text-[0.875rem] text-gray-500">Organiza a tus invitados sin complicaciones</span></span>
+                </li>
+                <li class="flex items-center gap-4 lg:px-6">
+                    <span class="flex h-14 w-14 flex-none items-center justify-center rounded-full bg-gold-wash"><i data-lucide="star" class="h-6 w-6 text-gold-dark"></i></span>
+                    <span class="leading-snug"><span class="block font-medium text-dark">Para todo tipo de eventos</span><span class="block text-[0.875rem] text-gray-500">Bodas, cumpleaños, XV años, bautizos, graduaciones y más</span></span>
+                </li>
+            </ul>
+        </div>
     </section>
 
     <!-- Servicios: la experiencia digital -->
@@ -2102,7 +2240,7 @@
                             </div>
                             <div>
                                 <h3 class="font-medium text-dark mb-1">Correo</h3>
-                                <p><a href="mailto:diegogonzales@publicist.com" class="break-all text-gray-600 transition-colors hover:text-gold-ink">diegogonzales@publicist.com</a></p>
+                                <p><a href="mailto:digitalweddingbolivia@gmail.com" class="break-all text-gray-600 transition-colors hover:text-gold-ink">digitalweddingbolivia@gmail.com</a></p>
                             </div>
                         </div>
 
@@ -2310,9 +2448,9 @@
                             </a>
                         </li>
                         <li>
-                            <a href="mailto:diegogonzales@publicist.com" class="flex items-center gap-2.5 transition-colors duration-300 hover:text-gold-light">
+                            <a href="mailto:digitalweddingbolivia@gmail.com" class="flex items-center gap-2.5 transition-colors duration-300 hover:text-gold-light">
                                 <i data-lucide="mail" class="h-4 w-4 flex-none text-gold"></i>
-                                <span class="break-all">diegogonzales@publicist.com</span>
+                                <span class="break-all">digitalweddingbolivia@gmail.com</span>
                             </a>
                         </li>
                         <li class="flex items-center gap-2.5">
@@ -2384,6 +2522,44 @@
                 navbar.classList.toggle('shadow-sm', !atTop);
                 navbar.classList.toggle('border-transparent', atTop);
             }, { threshold: 0 }).observe(sentinel);
+        }
+
+        /* -----------------------------------------------------------
+           Carril de eventos del hero: duplica la lista para el bucle
+           continuo (la copia queda fuera del arbol de accesibilidad y del
+           tabulador) y lo pausa, junto con sus videos, fuera de pantalla.
+           ----------------------------------------------------------- */
+        var evRail = document.getElementById('ev-rail');
+        var evTrack = document.getElementById('ev-track');
+
+        if (evRail && evTrack) {
+            if (!reduceMotion.matches) {
+                Array.prototype.forEach.call(evTrack.children, function (card) {
+                    var copy = card.cloneNode(true);
+                    copy.classList.add('ev-clone');
+                    copy.setAttribute('aria-hidden', 'true');
+                    copy.setAttribute('inert', '');
+                    copy.querySelectorAll('a').forEach(function (a) { a.tabIndex = -1; });
+                    evTrack.appendChild(copy);
+                });
+            }
+
+            var evVideos = evTrack.querySelectorAll('video[data-ev-video]');
+            var setEvPlaying = function (on) {
+                evRail.classList.toggle('is-paused', !on);
+                evVideos.forEach(function (v) {
+                    if (on && !reduceMotion.matches) { v.play().catch(function () {}); }
+                    else { v.pause(); }
+                });
+            };
+
+            if ('IntersectionObserver' in window) {
+                new IntersectionObserver(function (entries) {
+                    setEvPlaying(entries[0].isIntersecting);
+                }, { threshold: 0 }).observe(evRail);
+            } else {
+                setEvPlaying(true);
+            }
         }
 
         /* -----------------------------------------------------------

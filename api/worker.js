@@ -37,13 +37,13 @@
  *  domain restriction" y el correo nunca se envía. Por eso los
  *  valores por defecto de abajo apuntan a esa cuenta.
  *
- *  PARA RECIBIR EN OTRA DIRECCIÓN (p. ej. publicist.com):
- *  ──────────────────────────────────────────────────────
+ *  PARA RECIBIR EN OTRA DIRECCIÓN (p. ej. digitalweddingbolivia@gmail.com):
+ *  ──────────────────────────────────────────────────────────────────────
  *  1. Resend → Domains → verificar send.digitalweddingbolivia.dpdns.org
  *     (1 TXT de DKIM + 2 CNAME de SPF en Cloudflare, todos "DNS only").
  *  2. Con el dominio en Verified, añadir en el Worker:
  *     MAIL_FROM = Digital Wedding Bolivia <contacto@send.digitalweddingbolivia.dpdns.org>
- *     MAIL_TO   = diegogonzales@publicist.com
+ *     MAIL_TO   = digitalweddingbolivia@gmail.com
  *  No hay que tocar este código: las variables mandan sobre los
  *  valores por defecto.
  * ============================================================
