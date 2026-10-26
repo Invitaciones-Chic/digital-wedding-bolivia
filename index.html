@@ -64,6 +64,14 @@
           "areaServed": { "@type": "Country", "name": "Bolivia" },
           "knowsLanguage": "es",
           "sameAs": ["https://www.facebook.com/DigitalWeddingBolivia"],
+          "subjectOf": {
+            "@type": "CreativeWork",
+            "name": "Diseños y colores de invitación para bodas",
+            "description": "Catálogo de invitaciones digitales para bodas con siete diseños florales, del DWB-001 al DWB-007, que se piden por código.",
+            "url": "https://heyzine.com/flip-book/d3beece82d.html",
+            "image": "https://digitalweddingbolivia.dpdns.org/catalogo-bodas.webp",
+            "inLanguage": "es"
+          },
           "contactPoint": {
             "@type": "ContactPoint",
             "contactType": "customer service",
@@ -936,6 +944,28 @@
         }
 
         /* ============================================================
+           VISOR DEL CATALOGO (flipbook)
+           ============================================================ */
+        .flipbook-dialog {
+            width: min(72rem, calc(100vw - 2rem));
+            height: min(52rem, calc(100dvh - 2rem));
+            max-width: none;
+            max-height: none;
+            padding: 0;
+            border: 0;
+            border-radius: 1.25rem;
+            overflow: hidden;
+            box-shadow: 0 40px 90px -30px rgba(28, 26, 22, .5);
+        }
+        .flipbook-dialog[open] { display: flex; flex-direction: column; }
+        .flipbook-dialog::backdrop { background: rgba(28, 26, 22, .72); }
+        html:has(.flipbook-dialog[open]) { overflow: hidden; }
+        /* En el celular el libro necesita toda la pantalla para leerse. */
+        @media (max-width: 639px) {
+            .flipbook-dialog { width: 100vw; height: 100dvh; border-radius: 0; }
+        }
+
+        /* ============================================================
            MENU MOVIL
            ============================================================ */
         .mobile-panel {
@@ -1601,6 +1631,66 @@
                             class="flex h-11 w-11 items-center justify-center rounded-full border border-gray-200 bg-white text-dark shadow-sm transition-control duration-300 ease-premium hover:border-gold hover:bg-gold hover:text-white hover:shadow-gold">
                         <i data-lucide="arrow-right" class="h-4 w-4"></i>
                     </button>
+                </div>
+            </div>
+
+            <!-- Catalogo de bodas (flipbook de Heyzine). El iframe no se carga
+                 con la pagina: pesa varios MB y Google atribuye su contenido a
+                 heyzine.com, asi que lo que posiciona es el texto de este
+                 bloque. Sin JS, el enlace abre el flipbook en una pestana. -->
+            <div id="catalogo-bodas" class="reveal mx-auto mt-20 grid max-w-5xl scroll-mt-28 items-center gap-10 rounded-[1.75rem] bg-gray-50 p-5 ring-1 ring-gray-200/70 sm:p-8 md:mt-24 md:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] md:gap-12 md:p-10">
+                <a href="https://heyzine.com/flip-book/d3beece82d.html" target="_blank" rel="noopener" data-flipbook
+                   class="group relative block overflow-hidden rounded-2xl shadow-lg ring-1 ring-black/5"
+                   aria-label="Abrir el catálogo de diseños y colores de invitación para bodas">
+                    <picture>
+                        <source type="image/avif" srcset="catalogo-bodas.avif">
+                        <img src="catalogo-bodas.webp" width="720" height="899" loading="lazy" decoding="async"
+                             alt="Portada del catálogo de invitaciones digitales para bodas de Digital Wedding Bolivia, con siete diseños florales del DWB-001 al DWB-007"
+                             class="block w-full transition-transform duration-700 ease-premium group-hover:scale-[1.03]">
+                    </picture>
+                    <span class="absolute inset-x-4 bottom-4 flex items-center justify-center gap-2 rounded-full bg-white/95 py-3 text-sm font-medium text-dark shadow-md transition-colors duration-300 group-hover:bg-gold group-hover:text-white">
+                        <i data-lucide="book-open" class="h-4 w-4"></i>
+                        Hojear catálogo
+                    </span>
+                </a>
+
+                <div>
+                    <span class="eyebrow">Catálogo para bodas</span>
+                    <h3 class="mt-5 font-serif text-[clamp(1.6rem,1.2rem+1.4vw,2.25rem)] font-semibold leading-tight text-dark">
+                        Diseños y colores de invitación para bodas
+                    </h3>
+                    <p class="mt-4 text-[1.0625rem] leading-[1.75] text-gray-600">
+                        Hojea nuestro catálogo de invitaciones digitales para bodas y elige el diseño ideal para tu gran día. Cada modelo tiene un código: envíanoslo por WhatsApp y lo personalizamos con sus nombres, fecha y datos del evento.
+                    </p>
+
+                    <ul class="mt-6 grid gap-x-6 gap-y-2.5 text-[0.9375rem] text-gray-700 sm:grid-cols-2">
+                        <li class="flex items-center gap-2.5"><span class="h-3.5 w-3.5 flex-none rounded-full ring-1 ring-black/10" style="background:#D9B66A"></span><span><span class="tnum font-medium text-dark">DWB-001</span> Dorado blanco</span></li>
+                        <li class="flex items-center gap-2.5"><span class="h-3.5 w-3.5 flex-none rounded-full ring-1 ring-black/10" style="background:#1F2F5A"></span><span><span class="tnum font-medium text-dark">DWB-002</span> Azul elegante</span></li>
+                        <li class="flex items-center gap-2.5"><span class="h-3.5 w-3.5 flex-none rounded-full ring-1 ring-black/10" style="background:#5E1A24"></span><span><span class="tnum font-medium text-dark">DWB-003</span> Vino sofisticado</span></li>
+                        <li class="flex items-center gap-2.5"><span class="h-3.5 w-3.5 flex-none rounded-full ring-1 ring-black/10" style="background:#E3A6A8"></span><span><span class="tnum font-medium text-dark">DWB-004</span> Rosado romántico</span></li>
+                        <li class="flex items-center gap-2.5"><span class="h-3.5 w-3.5 flex-none rounded-full ring-1 ring-black/10" style="background:#2F4A34"></span><span><span class="tnum font-medium text-dark">DWB-005</span> Verde natural</span></li>
+                        <li class="flex items-center gap-2.5"><span class="h-3.5 w-3.5 flex-none rounded-full ring-1 ring-black/10" style="background:#6B3F8C"></span><span><span class="tnum font-medium text-dark">DWB-006</span> Morado elegante</span></li>
+                        <li class="flex items-center gap-2.5"><span class="h-3.5 w-3.5 flex-none rounded-full ring-1 ring-black/10" style="background:#1E7F82"></span><span><span class="tnum font-medium text-dark">DWB-007</span> Turquesa moderno</span></li>
+                    </ul>
+
+                    <div class="mt-8 flex flex-col gap-3 whitespace-nowrap sm:flex-row sm:flex-wrap">
+                        <a href="https://heyzine.com/flip-book/d3beece82d.html" target="_blank" rel="noopener" data-flipbook
+                           class="btn-gold group inline-flex items-center justify-center gap-2 rounded-full bg-gold py-3.5 pl-7 pr-3 font-medium text-white shadow-gold transition-colors duration-300 hover:bg-gold-dark">
+                            Ver catálogo
+                            <span class="flex h-8 w-8 items-center justify-center rounded-full bg-white/20"><i data-lucide="book-open" class="h-4 w-4"></i></span>
+                        </a>
+                        <a href="https://wa.me/59178216419?text=Hola%2C%20quiero%20la%20invitaci%C3%B3n%20de%20boda%20con%20el%20c%C3%B3digo%20DWB-" target="_blank" rel="noopener"
+                           class="press inline-flex items-center justify-center gap-2 rounded-full border border-gray-300 bg-white px-7 py-3.5 font-medium text-dark transition-colors duration-300 ease-premium hover:border-gold hover:text-gold-ink">
+                            <i data-lucide="message-circle" class="h-4 w-4"></i>
+                            Pedir por código
+                        </a>
+                        <button type="button" data-share-catalogo
+                                class="press inline-flex items-center justify-center gap-2 rounded-full border border-gray-300 bg-white px-6 py-3.5 font-medium text-dark transition-colors duration-300 ease-premium hover:border-gold hover:text-gold-ink">
+                            <i data-lucide="share-2" class="h-4 w-4"></i>
+                            <span data-share-label>Compartir diseños</span>
+                        </button>
+                    </div>
+                    <p class="sr-only" aria-live="polite" data-share-status></p>
                 </div>
             </div>
 
@@ -2505,6 +2595,29 @@
         </div>
     </div>
 
+    <!-- Visor del catalogo: el iframe recibe su src recien al abrirse. -->
+    <dialog id="flipbook-dialog" class="flipbook-dialog" aria-labelledby="flipbook-title">
+        <div class="flex items-center justify-between gap-3 border-b border-gray-200 bg-white px-4 py-3 sm:px-5">
+            <p id="flipbook-title" class="truncate font-serif text-[1.0625rem] font-semibold text-dark">Diseños y colores de invitación para bodas</p>
+            <div class="flex flex-none items-center gap-1">
+                <a href="https://heyzine.com/flip-book/d3beece82d.html" target="_blank" rel="noopener"
+                   class="hidden items-center gap-1.5 rounded-full px-3 py-2 text-sm text-gray-600 transition-colors hover:bg-gray-100 hover:text-dark sm:inline-flex">
+                    Abrir en pestaña nueva <i data-lucide="arrow-up-right" class="h-4 w-4"></i>
+                </a>
+                <button type="button" data-share-catalogo aria-label="Compartir diseños"
+                        class="inline-flex items-center gap-1.5 rounded-full px-3 py-2 text-sm text-gray-600 transition-colors hover:bg-gray-100 hover:text-dark">
+                    <i data-lucide="share-2" class="h-4 w-4"></i> <span data-share-label class="hidden sm:inline">Compartir</span>
+                </button>
+                <button type="button" id="flipbook-close" aria-label="Cerrar catálogo"
+                        class="flex h-10 w-10 items-center justify-center rounded-full text-dark transition-colors hover:bg-gray-100">
+                    <i data-lucide="x" class="h-5 w-5"></i>
+                </button>
+            </div>
+        </div>
+        <iframe id="flipbook-frame" title="Catálogo de diseños y colores de invitación para bodas"
+                allowfullscreen class="block h-full w-full flex-1 border-0 bg-gray-100"></iframe>
+    </dialog>
+
     <script>
     (function () {
         'use strict';
@@ -2571,6 +2684,72 @@
                 setEvPlaying(true);
             }
         }
+
+        /* -----------------------------------------------------------
+           Catalogo de bodas: abre el flipbook en un dialog en vez de
+           sacar al visitante del sitio. El iframe se pide al primer clic.
+           ----------------------------------------------------------- */
+        var fbDialog = document.getElementById('flipbook-dialog');
+        var fbFrame = document.getElementById('flipbook-frame');
+
+        if (fbDialog && fbFrame && typeof fbDialog.showModal === 'function') {
+            document.querySelectorAll('[data-flipbook]').forEach(function (link) {
+                link.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    if (!fbFrame.src) { fbFrame.src = link.href; }
+                    fbDialog.showModal();
+                });
+            });
+            document.getElementById('flipbook-close').addEventListener('click', function () {
+                fbDialog.close();
+            });
+            // Clic en el fondo oscuro: el dialog solo lo recibe fuera de su caja.
+            fbDialog.addEventListener('click', function (e) {
+                if (e.target === fbDialog) { fbDialog.close(); }
+            });
+        }
+
+        /* -----------------------------------------------------------
+           Compartir el catalogo: hoja nativa del sistema donde exista
+           (celulares), y si no, copia el enlace. Comparte la URL del sitio
+           y no la de Heyzine, para que las visitas lleguen aqui.
+           ----------------------------------------------------------- */
+        var shareData = {
+            title: 'Diseños y colores de invitación para bodas | Digital Wedding Bolivia',
+            text: 'Mira estos diseños de invitaciones digitales para bodas y elige tu favorito por código:',
+            url: 'https://digitalweddingbolivia.dpdns.org/#catalogo-bodas'
+        };
+        var shareStatus = document.querySelector('[data-share-status]');
+
+        document.querySelectorAll('[data-share-catalogo]').forEach(function (btn) {
+            var label = btn.querySelector('[data-share-label]');
+            var original = label ? label.textContent : '';
+            var avisar = function (texto) {
+                if (shareStatus) { shareStatus.textContent = texto; }
+                if (!label) { return; }
+                label.textContent = texto;
+                setTimeout(function () { label.textContent = original; }, 2200);
+            };
+            var porWhatsApp = function (enlace) {
+                window.open('https://wa.me/?text=' + encodeURIComponent(enlace), '_blank', 'noopener');
+            };
+
+            btn.addEventListener('click', function () {
+                if (navigator.share) {
+                    // Cancelar la hoja de compartir tambien rechaza: no es un error.
+                    navigator.share(shareData).catch(function () {});
+                    return;
+                }
+                var enlace = shareData.text + ' ' + shareData.url;
+                if (navigator.clipboard && window.isSecureContext) {
+                    navigator.clipboard.writeText(enlace).then(function () {
+                        avisar('¡Enlace copiado!');
+                    }, function () { porWhatsApp(enlace); });
+                } else {
+                    porWhatsApp(enlace);
+                }
+            });
+        });
 
         /* -----------------------------------------------------------
            Menu movil

@@ -21,6 +21,7 @@ Cada invitación es una página web diseñada para el evento, que se comparte co
 ## Páginas
 
 - [Inicio](https://digitalweddingbolivia.dpdns.org/): presentación, diseños, portafolio, paquetes, proceso y preguntas frecuentes.
+- [Catálogo de bodas](https://heyzine.com/flip-book/d3beece82d.html): flipbook con siete diseños de invitación para bodas que se piden por código: DWB-001 Dorado blanco, DWB-002 Azul elegante, DWB-003 Vino sofisticado, DWB-004 Rosado romántico, DWB-005 Verde natural, DWB-006 Morado elegante y DWB-007 Turquesa moderno.
 - [Paquetes](https://digitalweddingbolivia.dpdns.org/#paquetes): comparación de Esencial, Premium y VIP.
 - [Preguntas frecuentes](https://digitalweddingbolivia.dpdns.org/#preguntas)
 - [Contacto](https://digitalweddingbolivia.dpdns.org/#contacto): formulario de cotización.
