@@ -44,7 +44,7 @@
           "@type": "ProfessionalService",
           "@id": "https://digitalweddingbolivia.dpdns.org/#negocio",
           "name": "Digital Wedding Bolivia",
-          "description": "Invitaciones digitales personalizadas para bodas, cumpleaños, XV años, bautizos, graduaciones, aniversarios, eventos corporativos y otras celebraciones. Diseño a medida, confirmación de asistencia y una invitación fácil de compartir por WhatsApp, redes sociales o código QR.",
+          "description": "Invitaciones digitales personalizadas para bodas, cumpleaños, XV años, baby showers, bautizos, graduaciones, aniversarios, eventos corporativos, festividades bolivianas y otras celebraciones. Diseño a medida, confirmación de asistencia y una invitación fácil de compartir por WhatsApp, redes sociales o código QR.",
           "url": "https://digitalweddingbolivia.dpdns.org/",
           "logo": "https://digitalweddingbolivia.dpdns.org/logo-dw.png",
           "image": [
@@ -72,6 +72,69 @@
             "image": "https://digitalweddingbolivia.dpdns.org/catalogo-bodas.webp",
             "inLanguage": "es"
           },
+          "workExample": [
+              {
+                "@type": "CreativeWork",
+                "name": "Demo de invitación de boda: Sobre botánico",
+                "description": "Sobre animado, música, cuenta regresiva y confirmación de asistencia.",
+                "url": "https://invitacion-001.dwb-demo.workers.dev/",
+                "image": "https://digitalweddingbolivia.dpdns.org/assets/demos/dwb-001.webp",
+                "inLanguage": "es"
+              },
+              {
+                "@type": "CreativeWork",
+                "name": "Demo de invitación de boda: Arco esmeralda",
+                "description": "Medallón que se abre, música, calendario y confirmación de asistencia.",
+                "url": "https://invitacion-002.dwb-demo.workers.dev/",
+                "image": "https://digitalweddingbolivia.dpdns.org/assets/demos/dwb-002.webp",
+                "inLanguage": "es"
+              },
+              {
+                "@type": "CreativeWork",
+                "name": "Demo de invitación de boda: Jardín de camelias",
+                "description": "Sobre floral, programa, galería y confirmación de asistencia.",
+                "url": "https://invitacion-003.dwb-demo.workers.dev/",
+                "image": "https://digitalweddingbolivia.dpdns.org/assets/demos/dwb-003.webp",
+                "inLanguage": "es"
+              },
+              {
+                "@type": "CreativeWork",
+                "name": "Demo de invitación de boda: Pase de abordar",
+                "description": "Anillos animados, itinerario de viaje y confirmación de asistencia.",
+                "url": "https://invitacion-004.dwb-demo.workers.dev/",
+                "image": "https://digitalweddingbolivia.dpdns.org/assets/demos/dwb-004.webp",
+                "inLanguage": "es"
+              },
+              {
+                "@type": "CreativeWork",
+                "name": "Demo de invitación de boda: Bajo las estrellas",
+                "description": "Intro de constelación, música e itinerario.",
+                "url": "https://invitacion-005.dwb-demo.workers.dev/",
+                "image": "https://digitalweddingbolivia.dpdns.org/assets/demos/dwb-005.webp",
+                "inLanguage": "es"
+              },
+              {
+                "@type": "CreativeWork",
+                "name": "Demo de invitación de boda: Lacre negro (premium)",
+                "description": "Sello de lacre en video, padrinos, mapas y galería.",
+                "url": "https://premium-001.dwb-demo.workers.dev/",
+                "image": "https://digitalweddingbolivia.dpdns.org/assets/demos/dwb-006.webp",
+                "inLanguage": "es"
+              }
+          ],
+          "knowsAbout": [
+            "Invitaciones digitales",
+            "Bodas y matrimonios",
+            "Cumpleaños y XV años",
+            "Baby showers y nacimientos",
+            "Bautizos, primeras comuniones y confirmaciones",
+            "Graduaciones y promociones",
+            "Aniversarios y homenajes",
+            "Eventos empresariales",
+            "Festividades culturales de Bolivia",
+            "Tradiciones familiares bolivianas",
+            "Fiestas y eventos deportivos"
+          ],
           "contactPoint": {
             "@type": "ContactPoint",
             "contactType": "customer service",
@@ -207,7 +270,6 @@
 
             --ease: cubic-bezier(0.32, 0.72, 0, 1);
             --dur: 560ms;
-            --dur-carousel: 700ms;
             --dur-fast: 220ms;
 
             /* Margen lateral compartido por el menu y el hero en desktop: crece
@@ -431,422 +493,340 @@
         }
 
         /* ============================================================
-           CARRUSEL
+           CARRUSEL DE TIPOS DE EVENTO
+           Lista de chips a la izquierda y pila de tarjetas a la derecha.
+           El JS solo pone --d (distancia al activo) y data-state; todo
+           el movimiento es transform y opacity.
            ============================================================ */
-        .carousel-container {
-            position: relative;
-            /* Contexto propio para que el halo quede detras de las tarjetas
-               y no del fondo de la seccion. */
-            isolation: isolate;
-        }
-        /* Luz calida tras la pista: es el dorado del sistema, muy diluido,
-           no un resplandor generico. */
-        .carousel-container::before {
-            content: '';
-            position: absolute;
-            z-index: -1;
-            inset: -2rem -1rem 3rem;
-            pointer-events: none;
-            background:
-                radial-gradient(52% 58% at 50% 44%, rgba(201, 162, 39, .22), transparent 68%),
-                radial-gradient(88% 74% at 50% 52%, rgba(227, 206, 147, .18), transparent 76%);
-            animation: halo-breath 9s var(--ease) infinite alternate;
-        }
-        @keyframes halo-breath {
-            from { opacity: .68; }
-            to   { opacity: 1; }
-        }
-        /* Cada diseno lleva su propia sombra tenida de oro, no gris. */
-        .carousel-slide .card-hover {
-            box-shadow:
-                0 20px 46px -26px rgba(166, 131, 26, .5),
-                0 2px 10px -4px rgba(28, 26, 22, .1);
-        }
-        @media (hover: hover) {
-            /* Al pasar el cursor el halo se concentra en la tarjeta. */
-            .carousel-slide .card-hover:hover {
-                box-shadow:
-                    0 28px 60px -28px rgba(166, 131, 26, .65),
-                    0 4px 14px -6px rgba(28, 26, 22, .14);
-            }
-        }
-        .carousel-viewport {
+        .fc {
+            display: grid;
             overflow: hidden;
-            /* Deja respirar la sombra de las tarjetas al desplazarse. */
-            margin: -1rem;
-            padding: 1rem;
-        }
-        .carousel-track {
-            display: flex;
-            /* Paso largo y suave: el carrusel se mueve solo, no reacciona a un clic. */
-            transition: transform var(--dur-carousel) var(--ease);
-        }
-        /* Salto sin animacion: es lo que vuelve invisible la costura del bucle. */
-        .carousel-track.is-instant { transition: none; }
-        .carousel-slide {
-            min-width: 100%;
-            padding: 0 .625rem;
-        }
-        @media (min-width: 768px) {
-            .carousel-slide { min-width: 50%; }
+            border-radius: 2.25rem;
+            border: 1px solid var(--line);
+            background: var(--surface-2);
+            box-shadow: 0 34px 80px -46px rgba(166, 131, 26, .55);
         }
         @media (min-width: 1024px) {
-            .carousel-slide { min-width: 33.3333%; }
-        }
-
-        /* Los puntos escalan en vez de cambiar de ancho: sin recalculo de layout. */
-        .dot {
-            width: .5rem;
-            height: .5rem;
-            border-radius: 999px;
-            background: var(--line);
-            transition: transform var(--dur-fast) var(--ease),
-                        background-color var(--dur-fast) var(--ease);
-        }
-        .dot[aria-current="true"] {
-            background: var(--gold);
-            transform: scale(1.55);
-        }
-
-        /* ============================================================
-           CARRUSEL DE PORTAFOLIO - solo CSS
-           El estado vive en los radios: sin JS el carrusel sigue siendo
-           navegable, y el desplazamiento solo anima transform.
-           ============================================================ */
-        .pf-carousel { position: relative; }
-
-        /* Ocultos a la vista pero enfocables: con teclado se recorren con flechas.
-           Van anclados junto a las miniaturas: si quedaran arriba, al enfocarlos
-           el navegador saltaria al inicio del carrusel en cada clic. */
-        .pf-carousel > input {
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            width: 1px;
-            height: 1px;
-            margin: -1px;
-            padding: 0;
-            border: 0;
-            overflow: hidden;
-            clip: rect(0 0 0 0);
-            clip-path: inset(50%);
-        }
-
-        .pf-viewport { overflow: hidden; }
-
-        .pf-track {
-            display: flex;
-            list-style: none;
-            margin: 0;
-            padding: 0;
-            transition: transform var(--dur) var(--ease);
-        }
-        /* El padding deja respirar la sombra dentro del recorte del viewport. */
-        .pf-slide { flex: 0 0 100%; min-width: 100%; padding: .25rem 1rem 2rem; }
-
-        .pf-carousel > input:nth-of-type(1):checked ~ .pf-viewport .pf-track { transform: translateX(0%); }
-        .pf-carousel > input:nth-of-type(2):checked ~ .pf-viewport .pf-track { transform: translateX(-100%); }
-        .pf-carousel > input:nth-of-type(3):checked ~ .pf-viewport .pf-track { transform: translateX(-200%); }
-        .pf-carousel > input:nth-of-type(4):checked ~ .pf-viewport .pf-track { transform: translateX(-300%); }
-        .pf-carousel > input:nth-of-type(5):checked ~ .pf-viewport .pf-track { transform: translateX(-400%); }
-
-        .pf-figure {
-            margin: 0;
-            display: grid;
-            gap: 1.75rem;
-            align-items: center;
-        }
-        @media (min-width: 768px) {
-            .pf-figure {
-                grid-template-columns: clamp(15rem, 32%, 24rem) minmax(0, 1fr);
-                gap: 3.25rem;
+            .fc {
+                grid-template-columns: 40% 1fr;
+                border-radius: 3.5rem;
+                min-height: 40rem;
             }
         }
 
-        /* La imagen conserva su relacion 4:5 nativa: no se recorta nada. */
-        .pf-media {
+        .fc-list {
+            --step: 4.25rem;
+            --x: -50%;
             position: relative;
-            aspect-ratio: 4 / 5;
-            border-radius: 1.25rem;
+            min-height: 22rem;
             overflow: hidden;
-            background: var(--surface);
-            border: 1px solid var(--line);
-            box-shadow: 0 24px 50px -20px rgba(28, 26, 22, .18);
+            background:
+                radial-gradient(70% 45% at 30% 50%, rgba(201, 162, 39, .16), transparent 70%),
+                var(--ink);
         }
-        /* Es un boton, no un div: reseteamos lo que aporta el navegador. */
-        .pf-media {
-            display: block;
+        @media (min-width: 1024px) {
+            .fc-list { --x: 0%; min-height: 0; }
+        }
+        /* Fundidos arriba y abajo: los chips entran y salen sin corte. */
+        .fc-list::before,
+        .fc-list::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            height: 5rem;
+            z-index: 2;
+            pointer-events: none;
+        }
+        .fc-list::before { top: 0; background: linear-gradient(var(--ink), rgba(28, 26, 22, 0)); }
+        .fc-list::after { bottom: 0; background: linear-gradient(rgba(28, 26, 22, 0), var(--ink)); }
+
+        .fc-chips { margin: 0; padding: 0; list-style: none; }
+        .fc-chip {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            max-width: calc(100% - 2rem);
+            transform: translate(var(--x), calc(-50% + var(--d, 0) * var(--step)));
+            transition: transform 900ms var(--ease), opacity 700ms var(--ease);
+        }
+        @media (min-width: 1024px) {
+            .fc-chip { left: clamp(2.5rem, 5vw, 4rem); max-width: calc(100% - 5rem); }
+        }
+        .fc-chip-btn {
+            display: flex;
+            align-items: center;
+            gap: .875rem;
+            max-width: 100%;
+            padding: .9rem 1.6rem;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, .18);
+            color: rgba(255, 255, 255, .6);
+            font-size: .8125rem;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            white-space: nowrap;
+            transition: color var(--dur) var(--ease),
+                        background-color var(--dur) var(--ease),
+                        border-color var(--dur) var(--ease);
+        }
+        .fc-chip-btn svg { color: rgba(255, 255, 255, .4); transition: color var(--dur) var(--ease); }
+        @media (hover: hover) {
+            .fc-chip-btn:hover { color: #fff; border-color: rgba(255, 255, 255, .4); }
+        }
+        .fc-chip-btn[aria-current="true"] {
+            background: #fff;
+            border-color: #fff;
+            color: var(--gold-ink);
+            box-shadow: 0 12px 30px -12px rgba(201, 162, 39, .6);
+        }
+        .fc-chip-btn[aria-current="true"] svg { color: var(--gold); }
+        .fc-chip-btn:focus-visible { outline: 2px solid var(--gold-light); outline-offset: 3px; }
+
+        .fc-stage {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            padding: 3.5rem 1.5rem;
+            border-top: 1px solid var(--line);
+        }
+        @media (min-width: 1024px) {
+            .fc-stage { padding: 3.5rem 2.5rem; border-top: 0; }
+        }
+        .fc-deck {
+            position: relative;
             width: 100%;
-            padding: 0;
-            font: inherit;
-            color: inherit;
-            cursor: zoom-in;
-            transition: box-shadow var(--dur-fast) var(--ease),
-                        border-color var(--dur-fast) var(--ease);
+            max-width: 25rem;
+            aspect-ratio: 4 / 5;
         }
-        .pf-media:hover { border-color: var(--gold-light); }
-        .pf-media:focus-visible {
-            outline: 2px solid var(--gold-ink);
-            outline-offset: 4px;
+
+        .fc-card {
+            position: absolute;
+            inset: 0;
+            margin: 0;
+            overflow: hidden;
+            border-radius: 2.25rem;
+            border: 6px solid #fff;
+            background: #fff;
+            box-shadow: 0 30px 60px -30px rgba(28, 26, 22, .45);
+            opacity: 0;
+            transform: scale(.7);
+            /* Leve rebote al llegar, como el resorte del original. */
+            transition: transform 800ms cubic-bezier(.34, 1.2, .5, 1), opacity 600ms var(--ease);
         }
-        .pf-media img {
-            display: block;
+        .fc-card[data-state="active"] { z-index: 2; opacity: 1; transform: none; }
+        .fc-card[data-state="prev"],
+        .fc-card[data-state="next"] { z-index: 1; opacity: .45; }
+        .fc-card[data-state="prev"] { transform: translateX(-24%) scale(.85) rotate(-3deg); }
+        .fc-card[data-state="next"] { transform: translateX(24%) scale(.85) rotate(3deg); }
+
+        .fc-card img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            object-position: top center;
+            filter: grayscale(1) brightness(.8);
+            transition: filter 700ms var(--ease);
         }
+        .fc-card[data-state="active"] img { filter: none; }
 
-        /* Distintivo de lupa: siempre visible, se refuerza al pasar el cursor. */
-        .pf-zoom-badge {
-            position: absolute;
-            right: .75rem;
-            bottom: .75rem;
-            display: inline-flex;
-            align-items: center;
-            gap: .4rem;
-            padding: .5rem .85rem;
-            border-radius: 999px;
-            background: rgba(255, 255, 255, .92);
-            border: 1px solid var(--line);
-            color: var(--ink);
-            font-size: .8125rem;
-            font-weight: 500;
-            letter-spacing: .01em;
-            box-shadow: 0 10px 24px -14px rgba(28, 26, 22, .55);
-            transition: background-color var(--dur-fast) var(--ease),
-                        color var(--dur-fast) var(--ease),
-                        transform var(--dur-fast) var(--ease);
+        .fc-card-label,
+        .fc-card-caption {
+            opacity: 0;
+            transition: opacity 500ms var(--ease), transform 600ms var(--ease);
         }
-        .pf-media:hover .pf-zoom-badge,
-        .pf-media:focus-visible .pf-zoom-badge {
-            background: var(--gold);
-            border-color: var(--gold);
+        .fc-card[data-state="active"] .fc-card-label,
+        .fc-card[data-state="active"] .fc-card-caption {
+            opacity: 1;
+            transform: none;
+            transition-delay: 180ms;
+        }
+        .fc-card-label {
+            position: absolute;
+            top: 1.75rem;
+            left: 1.75rem;
+            display: flex;
+            align-items: center;
+            gap: .65rem;
+            color: rgba(255, 255, 255, .85);
+            font-size: .625rem;
+            letter-spacing: .3em;
+            text-transform: uppercase;
+            text-shadow: 0 1px 6px rgba(0, 0, 0, .4);
+        }
+        .fc-card-label::before {
+            content: '';
+            width: .45rem;
+            height: .45rem;
+            border-radius: 999px;
+            background: var(--gold-light);
+            box-shadow: 0 0 10px var(--gold);
+        }
+        .fc-card-caption {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: .8rem;
+            padding: 7rem 1.75rem 1.9rem;
+            background: linear-gradient(to top, rgba(18, 16, 13, .92), rgba(18, 16, 13, .45) 55%, transparent);
+            transform: translateY(1rem);
+        }
+        .fc-card-tag {
+            padding: .4rem .9rem;
+            border-radius: 999px;
+            background: #fff;
+            color: var(--ink);
+            font-size: .625rem;
+            letter-spacing: .16em;
+            text-transform: uppercase;
+            box-shadow: 0 6px 16px -6px rgba(0, 0, 0, .4);
+        }
+        .fc-card-text {
             color: #fff;
-            transform: translateY(-2px);
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: clamp(1.15rem, 1rem + .6vw, 1.45rem);
+            line-height: 1.3;
         }
 
         /* ============================================================
-           VISOR AMPLIADO DEL PORTAFOLIO
+           GALERIA CIRCULAR DE DEMOS
+           Anillo 3D: el JS solo escribe --rot en el anillo y la opacidad
+           de cada tarjeta. El anillo se aleja --r para que la tarjeta de
+           frente quede a su tamano real.
            ============================================================ */
-        .pf-lightbox {
-            position: fixed;
-            inset: 0;
-            z-index: 60;
-            display: none;
-            background: rgba(28, 26, 22, .93);
-        }
-        .pf-lightbox[data-open="true"] { display: block; }
-
-        .pf-lightbox__scroll {
-            position: absolute;
-            inset: 0;
-            overflow: auto;
-            overscroll-behavior: contain;
-            -webkit-overflow-scrolling: touch;
-            padding: 5.5rem 1rem 3rem;
-            text-align: center;
-        }
-        .pf-lightbox__scroll img {
-            display: block;
-            margin: 0 auto;
-            width: min(100%, 54rem);
-            height: auto;
-            border-radius: .75rem;
-            cursor: zoom-in;
-            box-shadow: 0 40px 90px -40px rgba(0, 0, 0, .8);
-        }
-        /* Segundo nivel de acercamiento: se lee el detalle fino y se navega
-           con el scroll del propio visor. */
-        .pf-lightbox[data-zoomed="true"] .pf-lightbox__scroll img {
-            width: min(100rem, 190%);
-            max-width: none;
-            cursor: zoom-out;
-        }
-
-        .pf-lightbox__close {
-            position: absolute;
-            top: 1rem;
-            left: 1rem;
-            z-index: 2;
-            display: inline-flex;
-            align-items: center;
-            gap: .5rem;
-            height: 3.25rem;
-            padding: 0 1.35rem 0 1.05rem;
-            border-radius: 999px;
-            border: 1px solid var(--line);
-            background: #fff;
-            color: var(--ink);
-            font: inherit;
-            font-weight: 500;
-            cursor: pointer;
-            box-shadow: 0 16px 34px -14px rgba(0, 0, 0, .65);
-            transition: background-color var(--dur-fast) var(--ease),
-                        color var(--dur-fast) var(--ease),
-                        transform var(--dur-fast) var(--ease);
-        }
-        .pf-lightbox__close:hover {
-            background: var(--gold);
-            border-color: var(--gold);
-            color: #fff;
-            transform: scale(1.03);
-        }
-        .pf-lightbox__close:focus-visible {
-            outline: 2px solid #fff;
-            outline-offset: 3px;
-        }
-        .pf-lightbox__hint {
-            position: absolute;
-            top: 1.6rem;
-            right: 1.25rem;
-            z-index: 2;
-            font-size: .8125rem;
-            letter-spacing: .04em;
-            color: rgba(255, 255, 255, .62);
-        }
-        @media (max-width: 600px) { .pf-lightbox__hint { display: none; } }
-
-        .pf-caption { align-self: center; }
-        .pf-index {
-            display: block;
-            font-size: .75rem;
-            font-weight: 500;
-            letter-spacing: .22em;
-            text-transform: uppercase;
-            color: var(--gold-ink);
-            font-variant-numeric: tabular-nums;
-        }
-        .pf-title {
-            font-family: 'Playfair Display', Georgia, serif;
-            font-size: clamp(1.5rem, 1.1rem + 1.4vw, 2.125rem);
-            font-weight: 600;
-            line-height: 1.15;
-            letter-spacing: -0.018em;
-            color: var(--ink);
-            margin: .75rem 0 1rem;
-        }
-        .pf-text {
-            color: var(--muted);
-            font-size: 1.0625rem;
-            line-height: 1.75;
-            max-width: 46ch;
-        }
-
-        /* — Portfolio: sparkle dot (reemplaza emojis) — */
-        .pf-sparkle {
-            display: inline-block;
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            margin-right: 8px;
-            vertical-align: middle;
-            position: relative;
-            animation: pf-glow 2.4s ease-in-out infinite;
-        }
-        .pf-sparkle--navy    { background: #3B82F6; box-shadow: 0 0 8px 3px rgba(59,130,246,.55), 0 0 20px 6px rgba(59,130,246,.25); }
-        .pf-sparkle--emerald { background: #10B981; box-shadow: 0 0 8px 3px rgba(16,185,129,.55), 0 0 20px 6px rgba(16,185,129,.25); }
-        .pf-sparkle--sage    { background: #86EFAC; box-shadow: 0 0 8px 3px rgba(134,239,172,.50), 0 0 20px 6px rgba(134,239,172,.22); }
-        .pf-sparkle--blush   { background: #F9A8D4; box-shadow: 0 0 8px 3px rgba(249,168,212,.55), 0 0 20px 6px rgba(249,168,212,.25); }
-        .pf-sparkle--purple  { background: #A78BFA; box-shadow: 0 0 8px 3px rgba(167,139,250,.55), 0 0 20px 6px rgba(167,139,250,.25); }
-
-        @keyframes pf-glow {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50%      { opacity: .6; transform: scale(1.35); }
-        }
-
-        .pf-subtitle {
-            display: block;
-            font-family: 'Jost', system-ui, sans-serif;
-            font-size: .9375rem;
-            font-weight: 500;
-            letter-spacing: .04em;
-            text-transform: uppercase;
-            margin-bottom: .375rem;
-        }
-        .pf-subtitle--navy    { color: #3B82F6; }
-        .pf-subtitle--emerald { color: #10B981; }
-        .pf-subtitle--sage    { color: #6EE7A0; }
-        .pf-subtitle--blush   { color: #F472B6; }
-        .pf-subtitle--purple  { color: #A78BFA; }
-
-        .pf-ideal {
-            display: block;
-            font-size: .8125rem;
-            font-weight: 500;
-            color: var(--gold-ink);
-            margin-top: .625rem;
-            font-style: italic;
-        }
-        .pf-link {
-            display: inline-block;
-            margin-top: .5rem;
-            font-size: .875rem;
-            font-weight: 600;
-            color: var(--gold-dark);
-            letter-spacing: .03em;
-            transition: color .25s ease;
-            background: none;
-            border: none;
-            padding: 0;
-            cursor: pointer;
-            font-family: inherit;
-        }
-        .pf-link:hover { color: var(--gold); text-decoration: underline; }
-
-        /* Miniaturas: la seleccionada gana anillo dorado y opacidad plena. */
-        .pf-thumbs {
-            list-style: none;
-            display: flex;
-            gap: .625rem;
-            margin: 1rem 0 0;
-            padding: .25rem;
-        }
-        @media (min-width: 640px) { .pf-thumbs { gap: 1rem; } }
-        .pf-thumbs li { flex: 1 1 0; min-width: 0; }
-        .pf-thumbs label {
-            display: block;
-            aspect-ratio: 3 / 4;
-            border-radius: .75rem;
+        .cg {
+            --w: 11.5rem;
+            --h: calc(var(--w) * 1.9);
+            --r: calc(var(--w) * 1.2);
+            margin: 4rem auto 0;
+            max-width: 64rem;
             overflow: hidden;
-            cursor: pointer;
-            border: 1px solid var(--line);
-            background: var(--surface);
-            opacity: .62;
-            transition: opacity var(--dur-fast) var(--ease),
-                        transform var(--dur-fast) var(--ease),
-                        box-shadow var(--dur-fast) var(--ease),
-                        border-color var(--dur-fast) var(--ease);
+            border-radius: 2rem;
+            padding: 3rem 0 2.5rem;
+            background:
+                radial-gradient(55% 45% at 50% 58%, rgba(201, 162, 39, .2), transparent 72%),
+                var(--ink);
+            box-shadow: 0 34px 80px -46px rgba(28, 26, 22, .6);
         }
-        .pf-thumbs label:hover { opacity: .9; transform: translateY(-2px); }
-        .pf-thumbs img {
+        @media (min-width: 768px) {
+            .cg { --w: 14.5rem; margin-top: 5rem; border-radius: 2.75rem; padding: 3.5rem 0 3rem; }
+        }
+        .cg h3, .cg p { padding: 0 1.5rem; }
+
+        .cg-stage {
+            position: relative;
+            height: calc(var(--h) + 4.5rem);
+            perspective: 1400px;
+            cursor: grab;
+            touch-action: pan-y;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+        .cg-stage.is-dragging { cursor: grabbing; }
+        .cg-ring {
+            position: absolute;
+            inset: 0;
+            transform-style: preserve-3d;
+            transform: translateZ(calc(var(--r) * -1)) rotateY(var(--rot, 0deg));
+        }
+
+        .cg-card {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: var(--w);
+            height: var(--h);
+            margin: calc(var(--h) / -2) 0 0 calc(var(--w) / -2);
+            overflow: hidden;
+            border-radius: 1.25rem;
+            border: 1px solid rgba(227, 206, 147, .28);
+            background: #26221D;
+            box-shadow: 0 30px 60px -24px rgba(0, 0, 0, .7);
+            transform: rotateY(var(--a)) translateZ(var(--r));
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+            transition: opacity 300ms linear, border-color var(--dur) var(--ease);
+        }
+        .cg-card picture,
+        .cg-card img {
             display: block;
             width: 100%;
             height: 100%;
             object-fit: cover;
-            object-position: top center;
+            -webkit-user-drag: none;
+        }
+        .cg-card--premium { border-color: rgba(227, 206, 147, .7); }
+        @media (hover: hover) {
+            .cg-card:hover { border-color: var(--gold-light); }
+        }
+        .cg-card:focus-visible { outline: 2px solid var(--gold-light); outline-offset: 4px; }
+
+        .cg-card-info {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            display: flex;
+            flex-direction: column;
+            gap: .3rem;
+            padding: 4.5rem 1.1rem 1.1rem;
+            background: linear-gradient(to top, rgba(18, 16, 13, .94), rgba(18, 16, 13, .6) 55%, transparent);
+            color: #fff;
+        }
+        .cg-card-code {
+            font-size: .625rem;
+            text-transform: uppercase;
+            letter-spacing: .22em;
+            color: var(--gold-light);
+        }
+        .cg-card-title {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 1.15rem;
+            font-weight: 600;
+            line-height: 1.2;
+        }
+        .cg-card-text {
+            font-size: .75rem;
+            line-height: 1.45;
+            color: rgba(255, 255, 255, .72);
+        }
+        .cg-badge {
+            position: absolute;
+            top: .9rem;
+            right: .9rem;
+            padding: .3rem .7rem;
+            border-radius: 999px;
+            background: linear-gradient(135deg, var(--gold-light), var(--gold));
+            color: var(--ink);
+            font-size: .5625rem;
+            font-weight: 600;
+            letter-spacing: .18em;
+            text-transform: uppercase;
+            box-shadow: 0 6px 16px -6px rgba(0, 0, 0, .5);
         }
 
-        .pf-carousel > input:nth-of-type(1):checked ~ .pf-thumbs li:nth-child(1) label,
-        .pf-carousel > input:nth-of-type(2):checked ~ .pf-thumbs li:nth-child(2) label,
-        .pf-carousel > input:nth-of-type(3):checked ~ .pf-thumbs li:nth-child(3) label,
-        .pf-carousel > input:nth-of-type(4):checked ~ .pf-thumbs li:nth-child(4) label,
-        .pf-carousel > input:nth-of-type(5):checked ~ .pf-thumbs li:nth-child(5) label {
-            opacity: 1;
-            border-color: var(--gold);
-            transform: translateY(-2px);
-            box-shadow: 0 0 0 2px var(--gold-light), 0 14px 30px -16px rgba(166, 131, 26, .55);
+        .cg-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 2.75rem;
+            height: 2.75rem;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, .2);
+            color: #fff;
+            transition: background-color var(--dur-fast) var(--ease),
+                        border-color var(--dur-fast) var(--ease),
+                        color var(--dur-fast) var(--ease);
         }
-
-        /* El radio esta oculto: el foco se ve sobre su miniatura. */
-        .pf-carousel > input:nth-of-type(1):focus-visible ~ .pf-thumbs li:nth-child(1) label,
-        .pf-carousel > input:nth-of-type(2):focus-visible ~ .pf-thumbs li:nth-child(2) label,
-        .pf-carousel > input:nth-of-type(3):focus-visible ~ .pf-thumbs li:nth-child(3) label,
-        .pf-carousel > input:nth-of-type(4):focus-visible ~ .pf-thumbs li:nth-child(4) label,
-        .pf-carousel > input:nth-of-type(5):focus-visible ~ .pf-thumbs li:nth-child(5) label {
-            outline: 2px solid var(--gold-ink);
-            outline-offset: 3px;
+        @media (hover: hover) {
+            .cg-btn:hover { background: var(--gold); border-color: var(--gold); color: var(--ink); }
         }
+        .cg-btn:focus-visible { outline: 2px solid var(--gold-light); outline-offset: 3px; }
 
         /* ============================================================
            HERO: FOTO A SANGRE + CARRIL DE EVENTOS
@@ -1537,101 +1517,149 @@
                 </p>
             </div>
 
-            <!-- Carousel -->
-            <div class="carousel-container reveal">
-                <div class="carousel-viewport">
-                    <div class="carousel-track" id="carousel-track" role="group" aria-roledescription="carrusel" aria-label="Invitaciones destacadas">
-                    <!-- Slide 1 -->
-                    <div class="carousel-slide">
-                        <div class="bg-white rounded-2xl overflow-hidden shadow-md border border-gray-200/60 card-hover h-full">
-                            <img src="clasica%20elegante.avif" 
-                                 alt="Invitación clásica elegante impresa en papel con detalles dorados" 
-                                 width="1024" height="1024" loading="lazy" decoding="async" class="w-full h-60 sm:h-64 object-cover">
-                            <div class="p-6">
-                                <h3 class="font-serif text-xl font-semibold text-dark mb-2">Clásico elegante</h3>
-                                <p class="text-gray-600 text-sm leading-relaxed">Composiciones sofisticadas, tipografías refinadas y detalles cuidadosamente seleccionados.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Slide 2 -->
-                    <div class="carousel-slide">
-                        <div class="bg-white rounded-2xl overflow-hidden shadow-md border border-gray-200/60 card-hover h-full">
-                            <img src="moderna%20premium.avif" 
-                                 alt="Invitación moderna premium en un teléfono, fondo oscuro y filetes dorados" 
-                                 width="1024" height="1024" loading="lazy" decoding="async" class="w-full h-60 sm:h-64 object-cover">
-                            <div class="p-6">
-                                <h3 class="font-serif text-xl font-semibold text-dark mb-2">Moderno premium</h3>
-                                <p class="text-gray-600 text-sm leading-relaxed">Diseño contemporáneo, limpio y visualmente impactante.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Slide 3 -->
-                    <div class="carousel-slide">
-                        <div class="bg-white rounded-2xl overflow-hidden shadow-md border border-gray-200/60 card-hover h-full">
-                            <img src="romantica.avif" 
-                                 alt="Siluetas de los novios tomados de la mano con dos anillos dorados" 
-                                 width="1024" height="1024" loading="lazy" decoding="async" class="w-full h-60 sm:h-64 object-cover">
-                            <div class="p-6">
-                                <h3 class="font-serif text-xl font-semibold text-dark mb-2">Romántico</h3>
-                                <p class="text-gray-600 text-sm leading-relaxed">Colores suaves, composiciones delicadas y detalles pensados para momentos especiales.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Slide 4 -->
-                    <div class="carousel-slide">
-                        <div class="bg-white rounded-2xl overflow-hidden shadow-md border border-gray-200/60 card-hover h-full">
-                            <img src="Dashboard%20RSVP.avif" 
-                                 alt="Panel de confirmaciones con la lista de invitados y la tasa de asistencia" 
-                                 width="1024" height="1024" loading="lazy" decoding="async" class="w-full h-60 sm:h-64 object-cover object-top">
-                            <div class="p-6">
-                                <h3 class="font-serif text-xl font-semibold text-dark mb-2">Panel de invitados</h3>
-                                <p class="text-gray-600 text-sm leading-relaxed">Confirmaciones RSVP organizadas en un solo lugar.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Slide 5 -->
-                    <div class="carousel-slide">
-                        <div class="bg-white rounded-2xl overflow-hidden shadow-md border border-gray-200/60 card-hover h-full">
-                            <img src="cello%20de%20cera.avif" 
-                                 alt="Sobre blanco cerrado con un sello de cera dorado con las iniciales DW" 
-                                 width="1024" height="1024" loading="lazy" decoding="async" class="w-full h-60 sm:h-64 object-cover">
-                            <div class="p-6">
-                                <h3 class="font-serif text-xl font-semibold text-dark mb-2">Experiencia interactiva</h3>
-                                <p class="text-gray-600 text-sm leading-relaxed">Apertura animada con sello de cera digital, música y elementos dinámicos.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Slide 6 -->
-                    <div class="carousel-slide">
-                        <div class="bg-white rounded-2xl overflow-hidden shadow-md border border-gray-200/60 card-hover h-full">
-                            <img src="vista%20desktop.avif" 
-                                 alt="Itinerario del gran día con horarios, iconos y foto de los novios" 
-                                 width="1024" height="1024" loading="lazy" decoding="async" class="w-full h-60 sm:h-64 object-cover object-top">
-                            <div class="p-6">
-                                <h3 class="font-serif text-xl font-semibold text-dark mb-2">En cualquier pantalla</h3>
-                                <p class="text-gray-600 text-sm leading-relaxed">Cada diseño se adapta a celulares, tablets y computadoras.</p>
-                            </div>
-                        </div>
-                    </div>
-                    </div>
+            <!-- Carrusel de tipos de evento. Imagenes de Unsplash provisionales:
+                 se reemplazan por las propias cuando esten listas. -->
+            <div id="fc" class="fc reveal" role="group" aria-roledescription="carrusel" aria-label="Tipos de evento">
+                <div class="fc-list">
+                    <ul class="fc-chips" aria-label="Elegir tipo de evento">
+                        <li class="fc-chip"><button type="button" class="fc-chip-btn"><i data-lucide="heart" class="h-4 w-4 flex-none"></i>Bodas</button></li>
+                        <li class="fc-chip"><button type="button" class="fc-chip-btn"><i data-lucide="cake" class="h-4 w-4 flex-none"></i>Cumpleaños</button></li>
+                        <li class="fc-chip"><button type="button" class="fc-chip-btn"><i data-lucide="baby" class="h-4 w-4 flex-none"></i>Embarazo y familia</button></li>
+                        <li class="fc-chip"><button type="button" class="fc-chip-btn"><i data-lucide="church" class="h-4 w-4 flex-none"></i>Religiosas</button></li>
+                        <li class="fc-chip"><button type="button" class="fc-chip-btn"><i data-lucide="graduation-cap" class="h-4 w-4 flex-none"></i>Graduaciones</button></li>
+                        <li class="fc-chip"><button type="button" class="fc-chip-btn"><i data-lucide="gem" class="h-4 w-4 flex-none"></i>Aniversarios</button></li>
+                        <li class="fc-chip"><button type="button" class="fc-chip-btn"><i data-lucide="briefcase" class="h-4 w-4 flex-none"></i>Empresariales</button></li>
+                        <li class="fc-chip"><button type="button" class="fc-chip-btn"><i data-lucide="drum" class="h-4 w-4 flex-none"></i>Festividades</button></li>
+                        <li class="fc-chip"><button type="button" class="fc-chip-btn"><i data-lucide="users" class="h-4 w-4 flex-none"></i>Tradiciones</button></li>
+                        <li class="fc-chip"><button type="button" class="fc-chip-btn"><i data-lucide="party-popper" class="h-4 w-4 flex-none"></i>Fiestas</button></li>
+                        <li class="fc-chip"><button type="button" class="fc-chip-btn"><i data-lucide="trophy" class="h-4 w-4 flex-none"></i>Deportivos</button></li>
+                        <li class="fc-chip"><button type="button" class="fc-chip-btn"><i data-lucide="sparkles" class="h-4 w-4 flex-none"></i>Otros eventos</button></li>
+                    </ul>
                 </div>
 
-                <!-- Carousel Controls -->
-                <div class="mt-10 flex items-center justify-center gap-5">
-                    <button id="prev-btn" type="button" aria-label="Ver invitaciones anteriores"
-                            class="flex h-11 w-11 items-center justify-center rounded-full border border-gray-200 bg-white text-dark shadow-sm transition-control duration-300 ease-premium hover:border-gold hover:bg-gold hover:text-white hover:shadow-gold">
-                        <i data-lucide="arrow-left" class="h-4 w-4"></i>
-                    </button>
-                    <div id="carousel-dots" class="flex items-center gap-2.5" role="tablist" aria-label="Paginación del carrusel"></div>
-                    <button id="next-btn" type="button" aria-label="Ver más invitaciones"
-                            class="flex h-11 w-11 items-center justify-center rounded-full border border-gray-200 bg-white text-dark shadow-sm transition-control duration-300 ease-premium hover:border-gold hover:bg-gold hover:text-white hover:shadow-gold">
-                        <i data-lucide="arrow-right" class="h-4 w-4"></i>
-                    </button>
+                <div class="fc-stage">
+                    <div class="fc-deck">
+
+                        <figure class="fc-card" data-state="hidden">
+                            <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&amp;fit=crop&amp;w=800&amp;q=70"
+                                 alt="Novios tomados de la mano el día de su boda" width="800" height="1000" loading="lazy" decoding="async">
+                            <span class="fc-card-label">Invitación digital</span>
+                            <figcaption class="fc-card-caption">
+                                <span class="fc-card-tag">01 · Bodas y matrimonios</span>
+                                <span class="fc-card-text">Invitaciones con la elegancia que merece el sí más importante.</span>
+                            </figcaption>
+                        </figure>
+
+                        <figure class="fc-card" data-state="hidden">
+                            <img src="https://images.unsplash.com/photo-1530103862676-de8c9debad1d?auto=format&amp;fit=crop&amp;w=800&amp;q=70"
+                                 alt="Globos y decoración para una fiesta de cumpleaños" width="800" height="1000" loading="lazy" decoding="async">
+                            <span class="fc-card-label">Invitación digital</span>
+                            <figcaption class="fc-card-caption">
+                                <span class="fc-card-tag">02 · Cumpleaños y celebraciones personales</span>
+                                <span class="fc-card-text">De los 15 años a los 80: cada edad con su propio estilo.</span>
+                            </figcaption>
+                        </figure>
+
+                        <figure class="fc-card" data-state="hidden">
+                            <img src="https://images.unsplash.com/photo-1519689680058-324335c77eba?auto=format&amp;fit=crop&amp;w=800&amp;q=70"
+                                 alt="Bebé recién nacido envuelto en una manta" width="800" height="1000" loading="lazy" decoding="async">
+                            <span class="fc-card-label">Invitación digital</span>
+                            <figcaption class="fc-card-caption">
+                                <span class="fc-card-tag">03 · Embarazo, nacimiento y familia</span>
+                                <span class="fc-card-text">Baby showers, revelaciones de género y la llegada de alguien nuevo.</span>
+                            </figcaption>
+                        </figure>
+
+                        <figure class="fc-card" data-state="hidden">
+                            <img src="https://images.unsplash.com/photo-1438032005730-c779502df39b?auto=format&amp;fit=crop&amp;w=800&amp;q=70"
+                                 alt="Interior de una iglesia iluminado por la luz del día" width="800" height="1000" loading="lazy" decoding="async">
+                            <span class="fc-card-label">Invitación digital</span>
+                            <figcaption class="fc-card-caption">
+                                <span class="fc-card-tag">04 · Celebraciones religiosas</span>
+                                <span class="fc-card-text">Bautizos, primeras comuniones y confirmaciones con un tono sereno.</span>
+                            </figcaption>
+                        </figure>
+
+                        <figure class="fc-card" data-state="hidden">
+                            <img src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?auto=format&amp;fit=crop&amp;w=800&amp;q=70"
+                                 alt="Graduados con toga y birrete" width="800" height="1000" loading="lazy" decoding="async">
+                            <span class="fc-card-label">Invitación digital</span>
+                            <figcaption class="fc-card-caption">
+                                <span class="fc-card-tag">05 · Graduaciones y educación</span>
+                                <span class="fc-card-text">Promociones y titulaciones para celebrar cada logro académico.</span>
+                            </figcaption>
+                        </figure>
+
+                        <figure class="fc-card" data-state="hidden">
+                            <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&amp;fit=crop&amp;w=800&amp;q=70"
+                                 alt="Pareja celebrando su aniversario" width="800" height="1000" loading="lazy" decoding="async">
+                            <span class="fc-card-label">Invitación digital</span>
+                            <figcaption class="fc-card-caption">
+                                <span class="fc-card-tag">06 · Aniversarios y homenajes</span>
+                                <span class="fc-card-text">Bodas de plata, de oro y homenajes a quienes marcaron una historia.</span>
+                            </figcaption>
+                        </figure>
+
+                        <figure class="fc-card" data-state="hidden">
+                            <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&amp;fit=crop&amp;w=800&amp;q=70"
+                                 alt="Auditorio lleno durante una conferencia" width="800" height="1000" loading="lazy" decoding="async">
+                            <span class="fc-card-label">Invitación digital</span>
+                            <figcaption class="fc-card-caption">
+                                <span class="fc-card-tag">07 · Eventos empresariales y profesionales</span>
+                                <span class="fc-card-text">Lanzamientos, cenas de gala y conferencias con la imagen de tu marca.</span>
+                            </figcaption>
+                        </figure>
+
+                        <figure class="fc-card" data-state="hidden">
+                            <img src="https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?auto=format&amp;fit=crop&amp;w=800&amp;q=70"
+                                 alt="Público celebrando en un festival" width="800" height="1000" loading="lazy" decoding="async">
+                            <span class="fc-card-label">Invitación digital</span>
+                            <figcaption class="fc-card-caption">
+                                <span class="fc-card-tag">08 · Festividades culturales de Bolivia</span>
+                                <span class="fc-card-text">Carnaval, Gran Poder y fiestas patronales con el color de nuestra tierra.</span>
+                            </figcaption>
+                        </figure>
+
+                        <figure class="fc-card" data-state="hidden">
+                            <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&amp;fit=crop&amp;w=800&amp;q=70"
+                                 alt="Familia y amigos reunidos en una celebración" width="800" height="1000" loading="lazy" decoding="async">
+                            <span class="fc-card-label">Invitación digital</span>
+                            <figcaption class="fc-card-caption">
+                                <span class="fc-card-tag">09 · Tradiciones y celebraciones familiares bolivianas</span>
+                                <span class="fc-card-text">Rutuchas, prestes y reuniones que mantienen vivas nuestras costumbres.</span>
+                            </figcaption>
+                        </figure>
+
+                        <figure class="fc-card" data-state="hidden">
+                            <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&amp;fit=crop&amp;w=800&amp;q=70"
+                                 alt="Fiesta con luces de colores y confeti" width="800" height="1000" loading="lazy" decoding="async">
+                            <span class="fc-card-label">Invitación digital</span>
+                            <figcaption class="fc-card-caption">
+                                <span class="fc-card-tag">10 · Fiestas y entretenimiento</span>
+                                <span class="fc-card-text">Noches temáticas, despedidas y fiestas que empiezan desde la invitación.</span>
+                            </figcaption>
+                        </figure>
+
+                        <figure class="fc-card" data-state="hidden">
+                            <img src="https://images.unsplash.com/photo-1461896836934-ffe607ba8211?auto=format&amp;fit=crop&amp;w=800&amp;q=70"
+                                 alt="Pista de atletismo al aire libre" width="800" height="1000" loading="lazy" decoding="async">
+                            <span class="fc-card-label">Invitación digital</span>
+                            <figcaption class="fc-card-caption">
+                                <span class="fc-card-tag">11 · Eventos deportivos y recreativos</span>
+                                <span class="fc-card-text">Torneos, carreras y encuentros con toda la información a mano.</span>
+                            </figcaption>
+                        </figure>
+
+                        <figure class="fc-card" data-state="hidden">
+                            <img src="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?auto=format&amp;fit=crop&amp;w=800&amp;q=70"
+                                 alt="Mesa decorada para una celebración especial" width="800" height="1000" loading="lazy" decoding="async">
+                            <span class="fc-card-label">Invitación digital</span>
+                            <figcaption class="fc-card-caption">
+                                <span class="fc-card-tag">12 · Otros eventos especiales</span>
+                                <span class="fc-card-text">¿Tu celebración no está en la lista? Diseñamos la invitación a medida.</span>
+                            </figcaption>
+                        </figure>
+                    </div>
                 </div>
             </div>
 
@@ -1695,226 +1723,107 @@
                 </div>
             </div>
 
-            <!-- Lineas visuales: indice editorial, dos columnas desde tablet -->
-            <div class="reveal mx-auto mt-16 max-w-5xl md:mt-20">
-                <h3 class="mb-8 text-center text-[11px] font-medium uppercase tracking-[0.22em] text-gold-ink">Nuestras líneas visuales</h3>
-                <ol class="grid gap-x-12 md:grid-cols-2">
-                    <li class="flex gap-5 border-t border-gray-200 py-5">
-                        <span class="font-serif tnum text-sm font-semibold text-gold-dark pt-1">01</span>
-                        <div>
-                            <h4 class="font-serif text-lg font-semibold text-dark">Clásico elegante</h4>
-                            <p class="mt-1 text-[0.9375rem] leading-relaxed text-gray-600">Composiciones sofisticadas, tipografías refinadas y detalles cuidadosamente seleccionados.</p>
-                        </div>
-                    </li>
-                    <li class="flex gap-5 border-t border-gray-200 py-5">
-                        <span class="font-serif tnum text-sm font-semibold text-gold-dark pt-1">02</span>
-                        <div>
-                            <h4 class="font-serif text-lg font-semibold text-dark">Moderno premium</h4>
-                            <p class="mt-1 text-[0.9375rem] leading-relaxed text-gray-600">Diseño contemporáneo, limpio y visualmente impactante.</p>
-                        </div>
-                    </li>
-                    <li class="flex gap-5 border-t border-gray-200 py-5">
-                        <span class="font-serif tnum text-sm font-semibold text-gold-dark pt-1">03</span>
-                        <div>
-                            <h4 class="font-serif text-lg font-semibold text-dark">Romántico</h4>
-                            <p class="mt-1 text-[0.9375rem] leading-relaxed text-gray-600">Colores suaves, composiciones delicadas y detalles pensados para momentos especiales.</p>
-                        </div>
-                    </li>
-                    <li class="flex gap-5 border-t border-gray-200 py-5">
-                        <span class="font-serif tnum text-sm font-semibold text-gold-dark pt-1">04</span>
-                        <div>
-                            <h4 class="font-serif text-lg font-semibold text-dark">Minimalista</h4>
-                            <p class="mt-1 text-[0.9375rem] leading-relaxed text-gray-600">Elegancia, claridad y equilibrio con una estética limpia.</p>
-                        </div>
-                    </li>
-                    <li class="flex gap-5 border-t border-gray-200 py-5">
-                        <span class="font-serif tnum text-sm font-semibold text-gold-dark pt-1">05</span>
-                        <div>
-                            <h4 class="font-serif text-lg font-semibold text-dark">Editorial</h4>
-                            <p class="mt-1 text-[0.9375rem] leading-relaxed text-gray-600">Una propuesta inspirada en revistas, fotografía y diseño de alta gama.</p>
-                        </div>
-                    </li>
-                    <li class="flex gap-5 border-t border-gray-200 py-5">
-                        <span class="font-serif tnum text-sm font-semibold text-gold-dark pt-1">06</span>
-                        <div>
-                            <h4 class="font-serif text-lg font-semibold text-dark">Temático y personalizado</h4>
-                            <p class="mt-1 text-[0.9375rem] leading-relaxed text-gray-600">Colores, ilustraciones, fotografías y elementos visuales adaptados completamente al evento.</p>
-                        </div>
-                    </li>
-                    <li class="flex gap-5 border-t border-gray-200 py-5">
-                        <span class="font-serif tnum text-sm font-semibold text-gold-dark pt-1">07</span>
-                        <div>
-                            <h4 class="font-serif text-lg font-semibold text-dark">Experiencia interactiva</h4>
-                            <p class="mt-1 text-[0.9375rem] leading-relaxed text-gray-600">Animaciones, música, video, galerías y elementos dinámicos para una invitación diferente.</p>
-                        </div>
-                    </li>
-                </ol>
-            </div>
-        </div>
-    </section>
-
-    <!-- Portfolio Section - carrusel CSS puro (funciona sin JS) -->
-    <section id="portafolio" class="pt-8 md:pt-10 pb-16 md:pb-20 bg-white">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <!-- Section Header -->
-            <div class="text-center mb-9 md:mb-12 reveal">
-                <span class="eyebrow">Casos reales</span>
-                <h2 class="font-serif h-section font-semibold text-dark mt-6 mb-6">
-                    Invitaciones que ya <span class="text-gold-gradient">compartimos</span>
-                </h2>
-                <p class="lead-center text-[1.0625rem] leading-[1.75] text-gray-600 max-w-xl mx-auto">
-                    Algunos de nuestros diseños publicados. Elige una miniatura para verla completa.
-                </p>
-            </div>
-
-            <div class="pf-carousel reveal" role="group" aria-roledescription="carrusel" aria-label="Portafolio de invitaciones">
-                <input type="radio" name="pf-slides" id="pf-slide-1" checked>
-                <input type="radio" name="pf-slides" id="pf-slide-2">
-                <input type="radio" name="pf-slides" id="pf-slide-3">
-                <input type="radio" name="pf-slides" id="pf-slide-4">
-                <input type="radio" name="pf-slides" id="pf-slide-5">
-                <div class="pf-viewport">
-                    <ul class="pf-track">
-                        <li class="pf-slide">
-                            <figure class="pf-figure">
-                                <button type="button" class="pf-media" data-zoom="1.avif"
-                                        aria-label="Ampliar el diseño del artículo 1">
-                                    <img src="1.avif" alt="Invitación digital, artículo 1"
-                                         width="1600" height="2000" loading="lazy" decoding="async">
-                                    <span class="pf-zoom-badge">
-                                        <i data-lucide="zoom-in" class="h-[18px] w-[18px]"></i>
-                                        Ampliar
-                                    </span>
-                                </button>
-                                <figcaption class="pf-caption">
-                                    <span class="pf-index">01 / 05</span>
-                                    <h3 class="pf-title"><span class="pf-sparkle pf-sparkle--navy"></span>ELEGANCIA CLÁSICA</h3>
-                                    <span class="pf-subtitle pf-subtitle--navy">Azul Marino & Dorado</span>
-                                    <p class="pf-text">Una invitación sofisticada y atemporal para parejas que quieren anunciar su gran día con elegancia y presencia.</p>
-                                    <span class="pf-ideal">Ideal para: Bodas elegantes y de noche.</span>
-                                    <button type="button" class="pf-link" data-zoom="1.avif">→ Ver diseño</button>
-                                </figcaption>
-                            </figure>
-                        </li>
-                        <li class="pf-slide">
-                            <figure class="pf-figure">
-                                <button type="button" class="pf-media" data-zoom="2.avif"
-                                        aria-label="Ampliar el diseño del artículo 2">
-                                    <img src="2.avif" alt="Invitación digital, artículo 2"
-                                         width="1600" height="2000" loading="lazy" decoding="async">
-                                    <span class="pf-zoom-badge">
-                                        <i data-lucide="zoom-in" class="h-[18px] w-[18px]"></i>
-                                        Ampliar
-                                    </span>
-                                </button>
-                                <figcaption class="pf-caption">
-                                    <span class="pf-index">02 / 05</span>
-                                    <h3 class="pf-title"><span class="pf-sparkle pf-sparkle--emerald"></span>LUJO NATURAL</h3>
-                                    <span class="pf-subtitle pf-subtitle--emerald">Verde Esmeralda & Dorado</span>
-                                    <p class="pf-text">Profunda, elegante y con personalidad. Un diseño que combina naturaleza y sofisticación para una boda con carácter.</p>
-                                    <span class="pf-ideal">Ideal para: Bodas modernas y sofisticadas.</span>
-                                    <button type="button" class="pf-link" data-zoom="2.avif">→ Ver diseño</button>
-                                </figcaption>
-                            </figure>
-                        </li>
-                        <li class="pf-slide">
-                            <figure class="pf-figure">
-                                <button type="button" class="pf-media" data-zoom="3.avif"
-                                        aria-label="Ampliar el diseño del artículo 3">
-                                    <img src="3.avif" alt="Invitación digital, artículo 3"
-                                         width="1600" height="2000" loading="lazy" decoding="async">
-                                    <span class="pf-zoom-badge">
-                                        <i data-lucide="zoom-in" class="h-[18px] w-[18px]"></i>
-                                        Ampliar
-                                    </span>
-                                </button>
-                                <figcaption class="pf-caption">
-                                    <span class="pf-index">03 / 05</span>
-                                    <h3 class="pf-title"><span class="pf-sparkle pf-sparkle--sage"></span>ROMÁNTICO & NATURAL</h3>
-                                    <span class="pf-subtitle pf-subtitle--sage">Verde Salvia</span>
-                                    <p class="pf-text">Follaje, tonos suaves y una estética delicada para parejas que sueñan con una celebración fresca y romántica.</p>
-                                    <span class="pf-ideal">Ideal para: Bodas al aire libre y de jardín.</span>
-                                    <button type="button" class="pf-link" data-zoom="3.avif">→ Ver diseño</button>
-                                </figcaption>
-                            </figure>
-                        </li>
-                        <li class="pf-slide">
-                            <figure class="pf-figure">
-                                <button type="button" class="pf-media" data-zoom="4.avif"
-                                        aria-label="Ampliar el diseño del artículo 4">
-                                    <img src="4.avif" alt="Invitación digital, artículo 4"
-                                         width="1600" height="2000" loading="lazy" decoding="async">
-                                    <span class="pf-zoom-badge">
-                                        <i data-lucide="zoom-in" class="h-[18px] w-[18px]"></i>
-                                        Ampliar
-                                    </span>
-                                </button>
-                                <figcaption class="pf-caption">
-                                    <span class="pf-index">04 / 05</span>
-                                    <h3 class="pf-title"><span class="pf-sparkle pf-sparkle--blush"></span>ROMANCE ATEMPORAL</h3>
-                                    <span class="pf-subtitle pf-subtitle--blush">Rosa Empolvado</span>
-                                    <p class="pf-text">Flores y tonos delicados que convierten la invitación en el primer detalle de una historia de amor inolvidable.</p>
-                                    <span class="pf-ideal">Ideal para: Bodas románticas y elegantes.</span>
-                                    <button type="button" class="pf-link" data-zoom="4.avif">→ Ver diseño</button>
-                                </figcaption>
-                            </figure>
-                        </li>
-                        <li class="pf-slide">
-                            <figure class="pf-figure">
-                                <button type="button" class="pf-media" data-zoom="5.avif"
-                                        aria-label="Ampliar el diseño del artículo 5">
-                                    <img src="5.avif" alt="Invitación digital, artículo 5"
-                                         width="1600" height="2000" loading="lazy" decoding="async">
-                                    <span class="pf-zoom-badge">
-                                        <i data-lucide="zoom-in" class="h-[18px] w-[18px]"></i>
-                                        Ampliar
-                                    </span>
-                                </button>
-                                <figcaption class="pf-caption">
-                                    <span class="pf-index">05 / 05</span>
-                                    <h3 class="pf-title"><span class="pf-sparkle pf-sparkle--purple"></span>ROMANCE CON PERSONALIDAD</h3>
-                                    <span class="pf-subtitle pf-subtitle--purple">Morado & Lavanda</span>
-                                    <p class="pf-text">Color, flores y mucha personalidad para parejas que quieren alejarse de lo tradicional y hacer que su boda sea única.</p>
-                                    <span class="pf-ideal">Ideal para: Bodas coloridas y originales.</span>
-                                    <button type="button" class="pf-link" data-zoom="5.avif">→ Ver diseño</button>
-                                </figcaption>
-                            </figure>
-                        </li>
-                    </ul>
+            <!-- Galeria circular 3D con las demos publicadas. Cada tarjeta abre
+                 la invitacion real en otra pestana; las imagenes son capturas
+                 de la pantalla de apertura de cada demo. -->
+            <div id="cg" class="cg on-dark reveal">
+                <div class="text-center">
+                    <span class="eyebrow">Demos en vivo</span>
+                    <h3 class="mt-5 font-serif text-[clamp(1.6rem,1.2rem+1.4vw,2.25rem)] font-semibold leading-tight text-white">
+                        Abre una invitación <span class="text-gold-gradient">real</span>
+                    </h3>
+                    <p class="mx-auto mt-4 max-w-md text-[0.9375rem] leading-relaxed text-white/65">
+                        Seis diseños listos para personalizar. Toca uno y ábrelo como lo harán tus invitados.
+                    </p>
                 </div>
 
-                <ul class="pf-thumbs">
-                    <li>
-                        <label for="pf-slide-1">
-                            <img src="1.avif" alt="Ver artículo 1"
-                                 width="1600" height="2000" loading="lazy" decoding="async">
-                        </label>
-                    </li>
-                    <li>
-                        <label for="pf-slide-2">
-                            <img src="2.avif" alt="Ver artículo 2"
-                                 width="1600" height="2000" loading="lazy" decoding="async">
-                        </label>
-                    </li>
-                    <li>
-                        <label for="pf-slide-3">
-                            <img src="3.avif" alt="Ver artículo 3"
-                                 width="1600" height="2000" loading="lazy" decoding="async">
-                        </label>
-                    </li>
-                    <li>
-                        <label for="pf-slide-4">
-                            <img src="4.avif" alt="Ver artículo 4"
-                                 width="1600" height="2000" loading="lazy" decoding="async">
-                        </label>
-                    </li>
-                    <li>
-                        <label for="pf-slide-5">
-                            <img src="5.avif" alt="Ver artículo 5"
-                                 width="1600" height="2000" loading="lazy" decoding="async">
-                        </label>
-                    </li>
-                </ul>
+                <div class="cg-stage" aria-roledescription="carrusel" aria-label="Demos de invitaciones">
+                    <div class="cg-ring">
+                        <a class="cg-card" href="https://invitacion-001.dwb-demo.workers.dev/" target="_blank" rel="noopener">
+                            <picture>
+                                <source type="image/avif" srcset="assets/demos/dwb-001.avif">
+                                <img src="assets/demos/dwb-001.webp" width="480" height="960" loading="lazy" decoding="async" draggable="false"
+                                     alt="Demo 1: sobre marfil con sello de lacre verde sobre fondo verde olivo, Andrés y Valeria">
+                            </picture>
+                            <span class="cg-card-info">
+                                <span class="cg-card-code">Demo 01</span>
+                                <span class="cg-card-title">Sobre botánico</span>
+                                <span class="cg-card-text">Sobre animado, música, cuenta regresiva y confirmación.</span>
+                            </span>
+                        </a>
+                        <a class="cg-card" href="https://invitacion-002.dwb-demo.workers.dev/" target="_blank" rel="noopener">
+                            <picture>
+                                <source type="image/avif" srcset="assets/demos/dwb-002.avif">
+                                <img src="assets/demos/dwb-002.webp" width="480" height="960" loading="lazy" decoding="async" draggable="false"
+                                     alt="Demo 2: puerta en arco verde con medallón F&amp;G sobre fondo marfil, Fernanda y Gustavo">
+                            </picture>
+                            <span class="cg-card-info">
+                                <span class="cg-card-code">Demo 02</span>
+                                <span class="cg-card-title">Arco esmeralda</span>
+                                <span class="cg-card-text">Medallón que se abre, música, calendario y confirmación.</span>
+                            </span>
+                        </a>
+                        <a class="cg-card" href="https://invitacion-003.dwb-demo.workers.dev/" target="_blank" rel="noopener">
+                            <picture>
+                                <source type="image/avif" srcset="assets/demos/dwb-003.avif">
+                                <img src="assets/demos/dwb-003.webp" width="480" height="960" loading="lazy" decoding="async" draggable="false"
+                                     alt="Demo 3: sobre con camelias blancas y sello verde, Fernanda y Gustavo">
+                            </picture>
+                            <span class="cg-card-info">
+                                <span class="cg-card-code">Demo 03</span>
+                                <span class="cg-card-title">Jardín de camelias</span>
+                                <span class="cg-card-text">Sobre floral, programa, galería y confirmación.</span>
+                            </span>
+                        </a>
+                        <a class="cg-card" href="https://invitacion-004.dwb-demo.workers.dev/" target="_blank" rel="noopener">
+                            <picture>
+                                <source type="image/avif" srcset="assets/demos/dwb-004.avif">
+                                <img src="assets/demos/dwb-004.webp" width="480" height="960" loading="lazy" decoding="async" draggable="false"
+                                     alt="Demo 4: anillos dorados sobre azul noche con ruta de avión, Fernanda y Gustavo">
+                            </picture>
+                            <span class="cg-card-info">
+                                <span class="cg-card-code">Demo 04</span>
+                                <span class="cg-card-title">Pase de abordar</span>
+                                <span class="cg-card-text">Anillos animados, itinerario de viaje y confirmación.</span>
+                            </span>
+                        </a>
+                        <a class="cg-card" href="https://invitacion-005.dwb-demo.workers.dev/" target="_blank" rel="noopener">
+                            <picture>
+                                <source type="image/avif" srcset="assets/demos/dwb-005.avif">
+                                <img src="assets/demos/dwb-005.webp" width="480" height="960" loading="lazy" decoding="async" draggable="false"
+                                     alt="Demo 5: estrella dorada en una constelación sobre azul noche, Andrés y Valeria">
+                            </picture>
+                            <span class="cg-card-info">
+                                <span class="cg-card-code">Demo 05</span>
+                                <span class="cg-card-title">Bajo las estrellas</span>
+                                <span class="cg-card-text">Intro de constelación, música e itinerario.</span>
+                            </span>
+                        </a>
+                        <a class="cg-card cg-card--premium" href="https://premium-001.dwb-demo.workers.dev/" target="_blank" rel="noopener">
+                            <picture>
+                                <source type="image/avif" srcset="assets/demos/dwb-006.avif">
+                                <img src="assets/demos/dwb-006.webp" width="480" height="960" loading="lazy" decoding="async" draggable="false"
+                                     alt="Demo premium 6: sobre negro con sello de lacre dorado entre rosas, Juan y María">
+                            </picture>
+                            <span class="cg-badge">Premium</span>
+                            <span class="cg-card-info">
+                                <span class="cg-card-code">Demo 06</span>
+                                <span class="cg-card-title">Lacre negro</span>
+                                <span class="cg-card-text">Sello en video, padrinos, mapas y galería.</span>
+                            </span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="flex items-center justify-center gap-5">
+                    <button type="button" class="cg-btn" data-cg-step="-1" aria-label="Diseño anterior">
+                        <i data-lucide="arrow-left" class="h-4 w-4"></i>
+                    </button>
+                    <p class="text-[11px] uppercase tracking-[0.2em] text-white/50">Arrastra para girar</p>
+                    <button type="button" class="cg-btn" data-cg-step="1" aria-label="Diseño siguiente">
+                        <i data-lucide="arrow-right" class="h-4 w-4"></i>
+                    </button>
+                </div>
             </div>
         </div>
     </section>
@@ -2583,19 +2492,6 @@
         </svg>
     </a>
 
-    <!-- Visor ampliado del portafolio -->
-    <div id="pf-lightbox" class="pf-lightbox" data-open="false" role="dialog" aria-modal="true"
-         aria-label="Vista ampliada de la invitación">
-        <button type="button" id="pf-lightbox-close" class="pf-lightbox__close">
-            <i data-lucide="x" class="h-6 w-6"></i>
-            Cerrar
-        </button>
-        <span class="pf-lightbox__hint">Haz clic en la imagen para acercar</span>
-        <div class="pf-lightbox__scroll" id="pf-lightbox-scroll">
-            <img id="pf-lightbox-img" src="" alt="">
-        </div>
-    </div>
-
     <!-- Visor del catalogo: el iframe recibe su src recien al abrirse. -->
     <dialog id="flipbook-dialog" class="flipbook-dialog" aria-labelledby="flipbook-title">
         <div class="flex items-center justify-between gap-3 border-b border-gray-200 bg-white px-4 py-3 sm:px-5">
@@ -2793,9 +2689,9 @@
            Sin JS los enlaces siguen funcionando: cada ruta existe como
            carpeta con un index.html que redirige a su ancla.
            ----------------------------------------------------------- */
-        // portafolio y proceso ya no estan en el menu, pero sus rutas siguen
+        // proceso ya no esta en el menu, pero su ruta sigue
         // vivas para no romper enlaces compartidos antes.
-        var SECCIONES = ['inicio', 'servicios', 'eventos', 'disenos', 'portafolio', 'paquetes', 'proceso', 'contacto'];
+        var SECCIONES = ['inicio', 'servicios', 'eventos', 'disenos', 'paquetes', 'proceso', 'contacto'];
         var soportaHistoria = !!(window.history && window.history.replaceState);
 
         function pintarRuta(id) {
@@ -2940,241 +2836,254 @@
         }
 
         /* -----------------------------------------------------------
-           Visor ampliado del portafolio
-           Sin JS la invitacion se ve igual en el carrusel; el visor es
-           una mejora, no un requisito para acceder al contenido.
+           Carrusel de tipos de evento
            ----------------------------------------------------------- */
-        var pfBox = document.getElementById('pf-lightbox');
+        var fc = document.getElementById('fc');
 
-        if (pfBox) {
-            var pfImg = document.getElementById('pf-lightbox-img');
-            var pfScroll = document.getElementById('pf-lightbox-scroll');
-            var pfClose = document.getElementById('pf-lightbox-close');
-            var pfOpener = null;
+        if (fc) {
+            var fcChips = Array.prototype.slice.call(fc.querySelectorAll('.fc-chip'));
+            var fcCards = Array.prototype.slice.call(fc.querySelectorAll('.fc-card'));
+            var fcTotal = fcCards.length;
+            var fcIndex = 0;
+            var fcTimer = null;
+            var fcOnScreen = true;
+            var FC_DELAY = 3200;
 
-            function pfOpen(src, alt, trigger) {
-                pfOpener = trigger || null;
-                pfImg.src = src;
-                pfImg.alt = alt || '';
-                pfBox.dataset.zoomed = 'false';
-                pfBox.dataset.open = 'true';
-                pfScroll.scrollTop = 0;
-                pfScroll.scrollLeft = 0;
-                // Bloquea el scroll del fondo sin perder la posicion de lectura.
-                document.body.style.overflow = 'hidden';
-                pfClose.focus();
+            // Distancia mas corta al activo contando la vuelta del bucle.
+            function fcOffset(i) {
+                var d = (((i - fcIndex) % fcTotal) + fcTotal) % fcTotal;
+                return d > fcTotal / 2 ? d - fcTotal : d;
             }
 
-            function pfCloseBox() {
-                pfBox.dataset.open = 'false';
-                pfBox.dataset.zoomed = 'false';
-                document.body.style.overflow = '';
-                pfImg.removeAttribute('src');
-                if (pfOpener) { pfOpener.focus(); pfOpener = null; }
+            function fcRender() {
+                fcChips.forEach(function (chip, i) {
+                    var d = fcOffset(i);
+                    var btn = chip.firstElementChild;
+                    chip.style.setProperty('--d', d);
+                    chip.style.opacity = Math.max(0, 1 - Math.abs(d) * .25);
+                    btn.setAttribute('aria-current', d === 0 ? 'true' : 'false');
+                    // Los chips ya desvanecidos no deben recibir el foco.
+                    btn.tabIndex = Math.abs(d) < 4 ? 0 : -1;
+                });
+                fcCards.forEach(function (card, i) {
+                    var d = fcOffset(i);
+                    card.dataset.state = d === 0 ? 'active' : d === -1 ? 'prev' : d === 1 ? 'next' : 'hidden';
+                    card.setAttribute('aria-hidden', d === 0 ? 'false' : 'true');
+                });
             }
 
-            document.querySelectorAll('.pf-media[data-zoom]').forEach(function (btn) {
-                btn.addEventListener('click', function () {
-                    var img = btn.querySelector('img');
-                    pfOpen(btn.dataset.zoom, img ? img.alt : '', btn);
-                });
+            function fcGo(i) {
+                fcIndex = ((i % fcTotal) + fcTotal) % fcTotal;
+                fcRender();
+            }
+
+            function fcStop() {
+                if (fcTimer) { clearInterval(fcTimer); fcTimer = null; }
+            }
+
+            function fcStart() {
+                // Sin reproduccion automatica si el usuario pidio menos movimiento.
+                if (reduceMotion.matches || document.hidden || !fcOnScreen) return;
+                fcStop();
+                fcTimer = setInterval(function () { fcGo(fcIndex + 1); }, FC_DELAY);
+            }
+
+            fcChips.forEach(function (chip, i) {
+                chip.firstElementChild.addEventListener('click', function () { fcGo(i); });
             });
 
-            // "Ver diseño" links also open the lightbox
-            document.querySelectorAll('.pf-link[data-zoom]').forEach(function (btn) {
-                btn.addEventListener('click', function () {
-                    pfOpen(btn.dataset.zoom, 'Invitación digital', btn);
-                });
+            fc.addEventListener('mouseenter', fcStop);
+            fc.addEventListener('mouseleave', fcStart);
+            fc.addEventListener('focusin', fcStop);
+            fc.addEventListener('focusout', function (e) {
+                if (!fc.contains(e.relatedTarget)) fcStart();
             });
 
-            pfClose.addEventListener('click', pfCloseBox);
-
-            // Clic fuera de la imagen: tambien cierra.
-            pfScroll.addEventListener('click', function (e) {
-                if (e.target === pfScroll) pfCloseBox();
+            document.addEventListener('visibilitychange', function () {
+                if (document.hidden) { fcStop(); } else { fcStart(); }
             });
 
-            // Segundo nivel de acercamiento, centrado donde estaba mirando.
-            pfImg.addEventListener('click', function () {
-                pfBox.dataset.zoomed = pfBox.dataset.zoomed === 'true' ? 'false' : 'true';
-                if (pfBox.dataset.zoomed === 'true') {
-                    pfScroll.scrollLeft = (pfScroll.scrollWidth - pfScroll.clientWidth) / 2;
+            // Fuera de pantalla no avanza: al volver sigue donde se quedo.
+            if ('IntersectionObserver' in window) {
+                fcOnScreen = false;
+                new IntersectionObserver(function (entries) {
+                    fcOnScreen = entries[0].isIntersecting;
+                    if (fcOnScreen) { fcStart(); } else { fcStop(); }
+                }).observe(fc);
+            }
+
+            // Deslizar sobre las tarjetas, ignorando gestos verticales.
+            var fcStage = fc.querySelector('.fc-stage');
+            var fcX0 = null, fcY0 = null;
+            fcStage.addEventListener('touchstart', function (e) {
+                fcX0 = e.touches[0].clientX;
+                fcY0 = e.touches[0].clientY;
+                fcStop();
+            }, { passive: true });
+
+            fcStage.addEventListener('touchend', function (e) {
+                if (fcX0 === null) return;
+                var dx = e.changedTouches[0].clientX - fcX0;
+                var dy = e.changedTouches[0].clientY - fcY0;
+                if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy)) {
+                    fcGo(fcIndex + (dx < 0 ? 1 : -1));
                 }
-            });
+                fcX0 = fcY0 = null;
+                fcStart();
+            }, { passive: true });
 
-            document.addEventListener('keydown', function (e) {
-                if (pfBox.dataset.open !== 'true') return;
-                if (e.key === 'Escape') {
-                    pfCloseBox();
-                } else if (e.key === 'Tab') {
-                    // Un solo control enfocable: el foco no se escapa al fondo.
-                    e.preventDefault();
-                    pfClose.focus();
-                }
-            });
+            fcRender();
+            fcStart();
         }
 
         /* -----------------------------------------------------------
-           Carrusel de portafolio
+           Galeria circular de demos
            ----------------------------------------------------------- */
-        var track = document.getElementById('carousel-track');
+        var cg = document.getElementById('cg');
 
-        if (track) {
-            var originals = Array.prototype.slice.call(track.querySelectorAll('.carousel-slide'));
-            var prevBtn = document.getElementById('prev-btn');
-            var nextBtn = document.getElementById('next-btn');
-            var dotsBox = document.getElementById('carousel-dots');
+        if (cg) {
+            var cgStage = cg.querySelector('.cg-stage');
+            var cgRing = cg.querySelector('.cg-ring');
+            var cgCards = Array.prototype.slice.call(cg.querySelectorAll('.cg-card'));
+            var CG_STEP = 360 / cgCards.length;
+            var CG_SPEED = 6;          // grados por segundo en reposo
+            var CG_IDLE = 4000;        // pausa tras una interaccion
+            var cgRot = 0;
+            var cgTarget = null;       // angulo al que se acomoda tras un gesto
+            var cgHover = false;
+            var cgOnScreen = false;
+            var cgIdleUntil = 0;
+            var cgLast = 0;
+            var cgRaf = null;
 
-            var total = originals.length;
-            var index = 0;
-            var perView = 1;
-            var timer = null;
-            var DELAY = 4000;   // reposo entre pases
-
-            function render() {
-                track.style.transform = 'translateX(-' + (index * (100 / perView)) + '%)';
-
-                // Lo que queda fuera de vista no debe ser alcanzable con Tab.
-                track.querySelectorAll('.carousel-slide').forEach(function (slide, i) {
-                    var visible = i >= index && i < index + perView;
-                    slide.setAttribute('aria-hidden', visible ? 'false' : 'true');
-                    slide.querySelectorAll('a, button').forEach(function (el) {
-                        el.tabIndex = visible ? 0 : -1;
-                    });
-                });
-
-                var current = ((index % total) + total) % total;
-                dotsBox.querySelectorAll('.dot').forEach(function (dot, i) {
-                    dot.setAttribute('aria-current', i === current ? 'true' : 'false');
-                });
-            }
-
-            // Reposiciona sin animar: asi el bucle no muestra la vuelta atras.
-            function jumpTo(i) {
-                track.classList.add('is-instant');
-                index = i;
-                render();
-                void track.offsetWidth;   // fuerza el reflow antes de reactivar
-                track.classList.remove('is-instant');
-            }
-
-            // Copias de cabecera al final: al pasar del ultimo, lo que entra por
-            // la derecha ya son las primeras tarjetas.
-            function buildClones() {
-                track.querySelectorAll('[data-clone]').forEach(function (c) {
-                    track.removeChild(c);
-                });
-                for (var i = 0; i < perView; i++) {
-                    var clone = originals[i % total].cloneNode(true);
-                    clone.dataset.clone = 'true';
-                    clone.setAttribute('aria-hidden', 'true');
-                    track.appendChild(clone);
-                }
-            }
-
-            function buildDots() {
-                dotsBox.innerHTML = '';
-                for (var i = 0; i < total; i++) {
-                    var dot = document.createElement('button');
-                    dot.type = 'button';
-                    dot.className = 'dot';
-                    dot.setAttribute('aria-label', 'Ir a la tarjeta ' + (i + 1));
-                    dot.dataset.index = i;
-                    dot.addEventListener('click', function (e) {
-                        if (index >= total) jumpTo(0);
-                        index = Number(e.currentTarget.dataset.index);
-                        render();
-                        restart();
-                    });
-                    dotsBox.appendChild(dot);
-                }
-            }
-
-            function go(step) {
-                if (step > 0) {
-                    // Si veniamos aterrizando sobre los clones, se cierra el
-                    // bucle antes de avanzar: nunca se pierde un clic.
-                    if (index >= total) jumpTo(0);
-                    index += 1;
-                } else {
-                    if (index <= 0) jumpTo(total);
-                    index -= 1;
-                }
-                render();
-            }
-
-            // La vuelta al inicio se hace al terminar el paso, no con un
-            // temporizador: asi no depende de que el reloj y la animacion
-            // coincidan, y el carrusel acepta clics mientras se mueve.
-            track.addEventListener('transitionend', function (e) {
-                if (e.target !== track || e.propertyName !== 'transform') return;
-                if (index >= total) jumpTo(0);
+            cgCards.forEach(function (card, i) {
+                card.style.setProperty('--a', (i * CG_STEP) + 'deg');
             });
 
-            function stop() {
-                if (timer) { clearInterval(timer); timer = null; }
+            // Angulo de cada tarjeta respecto al frente, en -180..180.
+            function cgRelative(i) {
+                var a = ((i * CG_STEP + cgRot) % 360 + 360) % 360;
+                return a > 180 ? a - 360 : a;
             }
 
-            function start() {
-                // Sin reproduccion automatica si el usuario pidio menos movimiento.
-                if (reduceMotion.matches || document.hidden) return;
-                stop();
-                timer = setInterval(function () { go(1); }, DELAY);
+            function cgRender() {
+                cgRing.style.setProperty('--rot', cgRot + 'deg');
+                cgCards.forEach(function (card, i) {
+                    var off = Math.abs(cgRelative(i));
+                    card.style.opacity = Math.max(.3, 1 - off / 180);
+                    // Las de espaldas no deben recibir clics ni el foco.
+                    var back = off > 95;
+                    card.style.pointerEvents = back ? 'none' : '';
+                    card.tabIndex = back ? -1 : 0;
+                });
             }
 
-            function restart() { stop(); start(); }
-
-            function layout() {
-                var w = window.innerWidth;
-                perView = w >= 1024 ? 3 : (w >= 768 ? 2 : 1);
-                if (index >= total) index = 0;
-                buildClones();
-                buildDots();
-                jumpTo(index);
+            function cgFrame(now) {
+                var dt = cgLast ? Math.min(now - cgLast, 64) / 1000 : 0;
+                cgLast = now;
+                if (cgTarget !== null) {
+                    cgRot += (cgTarget - cgRot) * Math.min(1, dt * 8);
+                    if (Math.abs(cgTarget - cgRot) < .05) { cgRot = cgTarget; cgTarget = null; }
+                } else if (!cgHover && !cgDragging && now > cgIdleUntil && !reduceMotion.matches) {
+                    cgRot -= CG_SPEED * dt;
+                }
+                cgRender();
+                cgRaf = requestAnimationFrame(cgFrame);
             }
 
-            prevBtn.addEventListener('click', function () { go(-1); restart(); });
-            nextBtn.addEventListener('click', function () { go(1); restart(); });
+            function cgPlay() {
+                if (cgRaf || !cgOnScreen || document.hidden) return;
+                cgLast = 0;
+                cgRaf = requestAnimationFrame(cgFrame);
+            }
 
-            track.addEventListener('mouseenter', stop);
-            track.addEventListener('mouseleave', start);
-            track.addEventListener('focusin', stop);
-            track.addEventListener('focusout', start);
+            function cgPause() {
+                if (cgRaf) { cancelAnimationFrame(cgRaf); cgRaf = null; }
+            }
 
-            // No consumir bateria mientras la pestana esta en segundo plano.
+            function cgSettle(angle) {
+                cgTarget = Math.round(angle / CG_STEP) * CG_STEP;
+                cgIdleUntil = performance.now() + CG_IDLE;
+                // Con menos movimiento el giro es un salto, sin recorrido.
+                if (reduceMotion.matches) { cgRot = cgTarget; cgTarget = null; cgRender(); }
+                cgPlay();
+            }
+
+            // Flechas: una tarjeta por clic, partiendo de la mas cercana.
+            cg.querySelectorAll('[data-cg-step]').forEach(function (btn) {
+                btn.addEventListener('click', function () {
+                    var base = cgTarget !== null ? cgTarget : Math.round(cgRot / CG_STEP) * CG_STEP;
+                    cgSettle(base - Number(btn.dataset.cgStep) * CG_STEP);
+                });
+            });
+
+            // Con teclado, la tarjeta enfocada gira al frente.
+            cgCards.forEach(function (card, i) {
+                card.addEventListener('focus', function () {
+                    cgSettle(cgRot - cgRelative(i));
+                });
+            });
+
+            cgStage.addEventListener('mouseenter', function () { cgHover = true; });
+            cgStage.addEventListener('mouseleave', function () { cgHover = false; });
+
+            // Arrastrar para girar. Un gesto con recorrido no cuenta como clic.
+            var cgDragging = false, cgMoved = false, cgX0 = 0, cgRot0 = 0, cgPointer = null;
+            cgStage.addEventListener('pointerdown', function (e) {
+                if (e.button !== 0) return;
+                cgDragging = true;
+                cgMoved = false;
+                cgPointer = e.pointerId;
+                cgX0 = e.clientX;
+                cgRot0 = cgRot;
+                cgTarget = null;
+            });
+            cgStage.addEventListener('pointermove', function (e) {
+                if (!cgDragging || e.pointerId !== cgPointer) return;
+                var dx = e.clientX - cgX0;
+                if (!cgMoved && Math.abs(dx) > 6) {
+                    cgMoved = true;
+                    cgStage.classList.add('is-dragging');
+                    cgStage.setPointerCapture(cgPointer);
+                }
+                if (cgMoved) cgRot = cgRot0 + dx * .35;
+            });
+            function cgEndDrag(e) {
+                if (!cgDragging || e.pointerId !== cgPointer) return;
+                cgDragging = false;
+                cgStage.classList.remove('is-dragging');
+                if (cgMoved) cgSettle(cgRot);
+            }
+            cgStage.addEventListener('pointerup', cgEndDrag);
+            cgStage.addEventListener('pointercancel', cgEndDrag);
+            cgStage.addEventListener('click', function (e) {
+                if (cgMoved) { e.preventDefault(); cgMoved = false; }
+            }, true);
+
+            // El desplazamiento de la pagina tambien empuja el anillo.
+            var cgScrollY = window.scrollY;
+            window.addEventListener('scroll', function () {
+                var y = window.scrollY;
+                if (cgOnScreen && cgTarget === null && !reduceMotion.matches) cgRot -= (y - cgScrollY) * .08;
+                cgScrollY = y;
+            }, { passive: true });
+
             document.addEventListener('visibilitychange', function () {
-                if (document.hidden) { stop(); } else { start(); }
+                if (document.hidden) { cgPause(); } else { cgPlay(); }
             });
 
-            // Deslizar en tactil, ignorando gestos verticales.
-            var x0 = null, y0 = null;
-            track.addEventListener('touchstart', function (e) {
-                x0 = e.touches[0].clientX;
-                y0 = e.touches[0].clientY;
-                stop();
-            }, { passive: true });
+            // Solo anima mientras se ve.
+            if ('IntersectionObserver' in window) {
+                new IntersectionObserver(function (entries) {
+                    cgOnScreen = entries[0].isIntersecting;
+                    if (cgOnScreen) { cgPlay(); } else { cgPause(); }
+                }).observe(cg);
+            } else {
+                cgOnScreen = true;
+                cgPlay();
+            }
 
-            track.addEventListener('touchend', function (e) {
-                if (x0 === null) return;
-                var dx = e.changedTouches[0].clientX - x0;
-                var dy = e.changedTouches[0].clientY - y0;
-                if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy)) {
-                    go(dx < 0 ? 1 : -1);
-                }
-                x0 = y0 = null;
-                start();
-            }, { passive: true });
-
-            // Reajusta al cambiar de tamano, agrupando el trabajo en un rAF.
-            var pending = false;
-            window.addEventListener('resize', function () {
-                if (pending) return;
-                pending = true;
-                requestAnimationFrame(function () { pending = false; layout(); });
-            });
-
-            layout();
-            start();
+            cgRender();
         }
 
         /* -----------------------------------------------------------

@@ -12,15 +12,31 @@ Cada invitación es una página web diseñada para el evento, que se comparte co
 
 ## Tipos de eventos
 
-- Eventos de pareja: pedidas de mano, bodas, aniversarios, renovación de votos, pre y post-boda.
-- Cumpleaños: infantiles, XV años, 18 años, adultos, baby showers, revelaciones de género.
-- Religiosos: bautizos, primeras comuniones, confirmaciones, eventos patronales.
-- Académicos: promociones, graduaciones escolares y universitarias, titulaciones.
-- Familia y hogar, eventos corporativos (inauguraciones, lanzamientos, cenas empresariales) y eventos culturales.
+- Bodas y matrimonios: pedidas de mano, bodas, renovación de votos, pre y post-boda.
+- Cumpleaños y celebraciones personales: infantiles, XV años, 18 años y adultos.
+- Embarazo, nacimiento y familia: baby showers y revelaciones de género.
+- Celebraciones religiosas: bautizos, primeras comuniones y confirmaciones.
+- Graduaciones y educación: promociones, graduaciones escolares y universitarias, titulaciones.
+- Aniversarios y homenajes: bodas de plata, de oro y homenajes.
+- Eventos empresariales y profesionales: lanzamientos, inauguraciones, cenas de gala y conferencias.
+- Festividades culturales de Bolivia: Carnaval, Gran Poder y fiestas patronales.
+- Tradiciones y celebraciones familiares bolivianas: rutuchas, prestes y reuniones familiares.
+- Fiestas y entretenimiento, eventos deportivos y recreativos, y otros eventos especiales a medida.
+
+## Demos en vivo
+
+Invitaciones de boda de muestra que se pueden abrir como lo haría un invitado:
+
+- [Sobre botánico](https://invitacion-001.dwb-demo.workers.dev/): sobre animado, música, cuenta regresiva y confirmación de asistencia.
+- [Arco esmeralda](https://invitacion-002.dwb-demo.workers.dev/): medallón que se abre, música, calendario y confirmación.
+- [Jardín de camelias](https://invitacion-003.dwb-demo.workers.dev/): sobre floral, programa, galería y confirmación.
+- [Pase de abordar](https://invitacion-004.dwb-demo.workers.dev/): anillos animados, itinerario de viaje y confirmación.
+- [Bajo las estrellas](https://invitacion-005.dwb-demo.workers.dev/): intro de constelación, música e itinerario.
+- [Lacre negro, premium](https://premium-001.dwb-demo.workers.dev/): sello de lacre en video, padrinos, mapas y galería.
 
 ## Páginas
 
-- [Inicio](https://digitalweddingbolivia.dpdns.org/): presentación, diseños, portafolio, paquetes, proceso y preguntas frecuentes.
+- [Inicio](https://digitalweddingbolivia.dpdns.org/): presentación, diseños, demos en vivo, paquetes, proceso y preguntas frecuentes.
 - [Catálogo de bodas](https://heyzine.com/flip-book/d3beece82d.html): flipbook con siete diseños de invitación para bodas que se piden por código: DWB-001 Dorado blanco, DWB-002 Azul elegante, DWB-003 Vino sofisticado, DWB-004 Rosado romántico, DWB-005 Verde natural, DWB-006 Morado elegante y DWB-007 Turquesa moderno.
 - [Paquetes](https://digitalweddingbolivia.dpdns.org/#paquetes): comparación de Esencial, Premium y VIP.
 - [Preguntas frecuentes](https://digitalweddingbolivia.dpdns.org/#preguntas)
