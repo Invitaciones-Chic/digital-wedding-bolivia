@@ -42,6 +42,17 @@
         return capa;
     }
 
+    /* Destellos de cuatro puntas alrededor de la bola (posición en % del adorno). */
+    function destellos() {
+        var pos = [[6, 30, 14], [92, 24, 18], [2, 66, 10], [97, 60, 12], [16, 90, 12], [84, 92, 16], [30, 4, 10], [72, 6, 12]];
+        var h = '';
+        for (var i = 0; i < pos.length; i++) {
+            h += '<i class="xmas-spark" style="left:' + pos[i][0] + '%;top:' + pos[i][1] + '%;--s:' + pos[i][2] +
+                'px;--d:' + (-i * .55).toFixed(2) + 's"></i>';
+        }
+        return h;
+    }
+
     /* ---------- Pop-up ---------- */
     var dialogo = document.createElement('dialog');
     dialogo.className = 'xmas-dialog';
@@ -51,24 +62,35 @@
     dialogo.tabIndex = -1;
     dialogo.innerHTML =
         '<div class="xmas-dialog__veil"></div>' +
-        '<button type="button" class="xmas-dialog__close" aria-label="Cerrar promoción">' + ICONO_X + '</button>' +
         '<div class="xmas-dialog__scroll">' +
             '<div class="xmas-dialog__panel">' +
+                '<span class="xmas-dialog__halo" aria-hidden="true"></span>' +
                 '<span class="xmas-dialog__eyebrow">Temporada 2026</span>' +
                 '<h2 id="xmas-titulo" class="xmas-dialog__title">Promoción Navideña</h2>' +
                 '<figure class="xmas-dialog__figure">' +
-                    '<img src="' + IMAGEN + '" alt="Adorno navideño dorado de Digital Wedding Bolivia: Invitación navideña corporativo" width="820" height="820" fetchpriority="high">' +
-                    '<div class="xmas-dialog__cta-wrap">' +
-                        '<a class="rainbow-border" href="' + ENLACE + '" target="_blank" rel="noopener">' +
-                            '<span class="rainbow-border__glow" aria-hidden="true"></span>' +
-                            '<span class="rainbow-border__inner">' + ICONO_REGALO + '<span>Quiero la promoción</span></span>' +
-                        '</a>' +
+                    // El aura va dentro del adorno para balancearse con él (el relleno no se asoma por el borde).
+                    '<div class="xmas-ornament">' +
+                        '<span class="xmas-aura" aria-hidden="true">' +
+                            '<span class="xmas-aura__rays"></span>' +
+                            '<span class="xmas-aura__glow"></span>' +
+                            '<span class="xmas-aura__fill"></span>' +
+                            destellos() +
+                        '</span>' +
+                        '<img src="' + IMAGEN + '" alt="Adorno navideño dorado de Digital Wedding Bolivia: Invitación navideña corporativo" width="820" height="820" fetchpriority="high">' +
+                        '<div class="xmas-dialog__cta-wrap">' +
+                            '<a class="rainbow-border" href="' + ENLACE + '" target="_blank" rel="noopener">' +
+                                '<span class="rainbow-border__glow" aria-hidden="true"></span>' +
+                                '<span class="rainbow-border__inner">' + ICONO_REGALO + '<span>Quiero la promoción</span></span>' +
+                            '</a>' +
+                        '</div>' +
                     '</div>' +
+                    // La X va pegada al lado derecho de la bola (no en la esquina de la pantalla).
+                    '<button type="button" class="xmas-dialog__close" aria-label="Cerrar promoción">' + ICONO_X + '</button>' +
                 '</figure>' +
-                '<p class="xmas-dialog__note">Invitaciones digitales para tu evento corporativo de fin de año.</p>' +
             '</div>' +
         '</div>';
-    dialogo.insertBefore(nieve('xmas-snow--modal', movil ? 22 : 34, 3, 8), dialogo.firstChild.nextSibling);
+    // Sin fondo oscuro: los copos del pop-up llevan el mismo halo que los de la página para verse sobre claro.
+    dialogo.insertBefore(nieve('xmas-snow--page xmas-snow--modal', movil ? 16 : 26, 3, 8), dialogo.firstChild.nextSibling);
     document.body.appendChild(dialogo);
 
     var cerrando = false;
@@ -111,7 +133,8 @@
     /* Apertura: en cada visita, solo en la página de inicio del dominio principal. */
     var host = location.hostname.toLowerCase();
     var esDominioPrincipal = host === DOMINIO || host === 'www.' + DOMINIO ||
-        host === 'localhost' || host === '127.0.0.1';      // local, para probar
+        host === 'localhost' || host === '127.0.0.1' ||    // local, para probar
+        /^(10|192\.168|172\.(1[6-9]|2\d|3[01]))\./.test(host); // red local (probar desde el celular)
     var esInicio = location.pathname === '/' || location.pathname === '/index.html';
     if (esDominioPrincipal && esInicio) abrir();
 

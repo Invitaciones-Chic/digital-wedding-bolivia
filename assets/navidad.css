@@ -23,7 +23,7 @@
     pointer-events: none;
     contain: strict;
 }
-html.xmas-open .xmas-snow--page { display: none; }   /* con el pop-up abierto, solo nieva dentro */
+html.xmas-open body > .xmas-snow--page { display: none; }   /* con el pop-up abierto, solo nieva dentro */
 
 .xmas-flake {
     position: absolute;
@@ -174,15 +174,11 @@ html.xmas-open .xmas-snow--page { display: none; }   /* con el pop-up abierto, s
 .xmas-dialog::backdrop { background: transparent; }
 .xmas-dialog[open] { display: block; }
 
+/* Sin fondo: la página se ve tal cual detrás; el velo solo recibe el clic para cerrar. */
 .xmas-dialog__veil {
     position: absolute;
     inset: 0;
-    /* Sin backdrop-filter: el desenfoque de toda la página era lo más pesado. */
-    background:
-        radial-gradient(ellipse at 50% 35%, rgba(150, 16, 40, .6), transparent 62%),
-        radial-gradient(ellipse at 50% 110%, rgba(20, 83, 45, .9), transparent 65%),
-        rgba(8, 20, 14, .9);
-    animation: xmas-fade .4s ease both;
+    background: transparent;
 }
 .xmas-dialog .xmas-snow { position: absolute; z-index: 0; }
 
@@ -196,9 +192,11 @@ html.xmas-open .xmas-snow--page { display: none; }   /* con el pop-up abierto, s
     width: 100%;
     height: 100%;
     padding: max(3.5rem, env(safe-area-inset-top)) 16px max(1.5rem, env(safe-area-inset-bottom));
+    overflow-x: hidden;        /* los rayos y el halo salen del adorno: que no generen scroll lateral */
     overflow-y: auto;
 }
 .xmas-dialog__panel {
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -208,15 +206,29 @@ html.xmas-open .xmas-snow--page { display: none; }   /* con el pop-up abierto, s
     animation: xmas-pop .6s cubic-bezier(.32, .72, 0, 1) both;
 }
 
+/* Halo de luz cálida detrás del título y la bola: aclara la página para que todo se lea. Estático. */
+.xmas-dialog__halo {
+    position: absolute;
+    left: 50%;
+    top: 52%;
+    z-index: -1;
+    width: 195%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: radial-gradient(closest-side, rgba(255, 251, 240, .98) 0%, rgba(255, 250, 238, .97) 60%, rgba(255, 246, 226, .8) 76%, rgba(255, 244, 220, 0) 100%);
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+}
+
 .xmas-dialog__eyebrow {
     display: inline-flex;
     align-items: center;
     gap: .6rem;
     font-size: .75rem;
-    font-weight: 500;
+    font-weight: 600;
     letter-spacing: .32em;
     text-transform: uppercase;
-    color: var(--xmas-gold);
+    color: var(--xmas-red);
 }
 .xmas-dialog__eyebrow::before,
 .xmas-dialog__eyebrow::after {
@@ -232,10 +244,12 @@ html.xmas-open .xmas-snow--page { display: none; }   /* con el pop-up abierto, s
     font-weight: 700;
     font-size: clamp(2rem, 1.2rem + 3.6vw, 3.4rem);
     line-height: 1.05;
-    background: linear-gradient(180deg, #FFF6D8 10%, #E3CE93 55%, #C9A227 100%);
+    /* Dorado oscuro: sobre el halo claro el dorado pálido no se leía. */
+    background: linear-gradient(180deg, #C9A227 0%, #A6831A 45%, #6E5208 100%);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
+    filter: drop-shadow(0 1px 0 rgba(255, 255, 255, .9)) drop-shadow(0 6px 14px rgba(166, 131, 26, .25));
 }
 
 .xmas-dialog__figure {
@@ -244,11 +258,82 @@ html.xmas-open .xmas-snow--page { display: none; }   /* con el pop-up abierto, s
     min-width: 17rem;
     aspect-ratio: 1;
     margin: 0;
+    isolation: isolate;        /* el aura (z-index -1) queda detrás de la bola, no detrás de la página */
 }
-.xmas-dialog__figure img {
+
+/* La bola: cuelga de su argolla y se balancea apenas. */
+.xmas-ornament {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-origin: 50% 1%;
+    isolation: isolate;
+    animation: xmas-sway 6s ease-in-out infinite;
+}
+.xmas-ornament img {
     display: block;
     width: 100%;
     height: 100%;
+    /* Borde de luz dorada + sombra suave. Fija: no se anima (el filtro se pinta una sola vez). */
+    filter: drop-shadow(0 0 10px rgba(255, 214, 120, .85)) drop-shadow(0 18px 28px rgba(110, 60, 10, .28));
+}
+@keyframes xmas-sway {
+    0%, 100% { transform: rotate(-1.6deg); }
+    50%      { transform: rotate(1.6deg); }
+}
+
+/* Luz detrás de la bola: resplandor que respira, rayos que giran y destellos. */
+.xmas-aura {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+}
+/* Todas las capas se centran en el centro del vidrio de la bola: 50 % / 60 % del adorno. */
+.xmas-aura__fill,
+.xmas-aura__glow,
+.xmas-aura__rays {
+    position: absolute;
+    left: 50%;
+    top: 60%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    translate: -50% -50%;
+}
+/* Luz sólida dentro del vidrio: la bola es semitransparente y dejaba ver la página. */
+.xmas-aura__fill {
+    width: 92%;
+    background: radial-gradient(closest-side, #FFFDF7 60%, #FFF4D6 100%);
+}
+.xmas-aura__glow {
+    width: 128%;
+    background: radial-gradient(closest-side, rgba(255, 223, 140, .9) 62%, rgba(255, 210, 110, .4) 80%, rgba(255, 210, 110, 0) 100%);
+    animation: xmas-breathe 4s ease-in-out infinite;
+}
+.xmas-aura__rays {
+    width: 185%;
+    background: repeating-conic-gradient(from 0deg, rgba(255, 196, 80, .38) 0deg 4deg, rgba(255, 196, 80, 0) 4deg 15deg);
+    -webkit-mask-image: radial-gradient(closest-side, #000 30%, transparent 100%);
+    mask-image: radial-gradient(closest-side, #000 30%, transparent 100%);
+    animation: xmas-spin 50s linear infinite;
+}
+.xmas-spark {
+    position: absolute;
+    width: var(--s);
+    height: var(--s);
+    margin: calc(var(--s) / -2) 0 0 calc(var(--s) / -2);
+    background: radial-gradient(closest-side, #fff 0%, #FFE7A3 40%, rgba(255, 231, 163, 0) 100%);
+    clip-path: polygon(50% 0, 61% 39%, 100% 50%, 61% 61%, 50% 100%, 39% 61%, 0 50%, 39% 39%);
+    animation: xmas-sparkle 2.6s ease-in-out var(--d) infinite;
+}
+@keyframes xmas-breathe {
+    0%, 100% { opacity: .75; transform: scale(.97); }
+    50%      { opacity: 1;   transform: scale(1.04); }
+}
+@keyframes xmas-spin { to { transform: rotate(1turn); } }
+@keyframes xmas-sparkle {
+    0%, 100% { opacity: 0; transform: scale(.3) rotate(0); }
+    50%      { opacity: 1; transform: scale(1) rotate(45deg); }
 }
 /* Hueco blanco del adorno: entre el 49 % y el 76 % de la altura. */
 .xmas-dialog__cta-wrap {
@@ -321,31 +406,34 @@ html.xmas-open .xmas-snow--page { display: none; }   /* con el pop-up abierto, s
 .xmas-dialog__note {
     margin-top: .9rem;
     font-size: .8125rem;
-    color: rgba(255, 255, 255, .7);
+    font-weight: 500;
+    color: #524B42;
 }
 
+/* Junto al lado derecho de la bola, en el hueco vacío sobre el aro (el aro pasa por x≈79 % a esa altura). */
 .xmas-dialog__close {
     position: absolute;
-    top: max(.85rem, env(safe-area-inset-top));
-    right: .85rem;
+    left: 92%;
+    top: 17%;
+    translate: -50% -50%;
     z-index: 2;
     display: flex;
     align-items: center;
     justify-content: center;
     width: 2.75rem;
     height: 2.75rem;
-    border: 1px solid rgba(255, 255, 255, .3);
+    border: 1px solid #E7E1D5;
     border-radius: 999px;
-    background: rgba(255, 255, 255, .1);
-    color: #fff;
+    background: #fff;
+    color: #1C1A16;
+    box-shadow: 0 6px 18px -6px rgba(28, 26, 22, .35);
     cursor: pointer;
-    transition: background-color .25s;
+    transition: background-color .25s, transform .25s;
 }
-.xmas-dialog__close:hover { background: rgba(255, 255, 255, .22); }
-.xmas-dialog__close:focus-visible { outline: 2px solid var(--xmas-gold); outline-offset: 2px; }
+.xmas-dialog__close:hover { background: #FBF6E9; transform: rotate(90deg); }
+.xmas-dialog__close:focus-visible { outline: 2px solid #A6831A; outline-offset: 2px; }
 .xmas-dialog__close svg { width: 1.25rem; height: 1.25rem; }
 
-.xmas-dialog.is-closing .xmas-dialog__veil,
 .xmas-dialog.is-closing .xmas-dialog__panel { animation: xmas-out .25s ease both; }
 
 html.xmas-open { overflow: hidden; }
@@ -356,8 +444,9 @@ html.xmas-open { overflow: hidden; }
 
 @media (prefers-reduced-motion: reduce) {
     .xmas-snow { display: none; }
-    .xmas-bulb, .rainbow-border::before,
-    .xmas-dialog__veil, .xmas-dialog__panel { animation: none !important; }
+    .xmas-bulb, .rainbow-border::before, .xmas-dialog__panel,
+    .xmas-ornament, .xmas-aura__glow, .xmas-aura__rays { animation: none !important; }
+    .xmas-spark { animation: none !important; opacity: .8; }
 }
 
 @media print {
