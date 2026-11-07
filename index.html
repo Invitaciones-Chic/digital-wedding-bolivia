@@ -227,6 +227,8 @@
           imagesrcset="hero-invitacion-960.avif 960w, hero-invitacion-1672.avif 1672w" imagesizes="100vw">
 
     <link rel="stylesheet" href="/assets/tailwind.css">
+    <!-- Temporada navideña (pop-up, nieve y adornos). Quitar esta línea y su script para retirarla. -->
+    <link rel="stylesheet" href="/assets/navidad.css">
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -2510,6 +2512,9 @@
         <iframe id="flipbook-frame" title="Catálogo de diseños y colores de invitación para bodas"
                 allowfullscreen class="block h-full w-full flex-1 border-0 bg-gray-100"></iframe>
     </dialog>
+
+    <!-- Temporada navideña: solo se abre sola en el dominio principal. -->
+    <script src="/assets/navidad.js" defer></script>
 
     <script>
     (function () {

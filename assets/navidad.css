@@ -1,0 +1,338 @@
+/*
+ * Temporada navideña: pop-up de promoción, nieve, guirnalda de luces y
+ * accesos a la promoción. Todo vive en este archivo y en navidad.js;
+ * para retirar la temporada basta con quitar sus dos etiquetas de index.html.
+ */
+
+:root {
+    --xmas-red: #B3122E;
+    --xmas-red-deep: #6E0A1B;
+    --xmas-green: #14532D;
+    --xmas-green-deep: #08261A;
+    --xmas-gold: #E3CE93;
+}
+
+/* ---------- Nieve sobre la página ---------- */
+.xmas-snow {
+    position: fixed;
+    inset: 0;
+    z-index: 38;               /* debajo del navbar (40) y del WhatsApp (45) */
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+/* ---------- Guirnalda de luces bajo el navbar ---------- */
+.xmas-lights {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 100%;
+    height: 22px;
+    overflow: hidden;
+    pointer-events: none;
+    /* El cable: una curva cada 48px; navidad.js cuelga una bombilla en el centro de cada una. */
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='12'%3E%3Cpath d='M0 1Q24 13 48 1' fill='none' stroke='%231C1A16' stroke-opacity='.4'/%3E%3C/svg%3E") 0 0 / 48px 12px repeat-x;
+}
+.xmas-bulb {
+    position: absolute;
+    top: 7px;
+    margin-left: -3.5px;
+    width: 7px;
+    height: 10px;
+    border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
+    background: var(--c);
+    box-shadow: 0 0 6px 1px var(--c);
+    animation: xmas-twinkle 2.4s ease-in-out infinite;
+    animation-delay: var(--d, 0s);
+}
+.xmas-bulb::before {          /* casquillo */
+    content: '';
+    position: absolute;
+    left: 1.5px;
+    top: -3px;
+    width: 4px;
+    height: 3px;
+    border-radius: 1px;
+    background: #8A7A55;
+}
+@keyframes xmas-twinkle {
+    0%, 100% { opacity: 1; box-shadow: 0 0 7px 1px var(--c); }
+    50%      { opacity: .35; box-shadow: 0 0 0 0 var(--c); }
+}
+
+/* ---------- Etiqueta navideña en el hero ---------- */
+.xmas-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: .5rem;
+    margin-bottom: 1rem;
+    padding: .4rem .9rem .4rem .45rem;
+    border: 1px solid rgba(179, 18, 46, .25);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, .85);
+    color: var(--xmas-red-deep);
+    font-size: .8125rem;
+    font-weight: 500;
+    cursor: pointer;
+    backdrop-filter: blur(6px);
+    transition: border-color .3s, background-color .3s, transform .3s;
+}
+.xmas-chip:hover { border-color: var(--xmas-red); background: #fff; }
+.xmas-chip:active { transform: scale(.97); }
+.xmas-chip__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.6rem;
+    height: 1.6rem;
+    border-radius: 999px;
+    background: var(--xmas-red);
+    color: #fff;
+}
+.xmas-chip svg { width: .9rem; height: .9rem; }
+
+/* ---------- Botón flotante para reabrir la promoción ---------- */
+.xmas-fab {
+    position: fixed;
+    left: 1.25rem;
+    bottom: calc(1.25rem + env(safe-area-inset-bottom));
+    z-index: 45;
+    display: flex;
+    align-items: center;
+    gap: .55rem;
+    height: 3.5rem;
+    padding: 0 1.1rem 0 .45rem;
+    border: 0;
+    border-radius: 999px;
+    background: linear-gradient(135deg, var(--xmas-red), var(--xmas-red-deep));
+    color: #fff;
+    font: 500 .875rem/1 'Jost', system-ui, sans-serif;
+    box-shadow: 0 10px 25px -8px rgba(110, 10, 27, .55);
+    cursor: pointer;
+    transition: transform .4s cubic-bezier(.32, .72, 0, 1);
+}
+.xmas-fab:hover { transform: translateY(-2px); }
+.xmas-fab:active { transform: scale(.96); }
+.xmas-fab__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.6rem;
+    height: 2.6rem;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, .16);
+}
+.xmas-fab svg { width: 1.25rem; height: 1.25rem; animation: xmas-wiggle 3.5s ease-in-out infinite; }
+@keyframes xmas-wiggle {
+    0%, 86%, 100% { transform: rotate(0); }
+    90% { transform: rotate(-12deg); }
+    94% { transform: rotate(10deg); }
+}
+@media (max-width: 639px) {
+    .xmas-fab { padding: 0; width: 3.5rem; justify-content: center; }
+    .xmas-fab__label { display: none; }
+    .xmas-fab__icon { background: none; }
+}
+
+/* ---------- Pop-up de promoción ---------- */
+.xmas-dialog {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    max-width: none;
+    height: 100%;
+    max-height: none;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: #fff;
+    overflow: hidden;
+}
+.xmas-dialog::backdrop { background: transparent; }
+.xmas-dialog[open] { display: flex; }
+
+.xmas-dialog__veil {
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(ellipse at 50% 35%, rgba(179, 18, 46, .55), transparent 60%),
+        radial-gradient(ellipse at 50% 110%, rgba(20, 83, 45, .9), transparent 65%),
+        rgba(8, 20, 14, .82);
+    backdrop-filter: blur(6px);
+    animation: xmas-fade .5s ease both;
+}
+.xmas-dialog__snow {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.xmas-dialog__scroll {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    padding: max(3.5rem, env(safe-area-inset-top)) 16px max(1.5rem, env(safe-area-inset-bottom));
+    overflow-y: auto;
+}
+.xmas-dialog__panel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 34rem;
+    text-align: center;
+    animation: xmas-pop .7s cubic-bezier(.32, .72, 0, 1) both;
+}
+
+.xmas-dialog__eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: .6rem;
+    font-size: .75rem;
+    font-weight: 500;
+    letter-spacing: .32em;
+    text-transform: uppercase;
+    color: var(--xmas-gold);
+}
+.xmas-dialog__eyebrow::before,
+.xmas-dialog__eyebrow::after {
+    content: '';
+    width: 1.75rem;
+    height: 1px;
+    background: currentColor;
+    opacity: .6;
+}
+.xmas-dialog__title {
+    margin: .5rem 0 1rem;
+    font-family: 'Playfair Display', Georgia, serif;
+    font-weight: 700;
+    font-size: clamp(2rem, 1.2rem + 3.6vw, 3.4rem);
+    line-height: 1.05;
+    background: linear-gradient(180deg, #FFF6D8 10%, #E3CE93 55%, #C9A227 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 0 2px 18px rgba(201, 162, 39, .25);
+}
+
+.xmas-dialog__figure {
+    position: relative;
+    width: min(100%, 32rem, calc(100dvh - 12.5rem));
+    min-width: 17rem;
+    margin: 0;
+    isolation: isolate;
+}
+.xmas-dialog__figure img {
+    display: block;
+    width: 100%;
+    height: auto;
+    filter: drop-shadow(0 24px 40px rgba(0, 0, 0, .45));
+}
+/* Hueco blanco del adorno: entre el 49 % y el 76 % de la altura. */
+.xmas-dialog__cta-wrap {
+    position: absolute;
+    left: 50%;
+    top: 64%;
+    transform: translate(-50%, -50%);
+    isolation: isolate;        /* el borde arcoíris queda detrás del botón, no detrás de la imagen */
+}
+
+/* Botón con borde arcoíris (versión CSS del componente rainbow-borders-button). */
+.rainbow-border {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: .6rem;
+    min-width: 9rem;
+    height: 2.9rem;
+    padding: 0 1.4rem;
+    border: none;
+    border-radius: 12px;
+    background: #000;
+    color: #fff;
+    font: 600 clamp(.85rem, .78rem + .3vw, 1rem)/1 'Jost', system-ui, sans-serif;
+    letter-spacing: .02em;
+    white-space: nowrap;
+    text-decoration: none;
+    cursor: pointer;
+    transition: transform .2s ease;
+}
+.rainbow-border:hover { transform: translateY(-1px); }
+.rainbow-border:active { transform: scale(.97); }
+.rainbow-border:focus-visible { outline: 2px solid #fff; outline-offset: 4px; }
+.rainbow-border svg { width: 1.1rem; height: 1.1rem; }
+.rainbow-border::before,
+.rainbow-border::after {
+    content: '';
+    position: absolute;
+    left: -2px;
+    top: -2px;
+    z-index: -1;
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    border-radius: 14px;
+    background: linear-gradient(45deg, #fb0094, #0000ff, #00ff00, #ffff00, #ff0000, #fb0094, #0000ff, #00ff00, #ffff00, #ff0000);
+    background-size: 400%;
+    animation: rainbow 20s linear infinite;
+}
+.rainbow-border::after { filter: blur(22px); opacity: .75; }
+@keyframes rainbow {
+    0%   { background-position: 0 0; }
+    50%  { background-position: 400% 0; }
+    100% { background-position: 0 0; }
+}
+
+.xmas-dialog__note {
+    margin-top: .9rem;
+    font-size: .8125rem;
+    color: rgba(255, 255, 255, .7);
+}
+
+.xmas-dialog__close {
+    position: absolute;
+    top: max(.85rem, env(safe-area-inset-top));
+    right: .85rem;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    border: 1px solid rgba(255, 255, 255, .25);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, .08);
+    color: #fff;
+    cursor: pointer;
+    transition: background-color .25s;
+}
+.xmas-dialog__close:hover { background: rgba(255, 255, 255, .2); }
+.xmas-dialog__close:focus-visible { outline: 2px solid var(--xmas-gold); outline-offset: 2px; }
+.xmas-dialog__close svg { width: 1.25rem; height: 1.25rem; }
+
+.xmas-dialog.is-closing .xmas-dialog__veil,
+.xmas-dialog.is-closing .xmas-dialog__panel { animation: xmas-out .3s ease both; }
+
+html.xmas-lock { overflow: hidden; }
+
+@keyframes xmas-fade { from { opacity: 0; } }
+@keyframes xmas-pop  { from { opacity: 0; transform: translateY(18px) scale(.94); } }
+@keyframes xmas-out  { to   { opacity: 0; transform: scale(.98); } }
+
+@media (prefers-reduced-motion: reduce) {
+    .xmas-bulb, .xmas-fab svg, .rainbow-border::before, .rainbow-border::after,
+    .xmas-dialog__veil, .xmas-dialog__panel { animation: none !important; }
+}
+
+@media print {
+    .xmas-snow, .xmas-lights, .xmas-fab, .xmas-chip, .xmas-dialog { display: none !important; }
+}
